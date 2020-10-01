@@ -23,9 +23,11 @@ exports.register = async (req, res) => {
     const { email, password } = req.body;
     const newUser = await UsersSchema.create(email, password);
 
+    const token = UsersSchema.getSignedJwtToken();
     res.status(201).json({
       success: true,
       data: newUser,
+      token: token,
     });
   } catch (error) {
     res.status(400).json({ success: false });
