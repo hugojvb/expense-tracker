@@ -1,6 +1,4 @@
-const getUsers = (req, res, next) => {
-  res.send("HEEEEELLLLLLLLLLLLLLoOOOOOOOOOOO");
-};
+const getUsers = (req, res, next) => {};
 
 const postUser = (req, res) => {
   console.log("post");
