@@ -1,6 +1,6 @@
 const express = require("express");
 // const bodyParser = require("body-parser");
-const users = require("./routes/users.js");
+const auth = require("./routes/auth.js");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 
@@ -12,7 +12,7 @@ const app = express();
 // use body parser
 app.use(express.json());
 
-app.use("/users", users);
+app.use("/auth", auth);
 
 // listenning at port 5000
 const PORT = process.env.PORT || 5000;

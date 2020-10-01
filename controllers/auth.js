@@ -1,10 +1,10 @@
-const UsersModel = require("../models/UsersModel");
+const UsersSchema = require("../models/UsersSchema");
 
 // get a user
-exports.getUser = async (req, res) => {
+exports.login = async (req, res) => {
   try {
-    const { id } = req.params;
-    const user = await UsersModel.findById(id);
+    const { email, password } = req.body;
+    const user = await UsersSchema.find(email, password);
 
     if (!user) return res.status(400).json({ success: false });
 
@@ -18,9 +18,10 @@ exports.getUser = async (req, res) => {
 };
 
 // create a user
-exports.postUser = async (req, res) => {
+exports.register = async (req, res) => {
   try {
-    const newUser = await UsersModel.create();
+    const { email, password } = req.body;
+    const newUser = await UsersSchema.create(email, password);
 
     res.status(201).json({
       success: true,
@@ -35,7 +36,7 @@ exports.postUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await UsersModel.findByIdAndUpdate(id, req.body, {
+    const user = await UsersSchema.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
     });
@@ -53,7 +54,7 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await UsersModel.findByIdAndDelete(id);
+    const user = await UsersSchema.findByIdAndDelete(id);
 
     if (!user) return res.status(400).json({ success: false });
 
