@@ -1,7 +1,9 @@
-const getUsers = (req, res, next) => {};
+const UsersModel = require("../models/UsersModel");
 
-const postUser = (req, res) => {
-  console.log("post");
+exports.getUsers = (req, res, next) => {
+  res.send("get user");
 };
 
-module.exports = [getUsers, postUser];
+exports.postUser = (req, res) => {
+  res.send("post user");
+};
