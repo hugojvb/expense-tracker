@@ -8,10 +8,6 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please insert an email"],
     unique: true,
     trim: true,
-    match: [
-      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/,
-      "Please insert a valid email",
-    ],
   },
   password: {
     type: String,
@@ -19,15 +15,12 @@ const UserSchema = new mongoose.Schema({
     unique: false,
     trim: true,
     minlength: [6, "Password must be at least 6 characters"],
-    match: [
-      /^[0-9a-zA-Z]{6,}$/,
-      "Password can only contain numbers and letters",
-    ],
+    select: false,
   },
 });
 
 // hash password
-UserSchema.pre("save", async (next) => {
+UserSchema.pre("save", async function () {
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
@@ -37,6 +30,11 @@ UserSchema.methods.getSignedJwtToken = () => {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE,
   });
+};
+
+// validate password
+UserSchema.methods.validatePassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 
 module.exports = mongoose.model("UsersSchema", UserSchema);

@@ -4,16 +4,19 @@ const UsersSchema = require("../models/UsersSchema");
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await UsersSchema.find(email, password);
+    if (!email || !password)
+      return res.status(400).json({ Error: "Email or Password Invalid" });
 
-    if (!user) return res.status(400).json({ success: false });
+    const user = await UsersSchema.findOne({ email }).select("+password");
+    if (!user) return res.status(400).json({ Error: "User Invalid" });
 
-    res.status(200).json({
-      success: true,
-      data: user,
-    });
+    const isValid = await user.validatePassword(password);
+    if (!isValid) return res.status(401).json({ Error: "Invalid Password" });
+
+    sendTokenResponse(user, 200, res);
   } catch (error) {
-    res.status(400).json({ success: false });
+    console.log(error);
+    res.status(400).json({ Error: "Failed login" });
   }
 };
 
@@ -21,16 +24,12 @@ exports.login = async (req, res) => {
 exports.register = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const newUser = await UsersSchema.create(email, password);
+    const newUser = await UsersSchema.create({ email, password });
 
-    const token = UsersSchema.getSignedJwtToken();
-    res.status(201).json({
-      success: true,
-      data: newUser,
-      token: token,
-    });
+    sendTokenResponse(newUser, 200, res);
   } catch (error) {
-    res.status(400).json({ success: false });
+    console.log(error);
+    res.status(400).json({ Error: "Failed register" });
   }
 };
 
@@ -67,4 +66,20 @@ exports.deleteUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({ success: false });
   }
+};
+
+// get token, create cookie and send it
+const sendTokenResponse = (user, statusCode, res) => {
+  const token = user.getSignedJwtToken();
+  const options = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 3600 * 1000
+    ),
+    httpOnly: true,
+  };
+
+  res
+    .status(statusCode)
+    .cookie("token", token, options)
+    .json({ success: true, token: token });
 };
