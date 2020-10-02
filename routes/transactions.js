@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getTransaction,
+  getTransactions,
   addTransaction,
   updateTransaction,
   deleteTransaction,
 } = require("../controllers/transactions.js");
 
-router.get("/:id", getTransaction);
+router.get("/:id", getTransactions);
 
 router.post("/", addTransaction);
 

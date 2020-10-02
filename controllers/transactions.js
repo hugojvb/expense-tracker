@@ -1,17 +1,16 @@
 const TransactionsSchema = require("../models/TransactionsSchema");
 
-// get transaction
-exports.getTransaction = async (req, res) => {
+// get all transactions
+exports.getTransactions = async (req, res) => {
   try {
-    const { id } = req.params;
-    const transaction = await TransactionsSchema.findById({ id: "_id" });
+    const transactions = await TransactionsSchema.find();
 
-    if (!transaction) return res.status(400).json({ Error: "Id not found" });
-
-    res.status(200).json({ success: true, transaction: transaction });
+    res
+      .status(200)
+      .json({ success: true, data: transactions, count: transactions.length });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ Error: "Failed getting transaction" });
+    res.status(500).json({ Error: "Failed getting transactions" });
   }
 };
 
@@ -19,13 +18,9 @@ exports.getTransaction = async (req, res) => {
 exports.addTransaction = async (req, res) => {
   try {
     const { name, amount, date } = req.body;
-    const newTransaction = await TransactionsSchema.create({
-      name,
-      amount,
-      date,
-    });
+    const newTransaction = await TransactionsSchema.create(req.body);
 
-    res.status(201).json({ success: true, transaction: newTransaction });
+    res.status(201).json({ success: true, data: newTransaction });
   } catch (error) {
     console.log(error);
     res.status(400).json({ Error: "Failed to add a new transaction" });
@@ -50,7 +45,7 @@ exports.updateTransaction = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      transaction: transaction,
+      data: transaction,
     });
   } catch (error) {
     res.status(400).json({ Error: "Failed to update transaction" });
