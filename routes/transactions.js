@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { verify } = require("../middleware/verify.js");
 const {
   getTransactions,
   addTransaction,
@@ -7,12 +8,12 @@ const {
   deleteTransaction,
 } = require("../controllers/transactions.js");
 
-router.get("/:id", getTransactions);
+router.get("/:id", verify, getTransactions);
 
-router.post("/", addTransaction);
+router.post("/", verify, addTransaction);
 
-router.put("/:id", updateTransaction);
+router.put("/:id", verify, updateTransaction);
 
-router.delete("/:id", deleteTransaction);
+router.delete("/:id", verify, deleteTransaction);
 
 module.exports = router;

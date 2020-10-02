@@ -5,9 +5,13 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 
+// dotenv config
 dotenv.config({ path: "./config/config.env" });
 
+// connect to database
 connectDB();
+
+// initiate express
 const app = express();
 
 // use body parser
@@ -19,7 +23,7 @@ app.use(cookieParser());
 // route for auth
 app.use("/auth", auth);
 
-//route for transactions
+// route for transactions
 app.use("/transactions", transactions);
 
 // listenning at port 5000
