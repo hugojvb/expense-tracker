@@ -1,32 +1,33 @@
 const UsersSchema = require("../models/UsersSchema");
 
-// get a user
+// login
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password)
-      return res.status(400).json({ Error: "Email or Password Invalid" });
+      return res.status(400).json({ Error: "Email or Password Missing" });
 
     const user = await UsersSchema.findOne({ email }).select("+password");
-    if (!user) return res.status(400).json({ Error: "User Invalid" });
+    if (!user)
+      return res.status(400).json({ Error: "Email or Password Invalid" });
 
     const isValid = await user.validatePassword(password);
     if (!isValid) return res.status(401).json({ Error: "Invalid Password" });
 
-    sendTokenResponse(user, 200, res);
+    sendTokenResponse(user, res);
   } catch (error) {
     console.log(error);
     res.status(400).json({ Error: "Failed login" });
   }
 };
 
-// create a user
+// register
 exports.register = async (req, res) => {
   try {
     const { email, password } = req.body;
     const newUser = await UsersSchema.create({ email, password });
 
-    sendTokenResponse(newUser, 200, res);
+    sendTokenResponse(newUser, res);
   } catch (error) {
     console.log(error);
     res.status(400).json({ Error: "Failed register" });
@@ -69,7 +70,7 @@ exports.deleteUser = async (req, res) => {
 };
 
 // get token, create cookie and send it
-const sendTokenResponse = (user, statusCode, res) => {
+const sendTokenResponse = (user, res) => {
   const token = user.getSignedJwtToken();
   const options = {
     expires: new Date(
@@ -79,7 +80,7 @@ const sendTokenResponse = (user, statusCode, res) => {
   };
 
   res
-    .status(statusCode)
+    .status(200)
     .cookie("token", token, options)
     .json({ success: true, token: token });
 };

@@ -1,5 +1,6 @@
 const express = require("express");
 const auth = require("./routes/auth.js");
+const transactions = require("./routes/transactions.js");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
@@ -17,6 +18,9 @@ app.use(cookieParser());
 
 // route for auth
 app.use("/auth", auth);
+
+//route for transactions
+app.use("/transactions", transactions);
 
 // listenning at port 5000
 const server = app.listen(process.env.PORT, () =>
