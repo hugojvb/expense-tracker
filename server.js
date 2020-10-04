@@ -4,6 +4,7 @@ const transactions = require("./routes/transactions.js");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
+const morgan = require("morgan");
 
 // dotenv config
 dotenv.config({ path: "./config/config.env" });
@@ -14,16 +15,17 @@ connectDB();
 // initiate express
 const app = express();
 
-// use body parser
+// use bodyParser & cookieParser
 app.use(express.json());
-
-// use cookie parser
 app.use(cookieParser());
 
-// route for auth
-app.use("/auth", auth);
+// Dev logging middleware
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 
-// route for transactions
+// routes
+app.use("/auth", auth);
 app.use("/transactions", transactions);
 
 // listenning at port 5000

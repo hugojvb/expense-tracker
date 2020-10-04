@@ -15,10 +15,9 @@ exports.getTransactions = async (req, res) => {
 };
 
 // add transaction
-exports.addTransaction = async (req, res) => {
+exports.addTransaction = async (req, res, next) => {
   try {
-    console.log(req.user);
-    req.body.user = req.user.id;
+    req.body.user = req.user;
     const newTransaction = await TransactionsSchema.create(req.body);
 
     res.status(201).json({ success: true, data: newTransaction });

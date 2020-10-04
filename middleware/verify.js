@@ -12,17 +12,23 @@ exports.verify = async (req, res, next) => {
     token = req.headers.authorization.split(" ")[1];
   } else if (req.cookies.token) {
     token = req.cookies.token;
-  } else if (!token)
+  }
+
+  if (!token) {
     return res
       .status(401)
       .json({ Error: "Not authorized to access this route" });
+  }
 
   try {
     // Verify Token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     req.user = await UsersSchema.findById(decoded.id);
-  } catch (err) {
-    console.log(err);
+
+    console.log(decoded);
+    next();
+  } catch (error) {
+    return res.status(401).json({ Error: error.message });
   }
 };

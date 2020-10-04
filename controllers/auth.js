@@ -84,3 +84,19 @@ const sendTokenResponse = (user, res) => {
     .cookie("token", token, options)
     .json({ success: true, token: token });
 };
+
+// Get Current Logged in user
+
+exports.getMe = async (req, res, next) => {
+  try {
+    const user = await UsersSchema.findById(req.user.id);
+
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ Error: error.message });
+  }
+};
