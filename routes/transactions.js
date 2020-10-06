@@ -8,7 +8,7 @@ const {
   deleteTransaction,
 } = require("../controllers/transactions.js");
 
-router.get("/:id", verify, getTransactions);
+router.get("/", verify, getTransactions);
 
 router.post("/", verify, addTransaction);
 
