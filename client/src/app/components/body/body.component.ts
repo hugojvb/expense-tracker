@@ -13,14 +13,7 @@ export class BodyComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get('http:localhost:5000/transactions/').subscribe((res) => {
-      if (Response) {
-        this.hideloader();
-      }
       this.total = res;
     });
   }
-  hideloader() {
-    document.getElementById('loading').style.display = 'none';
-  }
-  // TODO: ADD LOADING ELEMENT #loading
 }
