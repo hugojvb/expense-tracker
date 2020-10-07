@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-body',
@@ -7,13 +7,13 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./body.component.css'],
 })
 export class BodyComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  transactions = {};
 
-  total: any;
+  constructor(private DataService: DataService) {}
 
   ngOnInit(): void {
-    this.http.get('http:localhost:5000/transactions/').subscribe((res) => {
-      this.total = res;
+    this.transactions = this.DataService.getData().subscribe((res) => {
+      this.transactions = res;
     });
   }
 }
