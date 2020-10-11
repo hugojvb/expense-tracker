@@ -12,7 +12,7 @@ export class BodyComponent implements OnInit {
   constructor(private DataService: DataService) {}
 
   ngOnInit(): void {
-    this.transactions = this.DataService.getData().subscribe((res) => {
+    this.transactions = this.DataService.getTransactions().subscribe((res) => {
       this.transactions = res;
     });
   }

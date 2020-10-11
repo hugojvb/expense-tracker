@@ -11,6 +11,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { BodyComponent } from './components/body/body.component';
 
 import { DataService } from './services/data.service';
+import { AuthService } from './services/auth.service';
+import { SigninComponent } from './components/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,10 @@ import { DataService } from './services/data.service';
     FooterComponent,
     HeaderComponent,
     BodyComponent,
+    SigninComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [DataService],
+  providers: [DataService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

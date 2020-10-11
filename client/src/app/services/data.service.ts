@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  transactions: any;
-
   constructor(private http: HttpClient) {}
 
-  getData(): any {
-    return this.http.get('http:localhost:5000/transactions/');
+  headers: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'token',
+  });
+
+  getTransactions(): any {
+    return this.http.get('http://localhost:5000/transactions/');
+  }
+
+  postTransactions(): any {
+    return this.http.post('http://localhost:5000/transactions/', {});
   }
 }
