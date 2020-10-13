@@ -7,30 +7,34 @@
   <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-md">
       <a href="#" class="navbar-brand">Expense Tracker</a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
+      <button
+        *ngIf="isLoggedIn"
+        class="navbar-toggler"
+        data-toggle="collapse"
+        data-target="#menu"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item text-center mx-1">
-            <a href="#" id="link-hover" routerLinkActive="active"
-              ><li class="nav-link" id="asd" routerLink="transactions">
-                Home
-              </li></a
+        <ul *ngIf="isLoggedIn" class="navbar-nav ml-auto">
+          <li class="nav-item text-center mx-1" routerLinkActive="active">
+            <a class="nav-link" routerLink="transactions" id="link-hover">
+              Home
+            </a>
+          </li>
+          <li class="nav-item text-center mx-1" routerLinkActive="active">
+            <a class="nav-link" routerLink="transactions" id="link-hover"
+              >Goals</a
             >
           </li>
-          <li class="nav-item text-center mx-1">
-            <a href="#" id="link-hover"
-              ><li class="nav-link" id="asd">Goals</li></a
+          <li class="nav-item text-center mx-1" routerLinkActive="active">
+            <a class="nav-link" routerLink="transactions" id="link-hover"
+              >History</a
             >
           </li>
-          <li class="nav-item text-center mx-1">
-            <a href="#" id="link-hover"
-              ><li class="nav-link" id="asd">History</li></a
-            >
-          </li>
-          <li class="nav-item text-center mx-1">
-            <a href="#" id="link-hover"><li class="nav-link">Sign Out</li></a>
+
+          <li class="nav-item text-center mx-1" routerLinkActive="active">
+            <a class="nav-link" routerLink="signin" id="link-hover">Sign Out</a>
           </li>
         </ul>
       </div>
