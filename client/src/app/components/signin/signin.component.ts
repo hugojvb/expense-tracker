@@ -13,6 +13,7 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {}
 
   loading: boolean = false;
+  error: string = null;
 
   onSubmit(form: NgForm) {
     if (!form.valid) return;
@@ -28,6 +29,7 @@ export class SigninComponent implements OnInit {
       },
       (err) => {
         console.log(err);
+        this.error = err.error.Error;
         this.loading = false;
       }
     );

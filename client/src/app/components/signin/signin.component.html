@@ -34,9 +34,6 @@
                   email
                   #email="ngModel"
                 />
-                <!-- <p class="form-text" *ngIf="!email.valid && email.touched">
-                  Please enter a valid email
-                </p> -->
               </div>
               <div class="input-group form-group">
                 <div class="input-group-prepend">
@@ -54,6 +51,13 @@
                   required
                   ngModel
                 />
+              </div>
+              <div
+                class="alert text-center alert-danger alert-dismissible"
+                *ngIf="error"
+              >
+                <a href="#" class="close">&times;</a>
+                <p>{{ error }}</p>
               </div>
               <div class="row align-items-center remember ml-2">
                 <input class="mr-1" type="checkbox" /> Remember Me
