@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SignUpService } from '../../services/signup.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { SignUpService } from '../../services/signup.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private signUpService: SignUpService) {}
+  constructor(private signUpService: SignUpService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -26,6 +27,7 @@ export class SignupComponent implements OnInit {
       (res) => {
         console.log(res);
         this.loading = false;
+        this.router.navigate(['/transactions']);
       },
       (err) => {
         console.log(err);

@@ -12,6 +12,8 @@ interface SignInResponse {
 export class SignInService {
   constructor(private http: HttpClient) {}
 
+  user = null;
+
   signIn(email: string, password: string) {
     return this.http.post<SignInResponse>(
       'http://localhost:5000/api/auth/login',

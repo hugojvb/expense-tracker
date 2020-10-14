@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SignInService } from 'src/app/services/signin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -8,7 +9,7 @@ import { SignInService } from 'src/app/services/signin.service';
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
-  constructor(private signInService: SignInService) {}
+  constructor(private signInService: SignInService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -25,6 +26,8 @@ export class SigninComponent implements OnInit {
     this.signInService.signIn(email, password).subscribe(
       (res) => {
         console.log(res);
+
+        this.router.navigate(['/transactions']);
         this.loading = false;
       },
       (err) => {
@@ -33,8 +36,6 @@ export class SigninComponent implements OnInit {
         this.loading = false;
       }
     );
-
-    this.loading = false;
 
     form.reset();
   }
