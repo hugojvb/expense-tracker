@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 interface SignInResponse {
   success: boolean;
@@ -12,7 +13,7 @@ interface SignInResponse {
 export class SignInService {
   constructor(private http: HttpClient) {}
 
-  user = null;
+  user = new Subject();
 
   signIn(email: string, password: string) {
     return this.http.post<SignInResponse>(

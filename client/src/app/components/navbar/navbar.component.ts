@@ -10,13 +10,15 @@ import { Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
 
+  isLoggedIn: boolean = false;
+
   constructor(private signInService: SignInService) {}
 
-  ngOnInit(): void {
-    this.userSub = this.signInService.user.subscribe();
+  ngOnInit() {
+    this.userSub = this.signInService.success.subscribe((success) => {
+      this.isLoggedIn = !!success;
+    });
   }
-
-  isLoggedIn: boolean = false;
 
   ngOnDestroy() {
     this.userSub.unsubscribe();
