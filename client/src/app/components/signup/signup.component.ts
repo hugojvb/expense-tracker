@@ -8,7 +8,7 @@ import { SignUpService } from '../../services/signup.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private authService: SignUpService) {}
+  constructor(private signUpService: SignUpService) {}
 
   ngOnInit(): void {}
 
@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
     if (!form.valid) return;
     const email: string = form.value.email;
     const password: string = form.value.password;
-    this.authService.signup(email, password).subscribe(
+    this.signUpService.signUp(email, password).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
     );

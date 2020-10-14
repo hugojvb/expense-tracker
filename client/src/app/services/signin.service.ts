@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-interface SignUpResponse {
+interface SignInResponse {
   success: boolean;
   token: string;
 }
@@ -9,11 +9,11 @@ interface SignUpResponse {
 @Injectable({
   providedIn: 'root',
 })
-export class SignUpService {
+export class SignInService {
   constructor(private http: HttpClient) {}
 
-  signUp(email: string, password: string) {
-    return this.http.post<SignUpResponse>('http://localhost:5000/register', {
+  signIn(email: string, password: string) {
+    return this.http.post<SignInResponse>('http://localhost:5000/login', {
       email: email,
       password: password,
     });
