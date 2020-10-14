@@ -12,14 +12,26 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  loading: boolean = false;
+
   onSubmit(form: NgForm) {
     if (!form.valid) return;
     const email: string = form.value.email;
     const password: string = form.value.password;
+
+    this.loading = true;
+
     this.signUpService.signUp(email, password).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
+      (res) => {
+        console.log(res);
+        this.loading = false;
+      },
+      (err) => {
+        console.log(err);
+        this.loading = false;
+      }
     );
+
     form.reset();
   }
 }

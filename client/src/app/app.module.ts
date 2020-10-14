@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { BodyComponent } from './components/body/body.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 import { DataService } from './services/data.service';
 import { SignUpService } from './services/signup.service';
@@ -27,6 +28,7 @@ import { SignInService } from './services/signin.service';
     BodyComponent,
     SigninComponent,
     SignupComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [DataService, SignUpService, SignInService],
