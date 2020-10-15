@@ -32,4 +32,8 @@ export class SignInService {
         })
       );
   }
+
+  signOut() {
+    this.userToken.next(null);
+  }
 }

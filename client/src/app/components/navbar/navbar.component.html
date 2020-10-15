@@ -34,7 +34,13 @@
           </li>
 
           <li class="nav-item text-center mx-1" routerLinkActive="active">
-            <a class="nav-link" routerLink="signin" id="link-hover">Sign Out</a>
+            <a
+              class="nav-link"
+              (click)="onSignOut()"
+              routerLink="/"
+              id="link-hover"
+              >Sign Out</a
+            >
           </li>
         </ul>
       </div>
