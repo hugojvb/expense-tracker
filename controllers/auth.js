@@ -4,12 +4,10 @@ const UsersSchema = require("../models/UsersSchema");
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    if (!email || !password)
-      return res.status(400).json({ Error: "Email or Password Missing" });
+    if (!email || !password) return res.status(400).json({ Error: "Email or Password Missing" });
 
     const user = await UsersSchema.findOne({ email }).select("+password");
-    if (!user)
-      return res.status(400).json({ Error: "Email or Password Invalid" });
+    if (!user) return res.status(400).json({ Error: "Email or Password Invalid" });
 
     const isValid = await user.validatePassword(password);
     if (!isValid) return res.status(401).json({ Error: "Invalid Password" });
@@ -73,16 +71,12 @@ exports.deleteUser = async (req, res) => {
 const sendTokenResponse = (user, res) => {
   const token = user.getSignedJwtToken();
   const options = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 3600 * 1000
-    ),
+    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 3600 * 1000),
     httpOnly: true,
+    secure: false,
   };
 
-  res
-    .status(200)
-    .cookie("token", token, options)
-    .json({ success: true, token: token });
+  res.status(200).cookie("token", token, options).json({ success: true, token: token });
 };
 
 // Get Current Logged in user

@@ -20,12 +20,10 @@ export class AuthInterceptorService implements HttpInterceptor {
           return next.handle(req);
         }
         const modifiedReq = req.clone({
-          headers: new HttpHeaders().set(
-            'Authorization',
-            `Bearer ${userToken.token}`
-          ),
+          headers: new HttpHeaders()
+            .set('Authorization', `Bearer ${userToken.token}`)
+            .set('Content-Type', 'application/json'),
         });
-
         return next.handle(modifiedReq);
       })
     );
