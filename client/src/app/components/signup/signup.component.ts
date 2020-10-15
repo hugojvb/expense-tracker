@@ -26,8 +26,8 @@ export class SignupComponent implements OnInit {
     this.signUpService.signUp(email, password).subscribe(
       (res) => {
         console.log(res);
-        this.loading = false;
         this.router.navigate(['/transactions']);
+        this.loading = false;
       },
       (err) => {
         console.log(err);

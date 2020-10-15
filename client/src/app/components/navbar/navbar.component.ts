@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SignInService } from 'src/app/services/signin.service';
 import { Subscription } from 'rxjs';
+import { SignUpService } from 'src/app/services/signup.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +13,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   isLoggedIn: boolean = false;
 
-  constructor(private signInService: SignInService) {}
+  constructor(
+    private signInService: SignInService,
+    private signUpService: SignUpService
+  ) {}
 
   ngOnInit() {
     this.userSub = this.signInService.userToken.subscribe((success) => {
-      this.isLoggedIn = !!success;
+      this.isLoggedIn = !success ? false : true;
+    });
+    this.userSub = this.signUpService.userToken.subscribe((success) => {
+      this.isLoggedIn = !success ? false : true;
     });
   }
 
