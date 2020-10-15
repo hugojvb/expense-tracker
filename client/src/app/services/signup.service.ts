@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { UserToken } from '../models/userToken.model';
 import { tap } from 'rxjs/operators';
 
@@ -15,7 +15,7 @@ interface SignUpResponse {
 export class SignUpService {
   constructor(private http: HttpClient) {}
 
-  userToken = new Subject<UserToken>();
+  userToken = new BehaviorSubject<UserToken>(null);
 
   signUp(email: string, password: string) {
     return this.http
