@@ -37,4 +37,17 @@ export class SignInService {
   signOut() {
     this.userToken.next(null);
   }
+
+  autoSignIn() {
+    const userStored: { _token: string } = JSON.parse(
+      localStorage.getItem('userToken')
+    );
+    if (!userStored) {
+      return;
+    }
+
+    const loadedUser = new UserToken(userStored._token);
+
+    if (loadedUser.token) return this.userToken.next(loadedUser);
+  }
 }
