@@ -16,6 +16,7 @@ export class SignInService {
   constructor(private http: HttpClient) {}
 
   userToken = new BehaviorSubject<UserToken>(null);
+  private tokenExpirationTimer: any;
 
   signIn(email: string, password: string) {
     return this.http
@@ -28,14 +29,11 @@ export class SignInService {
           if (res.success === true) {
             const userToken = new UserToken(res.token);
             this.userToken.next(userToken);
+            this.autoSignOut();
             localStorage.setItem('userToken', JSON.stringify(userToken));
           }
         })
       );
-  }
-
-  signOut() {
-    this.userToken.next(null);
   }
 
   autoSignIn() {
@@ -48,6 +46,24 @@ export class SignInService {
 
     const loadedUser = new UserToken(userStored._token);
 
-    if (loadedUser.token) return this.userToken.next(loadedUser);
+    if (loadedUser.token) {
+      this.userToken.next(loadedUser);
+      this.autoSignOut();
+    }
+  }
+
+  signOut() {
+    this.userToken.next(null);
+    localStorage.removeItem('userToken');
+    if (this.tokenExpirationTimer) {
+      return clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
+  }
+
+  autoSignOut() {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.signOut();
+    }, 24 * 3600000);
   }
 }

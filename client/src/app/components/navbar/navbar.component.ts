@@ -22,8 +22,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.userSub = this.signInService.userToken.subscribe((success) => {
       this.isLoggedIn = !!success;
     });
-
-    console.log('Are you logged in ? ' + this.isLoggedIn);
   }
 
   ngOnDestroy() {
@@ -32,5 +30,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   onSignOut() {
     this.signInService.signOut();
+    localStorage.removeItem('userToken');
   }
 }
