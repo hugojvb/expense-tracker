@@ -7,13 +7,13 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./body.component.css'],
 })
 export class BodyComponent implements OnInit {
-  transactions = {};
+  data;
 
   constructor(private DataService: DataService) {}
 
   ngOnInit(): void {
-    // this.transactions = this.DataService.getTransactions().subscribe((res) => {
-    //   this.transactions = res;
-    // });
+    this.DataService.getTransactions().subscribe((res) => {
+      this.data = res.data;
+    });
   }
 }

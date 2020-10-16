@@ -9,11 +9,6 @@ import { exhaustMap, take } from 'rxjs/operators';
 export class DataService {
   constructor(private http: HttpClient, private signInService: SignInService) {}
 
-  headers: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'token',
-  });
-
   getTransactions(): any {
     return this.http.get('http://localhost:5000/api/transactions/');
   }
