@@ -28,6 +28,7 @@ export class SignInService {
           if (res.success === true) {
             const userToken = new UserToken(res.token);
             this.userToken.next(userToken);
+            localStorage.setItem('userToken', JSON.stringify(userToken));
           }
         })
       );
