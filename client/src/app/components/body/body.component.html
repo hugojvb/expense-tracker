@@ -11,12 +11,16 @@
       <h5>Mean of expenses per Month</h5>
       <h1 class="mb-5">475.23</h1>
       <div class="row bg-light">
-        <p class="col-sm-6" *ngFor="let d of data">
-          {{ d.name }}
-        </p>
-        <p class="col-sm-6" *ngFor="let d of data">
-          {{ d.amount }}
-        </p>
+        <div class="col-sm-6 justify-content-start">
+          <p *ngFor="let d of data">
+            {{ d.name }}
+          </p>
+        </div>
+        <div class="col-sm-6 justify-content-start">
+          <p *ngFor="let d of data">
+            {{ d.amount }}
+          </p>
+        </div>
       </div>
     </div>
     <button class="mx-auto mt-3 btn btn-block btn-dark w-50 btn-center">

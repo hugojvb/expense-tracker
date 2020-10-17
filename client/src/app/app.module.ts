@@ -19,6 +19,8 @@ import { DataService } from './services/data.service';
 import { SignUpService } from './services/signup.service';
 import { SignInService } from './services/signin.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { GoalsComponent } from './components/goals/goals.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     SigninComponent,
     SignupComponent,
     LoadingSpinnerComponent,
+    GoalsComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,
