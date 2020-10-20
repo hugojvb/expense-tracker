@@ -3,3 +3,7 @@ html,
 body {
   height: 100%;
 }
+
+.btn:hover {
+  opacity: 0.85;
+}
