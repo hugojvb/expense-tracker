@@ -3,7 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div
+      *ngIf="loading"
+      class="row align-items-center justify-content-center h-100"
+    >
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div *ngIf="!loading" class="p-3 mt-5 text-center container w-50 bg-light">
+      Perhaps put a table with backend goals
+    </div>
+    <button
+      *ngIf="!loading"
+      class="mx-auto mt-3 btn btn-block btn-dark w-50 btn-center"
+    >
+      Set current goal
+    </button>
+  </body>
 </html>

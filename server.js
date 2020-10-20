@@ -1,11 +1,12 @@
 const express = require("express");
-const auth = require("./routes/auth.js");
 const transactions = require("./routes/transactions.js");
+const goals = require("./routes/goals");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const cors = require("cors");
+const auth = require("./routes/auth.js");
 
 // dotenv config
 dotenv.config({ path: "./config/config.env" });
@@ -41,6 +42,7 @@ if (process.env.NODE_ENV === "development") {
 // routes
 app.use("/api/auth", auth);
 app.use("/api/transactions", transactions);
+app.use("/api/goals", goals);
 
 // listenning at port 5000
 const server = app.listen(process.env.PORT, () => console.log("Server running at port: ", process.env.PORT));
