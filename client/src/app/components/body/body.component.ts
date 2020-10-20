@@ -18,6 +18,7 @@ export class BodyComponent implements OnInit {
 
   constructor(private DataService: DataService) {}
 
+  // method for finding the TOTAL MONTHS that the user has data. From first record to now
   monthDiff(d1, d2) {
     var months;
     months = (d2.getFullYear() - d1.getFullYear()) * 12;
@@ -27,27 +28,25 @@ export class BodyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // getting the data from api onInit
     this.DataService.getTransactions().subscribe((res) => {
+      // sorting the transactions array OLDEST to NEWEST
       this.data = res.data.sort(
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
       );
 
       this.monthsTotal =
-        this.monthDiff(
-          new Date(res.data[res.data.length - 1].date),
-          new Date()
-        ) + 1;
+        this.monthDiff(new Date(res.data[0].date), new Date()) + 1;
 
-      console.log(this.monthsTotal);
       this.currentMonth = new Date().getMonth() + 1;
 
-      this.currentExpenses = res.data
+      this.currentExpenses = this.data
         .filter((c) => c.date.substring(5, 2) === this.currentMonth)
         .reduce((acc, c) => acc + c, 0)
         .toFixed(2);
 
       this.expensesMean = +(
-        res.data.reduce((acc, c) => acc + c.amount, 0) / this.monthsTotal
+        this.data.reduce((acc, c) => acc + c.amount, 0) / this.monthsTotal
       ).toFixed(2);
 
       this.loading = false;

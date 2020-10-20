@@ -13,6 +13,11 @@ const GoalsSchema = mongoose.Schema({
     required: [true, "Please enter a date."],
     trim: true,
   },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "users",
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Goals", GoalsSchema);
