@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div class="p-3 mt-5 text-center container w-50">
+    <div
+      *ngIf="loading"
+      class="row align-items-center justify-content-center h-100 mt-n5"
+    >
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div *ngIf="!loading" class="p-3 mt-5 text-center container w-50">
       <h5>Goal for this month</h5>
       <h1>400</h1>
       <h5>Mean of expenses per Month</h5>
       <h1 class="mb-5">475.23</h1>
     </div>
-    <button class="mx-auto mt-3 btn btn-block btn-dark w-50 btn-center">
+    <button
+      *ngIf="!loading"
+      class="mx-auto mt-3 btn btn-block btn-dark w-50 btn-center"
+    >
       Add Expense
     </button>
   </body>

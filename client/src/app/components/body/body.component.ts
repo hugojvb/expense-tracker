@@ -9,12 +9,14 @@ import { DataService } from '../../services/data.service';
 })
 export class BodyComponent implements OnInit {
   data;
+  loading: boolean = true;
 
   constructor(private DataService: DataService) {}
 
   ngOnInit(): void {
     this.DataService.getTransactions().subscribe((res) => {
       this.data = res.data;
+      this.loading = false;
     });
   }
 }
