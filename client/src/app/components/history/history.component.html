@@ -5,5 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div class="p-3 mt-n5 text-center container-fluid w-50 h-100">
+      <div class="row h-100 align-items-center justify-content-center">
+        <div *ngIf="loading">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+        <div *ngIf="!loading" class="col-sm-6 px-0 bg-light">
+          <p class="bg-dark text-white">Transaction</p>
+          <p *ngFor="let d of data">
+            {{ d.name }}
+          </p>
+        </div>
+        <div *ngIf="!loading" class="col-sm-6 px-0 bg-light">
+          <p class="bg-dark text-white">Amount</p>
+          <p *ngFor="let d of data">
+            {{ d.amount }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
