@@ -15,7 +15,6 @@ export class BodyComponent implements OnInit {
   currentExpenses: number;
   monthsTotal: number;
   currentMonth: number;
-  transactionsCount: number;
 
   constructor(private DataService: DataService) {}
 
@@ -35,10 +34,11 @@ export class BodyComponent implements OnInit {
 
       this.monthsTotal =
         this.monthDiff(
-          new Date(res.data[0].date),
-          new Date(res.data[res.data.length - 1].date)
+          new Date(res.data[res.data.length - 1].date),
+          new Date()
         ) + 1;
 
+      console.log(this.monthsTotal);
       this.currentMonth = new Date().getMonth() + 1;
 
       this.currentExpenses = res.data
