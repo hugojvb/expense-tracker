@@ -5,9 +5,7 @@ exports.getTransactions = async (req, res) => {
   try {
     const transactions = await TransactionsSchema.find();
 
-    res
-      .status(200)
-      .json({ success: true, data: transactions, count: transactions.length });
+    res.status(200).json({ success: true, data: transactions, count: transactions.length });
   } catch (error) {
     console.log(error);
     res.status(500).json({ Error: "Failed getting transactions" });
@@ -31,17 +29,12 @@ exports.addTransaction = async (req, res, next) => {
 exports.updateTransaction = async (req, res) => {
   try {
     const { id } = req.params;
-    const transaction = await TransactionsSchema.findByIdAndUpdate(
-      id,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const transaction = await TransactionsSchema.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
-    if (!transaction)
-      return res.status(400).json({ Error: "Id not found or Input incorrect" });
+    if (!transaction) return res.status(400).json({ Error: "Id not found or Input incorrect" });
 
     res.status(200).json({
       success: true,
