@@ -52,13 +52,18 @@
                   ngModel
                 />
               </div>
-              <div
+              <app-alert
+                *ngIf="error"
+                (close)="closeError()"
+                [message]="error"
+              ></app-alert>
+              <!-- <div
                 class="alert text-center alert-danger alert-dismissible"
                 *ngIf="error"
               >
                 <a href="#" class="close">&times;</a>
                 <p>{{ error }}</p>
-              </div>
+              </div> -->
               <div class="row align-items-center remember ml-2">
                 <input class="mr-1" type="checkbox" checked /> Remember Me
               </div>

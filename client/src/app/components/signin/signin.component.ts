@@ -39,4 +39,8 @@ export class SigninComponent implements OnInit {
 
     form.reset();
   }
+
+  closeError() {
+    this.error = null;
+  }
 }

@@ -38,4 +38,8 @@ export class SignupComponent implements OnInit {
 
     form.reset();
   }
+
+  closeError() {
+    this.error = null;
+  }
 }
