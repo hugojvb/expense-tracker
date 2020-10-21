@@ -13,7 +13,10 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.DataService.getTransactions().subscribe((res) => {
-      this.data = res.data;
+      // Sort data Newest to Oldest
+      this.data = res.data.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
       this.loading = false;
     });
   }
