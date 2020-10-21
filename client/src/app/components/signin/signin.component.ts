@@ -32,7 +32,7 @@ export class SigninComponent implements OnInit {
       },
       (err) => {
         console.log(err);
-        this.error = err.error.Error;
+        this.error = err.error.Error + '!';
         this.loading = false;
       }
     );

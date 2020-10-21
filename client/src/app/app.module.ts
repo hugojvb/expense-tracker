@@ -21,6 +21,7 @@ import { SignInService } from './services/signin.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { GoalsComponent } from './components/goals/goals.component';
 import { HistoryComponent } from './components/history/history.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HistoryComponent } from './components/history/history.component';
     LoadingSpinnerComponent,
     GoalsComponent,
     HistoryComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
