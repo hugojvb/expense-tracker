@@ -4,7 +4,6 @@ const TransactionsSchema = require("../models/TransactionsSchema");
 exports.getTransactions = async (req, res) => {
   try {
     const transactions = await TransactionsSchema.find({ user: req.user });
-    console.log(transactions);
 
     res.status(200).json({ success: true, data: transactions, count: transactions.length });
   } catch (error) {

@@ -11,8 +11,8 @@ export class BodyComponent implements OnInit {
   data;
   loading: boolean = true;
   currentGoal: number = 400;
-  expensesMean: number;
-  currentExpenses: number;
+  expensesMean: string;
+  currentExpenses: string;
   monthsTotal: number;
   currentMonth: number;
 
@@ -30,24 +30,29 @@ export class BodyComponent implements OnInit {
   ngOnInit(): void {
     // getting the data from api onInit
     this.DataService.getTransactions().subscribe((res) => {
-      // sorting the transactions array OLDEST to NEWEST
+      // sorting the transactions array NEWEST to OLDEST
       this.data = res.data.sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
       );
 
       this.monthsTotal =
-        this.monthDiff(new Date(res.data[0].date), new Date()) + 1;
+        this.monthDiff(
+          new Date(),
+          new Date(this.data[this.data.length - 1].date)
+        ) + 1;
 
       this.currentMonth = new Date().getMonth() + 1;
 
-      this.currentExpenses = this.data
-        .filter((c) => c.date.substring(5, 2) === this.currentMonth)
-        .reduce((acc, c) => acc + c, 0)
-        .toFixed(2);
-
-      this.expensesMean = +(
+      // Mean of Expenses per Month
+      this.expensesMean = (
         this.data.reduce((acc, c) => acc + c.amount, 0) / this.monthsTotal
       ).toFixed(2);
+
+      // Expenses this Month
+      this.currentExpenses = this.data
+        .filter((c) => parseInt(c.date.substring(5, 7)) === this.currentMonth)
+        .reduce((acc, c) => acc + c.amount, 0)
+        .toFixed(2);
 
       this.loading = false;
     });
