@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { GoalsService } from 'src/app/services/goals.service';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -11,13 +11,16 @@ import { DataService } from '../../services/data.service';
 export class BodyComponent implements OnInit {
   data;
   loading: boolean = true;
-  currentGoal: number = 400;
+  currentGoal: number;
   expensesMean: number;
   currentExpenses: number;
   monthsTotal: number;
   currentMonth: number;
 
-  constructor(private DataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private goalsService: GoalsService
+  ) {}
 
   // method for finding the TOTAL MONTHS that the user has data. From first record to now
   monthDiff(d1, d2) {
@@ -30,14 +33,14 @@ export class BodyComponent implements OnInit {
 
   ngOnInit(): void {
     // getting the data from api onInit
-    this.DataService.getTransactions().subscribe((res) => {
+    this.dataService.getTransactions().subscribe((res) => {
       // sorting the transactions array NEWEST to OLDEST
       this.data = res.data.sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
       );
 
       // Validate if there is data
-      if (this.data.length !== 0) {
+      if (this.data.length > 0) {
         this.monthsTotal =
           this.monthDiff(
             new Date(this.data[this.data.length - 1].date),
@@ -57,8 +60,24 @@ export class BodyComponent implements OnInit {
           .reduce((acc, c) => acc + c.amount, 0)
           .toFixed(2);
       } else {
+        this.currentGoal = 0;
         this.currentExpenses = 0;
         this.expensesMean = 0;
+      }
+
+      this.loading = false;
+    });
+
+    this.goalsService.getGoals().subscribe((res) => {
+      // sorting the goals newest to oldest
+      this.data = res.data.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+
+      if (this.data.length > 0) {
+        this.currentGoal = this.data[0].goal;
+      } else {
+        this.currentGoal = null;
       }
 
       this.loading = false;
