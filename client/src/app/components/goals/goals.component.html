@@ -12,8 +12,24 @@
       <app-loading-spinner></app-loading-spinner>
     </div>
     <div *ngIf="!loading" class="p-3 mt-5 text-center container w-50 bg-light">
-      Perhaps put a table with backend goals
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-12">
+          <p>Current Goal</p>
+          <p *ngIf="noData">---</p>
+          <h3>{{ currentGoal }}</h3>
+          <hr />
+        </div>
+        <div class="col-md-6 px-0">
+          <p *ngFor="let d of data">
+            {{ d.date.substr(0, 10) }}
+          </p>
+        </div>
+        <div class="col-md-6 px-0">
+          <p *ngFor="let d of data">{{ d.goal }}</p>
+        </div>
+      </div>
     </div>
+
     <button
       *ngIf="!loading"
       class="mx-auto mt-3 btn btn-block btn-dark w-50 btn-center"

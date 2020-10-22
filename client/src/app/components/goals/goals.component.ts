@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../services/data.service';
+import { GoalsService } from '../../services/goals.service';
 
 @Component({
   selector: 'app-goals',
@@ -9,14 +9,24 @@ import { DataService } from '../../services/data.service';
 export class GoalsComponent implements OnInit {
   data;
   loading: boolean = true;
+  currentGoal: number;
+  noData: boolean;
 
-  constructor(private DataService: DataService) {}
+  constructor(private goalsService: GoalsService) {}
 
   ngOnInit(): void {
-    this.DataService.getTransactions().subscribe((res) => {
+    this.goalsService.getGoals().subscribe((res) => {
+      // sorting the goals newest to oldest
       this.data = res.data.sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
       );
+
+      if (this.data.length > 0) {
+        this.currentGoal = this.data[0].goal;
+      } else {
+        this.currentGoal = null;
+        this.noData = true;
+      }
 
       this.loading = false;
     });
