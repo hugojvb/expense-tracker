@@ -10,6 +10,7 @@ export class HistoryComponent implements OnInit {
   constructor(private DataService: DataService) {}
   data;
   loading: boolean = true;
+  noData: boolean;
 
   ngOnInit(): void {
     this.DataService.getTransactions().subscribe((res) => {
@@ -17,6 +18,9 @@ export class HistoryComponent implements OnInit {
       this.data = res.data.sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
       );
+
+      if (this.data.length === 0) this.noData = true;
+
       this.loading = false;
     });
   }

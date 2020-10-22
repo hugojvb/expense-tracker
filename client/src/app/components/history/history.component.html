@@ -16,16 +16,19 @@
           <p *ngFor="let d of data">
             {{ d.name.slice(0, 1).toUpperCase() + d.name.slice(1) }}
           </p>
+          <p *ngIf="noData">---</p>
         </div>
         <div *ngIf="!loading" class="col-md-3 px-0 bg-light">
           <p class="bg-dark text-white p-2">Amount</p>
           <p *ngFor="let d of data">{{ d.amount.toFixed(2) }} €</p>
+          <p *ngIf="noData">---</p>
         </div>
         <div *ngIf="!loading" class="col-md-3 px-0 bg-light">
           <p class="bg-dark text-white p-2">Date</p>
           <p *ngFor="let d of data">
             {{ d.date.substr(0, 10) }}
           </p>
+          <p *ngIf="noData">---</p>
         </div>
       </div>
     </div>
