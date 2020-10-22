@@ -16,6 +16,8 @@ export class BodyComponent implements OnInit {
   currentExpenses: number;
   monthsTotal: number;
   currentMonth: number;
+  noData: boolean;
+  modal: boolean;
 
   constructor(
     private dataService: DataService,
@@ -78,9 +80,18 @@ export class BodyComponent implements OnInit {
         this.currentGoal = this.data[0].goal;
       } else {
         this.currentGoal = null;
+        this.noData = true;
       }
 
       this.loading = false;
     });
+  }
+
+  closeModal() {
+    this.modal = false;
+  }
+
+  openModal() {
+    this.modal = true;
   }
 }

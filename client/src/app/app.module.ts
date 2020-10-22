@@ -22,6 +22,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { GoalsComponent } from './components/goals/goals.component';
 import { HistoryComponent } from './components/history/history.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { TransModalComponent } from './components/trans-modal/trans-modal.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AlertComponent } from './components/alert/alert.component';
     GoalsComponent,
     HistoryComponent,
     AlertComponent,
+    TransModalComponent,
   ],
   imports: [
     BrowserModule,
