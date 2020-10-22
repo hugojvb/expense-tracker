@@ -11,8 +11,8 @@ export class BodyComponent implements OnInit {
   data;
   loading: boolean = true;
   currentGoal: number = 400;
-  expensesMean: string;
-  currentExpenses: string;
+  expensesMean: number;
+  currentExpenses: number;
   monthsTotal: number;
   currentMonth: number;
 
@@ -35,24 +35,30 @@ export class BodyComponent implements OnInit {
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
       );
 
-      this.monthsTotal =
-        this.monthDiff(
-          new Date(),
-          new Date(this.data[this.data.length - 1].date)
-        ) + 1;
+      // Validate if there is data
+      if (this.data.length !== 0) {
+        this.monthsTotal =
+          this.monthDiff(
+            new Date(this.data[this.data.length - 1].date),
+            new Date()
+          ) + 1;
 
-      this.currentMonth = new Date().getMonth() + 1;
+        this.currentMonth = new Date().getMonth() + 1;
 
-      // Mean of Expenses per Month
-      this.expensesMean = (
-        this.data.reduce((acc, c) => acc + c.amount, 0) / this.monthsTotal
-      ).toFixed(2);
+        // Mean of Expenses per Month
+        this.expensesMean = +(
+          this.data.reduce((acc, c) => acc + c.amount, 0) / this.monthsTotal
+        ).toFixed(2);
 
-      // Expenses this Month
-      this.currentExpenses = this.data
-        .filter((c) => parseInt(c.date.substring(5, 7)) === this.currentMonth)
-        .reduce((acc, c) => acc + c.amount, 0)
-        .toFixed(2);
+        // Expenses this Month
+        this.currentExpenses = this.data
+          .filter((c) => parseInt(c.date.substring(5, 7)) === this.currentMonth)
+          .reduce((acc, c) => acc + c.amount, 0)
+          .toFixed(2);
+      } else {
+        this.currentExpenses = 0;
+        this.expensesMean = 0;
+      }
 
       this.loading = false;
     });
