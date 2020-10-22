@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { SignInService } from './signin.service';
 import { exhaustMap, take } from 'rxjs/operators';
 
@@ -9,11 +9,11 @@ import { exhaustMap, take } from 'rxjs/operators';
 export class DataService {
   constructor(private http: HttpClient, private signInService: SignInService) {}
 
-  getTransactions(): any {
+  getTransactions() {
     return this.http.get('http://localhost:5000/api/transactions/');
   }
 
-  postTransactions(): any {
+  postTransactions() {
     return this.http.post('http://localhost:5000/api/transactions/', {});
   }
 }
