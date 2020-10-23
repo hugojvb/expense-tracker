@@ -22,8 +22,8 @@ export class TransModalComponent {
       .postTransactions(form.value.name, form.value.amount)
       .subscribe(
         (res) => {
+          this.router.navigate(['/history']);
           this.onClose();
-          this.router.navigate(['/']);
         },
         (err) => {
           console.log(err);

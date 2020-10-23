@@ -20,8 +20,8 @@ export class GoalsModalComponent {
     if (!form.valid) return;
     this.goalsService.postGoals(form.value.goal).subscribe(
       (res) => {
+        this.router.navigate(['/']);
         this.onClose();
-        this.router.navigate(['/goals']);
       },
       (err) => {
         console.log(err);

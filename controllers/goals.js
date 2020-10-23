@@ -2,7 +2,7 @@ const GoalsSchema = require("../models/GoalsSchema");
 
 exports.getGoals = async (req, res) => {
   try {
-    const goals = await GoalsSchema.find({ user: req.user });
+    const goals = await GoalsSchema.find({ user: req.user }).limit(10);
 
     res.status(200).json({ success: true, data: goals, count: goals.length });
   } catch (error) {
