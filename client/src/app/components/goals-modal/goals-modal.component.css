@@ -11,8 +11,8 @@
 .form-box {
   position: fixed;
   top: 30vh;
-  left: 30vw;
-  width: 40vw;
+  left: 25vw;
+  width: 50vw;
   padding: 20px;
   z-index: 100;
   background-color: white;
