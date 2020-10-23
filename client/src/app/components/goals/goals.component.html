@@ -11,21 +11,22 @@
     >
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <div *ngIf="!loading" class="p-3 mt-5 text-center container w-50 bg-light">
+    <div *ngIf="!loading" class="p-3 mt-4 text-center container w-50 bg-light">
       <div class="row justify-content-center align-items-center h-100">
         <div class="col-md-12">
-          <p>Current Goal</p>
+          <p>How much you want to spend monthly?</p>
           <p *ngIf="noData">---</p>
           <h3>{{ currentGoal }}</h3>
           <hr />
+          <p><em>Your progress:</em></p>
         </div>
         <div class="col-md-6 px-0">
-          <p *ngFor="let d of data">
+          <p *ngFor="let d of data | slice: 0:10">
             {{ d.date.substr(0, 10) }}
           </p>
         </div>
         <div class="col-md-6 px-0">
-          <p *ngFor="let d of data">{{ d.goal }}</p>
+          <p *ngFor="let d of data | slice: 0:10">{{ d.goal }}</p>
         </div>
       </div>
     </div>

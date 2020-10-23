@@ -11,21 +11,23 @@
         <div *ngIf="loading">
           <app-loading-spinner></app-loading-spinner>
         </div>
-        <div *ngIf="!loading" class="col-md-4 px-0 bg-light">
+        <div *ngIf="!loading" class="col-sm-4 px-0 bg-light">
           <p class="bg-dark text-white p-2">Transaction</p>
-          <p *ngFor="let d of data">
+          <p *ngFor="let d of data | slice: 0:15">
             {{ d.name.slice(0, 1).toUpperCase() + d.name.slice(1) }}
           </p>
           <p *ngIf="noData">---</p>
         </div>
-        <div *ngIf="!loading" class="col-md-3 px-0 bg-light">
+        <div *ngIf="!loading" class="col-sm-3 px-0 bg-light">
           <p class="bg-dark text-white p-2">Amount</p>
-          <p *ngFor="let d of data">{{ d.amount.toFixed(2) }} €</p>
+          <p *ngFor="let d of data | slice: 0:15">
+            {{ d.amount.toFixed(2) }} €
+          </p>
           <p *ngIf="noData">---</p>
         </div>
-        <div *ngIf="!loading" class="col-md-3 px-0 bg-light">
+        <div *ngIf="!loading" class="col-sm-3 px-0 bg-light">
           <p class="bg-dark text-white p-2">Date</p>
-          <p *ngFor="let d of data">
+          <p *ngFor="let d of data | slice: 0:15">
             {{ d.date.substr(0, 10) }}
           </p>
           <p *ngIf="noData">---</p>
