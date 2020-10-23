@@ -23,6 +23,7 @@ import { GoalsComponent } from './components/goals/goals.component';
 import { HistoryComponent } from './components/history/history.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { TransModalComponent } from './components/trans-modal/trans-modal.component';
+import { GoalsModalComponent } from './components/goals-modal/goals-modal.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TransModalComponent } from './components/trans-modal/trans-modal.compon
     HistoryComponent,
     AlertComponent,
     TransModalComponent,
+    GoalsModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -33,8 +33,15 @@
     <button
       *ngIf="!loading"
       class="mx-auto mt-3 btn btn-block btn-dark w-50 btn-center"
+      (click)="openModal()"
     >
       Set Current Goal
     </button>
+    <div
+      *ngIf="modal"
+      class="row align-items-center justify-content-center h-50"
+    >
+      <app-goals-modal (close)="closeModal()"></app-goals-modal>
+    </div>
   </body>
 </html>

@@ -11,6 +11,15 @@ export class GoalsComponent implements OnInit {
   loading: boolean = true;
   currentGoal: number;
   noData: boolean;
+  modal: boolean;
+
+  openModal() {
+    this.modal = true;
+  }
+
+  closeModal() {
+    this.modal = false;
+  }
 
   constructor(private goalsService: GoalsService) {}
 

@@ -9,7 +9,7 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./trans-modal.component.css'],
 })
 export class TransModalComponent {
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
   @Output() close = new EventEmitter<void>();
 
   onClose() {
@@ -18,12 +18,12 @@ export class TransModalComponent {
 
   onSubmit(form: NgForm) {
     if (!form.valid) return;
-    console.log(form.value);
     this.dataService
       .postTransactions(form.value.name, form.value.amount)
       .subscribe(
         (res) => {
           this.onClose();
+          this.router.navigate(['/']);
         },
         (err) => {
           console.log(err);
