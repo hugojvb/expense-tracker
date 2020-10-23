@@ -11,7 +11,7 @@
     >
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <div *ngIf="!loading" class="p-3 mt-4 text-center container w-50 bg-light">
+    <div *ngIf="!loading" class="p-1 mt-4 text-center container w-75 bg-light">
       <div class="row justify-content-center align-items-center h-100">
         <div class="col-md-12">
           <p>How much you want to spend monthly?</p>
@@ -20,12 +20,12 @@
           <hr />
           <p><em>Your progress:</em></p>
         </div>
-        <div class="col-md-6 px-0">
+        <div class="d-none d-sm-inline col-md-6 px-0">
           <p *ngFor="let d of data | slice: 0:10">
             {{ d.date.substr(0, 10) }}
           </p>
         </div>
-        <div class="col-md-6 px-0">
+        <div class="col-12 col-md-6 px-0">
           <p *ngFor="let d of data | slice: 0:10">{{ d.goal }}</p>
         </div>
       </div>
@@ -33,7 +33,7 @@
 
     <button
       *ngIf="!loading"
-      class="mx-auto mt-3 btn btn-block btn-dark w-50 btn-center"
+      class="mx-auto mt-3 btn btn-block btn-dark w-75 btn-center"
       (click)="openModal()"
     >
       Set Current Goal

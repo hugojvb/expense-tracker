@@ -6,28 +6,31 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="p-3 text-center container-fluid w-75 h-100 mt-4">
+    <div class="p-3 text-center container-fluid w-100 h-100 mt-4">
       <div class="row h-100 align-items-center justify-content-center">
         <div *ngIf="loading">
           <app-loading-spinner></app-loading-spinner>
         </div>
-        <div *ngIf="!loading" class="col-sm-4 px-0 bg-light">
+        <div *ngIf="!loading" class="col-6 col-sm-4 col-md-4 px-0 bg-light">
           <p class="bg-dark text-white p-2">Transaction</p>
-          <p *ngFor="let d of data | slice: 0:15">
+          <p *ngFor="let d of data | slice: 0:13">
             {{ d.name.slice(0, 1).toUpperCase() + d.name.slice(1) }}
           </p>
           <p *ngIf="noData">---</p>
         </div>
-        <div *ngIf="!loading" class="col-sm-3 px-0 bg-light">
+        <div *ngIf="!loading" class="col-6 col-sm-4 col-md-4 px-0 bg-light">
           <p class="bg-dark text-white p-2">Amount</p>
-          <p *ngFor="let d of data | slice: 0:15">
+          <p *ngFor="let d of data | slice: 0:13">
             {{ d.amount.toFixed(2) }} €
           </p>
           <p *ngIf="noData">---</p>
         </div>
-        <div *ngIf="!loading" class="col-sm-3 px-0 bg-light">
+        <div
+          *ngIf="!loading"
+          class="d-none d-sm-inline col-sm-4 col-md-4 px-0 bg-light"
+        >
           <p class="bg-dark text-white p-2">Date</p>
-          <p *ngFor="let d of data | slice: 0:15">
+          <p *ngFor="let d of data | slice: 0:13">
             {{ d.date.substr(0, 10) }}
           </p>
           <p *ngIf="noData">---</p>
