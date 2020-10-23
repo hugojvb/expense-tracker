@@ -13,7 +13,10 @@ export class DataService {
     return this.http.get('http://localhost:5000/api/transactions/');
   }
 
-  postTransactions(): Observable<any> {
-    return this.http.post('http://localhost:5000/api/transactions/', {});
+  postTransactions(name: string, amount: number): Observable<any> {
+    return this.http.post('http://localhost:5000/api/transactions/', {
+      name: name,
+      amount: amount,
+    });
   }
 }
