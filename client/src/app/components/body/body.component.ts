@@ -1,3 +1,4 @@
+import { TryCatchStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { GoalsService } from 'src/app/services/goals.service';
@@ -36,6 +37,21 @@ export class BodyComponent implements OnInit {
 
   ngOnInit(): void {
     // getting the data from api onInit
+
+    this.goalsService.getGoals().subscribe((res) => {
+      // sorting the goals newest to oldest
+      this.goals = res.data.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+
+      if (this.goals.length > 0) {
+        this.currentGoal = this.goals[0].goal;
+      } else {
+        this.currentGoal = null;
+        this.noData = true;
+      }
+    });
+
     this.dataService.getTransactions().subscribe((res) => {
       // sorting the transactions array NEWEST to OLDEST
       this.data = res.data.sort(
@@ -63,25 +79,8 @@ export class BodyComponent implements OnInit {
           .reduce((acc, c) => acc + c.amount, 0)
           .toFixed(2);
       } else {
-        this.currentGoal = 0;
         this.currentExpenses = 0;
         this.expensesMean = 0;
-      }
-
-      this.loading = false;
-    });
-
-    this.goalsService.getGoals().subscribe((res) => {
-      // sorting the goals newest to oldest
-      this.goals = res.data.sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-      );
-
-      if (this.goals.length > 0) {
-        this.currentGoal = this.goals[0].goal;
-      } else {
-        this.currentGoal = null;
-        this.noData = true;
       }
 
       this.loading = false;

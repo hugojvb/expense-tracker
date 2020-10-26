@@ -4,6 +4,10 @@
   transition: opacity 0.3s ease;
 }
 
+#deleteButton:focus {
+  visibility: hidden;
+}
+
 #deleteContainer:hover #deleteButton {
   opacity: 1;
 }

@@ -18,14 +18,16 @@ export class GoalsModalComponent {
 
   onSubmit(form: NgForm) {
     if (!form.valid) return;
+
     this.goalsService.postGoals(form.value.goal).subscribe(
       (res) => {
-        this.router.navigate(['/']);
         this.onClose();
       },
       (err) => {
         console.log(err);
       }
     );
+
+    this.router.navigate(['/']);
   }
 }

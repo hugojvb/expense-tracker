@@ -43,8 +43,15 @@ export class GoalsComponent implements OnInit {
   }
 
   onDelete(id: string) {
+    this.loading = true;
     this.goalsService.deleteGoals(id).subscribe(() => {
       this.data = this.data.filter((c) => c['_id'] !== id);
+      this.loading = false;
     });
+
+    if (this.data.length === 1) {
+      this.currentGoal = null;
+      this.noData = true;
+    }
   }
 }

@@ -26,8 +26,14 @@ export class HistoryComponent implements OnInit {
   }
 
   onDelete(id: string) {
+    this.loading = true;
     this.dataService.deleteTransactions(id).subscribe(() => {
       this.data = this.data.filter((c) => c._id !== id);
+      this.loading = false;
     });
+
+    if (this.data.length === 1) {
+      this.noData = true;
+    }
   }
 }
