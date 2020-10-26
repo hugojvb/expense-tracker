@@ -26,9 +26,10 @@
           </p>
         </div>
         <div class="col-11 col-md-5 px-0">
-          <p *ngFor="let d of data | slice: 0:10">
+          <p id="deleteContainer" *ngFor="let d of data | slice: 0:10">
             {{ d.goal }}
             <button
+              id="deleteButton"
               class="col-2 fa fa-trash float-right mr-5 p-0 border-0 text-danger bg-transparent"
               (click)="onDelete(d._id)"
             ></button>

@@ -1,0 +1,9 @@
+#deleteButton {
+  top: 5px;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+#deleteContainer:hover #deleteButton {
+  opacity: 1;
+}

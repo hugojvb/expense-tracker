@@ -30,9 +30,14 @@
         </div>
         <div *ngIf="!loading" class="col-6 col-sm-5 col-md-4 px-0 bg-light">
           <p class="bg-dark text-white p-2">Amount</p>
-          <p *ngFor="let d of data | slice: 0:13" class="ml-5">
+          <p
+            id="deleteContainer"
+            *ngFor="let d of data | slice: 0:13"
+            class="ml-5"
+          >
             {{ d.amount.toFixed(2) }} €
             <button
+              id="deleteButton"
               class="col-2 fa fa-trash float-right mr-2 p-0 border-0 text-danger bg-transparent"
               (click)="onDelete(d._id)"
             ></button>
