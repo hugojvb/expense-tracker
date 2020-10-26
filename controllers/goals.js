@@ -26,8 +26,8 @@ exports.setGoals = async (req, res) => {
 
 exports.deleteGoals = async (req, res) => {
   try {
-    const { id } = req.params;
-    const goal = await UsersSchema.findByIdAndDelete(id);
+    console.log(req.params.id);
+    const goal = await GoalsSchema.findByIdAndDelete(req.params.id);
     if (!goal) return res.status(400).json({ Error: "Id not found" });
 
     res.status(200).json({
@@ -35,6 +35,7 @@ exports.deleteGoals = async (req, res) => {
       data: {},
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ Error: "Failed to delete goal" });
   }
 };

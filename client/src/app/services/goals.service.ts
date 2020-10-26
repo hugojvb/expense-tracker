@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -16,7 +16,7 @@ export class GoalsService {
     return this.http.post('http://localhost:5000/api/goals/', { goal: goal });
   }
 
-  deleteGoals(goalId: string): Observable<any> {
-    return this.http.delete('http://localhost:5000/api/goals/:id');
+  deleteGoals(id): Observable<any> {
+    return this.http.delete(`http://localhost:5000/api/goals/${id}`);
   }
 }

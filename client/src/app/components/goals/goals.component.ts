@@ -40,4 +40,11 @@ export class GoalsComponent implements OnInit {
       this.loading = false;
     });
   }
+
+  onDelete(id: string) {
+    console.log(id);
+    this.goalsService.deleteGoals(id).subscribe(() => {
+      console.log('hello');
+    });
+  }
 }
