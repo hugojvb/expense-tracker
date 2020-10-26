@@ -19,4 +19,8 @@ export class DataService {
       amount: amount,
     });
   }
+
+  deleteTransactions(id: string): Observable<any> {
+    return this.http.delete(`http://localhost:5000/api/transactions/${id}`);
+  }
 }

@@ -49,8 +49,7 @@ exports.updateTransaction = async (req, res) => {
 // delete transaction
 exports.deleteTransaction = async (req, res) => {
   try {
-    const { id } = req.params;
-    const transaction = await UsersSchema.findByIdAndDelete(id);
+    const transaction = await TransactionsSchema.findByIdAndDelete(req.params.id);
     if (!transaction) return res.status(400).json({ Error: "Id not found" });
 
     res.status(200).json({
@@ -58,6 +57,7 @@ exports.deleteTransaction = async (req, res) => {
       data: {},
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ Error: "Failed to delete transaction" });
   }
 };

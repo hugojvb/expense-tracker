@@ -34,6 +34,7 @@
             {{ d.amount.toFixed(2) }} €
             <button
               class="col-2 fa fa-trash float-right mr-2 p-0 border-0 text-danger bg-transparent"
+              (click)="onDelete(d._id)"
             ></button>
           </p>
           <p *ngIf="noData">---</p>

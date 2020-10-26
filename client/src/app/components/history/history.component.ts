@@ -7,13 +7,13 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./history.component.css'],
 })
 export class HistoryComponent implements OnInit {
-  constructor(private DataService: DataService) {}
+  constructor(private dataService: DataService) {}
   data;
   loading: boolean = true;
   noData: boolean;
 
   ngOnInit(): void {
-    this.DataService.getTransactions().subscribe((res) => {
+    this.dataService.getTransactions().subscribe((res) => {
       // Sort data Newest to Oldest
       this.data = res.data.sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -22,6 +22,13 @@ export class HistoryComponent implements OnInit {
       if (this.data.length === 0) this.noData = true;
 
       this.loading = false;
+    });
+  }
+
+  onDelete(id: string) {
+    console.log(id);
+    this.dataService.deleteTransactions(id).subscribe(() => {
+      console.log('hello');
     });
   }
 }
