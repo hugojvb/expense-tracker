@@ -15,4 +15,8 @@ export class GoalsService {
   postGoals(goal: number): Observable<any> {
     return this.http.post('http://localhost:5000/api/goals/', { goal: goal });
   }
+
+  deleteGoals(goalId: string): Observable<any> {
+    return this.http.delete('http://localhost:5000/api/goals/:id');
+  }
 }
