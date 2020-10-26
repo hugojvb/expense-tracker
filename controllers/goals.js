@@ -26,7 +26,6 @@ exports.setGoals = async (req, res) => {
 
 exports.deleteGoals = async (req, res) => {
   try {
-    console.log(req.params.id);
     const goal = await GoalsSchema.findByIdAndDelete(req.params.id);
     if (!goal) return res.status(400).json({ Error: "Id not found" });
 

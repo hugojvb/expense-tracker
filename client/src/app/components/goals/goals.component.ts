@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GoalsService } from '../../services/goals.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class GoalsComponent implements OnInit {
     this.modal = false;
   }
 
-  constructor(private goalsService: GoalsService) {}
+  constructor(private goalsService: GoalsService, private router: Router) {}
 
   ngOnInit(): void {
     this.goalsService.getGoals().subscribe((res) => {
@@ -42,9 +43,8 @@ export class GoalsComponent implements OnInit {
   }
 
   onDelete(id: string) {
-    console.log(id);
     this.goalsService.deleteGoals(id).subscribe(() => {
-      console.log('hello');
+      this.data = this.data.filter((c) => c['_id'] !== id);
     });
   }
 }

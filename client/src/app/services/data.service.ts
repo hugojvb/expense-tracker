@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { exhaustMap, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({

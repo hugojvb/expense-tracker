@@ -10,6 +10,7 @@ import { DataService } from '../../services/data.service';
 })
 export class BodyComponent implements OnInit {
   data;
+  goals;
   loading: boolean = true;
   currentGoal: number;
   expensesMean: number;
@@ -72,12 +73,12 @@ export class BodyComponent implements OnInit {
 
     this.goalsService.getGoals().subscribe((res) => {
       // sorting the goals newest to oldest
-      this.data = res.data.sort(
+      this.goals = res.data.sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
       );
 
-      if (this.data.length > 0) {
-        this.currentGoal = this.data[0].goal;
+      if (this.goals.length > 0) {
+        this.currentGoal = this.goals[0].goal;
       } else {
         this.currentGoal = null;
         this.noData = true;
