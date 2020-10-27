@@ -45,7 +45,9 @@ app.use("/api/transactions", transactions);
 app.use("/api/goals", goals);
 
 // listenning at port 5000
-const server = app.listen(process.env.PORT, () => console.log("Server running at port: ", process.env.PORT));
+const PORT = process.env.PORT || 5000;
+
+const server = app.listen(PORT, () => console.log("Server running at port: ", PORT));
 
 // error handling
 process.on("unhandledRejection", (err) => {
