@@ -9,7 +9,7 @@ const cors = require("cors");
 const auth = require("./routes/auth.js");
 
 // dotenv config
-dotenv.config({ path: "./config/config.env" });
+// dotenv.config({ path: "./config/config.env" });
 
 // connect to database
 connectDB();
@@ -35,9 +35,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Dev logging middleware
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
+// if (process.env.NODE_ENV === "development") {
+//   app.use(morgan("dev"));
+// }
 
 // routes
 app.use("/api/auth", auth);
