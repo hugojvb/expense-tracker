@@ -71,7 +71,7 @@ exports.deleteUser = async (req, res) => {
 const sendTokenResponse = (user, res) => {
   const token = user.getSignedJwtToken();
   const options = {
-    expires: new Date(Date.now() + 30 * 24 * 3600 * 1000),
+    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 3600 * 1000),
     httpOnly: true,
     // sameSite: "none",
     // secure: "true",
