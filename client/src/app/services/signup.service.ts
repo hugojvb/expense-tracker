@@ -19,10 +19,13 @@ export class SignUpService {
 
   signUp(email: string, password: string) {
     return this.http
-      .post<SignUpResponse>('http://localhost:5000/api/auth/register', {
-        email: email,
-        password: password,
-      })
+      .post<SignUpResponse>(
+        'https://expensetrackerhugojvb.herokuapp.com/api/auth/register',
+        {
+          email: email,
+          password: password,
+        }
+      )
       .pipe(
         tap((res) => {
           if (res.success === true) {

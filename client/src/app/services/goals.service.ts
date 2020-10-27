@@ -9,14 +9,21 @@ export class GoalsService {
   constructor(private http: HttpClient) {}
 
   getGoals(): Observable<any> {
-    return this.http.get('http://localhost:5000/api/goals/');
+    return this.http.get(
+      'https://expensetrackerhugojvb.herokuapp.com/api/goals/'
+    );
   }
 
   postGoals(goal: number): Observable<any> {
-    return this.http.post('http://localhost:5000/api/goals/', { goal: goal });
+    return this.http.post(
+      'https://expensetrackerhugojvb.herokuapp.com/api/goals/',
+      { goal: goal }
+    );
   }
 
   deleteGoals(id): Observable<any> {
-    return this.http.delete(`http://localhost:5000/api/goals/${id}`);
+    return this.http.delete(
+      `https://expensetrackerhugojvb.herokuapp.com/api/goals/${id}`
+    );
   }
 }
