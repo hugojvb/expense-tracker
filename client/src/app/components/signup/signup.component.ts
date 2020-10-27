@@ -25,7 +25,6 @@ export class SignupComponent implements OnInit {
 
     this.signUpService.signUp(email, password).subscribe(
       (res) => {
-        console.log(res);
         this.error =
           'Your account was registered! You can now signin with your new account!';
         this.loading = false;

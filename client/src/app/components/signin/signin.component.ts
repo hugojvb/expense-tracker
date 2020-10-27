@@ -25,8 +25,6 @@ export class SigninComponent implements OnInit {
 
     this.signInService.signIn(email, password).subscribe(
       (res) => {
-        console.log(res);
-
         this.router.navigate(['/transactions']);
         this.loading = false;
       },
