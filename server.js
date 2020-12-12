@@ -20,14 +20,16 @@ const app = express();
 // cors
 app.use(cors());
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://suspicious-roentgen-805db7.netlify.app");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT ,DELETE");
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
+	res.header("Access-Control-Allow-Origin", "https://suspicious-roentgen-805db7.netlify.app");
+	res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+
+	res.header(
+		"Access-Control-Allow-Headers",
+		"Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization"
+	);
+	res.header("Access-Control-Allow-Methods", "GET, POST, PUT ,DELETE");
+	res.header("Access-Control-Allow-Credentials", true);
+	next();
 });
 
 // use bodyParser & cookieParser
@@ -36,7 +38,7 @@ app.use(cookieParser());
 
 // Dev logging middleware
 if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+	app.use(morgan("dev"));
 }
 
 // routes
@@ -51,6 +53,6 @@ const server = app.listen(PORT, () => console.log("Server running at port: ", PO
 
 // error handling
 process.on("unhandledRejection", (err) => {
-  console.log("Error: ", err.message);
-  server.close(() => process.exit(1));
+	console.log("Error: ", err.message);
+	server.close(() => process.exit(1));
 });

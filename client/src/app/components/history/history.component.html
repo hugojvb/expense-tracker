@@ -23,7 +23,11 @@
         </div>
         <div *ngIf="!loading" class="col-6 col-sm-3 col-md-4 px-0 bg-light">
           <p class="bg-dark text-white p-2">Transaction</p>
-          <p *ngFor="let d of data | slice: 0:13">
+          <p
+            *ngFor="
+              let d of data | slice: (page - 1) * pageSize:page * pageSize
+            "
+          >
             {{ d.name.slice(0, 1).toUpperCase() + d.name.slice(1) }}
           </p>
           <p *ngIf="noData">---</p>
@@ -32,7 +36,9 @@
           <p class="bg-dark text-white p-2">Amount</p>
           <p
             id="deleteContainer"
-            *ngFor="let d of data | slice: 0:13"
+            *ngFor="
+              let d of data | slice: (page - 1) * pageSize:page * pageSize
+            "
             class="ml-5"
           >
             {{ d.amount.toFixed(2) }} €
@@ -43,6 +49,11 @@
             ></button>
           </p>
           <p *ngIf="noData">---</p>
+          <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="items.length"
+          ></ngb-pagination>
         </div>
       </div>
     </div>
