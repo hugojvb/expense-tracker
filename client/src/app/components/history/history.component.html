@@ -16,7 +16,12 @@
           class="d-none d-sm-inline col-sm-4 col-md-4 px-0 bg-light"
         >
           <p class="bg-dark text-white p-2">Date</p>
-          <p *ngFor="let d of data | slice: 0:13">
+          <p
+            *ngFor="
+              let d of data | slice: (page - 1) * pageSize:page * pageSize
+            "
+            class="text-truncate"
+          >
             {{ d.date.substr(0, 10) }}
           </p>
           <p *ngIf="noData">---</p>
@@ -27,6 +32,7 @@
             *ngFor="
               let d of data | slice: (page - 1) * pageSize:page * pageSize
             "
+            class="text-truncate"
           >
             {{ d.name.slice(0, 1).toUpperCase() + d.name.slice(1) }}
           </p>
@@ -39,7 +45,7 @@
             *ngFor="
               let d of data | slice: (page - 1) * pageSize:page * pageSize
             "
-            class="ml-5"
+            class="ml-5 text-truncate"
           >
             {{ d.amount.toFixed(2) }} €
             <button
@@ -52,8 +58,13 @@
           <ngb-pagination
             [(page)]="page"
             [pageSize]="pageSize"
-            [collectionSize]="items.length"
-          ></ngb-pagination>
+            [collectionSize]="data.length"
+          >
+            <ng-template ngbPaginationFirst>First</ng-template>
+            <ng-template ngbPaginationLast>Last</ng-template>
+            <ng-template ngbPaginationPrevious>Prev</ng-template>
+            <ng-template ngbPaginationNext>Next</ng-template>
+          </ngb-pagination>
         </div>
       </div>
     </div>

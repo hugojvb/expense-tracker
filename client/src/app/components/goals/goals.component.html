@@ -21,12 +21,16 @@
           <p><em>Your progress:</em></p>
         </div>
         <div class="d-none d-sm-inline col-md-6 px-0">
-          <p *ngFor="let d of data | slice: 0:10">
+          <p *ngFor="let d of data | slice: 0:10" class="text-truncate">
             {{ d.date.substr(0, 10) }}
           </p>
         </div>
         <div class="col-11 col-md-5 px-0">
-          <p id="deleteContainer" *ngFor="let d of data | slice: 0:10">
+          <p
+            id="deleteContainer"
+            *ngFor="let d of data | slice: 0:10"
+            class="text-truncate"
+          >
             {{ d.goal }}
             <button
               id="deleteButton"

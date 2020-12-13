@@ -12,8 +12,8 @@ export class HistoryComponent implements OnInit {
   loading: boolean = true;
   noData: boolean;
   collectionSize: number;
-  pageSize: number;
-  page: number;
+  pageSize: number = 10;
+  page: number = 1;
 
   ngOnInit(): void {
     this.dataService.getTransactions().subscribe((res) => {
