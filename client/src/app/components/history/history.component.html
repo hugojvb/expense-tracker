@@ -55,17 +55,14 @@
             ></button>
           </p>
           <p *ngIf="noData">---</p>
-          <ngb-pagination
-            [(page)]="page"
-            [pageSize]="pageSize"
-            [collectionSize]="data.length"
-          >
-            <ng-template ngbPaginationFirst>First</ng-template>
-            <ng-template ngbPaginationLast>Last</ng-template>
-            <ng-template ngbPaginationPrevious>Prev</ng-template>
-            <ng-template ngbPaginationNext>Next</ng-template>
-          </ngb-pagination>
         </div>
+        <ngb-pagination
+          *ngIf="!loading"
+          class="mt-4"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="collectionSize"
+        ></ngb-pagination>
       </div>
     </div>
   </body>

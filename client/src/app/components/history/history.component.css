@@ -11,3 +11,15 @@
 #deleteContainer:hover #deleteButton {
   opacity: 1;
 }
+
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+  background-color: rgb(41, 43, 44) !important;
+  color: white;
+  border: none;
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+  background-color: #888 !important;
+  color: black;
+  border: none;
+}

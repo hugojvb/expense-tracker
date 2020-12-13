@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -11,9 +11,9 @@ export class HistoryComponent implements OnInit {
   data;
   loading: boolean = true;
   noData: boolean;
-  collectionSize: number;
-  pageSize: number = 10;
-  page: number = 1;
+  @Input() page;
+  @Input() pageSize;
+  @Input() collectionSize;
 
   ngOnInit(): void {
     this.dataService.getTransactions().subscribe((res) => {
@@ -24,6 +24,9 @@ export class HistoryComponent implements OnInit {
 
       if (this.data.length === 0) this.noData = true;
 
+      this.page = 1;
+      this.pageSize = 10;
+      this.collectionSize = this.data.length;
       this.loading = false;
     });
   }

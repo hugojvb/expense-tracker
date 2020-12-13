@@ -25,6 +25,8 @@ import { AlertComponent } from './components/alert/alert.component';
 import { TransModalComponent } from './components/trans-modal/trans-modal.component';
 import { GoalsModalComponent } from './components/goals-modal/goals-modal.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +50,7 @@ import { GoalsModalComponent } from './components/goals-modal/goals-modal.compon
     HttpClientModule,
     FormsModule,
     CommonModule,
+    NgbModule,
   ],
   providers: [
     DataService,
