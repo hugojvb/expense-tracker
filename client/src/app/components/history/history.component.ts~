@@ -25,7 +25,7 @@ export class HistoryComponent implements OnInit {
       if (this.data.length === 0) this.noData = true;
 
       this.page = 1;
-      this.pageSize = 14;
+      this.pageSize = 10;
       this.collectionSize = this.data.length;
       this.loading = false;
     });
