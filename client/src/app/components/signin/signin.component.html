@@ -41,16 +41,22 @@
                     ><i class="fas fa-key"></i
                   ></span>
                 </div>
+
                 <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="Password"
-                  minlength="6"
+                  type="{{ typePassword ? 'password' : 'text' }}"
                   name="password"
+                  placeholder="Password"
+                  class="form-control"
+                  minlength="6"
                   required
                   ngModel
                 />
+
+                <div class="input-group-append">
+                  <span class="input-group-text" (click)="togglePassword()">
+                    <i class="fa fa-eye"></i>
+                  </span>
+                </div>
               </div>
               <app-alert
                 *ngIf="error"

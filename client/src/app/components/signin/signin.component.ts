@@ -15,6 +15,7 @@ export class SigninComponent implements OnInit {
 
   loading: boolean = false;
   error: string = null;
+  typePassword: boolean = true;
 
   onSubmit(form: NgForm) {
     if (!form.valid) return;
@@ -40,5 +41,9 @@ export class SigninComponent implements OnInit {
 
   closeError() {
     this.error = null;
+  }
+
+  togglePassword() {
+    this.typePassword = !this.typePassword;
   }
 }

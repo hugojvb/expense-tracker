@@ -42,7 +42,7 @@
                   ></span>
                 </div>
                 <input
-                  type="password"
+                  type="{{ typePassword ? 'password' : 'text' }}"
                   class="form-control"
                   id="password"
                   placeholder="Password"
@@ -51,6 +51,14 @@
                   required
                   ngModel
                 />
+                <div class="input-group-append">
+                  <span
+                    class="input-group-text showPassword"
+                    (click)="togglePassword()"
+                  >
+                    <i class="fa fa-eye"></i>
+                  </span>
+                </div>
               </div>
               <app-alert
                 *ngIf="error"
