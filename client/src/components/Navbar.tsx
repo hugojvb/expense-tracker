@@ -1,8 +1,10 @@
-import { FC, Fragment, useState } from "react";
+import { FC, Fragment, useState, useContext } from "react";
 
 import { makeStyles, Theme, createStyles, AppBar, Typography, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
 
 import AccountCircle from "@material-ui/icons/AccountCircle";
+
+import Context from "../context/context";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -22,6 +24,8 @@ const Navbar: FC = () => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const openMenu = Boolean(anchorEl);
 
+	const context = useContext(Context);
+
 	const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -38,7 +42,7 @@ const Navbar: FC = () => {
 					<Typography variant="h6" className={classes.title}>
 						Expense Tracker
 					</Typography>
-					{/* {loggedIn && (
+					{context?.logged_in && (
 						<div>
 							<IconButton
 								aria-label="account of current user"
@@ -68,7 +72,7 @@ const Navbar: FC = () => {
 								<MenuItem onClick={handleCloseMenu}>My account</MenuItem>
 							</Menu>
 						</div>
-					)} */}
+					)}
 				</Toolbar>
 			</AppBar>
 		</Fragment>

@@ -1,5 +1,11 @@
 import { createContext } from "react";
 
-const context = createContext();
+type ContextProps = {
+	logged_in: boolean;
+	login: () => void;
+	logout: () => void;
+};
+
+const context = createContext<Partial<ContextProps>>({});
 
 export default context;

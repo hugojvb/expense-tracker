@@ -4,7 +4,7 @@ import reducer from "./reducer";
 import { LOGIN, LOGOUT } from "./types";
 
 const State = (props: any) => {
-	const initialState = {
+	const initialState: { logged_in: boolean } = {
 		logged_in: false,
 	};
 
@@ -23,7 +23,6 @@ const State = (props: any) => {
 		<Context.Provider
 			value={{
 				logged_in: state.logged_in,
-
 				login,
 				logout,
 			}}
