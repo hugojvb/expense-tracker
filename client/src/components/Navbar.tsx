@@ -15,10 +15,11 @@ import {
 	ListItemText,
 } from "@material-ui/core";
 
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
+import HomeIcon from "@material-ui/icons/Home";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import TrackChangesIcon from "@material-ui/icons/TrackChanges";
+import HistoryIcon from "@material-ui/icons/History";
 
 import Context from "../context/context";
 
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const StyledMenuItem = withStyles((theme) => ({
 	root: {
-		"&:focus": {
+		"&:hover": {
 			backgroundColor: theme.palette.primary.main,
 			"& .MuiListItemIcon-root, & .MuiListItemText-primary": {
 				color: theme.palette.common.white,
@@ -48,7 +49,7 @@ const StyledMenuItem = withStyles((theme) => ({
 	},
 }))(MenuItem);
 
-const Navbar: FC = () => {
+const Navbar: FC = (): JSX.Element => {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const openMenu = Boolean(anchorEl);
@@ -101,21 +102,27 @@ const Navbar: FC = () => {
 						>
 							<StyledMenuItem onClick={handleCloseMenu}>
 								<ListItemIcon>
-									<SendIcon fontSize="small" />
+									<HomeIcon fontSize="small" />
 								</ListItemIcon>
-								<ListItemText primary="Sent mail" />
+								<ListItemText primary="Home" />
 							</StyledMenuItem>
 							<StyledMenuItem onClick={handleCloseMenu}>
 								<ListItemIcon>
-									<DraftsIcon fontSize="small" />
+									<TrackChangesIcon fontSize="small" />
 								</ListItemIcon>
-								<ListItemText primary="Drafts" />
+								<ListItemText primary="Goals" />
 							</StyledMenuItem>
 							<StyledMenuItem onClick={handleCloseMenu}>
 								<ListItemIcon>
-									<InboxIcon fontSize="small" />
+									<HistoryIcon fontSize="small" />
 								</ListItemIcon>
-								<ListItemText primary="Inbox" />
+								<ListItemText primary="History" />
+							</StyledMenuItem>
+							<StyledMenuItem onClick={handleCloseMenu}>
+								<ListItemIcon>
+									<ExitToAppIcon fontSize="small" />
+								</ListItemIcon>
+								<ListItemText primary="Logout" />
 							</StyledMenuItem>
 						</Menu>
 					</div>
