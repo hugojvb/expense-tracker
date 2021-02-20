@@ -32,7 +32,7 @@ const Navbar: FC = () => {
 
 	return (
 		<Fragment>
-			<AppBar position="sticky" className={classes.root}>
+			<AppBar position="sticky" className={classes.root} color="primary">
 				<Toolbar>
 					<img src="/logo.png" alt="logo" height="50" width="50" />
 					<Typography variant="h6" className={classes.title}>
