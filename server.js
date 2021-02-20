@@ -17,21 +17,6 @@ connectDB();
 // initiate express
 const app = express();
 
-// cors
-app.use(cors());
-app.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "https://suspicious-roentgen-805db7.netlify.app");
-	// res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-
-	res.header(
-		"Access-Control-Allow-Headers",
-		"Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization"
-	);
-	res.header("Access-Control-Allow-Methods", "GET, POST, PUT ,DELETE");
-	res.header("Access-Control-Allow-Credentials", true);
-	next();
-});
-
 // get frontend build
 app.use(express.static(path.join(__dirname, "client/build")));
 app.get("/", (req, res) => {
