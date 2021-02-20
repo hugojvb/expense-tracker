@@ -18,7 +18,7 @@ const theme = createMuiTheme({
 		},
 	},
 	typography: {
-		fontFamily: "arial",
+		fontFamily: ["Roboto", "sans-serif"].join(","),
 	},
 });
 
