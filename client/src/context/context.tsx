@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 type ContextProps = {
-	logged_in: boolean;
+	loggedIn: boolean;
 	login: () => void;
 	logout: () => void;
 };

@@ -2,7 +2,7 @@ import { Fragment } from "react";
 
 import "./App.css";
 
-import Navbar from "./components/Navbar";
+import Routing from "./Routing";
 
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,8 +12,8 @@ function App() {
 	return (
 		<Fragment>
 			<ThemeProvider theme={theme}>
-				<Navbar />
 				<CssBaseline />
+				<Routing />
 			</ThemeProvider>
 		</Fragment>
 	);

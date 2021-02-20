@@ -4,8 +4,8 @@ import reducer from "./reducer";
 import { LOGIN, LOGOUT } from "./types";
 
 const State = (props: any) => {
-	const initialState: { logged_in: boolean } = {
-		logged_in: false,
+	const initialState = {
+		loggedIn: true,
 	};
 
 	const [state, dispatch] = useReducer(reducer, initialState);
@@ -22,7 +22,7 @@ const State = (props: any) => {
 	return (
 		<Context.Provider
 			value={{
-				logged_in: state.logged_in,
+				loggedIn: state.loggedIn,
 				login,
 				logout,
 			}}
