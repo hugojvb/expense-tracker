@@ -1,7 +1,23 @@
 import { FC, Fragment, useState, useContext } from "react";
 
-import { makeStyles, Theme, createStyles, AppBar, Typography, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
+import {
+	makeStyles,
+	Theme,
+	createStyles,
+	AppBar,
+	Typography,
+	Toolbar,
+	IconButton,
+	Menu,
+	MenuItem,
+	withStyles,
+	ListItemIcon,
+	ListItemText,
+} from "@material-ui/core";
 
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import DraftsIcon from "@material-ui/icons/Drafts";
+import SendIcon from "@material-ui/icons/Send";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
 import Context from "../context/context";
@@ -11,13 +27,26 @@ const useStyles = makeStyles((theme: Theme) =>
 		root: {
 			flexGrow: 1,
 		},
-
 		title: {
 			flexGrow: 1,
 			marginLeft: 20,
 		},
+		menu: {
+			marginTop: "5vh",
+		},
 	})
 );
+
+const StyledMenuItem = withStyles((theme) => ({
+	root: {
+		"&:focus": {
+			backgroundColor: theme.palette.primary.main,
+			"& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+				color: theme.palette.common.white,
+			},
+		},
+	},
+}))(MenuItem);
 
 const Navbar: FC = () => {
 	const classes = useStyles();
@@ -42,37 +71,54 @@ const Navbar: FC = () => {
 					<Typography variant="h6" className={classes.title}>
 						Expense Tracker
 					</Typography>
-					{context?.logged_in && (
-						<div>
-							<IconButton
-								aria-label="account of current user"
-								aria-controls="menu-appbar"
-								aria-haspopup="true"
-								onClick={handleMenu}
-								color="inherit"
-							>
-								<AccountCircle />
-							</IconButton>
-							<Menu
-								id="menu-appbar"
-								anchorEl={anchorEl}
-								anchorOrigin={{
-									vertical: "top",
-									horizontal: "right",
-								}}
-								keepMounted
-								transformOrigin={{
-									vertical: "top",
-									horizontal: "right",
-								}}
-								open={openMenu}
-								onClose={handleCloseMenu}
-							>
-								<MenuItem onClick={handleCloseMenu}>Profile</MenuItem>
-								<MenuItem onClick={handleCloseMenu}>My account</MenuItem>
-							</Menu>
-						</div>
-					)}
+
+					<div>
+						<IconButton
+							aria-label="account of current user"
+							aria-controls="menu-appbar"
+							aria-haspopup="true"
+							onClick={handleMenu}
+							color="inherit"
+						>
+							<AccountCircle />
+						</IconButton>
+						<Menu
+							elevation={4}
+							id="menu-appbar"
+							anchorEl={anchorEl}
+							anchorOrigin={{
+								vertical: "bottom",
+								horizontal: "center",
+							}}
+							keepMounted
+							transformOrigin={{
+								vertical: "top",
+								horizontal: "center",
+							}}
+							open={openMenu}
+							onClose={handleCloseMenu}
+							className={classes.menu}
+						>
+							<StyledMenuItem onClick={handleCloseMenu}>
+								<ListItemIcon>
+									<SendIcon fontSize="small" />
+								</ListItemIcon>
+								<ListItemText primary="Sent mail" />
+							</StyledMenuItem>
+							<StyledMenuItem onClick={handleCloseMenu}>
+								<ListItemIcon>
+									<DraftsIcon fontSize="small" />
+								</ListItemIcon>
+								<ListItemText primary="Drafts" />
+							</StyledMenuItem>
+							<StyledMenuItem onClick={handleCloseMenu}>
+								<ListItemIcon>
+									<InboxIcon fontSize="small" />
+								</ListItemIcon>
+								<ListItemText primary="Inbox" />
+							</StyledMenuItem>
+						</Menu>
+					</div>
 				</Toolbar>
 			</AppBar>
 		</Fragment>
