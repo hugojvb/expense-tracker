@@ -5,6 +5,7 @@
 	"proxy": "http://localhost:5000",
 	"dependencies": {
 		"@material-ui/core": "^4.11.3",
+		"@material-ui/data-grid": "^4.0.0-alpha.20",
 		"@material-ui/icons": "^4.11.2",
 		"@types/jest": "^26.0.20",
 		"@types/node": "^12.20.4",

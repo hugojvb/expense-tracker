@@ -5,12 +5,12 @@ const reducer = (state: any, action: any) => {
 		case LOGIN:
 			return {
 				...state,
-				logged_in: true,
+				loggedIn: true,
 			};
 		case LOGOUT:
 			return {
 				...state,
-				logged_in: false,
+				loggedIn: false,
 			};
 		default:
 			return state;

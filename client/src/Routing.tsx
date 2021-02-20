@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import Context from "./context/context";
 
 import Home from "./components/Home";
+import History from "./components/History";
+import Goals from "./components/Goals";
 
 const Routing: FC = () => {
 	const context = useContext(Context);
@@ -21,6 +23,8 @@ const Routing: FC = () => {
 					{loggedIn && <Redirect to="/home" />}
 				</Route>
 				<Route exact path="/home" component={Home} />
+				<Route exact path="/history" component={History} />
+				<Route exact path="/goals" component={Goals} />
 			</Router>
 		</Fragment>
 	);

@@ -1,24 +1,26 @@
 import { FC, Fragment } from "react";
 
-import { Card, CardContent, Typography, makeStyles, Container, Button } from "@material-ui/core";
+import { Card, CardContent, Typography, makeStyles, Container, Button, createStyles } from "@material-ui/core";
 
 import Navbar from "./Navbar";
 
-const useStyles = makeStyles({
-	root: {
-		width: 500,
-		padding: "2vw",
-		textAlign: "center",
-		marginTop: "10vh",
-	},
-	container: {
-		display: "flex",
-		justifyContent: "center",
-	},
-	titles: {
-		marginTop: "4vh",
-	},
-});
+const useStyles = makeStyles((theme) =>
+	createStyles({
+		root: {
+			width: 500,
+			padding: "2vw",
+			textAlign: "center",
+			marginTop: "10vh",
+		},
+		container: {
+			display: "flex",
+			justifyContent: "center",
+		},
+		titles: {
+			marginTop: "4vh",
+		},
+	})
+);
 
 const Home: FC = (): JSX.Element => {
 	const classes = useStyles();
@@ -43,7 +45,7 @@ const Home: FC = (): JSX.Element => {
 						<Typography variant="h3">581</Typography>
 					</CardContent>
 					<br />
-					<Button size="large" color="primary" variant="contained">
+					<Button size="large" color="secondary" variant="contained">
 						Add Expense
 					</Button>
 				</Card>
