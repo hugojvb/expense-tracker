@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 		title: {
 			flexGrow: 1,
+			marginLeft: 10,
 		},
 	})
 );
@@ -33,6 +34,7 @@ const Navbar: FC = () => {
 		<Fragment>
 			<AppBar position="sticky" className={classes.root}>
 				<Toolbar>
+					<img src="/logo.png" alt="logo" height="50" width="50" />
 					<Typography variant="h6" className={classes.title}>
 						Expense Tracker
 					</Typography>
