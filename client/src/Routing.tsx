@@ -7,6 +7,7 @@ import Context from "./context/context";
 import Home from "./components/Home";
 import History from "./components/History";
 import Goals from "./components/Goals";
+import Login from "./components/Login";
 
 const Routing: FC = () => {
 	const context = useContext(Context);
@@ -19,7 +20,7 @@ const Routing: FC = () => {
 				<Route exact path="/">
 					{loggedIn ? <Redirect to="/home" /> : <Redirect to="/login" />}
 				</Route>
-				<Route exact path="/login">
+				<Route exact path="/login" component={Login}>
 					{loggedIn && <Redirect to="/home" />}
 				</Route>
 				<Route exact path="/home" component={Home} />
