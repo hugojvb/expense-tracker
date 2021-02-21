@@ -12,7 +12,7 @@ const useRowStyles = makeStyles({
 	},
 });
 
-export default function DemoTableRow({ row, isItemSelected, labelId, handleClick }) {
+export default function HistoryTableRow({ row, isItemSelected, labelId, handleClick }) {
 	const [openDetails, setOpenDetails] = useState(false);
 	const classes = useRowStyles();
 

@@ -1,10 +1,10 @@
 import React from "react";
 import { makeStyles, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow, Paper } from "@material-ui/core";
 
-import DemoTableHead from "./DemoTableHead";
-import DemoTableToolbar from "./DemoTableToolbar";
+import HistoryTableHead from "./HistoryTableHead";
+import HistoryTableToolbar from "./HistoryTableToolbar";
 
-import DemoRow from "./DemoTableRow";
+import DemoRow from "./HistoryTableRow";
 
 import axios from "axios";
 
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function DemoTable() {
+export default function HistoryTable() {
 	const classes = useStyles();
 	const [order, setOrder] = React.useState("asc");
 	const [orderBy, setOrderBy] = React.useState("calories");
@@ -136,7 +136,7 @@ export default function DemoTable() {
 	return (
 		<div className={classes.root}>
 			<Paper className={classes.paper}>
-				<DemoTableToolbar
+				<HistoryTableToolbar
 					numSelected={selected.length}
 					search={search}
 					setSearch={setSearch}
@@ -146,7 +146,7 @@ export default function DemoTable() {
 				/>
 				<TableContainer>
 					<Table className={classes.table} aria-labelledby="tableTitle" size="medium" aria-label="enhanced table">
-						<DemoTableHead
+						<HistoryTableHead
 							classes={classes}
 							numSelected={selected.length}
 							order={order}

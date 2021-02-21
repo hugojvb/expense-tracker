@@ -1,11 +1,11 @@
 import { Fragment, useContext } from "react";
 
-import DemoTable from "./DemoTable/DemoTable";
-import Navbar from "../../../Navbar/Navbar";
+import HistoryTable from "./HistoryTable/HistoryTable";
+import Navbar from "../Navbar/Navbar";
 
 import { Box, makeStyles, createStyles } from "@material-ui/core";
 
-import Context from "../../../../context/context";
+import Context from "../../context/context";
 
 import clsx from "clsx";
 
@@ -54,7 +54,7 @@ export default function DemoInstances() {
 					[classes.contentShift]: !drawer,
 				})}
 			>
-				<DemoTable />
+				<HistoryTable />
 			</Box>
 		</Fragment>
 	);

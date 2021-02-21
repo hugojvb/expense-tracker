@@ -71,7 +71,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 	icons: { display: "flex" },
 }));
 
-export default function DemoTableToolbar({ numSelected, search, setSearch, rows, setFiltered, selected }) {
+export default function HistoryTableToolbar({ numSelected, search, setSearch, rows, setFiltered, selected }) {
 	const classes = useToolbarStyles();
 
 	const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
@@ -275,6 +275,6 @@ export default function DemoTableToolbar({ numSelected, search, setSearch, rows,
 	);
 }
 
-DemoTableToolbar.propTypes = {
+HistoryTableToolbar.propTypes = {
 	numSelected: PropTypes.number.isRequired,
 };
