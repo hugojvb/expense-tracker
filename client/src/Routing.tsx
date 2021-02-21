@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import Context from "./context/context";
 
 import Home from "./components/Home";
-import History from "./components/History";
-import Goals from "./components/Goals";
+import History from "./components/History/History";
+import Goals from "./components/Goals/Goals";
 import Login from "./components/Login";
 
 const Routing: FC = () => {
