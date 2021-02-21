@@ -12,7 +12,7 @@ const headCells = [
 	{ id: "isEnabled", numeric: false, disablePadding: true, label: "Enabled" },
 ];
 
-export default function DemoTableHead({ classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }) {
+export default function GoalsTableHead({ classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }) {
 	const createSortHandler = (property) => (event) => {
 		onRequestSort(event, property);
 	};
@@ -53,7 +53,7 @@ export default function DemoTableHead({ classes, onSelectAllClick, order, orderB
 	);
 }
 
-DemoTableHead.propTypes = {
+GoalsTableHead.propTypes = {
 	classes: PropTypes.object.isRequired,
 	numSelected: PropTypes.number.isRequired,
 	onRequestSort: PropTypes.func.isRequired,

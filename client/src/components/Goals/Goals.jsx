@@ -1,11 +1,11 @@
 import { Fragment, useContext } from "react";
 
-import DemoTable from "./DemoTable/DemoTable";
-import Navbar from "../../../Navbar/Navbar";
+import GoalsTable from "./GoalsTable/GoalsTable";
+import Navbar from "../Navbar";
 
 import { Box, makeStyles, createStyles } from "@material-ui/core";
 
-import Context from "../../../../context/context";
+import Context from "../../context/context";
 
 import clsx from "clsx";
 
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) =>
 	})
 );
 
-export default function DemoInstances() {
+export default function Goals() {
 	const classes = useStyles();
 
 	const context = useContext(Context);
@@ -54,7 +54,7 @@ export default function DemoInstances() {
 					[classes.contentShift]: !drawer,
 				})}
 			>
-				<DemoTable />
+				<GoalsTable />
 			</Box>
 		</Fragment>
 	);

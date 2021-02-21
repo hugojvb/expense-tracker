@@ -1,10 +1,10 @@
 import React from "react";
 import { makeStyles, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow, Paper } from "@material-ui/core";
 
-import DemoTableHead from "./DemoTableHead";
-import DemoTableToolbar from "./DemoTableToolbar";
+import GoalsTableHead from "./GoalsTableHead";
+import GoalsTableToolbar from "./GoalsTableToolbar";
 
-import DemoRow from "./DemoTableRow";
+import DemoRow from "./GoalsTableRow";
 
 import axios from "axios";
 
@@ -136,7 +136,7 @@ export default function DemoTable() {
 	return (
 		<div className={classes.root}>
 			<Paper className={classes.paper}>
-				<DemoTableToolbar
+				<GoalsTableToolbar
 					numSelected={selected.length}
 					search={search}
 					setSearch={setSearch}
@@ -146,7 +146,7 @@ export default function DemoTable() {
 				/>
 				<TableContainer>
 					<Table className={classes.table} aria-labelledby="tableTitle" size="medium" aria-label="enhanced table">
-						<DemoTableHead
+						<GoalsTableHead
 							classes={classes}
 							numSelected={selected.length}
 							order={order}
