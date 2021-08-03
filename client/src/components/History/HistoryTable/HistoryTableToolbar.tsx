@@ -6,6 +6,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 
+import clsx from "clsx";
+
 import DeleteDialog from "../../Dialogs/DeleteDialog";
 import AddDialog from "../../Dialogs/AddDialog";
 import UpdateDialog from "../../Dialogs/UpdateDialog";
@@ -74,7 +76,7 @@ interface Props {
 	search: string;
 	setSearch: Dispatch<SetStateAction<string>>;
 	rows: string[];
-	setFiltered: Dispatch<SetStateAction<string>>;
+	setFiltered: any;
 	selected: string[];
 }
 
@@ -104,35 +106,35 @@ const HistoryTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, 
 	};
 
 	// Close popups
-	const handleCloseAddedSuccess = (event, reason) => {
+	const handleCloseAddedSuccess = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenAddedSuccess(false);
 	};
 
-	const handleCloseAddedError = (event, reason) => {
+	const handleCloseAddedError = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenAddedError(false);
 	};
 
-	const handleCloseDeletedSuccess = (event, reason) => {
+	const handleCloseDeletedSuccess = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenDeletedSuccess(false);
 	};
 
-	const handleCloseDeletedError = (event, reason) => {
+	const handleCloseDeletedError = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenDeletedError(false);
 	};
 
-	const handleCloseUpdatedSuccess = (event, reason) => {
+	const handleCloseUpdatedSuccess = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -140,7 +142,7 @@ const HistoryTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, 
 		setOpenUpdatedSuccess(false);
 	};
 
-	const handleCloseUpdatedError = (event, reason) => {
+	const handleCloseUpdatedError = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -148,14 +150,14 @@ const HistoryTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, 
 		setOpenUpdatedError(false);
 	};
 
-	const onSearch = (e) => {
-		setSearch(e.target.value);
+	const onSearch = (target: HTMLInputElement) => {
+		setSearch(target.value);
 		let arr = [];
 
 		for (let i = 0; i < rows.length; i++) {
 			if (
 				Object.values(rows[i])
-					.map((x) => x.toString().search(new RegExp(e.target.value, "gi")))
+					.map((x) => x.toString().search(new RegExp(target.value, "gi")))
 					.some((y) => y !== -1)
 			) {
 				arr.push(rows[i]);
@@ -191,7 +193,7 @@ const HistoryTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, 
 					}}
 					inputProps={{ "aria-label": "search" }}
 					value={search}
-					onChange={onSearch}
+					onChange={(e: any) => onSearch(e.target)}
 				/>
 			</div>
 

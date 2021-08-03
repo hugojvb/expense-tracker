@@ -8,12 +8,12 @@ import DemoRow from "./GoalsTableRow";
 
 import axios from "axios";
 
-function createData(customID, name, subDomain, maxUsers, creationDate, expirationDate, isEnabled) {
+function createData(customID: string, name: string, subDomain: string, maxUsers: number, creationDate: any, expirationDate: any, isEnabled: boolean) {
 	return { customID, name, subDomain, maxUsers, creationDate, expirationDate, isEnabled };
 }
 
 // sorting
-function descendingComparator(a, b, orderBy) {
+function descendingComparator(a: any, b: any, orderBy: any) {
 	if (b[orderBy] < a[orderBy]) {
 		return -1;
 	}
@@ -23,18 +23,18 @@ function descendingComparator(a, b, orderBy) {
 	return 0;
 }
 
-function getComparator(order, orderBy) {
-	return order === "desc" ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
+function getComparator(order: string, orderBy: any) {
+	return order === "desc" ? (a: any, b: any) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-function stableSort(array, comparator) {
-	const stabilizedThis = array.map((el, index) => [el, index]);
-	stabilizedThis.sort((a, b) => {
+function stableSort(array: any, comparator: any) {
+	const stabilizedThis = array.map((el: any, index: any) => [el, index]);
+	stabilizedThis.sort((a: any, b: any) => {
 		const order = comparator(a[0], b[0]);
 		if (order !== 0) return order;
 		return a[1] - b[1];
 	});
-	return stabilizedThis.map((el) => el[0]);
+	return stabilizedThis.map((el: any) => el[0]);
 }
 
 // styles
@@ -86,25 +86,25 @@ export default function DemoTable() {
 		getUsers();
 	});
 
-	const handleRequestSort = (event, property) => {
+	const handleRequestSort = (event: any, property: any) => {
 		const isAsc = orderBy === property && order === "asc";
 		setOrder(isAsc ? "desc" : "asc");
 		setOrderBy(property);
 	};
 
 	// select
-	const handleSelectAllClick = (event) => {
+	const handleSelectAllClick = (event: any) => {
 		if (event.target.checked) {
-			const newSelecteds = rows.map((n) => n.name);
+			const newSelecteds: any = rows.map((n) => n.name);
 			setSelected(newSelecteds);
 			return;
 		}
 		setSelected([]);
 	};
 
-	const handleClick = (event, row) => {
+	const handleClick = (event: any, row: { name: string }) => {
 		const selectedIndex = selected.indexOf(row.name);
-		let newSelected = [];
+		let newSelected: any = [];
 
 		if (selectedIndex === -1) {
 			newSelected = newSelected.concat(selected, row.name);
@@ -120,16 +120,16 @@ export default function DemoTable() {
 	};
 
 	// pagination
-	const handleChangePage = (event, newPage) => {
+	const handleChangePage = (event: any, newPage: any) => {
 		setPage(newPage);
 	};
 
-	const handleChangeRowsPerPage = (event) => {
+	const handleChangeRowsPerPage = (event: any) => {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
 
-	const isSelected = (name) => selected.indexOf(name) !== -1;
+	const isSelected = (name: any) => selected.indexOf(name) !== -1;
 
 	const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 

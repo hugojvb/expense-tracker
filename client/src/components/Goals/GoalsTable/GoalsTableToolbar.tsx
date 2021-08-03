@@ -71,7 +71,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 	icons: { display: "flex" },
 }));
 
-export default function GoalsTableToolbar({ numSelected, search, setSearch, rows, setFiltered, selected }) {
+const GoalsTableToolbar = ({ numSelected, search, setSearch, rows, setFiltered, selected }) => {
 	const classes = useToolbarStyles();
 
 	const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
@@ -97,35 +97,35 @@ export default function GoalsTableToolbar({ numSelected, search, setSearch, rows
 	};
 
 	// Close popups
-	const handleCloseAddedSuccess = (event, reason) => {
+	const handleCloseAddedSuccess = (event: Element, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenAddedSuccess(false);
 	};
 
-	const handleCloseAddedError = (event, reason) => {
+	const handleCloseAddedError = (event: Element, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenAddedError(false);
 	};
 
-	const handleCloseDeletedSuccess = (event, reason) => {
+	const handleCloseDeletedSuccess = (event: Element, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenDeletedSuccess(false);
 	};
 
-	const handleCloseDeletedError = (event, reason) => {
+	const handleCloseDeletedError = (event: Element, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenDeletedError(false);
 	};
 
-	const handleCloseUpdatedSuccess = (event, reason) => {
+	const handleCloseUpdatedSuccess = (event: Element, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -133,7 +133,7 @@ export default function GoalsTableToolbar({ numSelected, search, setSearch, rows
 		setOpenUpdatedSuccess(false);
 	};
 
-	const handleCloseUpdatedError = (event, reason) => {
+	const handleCloseUpdatedError = (event: Element, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -141,8 +141,9 @@ export default function GoalsTableToolbar({ numSelected, search, setSearch, rows
 		setOpenUpdatedError(false);
 	};
 
-	const onSearch = (e) => {
-		setSearch(e.target.value);
+	const onSearch = (e: Element) => {
+		const target: HTMLInputElement = e.tartget;
+		setSearch(target.value);
 		let arr = [];
 
 		for (let i = 0; i < rows.length; i++) {
@@ -273,8 +274,6 @@ export default function GoalsTableToolbar({ numSelected, search, setSearch, rows
 			</Snackbar>
 		</Toolbar>
 	);
-}
-
-GoalsTableToolbar.propTypes = {
-	numSelected: PropTypes.number.isRequired,
 };
+
+export default GoalsTableToolbar;

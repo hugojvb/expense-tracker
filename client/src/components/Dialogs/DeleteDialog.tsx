@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grow, makeStyles, Divider } from "@material-ui/core";
 import axios from "axios";
 
@@ -7,7 +7,15 @@ const useStyles = makeStyles((theme) => ({
 	yes: { color: "red" },
 }));
 
-export default function AlertDialog({ openDeleteDialog, setOpenDeleteDialog, selected, setOpenDeletedSuccess, setOpenDeletedError }) {
+interface Props {
+	openDeleteDialog: any;
+	setOpenDeleteDialog: any;
+	selected: any;
+	setOpenDeletedSuccess: any;
+	setOpenDeletedError: any;
+}
+
+const AlertDialog: FC<Props> = ({ openDeleteDialog, setOpenDeleteDialog, selected, setOpenDeletedSuccess, setOpenDeletedError }) => {
 	const classes = useStyles();
 
 	const handleClose = () => {
@@ -64,4 +72,6 @@ export default function AlertDialog({ openDeleteDialog, setOpenDeleteDialog, sel
 			</Dialog>
 		</div>
 	);
-}
+};
+
+export default AlertDialog;

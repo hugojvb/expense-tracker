@@ -1,17 +1,9 @@
-import {
-	Button,
-	TextField,
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogTitle,
-	Divider,
-	Checkbox,
-	makeStyles,
-	FormLabel,
-	Grow,
-} from "@material-ui/core";
+import { FC } from "react";
 
+// MATERIAL UI COMPONENTS
+import { Button, TextField, Dialog, DialogContent, DialogActions, DialogTitle, Divider, makeStyles, Grow } from "@material-ui/core";
+
+// REACT HOOK FORM
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 
@@ -20,7 +12,14 @@ const useStyles = makeStyles((theme) => ({
 	textField: { marginBottom: "20px" },
 }));
 
-export default function AddDialog({ openAddDialog, setOpenAddDialog, setOpenAddedSuccess, setOpenAddedError, isDemo }) {
+interface Props {
+	openAddDialog: any;
+	setOpenAddDialog: any;
+	setOpenAddedSuccess: any;
+	setOpenAddedError: any;
+}
+
+const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuccess, setOpenAddedError }) => {
 	const handleClose = () => {
 		setOpenAddDialog(false);
 	};
@@ -29,7 +28,7 @@ export default function AddDialog({ openAddDialog, setOpenAddDialog, setOpenAdde
 
 	const classes = useStyles();
 
-	const submitAddInstance = async (data) => {
+	const submitAddInstance = async (data: any) => {
 		try {
 			console.log(data);
 			const res = await axios.post("/api/", data);
@@ -46,7 +45,7 @@ export default function AddDialog({ openAddDialog, setOpenAddDialog, setOpenAdde
 		<div>
 			<Dialog open={openAddDialog} onClose={handleClose} TransitionComponent={Grow} aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title" className={classes.title}>
-					Add {isDemo ? "Demo" : "Production"} Instance
+					Add Instance
 					<Divider />
 				</DialogTitle>
 				<form onSubmit={handleSubmit(submitAddInstance)}>
@@ -99,32 +98,6 @@ export default function AddDialog({ openAddDialog, setOpenAddDialog, setOpenAdde
 							}}
 							classes={{ root: classes.textField }}
 						/>
-
-						<FormLabel label="Enabled"> Enabled</FormLabel>
-						<Controller
-							control={control}
-							name="Enabled"
-							label="Enabled"
-							render={({ onChange, value, name, ref }) => (
-								<Checkbox name={name} onChange={(e) => onChange(e.target.checked)} checked={value} inputRef={ref} color="primary" />
-							)}
-						/>
-
-						<FormLabel label="Demo"> Demo</FormLabel>
-						<Controller
-							control={control}
-							name="Demo"
-							label="Demo"
-							render={({ onChange, value, name, ref }) => (
-								<Checkbox
-									name={name}
-									onChange={(e) => onChange(e.target.checked)}
-									checked={isDemo ? true : false}
-									inputRef={ref}
-									color="primary"
-								/>
-							)}
-						/>
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={handleClose} variant="outlined" color="secondary">
@@ -138,4 +111,6 @@ export default function AddDialog({ openAddDialog, setOpenAddDialog, setOpenAdde
 			</Dialog>
 		</div>
 	);
-}
+};
+
+export default AddDialog;

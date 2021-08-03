@@ -1,16 +1,6 @@
-import {
-	Button,
-	TextField,
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogTitle,
-	Divider,
-	Checkbox,
-	makeStyles,
-	FormLabel,
-	Grow,
-} from "@material-ui/core";
+import { FC } from "react";
+
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Divider, makeStyles, Grow } from "@material-ui/core";
 
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
@@ -20,7 +10,16 @@ const useStyles = makeStyles((theme) => ({
 	textField: { marginBottom: "20px" },
 }));
 
-export default function UpdateDialog({ openUpdateDialog, setOpenUpdateDialog, rows, setOpenUpdatedSuccess, setOpenUpdatedError, selected, isDemo }) {
+interface Props {
+	openUpdateDialog: any;
+	setOpenUpdateDialog: any;
+	rows: any;
+	setOpenUpdatedSuccess: any;
+	setOpenUpdatedError: any;
+	selected: any;
+}
+
+const UpdateDialog: FC<Props> = ({ openUpdateDialog, setOpenUpdateDialog, rows, setOpenUpdatedSuccess, setOpenUpdatedError, selected }) => {
 	const { register, handleSubmit, control } = useForm();
 
 	const classes = useStyles();
@@ -29,7 +28,7 @@ export default function UpdateDialog({ openUpdateDialog, setOpenUpdateDialog, ro
 		setOpenUpdateDialog(false);
 	};
 
-	const submitUpdateInstance = async (data) => {
+	const submitUpdateInstance = async (data: any) => {
 		try {
 			console.log(data);
 			const res = await axios.put("/api/", { data });
@@ -42,7 +41,7 @@ export default function UpdateDialog({ openUpdateDialog, setOpenUpdateDialog, ro
 		}
 	};
 
-	const formatDate = (date) => {
+	const formatDate = (date: any) => {
 		var d = new Date(date),
 			month = "" + (d.getMonth() + 1),
 			day = "" + d.getDate(),
@@ -54,8 +53,8 @@ export default function UpdateDialog({ openUpdateDialog, setOpenUpdateDialog, ro
 		return [year, month, day].join("-");
 	};
 
-	let selectedRow;
-	rows.forEach((current) => {
+	let selectedRow: any;
+	rows.forEach((current: any) => {
 		if (current.name === selected[0]) selectedRow = current;
 	});
 
@@ -63,7 +62,7 @@ export default function UpdateDialog({ openUpdateDialog, setOpenUpdateDialog, ro
 		<div>
 			<Dialog open={openUpdateDialog} onClose={handleClose} TransitionComponent={Grow} aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title" className={classes.title}>
-					Update {isDemo ? "Demo" : "Production"} Instance
+					Update Instance
 					<Divider />
 				</DialogTitle>
 				<form onSubmit={handleSubmit(submitUpdateInstance)}>
@@ -118,32 +117,6 @@ export default function UpdateDialog({ openUpdateDialog, setOpenUpdateDialog, ro
 							}}
 							classes={{ root: classes.textField }}
 						/>
-						<FormLabel label="Enabled"> Enabled</FormLabel>
-						<Controller
-							control={control}
-							name="Enabled"
-							label="Enabled"
-							defaultValue={selectedRow?.isEnabled}
-							render={({ onChange, value, name, ref }) => (
-								<Checkbox name={name} onChange={(e) => onChange(e.target.checked)} checked={value} inputRef={ref} color="primary" />
-							)}
-						/>
-						<FormLabel label="Demo"> Demo</FormLabel>
-						<Controller
-							control={control}
-							name="Demo"
-							label="Demo"
-							defaultValue={selectedRow?.isDemo}
-							render={({ onChange, value, name, ref }) => (
-								<Checkbox
-									name={name}
-									onChange={(e) => onChange(e.target.checked)}
-									checked={isDemo ? true : false}
-									inputRef={ref}
-									color="primary"
-								/>
-							)}
-						/>
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={handleClose} variant="outlined" color="secondary">
@@ -157,4 +130,6 @@ export default function UpdateDialog({ openUpdateDialog, setOpenUpdateDialog, ro
 			</Dialog>
 		</div>
 	);
-}
+};
+
+export default UpdateDialog;

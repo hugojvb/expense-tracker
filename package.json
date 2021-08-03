@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@material-ui/types": "^5.1.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "typescript": "^4.3.5"
   }
 }
