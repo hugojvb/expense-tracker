@@ -39,6 +39,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@material-ui/types": "^5.1.0",
     "nodemon": "^2.0.4"
   }
 }

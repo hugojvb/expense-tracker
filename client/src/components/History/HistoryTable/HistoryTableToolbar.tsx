@@ -1,6 +1,4 @@
 import { useState, FC, Dispatch, SetStateAction } from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
 import { lighten, fade, makeStyles, Toolbar, Typography, IconButton, Tooltip, InputBase, Snackbar, Grow } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import DeleteIcon from "@material-ui/icons/Delete";
