@@ -44,14 +44,14 @@ export default function Goals() {
 	const classes = useStyles();
 
 	const context = useContext(Context);
-	const { drawer } = context;
+	// const { drawer } = context;
 
 	return (
 		<Fragment>
 			<Navbar />
 			<Box
 				className={clsx(classes.content, {
-					[classes.contentShift]: !drawer,
+					// [classes.contentShift]: !drawer,
 				})}
 			>
 				<GoalsTable />

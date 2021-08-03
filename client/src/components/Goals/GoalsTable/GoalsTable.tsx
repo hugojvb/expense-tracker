@@ -24,7 +24,7 @@ function descendingComparator(a: any, b: any, orderBy: any) {
 }
 
 function getComparator(order: string, orderBy: any) {
-	return order === "desc" ? (a: any, b: any) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
+	return order === "desc" ? (a: any, b: any) => descendingComparator(a, b, orderBy) : (a: any, b: any) => -descendingComparator(a, b, orderBy);
 }
 
 function stableSort(array: any, comparator: any) {
@@ -66,7 +66,7 @@ export default function DemoTable() {
 	const classes = useStyles();
 	const [order, setOrder] = React.useState("asc");
 	const [orderBy, setOrderBy] = React.useState("calories");
-	const [selected, setSelected] = React.useState([]);
+	const [selected, setSelected] = React.useState<any>([]);
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [search, setSearch] = React.useState("");
@@ -158,7 +158,7 @@ export default function DemoTable() {
 						<TableBody>
 							{stableSort(filtered ? filtered : rows, getComparator(order, orderBy))
 								.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-								.map((row, index) => {
+								.map((row: any, index: any) => {
 									const isItemSelected = isSelected(row.name);
 									const labelId = `enhanced-table-checkbox-${index}`;
 
