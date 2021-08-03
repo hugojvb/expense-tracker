@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FC, Dispatch, SetStateAction } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { lighten, fade, makeStyles, Toolbar, Typography, IconButton, Tooltip, InputBase, Snackbar, Grow } from "@material-ui/core";
@@ -71,7 +71,16 @@ const useToolbarStyles = makeStyles((theme) => ({
 	icons: { display: "flex" },
 }));
 
-export default function HistoryTableToolbar({ numSelected, search, setSearch, rows, setFiltered, selected }) {
+interface Props {
+	numSelected: number;
+	search: string;
+	setSearch: Dispatch<SetStateAction<string>>;
+	rows: string[];
+	setFiltered: Dispatch<SetStateAction<string>>;
+	selected: string[];
+}
+
+const HistoryTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, setFiltered, selected }) => {
 	const classes = useToolbarStyles();
 
 	const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
@@ -230,7 +239,6 @@ export default function HistoryTableToolbar({ numSelected, search, setSearch, ro
 				setOpenAddDialog={setOpenAddDialog}
 				setOpenAddedSuccess={setOpenAddedSuccess}
 				setOpenAddedError={setOpenAddedError}
-				isDemo={true}
 			/>
 			<UpdateDialog
 				openUpdateDialog={openUpdateDialog}
@@ -239,7 +247,6 @@ export default function HistoryTableToolbar({ numSelected, search, setSearch, ro
 				rows={rows}
 				setOpenUpdatedSuccess={setOpenUpdatedSuccess}
 				setOpenUpdatedError={setOpenUpdatedError}
-				isDemo={true}
 			/>
 			<Snackbar open={openAddedSuccess} autoHideDuration={3000} onClose={handleCloseAddedSuccess} TransitionComponent={Grow}>
 				<Alert elevation={6} variant="filled" onClose={handleCloseAddedSuccess} severity="success">
@@ -273,8 +280,6 @@ export default function HistoryTableToolbar({ numSelected, search, setSearch, ro
 			</Snackbar>
 		</Toolbar>
 	);
-}
-
-HistoryTableToolbar.propTypes = {
-	numSelected: PropTypes.number.isRequired,
 };
+
+export default HistoryTableToolbar;

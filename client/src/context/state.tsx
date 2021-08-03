@@ -6,6 +6,7 @@ import { LOGIN, LOGOUT } from "./types";
 const State = (props: any) => {
 	const initialState = {
 		loggedIn: true,
+		drawer: true,
 	};
 
 	const [state, dispatch] = useReducer(reducer, initialState);

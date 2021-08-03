@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react";
 
 import HistoryTable from "./HistoryTable/HistoryTable";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../Navbar";
 
 import { Box, makeStyles, createStyles } from "@material-ui/core";
 
@@ -44,14 +44,14 @@ export default function DemoInstances() {
 	const classes = useStyles();
 
 	const context = useContext(Context);
-	const { drawer } = context;
+	// const { drawer } = context;
 
 	return (
 		<Fragment>
 			<Navbar />
 			<Box
 				className={clsx(classes.content, {
-					[classes.contentShift]: !drawer,
+					// [classes.contentShift]: !drawer,
 				})}
 			>
 				<HistoryTable />
