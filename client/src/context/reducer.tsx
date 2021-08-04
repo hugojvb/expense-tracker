@@ -1,6 +1,8 @@
+// TYPES IMPORT
 import { LOGIN, LOGOUT } from "./types";
 
-const reducer = (state: any, action: any) => {
+// REDUCER FUNCTION
+const reducer = (state: any, action: { type: string; payload?: any }) => {
 	switch (action.type) {
 		case LOGIN:
 			return {

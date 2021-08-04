@@ -14,6 +14,7 @@ import Login from "./components/Login";
 
 // FUNCTIONAL COMPONENT
 const Routing: FC = () => {
+	// USE CONTEXT HOOK
 	const context = useContext(Context);
 
 	// LOGGED IN STATE

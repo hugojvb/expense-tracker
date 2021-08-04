@@ -7,7 +7,7 @@ import App from "./App";
 // CONTEXT PROVIDER
 import State from "./context/state";
 
-// RENDER REACTDOM
+// RENDER REACT DOM
 ReactDOM.render(
 	<React.StrictMode>
 		<State>

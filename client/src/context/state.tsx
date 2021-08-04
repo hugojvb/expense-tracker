@@ -1,21 +1,28 @@
-import React, { useReducer } from "react";
+import { useReducer, FC } from "react";
+
+// CONTEXT IMPORTS
 import Context from "./context";
 import reducer from "./reducer";
+
+// TYPES IMPORT
 import { LOGIN, LOGOUT } from "./types";
 
-const State = (props: any) => {
+const State: FC = (props: any): JSX.Element => {
+	// INITIAL STATE
 	const initialState = {
 		loggedIn: true,
 		drawer: true,
 	};
 
+	// USE REDUCER FUNCTION
 	const [state, dispatch] = useReducer(reducer, initialState);
 
-	// actions
+	// LOGIN ACTION
 	const login = () => {
 		dispatch({ type: LOGIN });
 	};
 
+	// LOGOUT ACTION
 	const logout = () => {
 		dispatch({ type: LOGOUT });
 	};
