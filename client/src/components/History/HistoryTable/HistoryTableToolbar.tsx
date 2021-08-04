@@ -75,7 +75,7 @@ interface Props {
 	numSelected: number;
 	search: string;
 	setSearch: Dispatch<SetStateAction<string>>;
-	rows: string[];
+	rows: any;
 	setFiltered: any;
 	selected: string[];
 }
@@ -157,8 +157,8 @@ const HistoryTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, 
 		for (let i = 0; i < rows.length; i++) {
 			if (
 				Object.values(rows[i])
-					.map((x) => x.toString().search(new RegExp(target.value, "gi")))
-					.some((y) => y !== -1)
+					.map((x: any) => x.toString().search(new RegExp(target.value, "gi")))
+					.some((y: any) => y !== -1)
 			) {
 				arr.push(rows[i]);
 			}
@@ -248,7 +248,7 @@ const HistoryTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, 
 				setOpenUpdatedSuccess={setOpenUpdatedSuccess}
 				setOpenUpdatedError={setOpenUpdatedError}
 			/>
-			<Snackbar open={openAddedSuccess} autoHideDuration={3000} onClose={handleCloseAddedSuccess} TransitionComponent={Grow}>
+			{/* <Snackbar open={openAddedSuccess} autoHideDuration={3000} onClose={handleCloseAddedSuccess} TransitionComponent={Grow}>
 				<Alert elevation={6} variant="filled" onClose={handleCloseAddedSuccess} severity="success">
 					Your instance was successfully added!
 				</Alert>
@@ -277,7 +277,7 @@ const HistoryTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, 
 				<Alert elevation={6} variant="filled" onClose={handleCloseUpdatedError} severity="error">
 					Something went wrong while updating your instance! Please try again.
 				</Alert>
-			</Snackbar>
+			</Snackbar> */}
 		</Toolbar>
 	);
 };

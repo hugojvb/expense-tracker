@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, FC } from "react";
 
 import { makeStyles, Table, TableBody, TableCell, TableRow, Checkbox, Box, Collapse, TableHead, Typography } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
@@ -12,7 +12,14 @@ const useRowStyles = makeStyles({
 	},
 });
 
-export default function GoalsTableRow({ row, isItemSelected, labelId, handleClick }) {
+interface Props {
+	row: any;
+	isItemSelected: boolean;
+	labelId: any;
+	handleClick: any;
+}
+
+const GoalsTableRow: FC<Props> = ({ row, isItemSelected, labelId, handleClick }) => {
 	const [openDetails, setOpenDetails] = useState(false);
 	const classes = useRowStyles();
 
@@ -87,4 +94,6 @@ export default function GoalsTableRow({ row, isItemSelected, labelId, handleClic
 			</TableRow>
 		</Fragment>
 	);
-}
+};
+
+export default GoalsTableRow;

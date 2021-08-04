@@ -252,7 +252,7 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 					Your instance was successfully added!
 				</Alert> */}
 			{/* </Snackbar> */}
-			{/* <Snackbar open={openAddedError} autoHideDuration={3000} onClose={handleCloseAddedError} TransitionComponent={Grow}> */}
+			{/* <Snackbar open={openAddedError} autoHideDuration={3000} onClose={handleCloseAddedError}  nTransitionComponent={Grow}> */}
 			{/* <Alert elevation={6} variant="filled" onClose={handleCloseAddedError} severity="error">
 					Something went wrong while adding your instance! Please try again.
 				</Alert> */}

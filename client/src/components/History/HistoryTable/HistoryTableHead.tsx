@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import PropTypes from "prop-types";
 import { TableCell, TableHead, TableRow, TableSortLabel, Checkbox } from "@material-ui/core";
 
@@ -12,8 +12,18 @@ const headCells = [
 	{ id: "isEnabled", numeric: false, disablePadding: true, label: "Enabled" },
 ];
 
-export default function HistoryTableHead({ classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }) {
-	const createSortHandler = (property) => (event) => {
+interface Props {
+	classes: any;
+	onSelectAllClick: any;
+	order: any;
+	orderBy: string;
+	numSelected: number;
+	rowCount: any;
+	onRequestSort: any;
+}
+
+const HistoryTableHead: FC<Props> = ({ classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }) => {
+	const createSortHandler = (property: any) => (event: any) => {
 		onRequestSort(event, property);
 	};
 
@@ -51,14 +61,6 @@ export default function HistoryTableHead({ classes, onSelectAllClick, order, ord
 			</TableRow>
 		</TableHead>
 	);
-}
-
-HistoryTableHead.propTypes = {
-	classes: PropTypes.object.isRequired,
-	numSelected: PropTypes.number.isRequired,
-	onRequestSort: PropTypes.func.isRequired,
-	onSelectAllClick: PropTypes.func.isRequired,
-	order: PropTypes.oneOf(["asc", "desc"]).isRequired,
-	orderBy: PropTypes.string.isRequired,
-	rowCount: PropTypes.number.isRequired,
 };
+
+export default HistoryTableHead;
