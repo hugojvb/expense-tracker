@@ -6,7 +6,8 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "../src/theme";
 
-function App() {
+// FUNCTIONAL COMPONENT
+const App = (): JSX.Element => {
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -15,6 +16,6 @@ function App() {
 			</ThemeProvider>
 		</>
 	);
-}
+};
 
 export default App;
