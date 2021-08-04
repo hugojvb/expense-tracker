@@ -26,7 +26,8 @@ const Routing: FC = () => {
 				<Route exact path="/">
 					{!loggedIn && <Redirect to="/login" />}
 				</Route>
-				<Route exact path="/login" component={Login}>
+				<Route exact path="/login">
+					<Login />
 					{loggedIn && <Redirect to="/" />}
 				</Route>
 				<Route exact path="/" component={Home} />
