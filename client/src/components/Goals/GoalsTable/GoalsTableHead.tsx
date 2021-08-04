@@ -1,5 +1,6 @@
 import { FC } from "react";
-import PropTypes from "prop-types";
+
+// MATERIAL-UI COMPONENTS IMPORT
 import { TableCell, TableHead, TableRow, TableSortLabel, Checkbox } from "@material-ui/core";
 
 const headCells = [
@@ -12,6 +13,7 @@ const headCells = [
 	{ id: "isEnabled", numeric: false, disablePadding: true, label: "Enabled" },
 ];
 
+// PROPS INTERFACE
 interface Props {
 	classes: any;
 	onSelectAllClick: any;

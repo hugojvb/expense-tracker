@@ -1,13 +1,18 @@
-import { Fragment, useState, useContext } from "react";
+import { useState, useContext, FC } from "react";
 
+// USE FORM IMPORT
 import { useForm } from "react-hook-form";
 
+// AXIOS IMPORT
 import axios from "axios";
 
+// CONTEXT IMPORT
 import Context from "../context/context";
 
+// USE HISTORY IMPORT
 import { useHistory } from "react-router-dom";
 
+// MATERIAL-UI COMPONENTS IMPORT
 import {
 	FormGroup,
 	InputAdornment,
@@ -25,9 +30,11 @@ import {
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 
+// MATERIAL-UI ICONS IMPORT
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
+// MAKE STYLES
 const useStyles = makeStyles((theme) =>
 	createStyles({
 		center: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -41,37 +48,50 @@ const useStyles = makeStyles((theme) =>
 	})
 );
 
-export default function Form() {
+// FUNCTIONAL COMPONENT
+const Form: FC = () => {
+	// USE STYLES HOOK
 	const classes = useStyles();
+
+	// USE CONTEXT HOOK
 	const context = useContext(Context);
 
+	// LOGIN STATE
 	const { login, loggedIn } = context;
 
+	// PASSWORD VISIBILITY STATE
 	const [passwordVisible, setPasswordVisible] = useState(false);
-	const [wasValidated, setWasValidated] = useState(false);
-	const [notValidated, setNotValidated] = useState(false);
 
-	const { register, handleSubmit, errors, setValue } = useForm();
-
-	const history = useHistory();
-
+	// TOGGLE PASSWORD VISIBILITY
 	const togglePassword = () => {
 		setPasswordVisible(!passwordVisible);
 	};
 
-	const firstSubmit = async (data: any) => {
+	// LOGIN VALIDATION STATE
+	const [wasValidated, setWasValidated] = useState(false);
+	const [notValidated, setNotValidated] = useState(false);
+
+	// USE FORM METHODS
+	const { register, handleSubmit, errors, setValue } = useForm();
+
+	// USE HISTORY HOOK
+	const history = useHistory();
+
+	// LOGIN SUBMIT
+	const onSubmit = async (data: any) => {
+		// LOGIN POST REQUEST
 		const login = await axios.post("/api/signin", data);
 
 		if (login.data.success === true) {
 			setWasValidated(true);
 			setValue("username", "");
 			setValue("password", "");
-			const twoFa = await axios.get("/api/2fa");
 		} else {
 			setNotValidated(true);
 		}
 	};
 
+	// CLOSE SNACKBAR
 	const handleCloseSnackbar = (reason: any) => {
 		if (reason === "clickaway") {
 			return;
@@ -79,10 +99,11 @@ export default function Form() {
 		setNotValidated(false);
 	};
 
+	// PAGE TITLE
 	document.title = "Login - Expense Tracker";
 
 	return (
-		<Fragment>
+		<>
 			<Container maxWidth="sm">
 				<Card className={classes.card}>
 					<Container className={classes.center}>
@@ -93,7 +114,7 @@ export default function Form() {
 						</Typography>
 					</Container>
 					<CardContent>
-						<form onSubmit={handleSubmit(firstSubmit)}>
+						<form onSubmit={handleSubmit(onSubmit)}>
 							<FormGroup className={classes.formGroup}>
 								<TextField
 									inputRef={register({ required: true })}
@@ -150,6 +171,8 @@ export default function Form() {
 					</p>
 				</div>
 			</Container>
-		</Fragment>
+		</>
 	);
-}
+};
+
+export default Form;

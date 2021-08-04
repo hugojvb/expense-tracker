@@ -1,5 +1,6 @@
-import { FC, Fragment, useState, useContext } from "react";
+import { FC, Fragment, useState, useContext, MouseEvent } from "react";
 
+// MATERIAL-UI COMPONENTS IMPORT
 import {
 	makeStyles,
 	Theme,
@@ -15,16 +16,20 @@ import {
 	ListItemText,
 } from "@material-ui/core";
 
+// MATERIAL-UI ICONS IMPORT
 import HomeIcon from "@material-ui/icons/Home";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import TrackChangesIcon from "@material-ui/icons/TrackChanges";
 import HistoryIcon from "@material-ui/icons/History";
 
+// ROUTER LINK IMPORT
 import { Link } from "react-router-dom";
 
+// CONTEXT IMPORT
 import Context from "../context/context";
 
+// MAKE STYLES
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
@@ -45,6 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
+// CUSTOM MENU ITEM COMPONENT
 const StyledMenuItem = withStyles((theme) => ({
 	root: {
 		"&:hover": {
@@ -56,23 +62,32 @@ const StyledMenuItem = withStyles((theme) => ({
 	},
 }))(MenuItem);
 
+// FUNCTIONAL COMPONENT
 const Navbar: FC = (): JSX.Element => {
+	// USE STYLES HOOK
 	const classes = useStyles();
+
+	// USE CONTEXT HOOK
+	const context = useContext(Context);
+
+	// MENU STATE
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const openMenu = Boolean(anchorEl);
 
-	const context = useContext(Context);
-
-	const { logout } = context;
-
-	const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+	// OPEN MENU
+	const handleMenu = (event: MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
 
+	// CLOSE MENU
 	const handleCloseMenu = () => {
 		setAnchorEl(null);
 	};
 
+	// LOGOUT STATE
+	const { logout } = context;
+
+	// CHANGE LOGGEDIN STATE
 	const onLogout = () => {
 		if (logout) {
 			logout();
