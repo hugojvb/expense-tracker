@@ -1,5 +1,7 @@
 import { FC, Fragment, useState, useContext, MouseEvent } from "react";
 
+import LeftDrawer from "./LeftDrawer";
+
 // MATERIAL-UI COMPONENTS IMPORT
 import {
   makeStyles,
@@ -22,6 +24,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import TrackChangesIcon from "@material-ui/icons/TrackChanges";
 import HistoryIcon from "@material-ui/icons/History";
+import MenuIcon from "@material-ui/icons/Menu";
 
 // ROUTER LINK IMPORT
 import { Link } from "react-router-dom";
@@ -46,6 +49,9 @@ const useStyles = makeStyles((theme: Theme) =>
     link: {
       textDecoration: "none",
       color: "#444",
+    },
+    drawerOpen: {
+      marginRight: "1em",
     },
   })
 );
@@ -97,7 +103,11 @@ const Navbar: FC = (): JSX.Element => {
   return (
     <Fragment>
       <AppBar position="sticky" className={classes.root} color="primary">
+        <LeftDrawer />
         <Toolbar>
+          <IconButton color="inherit" className={classes.drawerOpen}>
+            <MenuIcon />
+          </IconButton>
           <img
             src="/logo.png"
             alt="logo"

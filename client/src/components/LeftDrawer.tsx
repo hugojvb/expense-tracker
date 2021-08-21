@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const LeftDrawer = () => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
