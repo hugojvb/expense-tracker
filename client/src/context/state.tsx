@@ -29,8 +29,8 @@ const State: FC = (props: any): JSX.Element => {
 	};
 
 	// TOGGLE DRAWER
-	const toggleDrawer = () => {
-		dispatch({ type: TOGGLE_DRAWER });
+	const toggleDrawer = (isOpened: boolean) => {
+		dispatch({ type: TOGGLE_DRAWER, payload: isOpened });
 	};
 
 	return (

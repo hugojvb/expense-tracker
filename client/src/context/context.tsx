@@ -3,11 +3,11 @@ import { createContext } from "react";
 
 // PROPS INTERFACE
 interface ContextProps {
-  loggedIn: boolean;
-  login: () => void;
-  logout: () => void;
-  isDrawerOpen: boolean;
-  toggleDrawer: () => void;
+	loggedIn: boolean;
+	login: () => void;
+	logout: () => void;
+	isDrawerOpen: boolean;
+	toggleDrawer: (arg0: boolean) => void;
 }
 
 // CREATE CONTEXT STORE
