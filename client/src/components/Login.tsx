@@ -37,9 +37,17 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 // MAKE STYLES
 const useStyles = makeStyles((theme) =>
 	createStyles({
-		center: { display: "flex", justifyContent: "center", alignItems: "center" },
+		center: {
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center",
+		},
 		card: { marginTop: "15vh", padding: "2vw" },
-		footerCopyright: { color: "grey", textAlign: "center", marginTop: "40px" },
+		footerCopyright: {
+			color: "grey",
+			textAlign: "center",
+			marginTop: "40px",
+		},
 		footerCopyrightCompany: { color: "inherit", textDecoration: "none" },
 		formGroup: { marginBottom: "10px", marginTop: "5px" },
 		button: { marginTop: "30px" },
@@ -107,7 +115,13 @@ const Form: FC = () => {
 			<Container maxWidth="sm">
 				<Card className={classes.card}>
 					<Container className={classes.center}>
-						<img src="/logo.png" alt="logo" height="50" width="60" className={classes.logo} />
+						<img
+							src="/logo.png"
+							alt="logo"
+							height="50"
+							width="60"
+							className={classes.logo}
+						/>
 
 						<Typography variant="h5" color="secondary">
 							Expense Tracker
@@ -129,7 +143,10 @@ const Form: FC = () => {
 							</FormGroup>
 							<FormGroup>
 								<TextField
-									inputRef={register({ required: true, minLength: 6 })}
+									inputRef={register({
+										required: true,
+										minLength: 6,
+									})}
 									type={passwordVisible ? "text" : "password"}
 									id="password"
 									name="password"
@@ -140,8 +157,15 @@ const Form: FC = () => {
 									InputProps={{
 										endAdornment: (
 											<InputAdornment position="end">
-												<IconButton aria-label="toggle password visibility" onClick={togglePassword}>
-													{passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+												<IconButton
+													aria-label="toggle password visibility"
+													onClick={togglePassword}
+												>
+													{passwordVisible ? (
+														<VisibilityOffIcon />
+													) : (
+														<VisibilityIcon />
+													)}
 												</IconButton>
 											</InputAdornment>
 										),
@@ -149,13 +173,29 @@ const Form: FC = () => {
 								/>
 							</FormGroup>
 
-							<Snackbar open={notValidated} autoHideDuration={3000} onClose={handleCloseSnackbar} TransitionComponent={Grow}>
-								<Alert elevation={6} variant="filled" onClose={handleCloseSnackbar} severity="error">
-									Nom d'utilisateur ou mot de passe incorrect! Veuillez réessayer.
+							<Snackbar
+								open={notValidated}
+								autoHideDuration={3000}
+								onClose={handleCloseSnackbar}
+								TransitionComponent={Grow}
+							>
+								<Alert
+									elevation={6}
+									variant="filled"
+									onClose={handleCloseSnackbar}
+									severity="error"
+								>
+									Nom d'utilisateur ou mot de passe incorrect!
+									Veuillez réessayer.
 								</Alert>
 							</Snackbar>
 
-							<Button variant="contained" type="submit" color="secondary" className={classes.button}>
+							<Button
+								variant="contained"
+								type="submit"
+								color="secondary"
+								className={classes.button}
+							>
 								Login
 							</Button>
 						</form>
@@ -165,7 +205,12 @@ const Form: FC = () => {
 				<div className={classes.footerCopyright}>
 					<p>
 						&copy; {new Date().getFullYear()} -{" "}
-						<a href="/" target="_blank" rel="noopener noreferrer " className={classes.footerCopyrightCompany}>
+						<a
+							href="/"
+							target="_blank"
+							rel="noopener noreferrer "
+							className={classes.footerCopyrightCompany}
+						>
 							Expense Tracker
 						</a>
 					</p>

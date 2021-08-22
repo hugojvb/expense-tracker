@@ -11,6 +11,6 @@ interface ContextProps {
 }
 
 // CREATE CONTEXT STORE
-const context = createContext<Partial<ContextProps>>({});
+const context = createContext({} as ContextProps);
 
 export default context;
