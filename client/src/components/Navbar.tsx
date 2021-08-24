@@ -86,9 +86,8 @@ const Navbar: FC = (): JSX.Element => {
 				color: "#444",
 			},
 			toolbar: {
-				padding: isDrawerOpen
-					? theme.spacing(0, 4)
-					: theme.spacing(0, 1),
+				paddingLeft: isDrawerOpen ? theme.spacing(4) : theme.spacing(1),
+				paddingRight: theme.spacing(2),
 			},
 		})
 	);
