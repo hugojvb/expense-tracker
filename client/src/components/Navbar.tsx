@@ -32,6 +32,8 @@ import { Link } from "react-router-dom";
 // CONTEXT IMPORT
 import Context from "../context/context";
 
+const drawerWidth: number = 240;
+
 // CUSTOM MENU ITEM COMPONENT
 const StyledMenuItem = withStyles((theme) => ({
 	root: {
@@ -48,7 +50,7 @@ const StyledMenuItem = withStyles((theme) => ({
 const Navbar: FC = (): JSX.Element => {
 	const context = useContext(Context);
 
-	const { logout, toggleDrawer, isDrawerOpen, drawerWidth } = context;
+	const { logout, toggleDrawer, isDrawerOpen } = context;
 
 	// MAKE STYLES
 	const useStyles = makeStyles((theme: Theme) =>

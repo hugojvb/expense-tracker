@@ -16,6 +16,7 @@ import {
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import InboxIcon from "@material-ui/icons/Inbox";
 import MailIcon from "@material-ui/icons/Mail";
+import TrackChangesIcon from "@material-ui/icons/TrackChanges";
 
 import Context from "../context/context";
 
@@ -102,20 +103,19 @@ const LeftDrawer = () => {
 					</IconButton>
 				</div>
 				<List>
-					{["Inbox", "Starred", "Send email", "Drafts"].map(
-						(text, index) => (
-							<ListItem button key={text}>
-								<ListItemIcon>
-									{index % 2 === 0 ? (
-										<InboxIcon />
-									) : (
-										<MailIcon />
-									)}
-								</ListItemIcon>
-								<ListItemText primary={text} />
-							</ListItem>
-						)
-					)}
+					<ListItem button>
+						<ListItemIcon>
+							<TrackChangesIcon />
+						</ListItemIcon>
+						<ListItemText primary="Goals" />
+					</ListItem>
+
+					<ListItem button>
+						<ListItemIcon>
+							<MailIcon />
+						</ListItemIcon>
+						<ListItemText primary="Goals" />
+					</ListItem>
 				</List>
 				<Divider />
 				<List>
