@@ -78,17 +78,15 @@ const Navbar: FC = (): JSX.Element => {
 			brand: {
 				flexGrow: 1,
 				marginLeft: 20,
-				cursor: "pointer",
-			},
-			menu: {
-				marginTop: "5vh",
 			},
 			link: {
 				textDecoration: "none",
 				color: "#444",
 			},
-			drawerOpen: {
-				marginRight: "1em",
+			toolbar: {
+				padding: isDrawerOpen
+					? theme.spacing(0, 4)
+					: theme.spacing(0, 1),
 			},
 		})
 	);
@@ -126,7 +124,7 @@ const Navbar: FC = (): JSX.Element => {
 				}`}
 				color="primary"
 			>
-				<Toolbar>
+				<Toolbar disableGutters classes={{ root: classes.toolbar }}>
 					{!isDrawerOpen && (
 						<IconButton
 							color="inherit"
@@ -171,7 +169,6 @@ const Navbar: FC = (): JSX.Element => {
 							}}
 							open={openMenu}
 							onClose={handleCloseMenu}
-							className={classes.menu}
 						>
 							<Link to="/home" className={classes.link}>
 								<StyledMenuItem onClick={handleCloseMenu}>
