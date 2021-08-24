@@ -91,7 +91,7 @@ const Navbar: FC = (): JSX.Element => {
 	};
 
 	// LOGOUT STATE
-	const { logout, toggleDrawer, isDrawerOpen } = context;
+	const { logout, toggleDrawer, isDrawerOpen, drawerWidth } = context;
 
 	// CHANGE LOGGEDIN STATE
 	const onLogout = () => {
@@ -104,14 +104,18 @@ const Navbar: FC = (): JSX.Element => {
 		<Fragment>
 			<AppBar position="sticky" className={classes.root} color="primary">
 				<LeftDrawer />
-				<Toolbar style={{ marginLeft: isDrawerOpen ? "240px" : "0px" }}>
-					<IconButton
-						color="inherit"
-						className={classes.drawerOpen}
-						onClick={() => toggleDrawer(true)}
-					>
-						<MenuIcon />
-					</IconButton>
+				<Toolbar
+					style={{ marginLeft: isDrawerOpen ? drawerWidth : "0" }}
+				>
+					{!isDrawerOpen && (
+						<IconButton
+							color="inherit"
+							className={classes.drawerOpen}
+							onClick={() => toggleDrawer(true)}
+						>
+							<MenuIcon />
+						</IconButton>
+					)}
 					<img
 						src="/logo.png"
 						alt="logo"
@@ -122,7 +126,6 @@ const Navbar: FC = (): JSX.Element => {
 					<Typography variant="h6" className={classes.brand}>
 						Expense Tracker
 					</Typography>
-
 					<div>
 						<IconButton
 							aria-label="account of current user"
