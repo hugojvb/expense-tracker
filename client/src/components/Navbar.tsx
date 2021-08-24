@@ -53,6 +53,12 @@ const Navbar: FC = (): JSX.Element => {
 	// MAKE STYLES
 	const useStyles = makeStyles((theme: Theme) =>
 		createStyles({
+			root: {
+				display: "flex",
+			},
+			menuButton: {
+				marginRight: theme.spacing(2),
+			},
 			appBar: {
 				zIndex: theme.zIndex.drawer + 1,
 				transition: theme.transitions.create(["width", "margin"], {
@@ -112,21 +118,20 @@ const Navbar: FC = (): JSX.Element => {
 	};
 
 	return (
-		<Fragment>
+		<div className={classes.root}>
 			<AppBar
-				position="sticky"
-				className={isDrawerOpen ? classes.appBarShift : classes.appBar}
+				position="fixed"
+				className={`${isDrawerOpen ? classes.appBarShift : ""} ${
+					classes.appBar
+				}`}
 				color="primary"
 			>
-				<LeftDrawer />
-				<Toolbar
-					style={{ marginLeft: isDrawerOpen ? drawerWidth : "0" }}
-				>
+				<Toolbar>
 					{!isDrawerOpen && (
 						<IconButton
 							color="inherit"
-							className={classes.drawerOpen}
 							onClick={() => toggleDrawer(true)}
+							className={classes.menuButton}
 						>
 							<MenuIcon />
 						</IconButton>
@@ -208,7 +213,8 @@ const Navbar: FC = (): JSX.Element => {
 					</div>
 				</Toolbar>
 			</AppBar>
-		</Fragment>
+			<LeftDrawer />
+		</div>
 	);
 };
 

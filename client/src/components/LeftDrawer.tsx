@@ -23,33 +23,18 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		root: {
-			display: "flex",
+		drawer: {
+			width: drawerWidth,
+			flexShrink: 0,
+			whiteSpace: "nowrap",
 		},
-		appBar: {
-			transition: theme.transitions.create(["margin", "width"], {
-				easing: theme.transitions.easing.sharp,
-				duration: theme.transitions.duration.leavingScreen,
-			}),
-		},
-		appBarShift: {
-			width: `calc(100% - ${drawerWidth}px)`,
-			marginLeft: drawerWidth,
-			transition: theme.transitions.create(["margin", "width"], {
-				easing: theme.transitions.easing.easeOut,
-				duration: theme.transitions.duration.enteringScreen,
-			}),
-		},
-		menuButton: {
-			marginRight: theme.spacing(2),
-		},
-		drawerHeader: {
+		toolbar: {
 			display: "flex",
 			alignItems: "center",
+			justifyContent: "flex-end",
 			padding: theme.spacing(0, 1),
 			// necessary for content to be below app bar
 			...theme.mixins.toolbar,
-			justifyContent: "flex-end",
 		},
 		drawerOpen: {
 			width: drawerWidth,
@@ -102,18 +87,19 @@ const LeftDrawer = () => {
 	};
 
 	return (
-		<div className={classes.root}>
+		<div>
 			<Drawer
-				variant="persistent"
-				anchor="left"
-				open={true}
+				variant="permanent"
+				className={
+					isDrawerOpen ? classes.drawerOpen : classes.drawerClose
+				}
 				classes={{
 					paper: isDrawerOpen
 						? classes.drawerOpen
 						: classes.drawerClose,
 				}}
 			>
-				<div className={classes.drawerHeader}>
+				<div className={classes.toolbar}>
 					<IconButton onClick={handleDrawerClose}>
 						<ChevronLeftIcon />
 					</IconButton>
