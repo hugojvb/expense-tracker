@@ -43,16 +43,6 @@ const useStyles = makeStyles((theme: Theme) =>
 		menuButton: {
 			marginRight: theme.spacing(2),
 		},
-		hide: {
-			display: "none",
-		},
-		drawer: {
-			width: drawerWidth,
-			flexShrink: 0,
-		},
-		drawerPaper: {
-			width: drawerWidth,
-		},
 		drawerHeader: {
 			display: "flex",
 			alignItems: "center",
@@ -61,6 +51,24 @@ const useStyles = makeStyles((theme: Theme) =>
 			...theme.mixins.toolbar,
 			justifyContent: "flex-end",
 		},
+		drawerOpen: {
+			width: drawerWidth,
+			transition: theme.transitions.create("width", {
+				easing: theme.transitions.easing.sharp,
+				duration: theme.transitions.duration.enteringScreen,
+			}),
+		},
+		drawerClose: {
+			transition: theme.transitions.create("width", {
+				easing: theme.transitions.easing.sharp,
+				duration: theme.transitions.duration.leavingScreen,
+			}),
+			overflowX: "hidden",
+			width: theme.spacing(7) + 1,
+			[theme.breakpoints.up("sm")]: {
+				width: theme.spacing(9) + 1,
+			},
+		},
 		content: {
 			flexGrow: 1,
 			padding: theme.spacing(3),
@@ -68,14 +76,12 @@ const useStyles = makeStyles((theme: Theme) =>
 				easing: theme.transitions.easing.sharp,
 				duration: theme.transitions.duration.leavingScreen,
 			}),
-			marginLeft: -drawerWidth,
 		},
 		contentShift: {
 			transition: theme.transitions.create("margin", {
 				easing: theme.transitions.easing.easeOut,
 				duration: theme.transitions.duration.enteringScreen,
 			}),
-			marginLeft: 0,
 		},
 	})
 );
@@ -98,12 +104,13 @@ const LeftDrawer = () => {
 	return (
 		<div className={classes.root}>
 			<Drawer
-				className={classes.drawer}
 				variant="persistent"
 				anchor="left"
-				open={isDrawerOpen}
+				open={true}
 				classes={{
-					paper: classes.drawerPaper,
+					paper: isDrawerOpen
+						? classes.drawerOpen
+						: classes.drawerClose,
 				}}
 			>
 				<div className={classes.drawerHeader}>

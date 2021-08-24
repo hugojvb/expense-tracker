@@ -32,30 +32,6 @@ import { Link } from "react-router-dom";
 // CONTEXT IMPORT
 import Context from "../context/context";
 
-// MAKE STYLES
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			flexGrow: 1,
-		},
-		brand: {
-			flexGrow: 1,
-			marginLeft: 20,
-			cursor: "pointer",
-		},
-		menu: {
-			marginTop: "5vh",
-		},
-		link: {
-			textDecoration: "none",
-			color: "#444",
-		},
-		drawerOpen: {
-			marginRight: "1em",
-		},
-	})
-);
-
 // CUSTOM MENU ITEM COMPONENT
 const StyledMenuItem = withStyles((theme) => ({
 	root: {
@@ -70,11 +46,49 @@ const StyledMenuItem = withStyles((theme) => ({
 
 // FUNCTIONAL COMPONENT
 const Navbar: FC = (): JSX.Element => {
+	const context = useContext(Context);
+
+	const { logout, toggleDrawer, isDrawerOpen, drawerWidth } = context;
+
+	// MAKE STYLES
+	const useStyles = makeStyles((theme: Theme) =>
+		createStyles({
+			appBar: {
+				zIndex: theme.zIndex.drawer + 1,
+				transition: theme.transitions.create(["width", "margin"], {
+					easing: theme.transitions.easing.sharp,
+					duration: theme.transitions.duration.leavingScreen,
+				}),
+			},
+			appBarShift: {
+				flexGrow: 1,
+				marginLeft: drawerWidth,
+				width: `calc(100% - ${drawerWidth}px)`,
+				transition: theme.transitions.create(["width", "margin"], {
+					easing: theme.transitions.easing.sharp,
+					duration: theme.transitions.duration.enteringScreen,
+				}),
+			},
+			brand: {
+				flexGrow: 1,
+				marginLeft: 20,
+				cursor: "pointer",
+			},
+			menu: {
+				marginTop: "5vh",
+			},
+			link: {
+				textDecoration: "none",
+				color: "#444",
+			},
+			drawerOpen: {
+				marginRight: "1em",
+			},
+		})
+	);
+
 	// USE STYLES HOOK
 	const classes = useStyles();
-
-	// USE CONTEXT HOOK
-	const context = useContext(Context);
 
 	// MENU STATE
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -90,9 +104,6 @@ const Navbar: FC = (): JSX.Element => {
 		setAnchorEl(null);
 	};
 
-	// LOGOUT STATE
-	const { logout, toggleDrawer, isDrawerOpen, drawerWidth } = context;
-
 	// CHANGE LOGGEDIN STATE
 	const onLogout = () => {
 		if (logout) {
@@ -102,7 +113,11 @@ const Navbar: FC = (): JSX.Element => {
 
 	return (
 		<Fragment>
-			<AppBar position="sticky" className={classes.root} color="primary">
+			<AppBar
+				position="sticky"
+				className={isDrawerOpen ? classes.appBarShift : classes.appBar}
+				color="primary"
+			>
 				<LeftDrawer />
 				<Toolbar
 					style={{ marginLeft: isDrawerOpen ? drawerWidth : "0" }}
