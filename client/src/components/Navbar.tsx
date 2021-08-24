@@ -91,7 +91,7 @@ const Navbar: FC = (): JSX.Element => {
 	};
 
 	// LOGOUT STATE
-	const { logout, toggleDrawer } = context;
+	const { logout, toggleDrawer, isDrawerOpen } = context;
 
 	// CHANGE LOGGEDIN STATE
 	const onLogout = () => {
@@ -104,7 +104,7 @@ const Navbar: FC = (): JSX.Element => {
 		<Fragment>
 			<AppBar position="sticky" className={classes.root} color="primary">
 				<LeftDrawer />
-				<Toolbar>
+				<Toolbar style={{ marginLeft: isDrawerOpen ? "240px" : "0px" }}>
 					<IconButton
 						color="inherit"
 						className={classes.drawerOpen}
@@ -119,11 +119,7 @@ const Navbar: FC = (): JSX.Element => {
 						width="50"
 						onClick={() => (window.location.pathname = "/")}
 					/>
-					<Typography
-						variant="h6"
-						className={classes.brand}
-						onClick={() => (window.location.pathname = "/")}
-					>
+					<Typography variant="h6" className={classes.brand}>
 						Expense Tracker
 					</Typography>
 

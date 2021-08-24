@@ -13,6 +13,7 @@ const State: FC = (props: any): JSX.Element => {
 		loggedIn: true,
 		drawer: true,
 		isDrawerOpen: true,
+		drawerWidth: 240,
 	};
 
 	// USE REDUCER FUNCTION
@@ -41,6 +42,7 @@ const State: FC = (props: any): JSX.Element => {
 				logout,
 				isDrawerOpen: state.isDrawerOpen,
 				toggleDrawer,
+				drawerWidth: state.drawerWidth,
 			}}
 		>
 			{props?.children}
