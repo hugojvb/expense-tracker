@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 
 import {
 	Theme,
@@ -16,6 +16,7 @@ import {
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import HomeIcon from "@material-ui/icons/Home";
 import TrackChangesIcon from "@material-ui/icons/TrackChanges";
+import HistoryIcon from "@material-ui/icons/History";
 
 import Context from "../context/context";
 import { useHistory } from "react-router";
@@ -71,15 +72,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const LeftDrawer = () => {
 	const classes = useStyles();
-	const [open, setOpen] = useState(true);
 	const history = useHistory();
 
 	const context = useContext(Context);
 	const { toggleDrawer, isDrawerOpen } = context;
-
-	const handleDrawerOpen = () => {
-		toggleDrawer(true);
-	};
 
 	const handleDrawerClose = () => {
 		toggleDrawer(false);
@@ -117,6 +113,12 @@ const LeftDrawer = () => {
 							<TrackChangesIcon />
 						</ListItemIcon>
 						<ListItemText primary="Goals" />
+					</ListItem>
+					<ListItem button onClick={() => history.push("/history")}>
+						<ListItemIcon>
+							<HistoryIcon />
+						</ListItemIcon>
+						<ListItemText primary="History" />
 					</ListItem>
 				</List>
 			</Drawer>
