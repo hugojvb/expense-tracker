@@ -14,11 +14,11 @@ import {
 } from "@material-ui/core";
 
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import InboxIcon from "@material-ui/icons/Inbox";
-import MailIcon from "@material-ui/icons/Mail";
+import HomeIcon from "@material-ui/icons/Home";
 import TrackChangesIcon from "@material-ui/icons/TrackChanges";
 
 import Context from "../context/context";
+import { useHistory } from "react-router";
 
 const drawerWidth = 240;
 
@@ -72,6 +72,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const LeftDrawer = () => {
 	const classes = useStyles();
 	const [open, setOpen] = useState(true);
+	const history = useHistory();
 
 	const context = useContext(Context);
 	const { toggleDrawer, isDrawerOpen } = context;
@@ -103,30 +104,20 @@ const LeftDrawer = () => {
 					</IconButton>
 				</div>
 				<List>
-					<ListItem button>
+					<ListItem button onClick={() => history.push("/")}>
+						<ListItemIcon>
+							<HomeIcon />
+						</ListItemIcon>
+						<ListItemText primary="Home" />
+					</ListItem>
+
+					<Divider />
+					<ListItem button onClick={() => history.push("/goals")}>
 						<ListItemIcon>
 							<TrackChangesIcon />
 						</ListItemIcon>
 						<ListItemText primary="Goals" />
 					</ListItem>
-
-					<ListItem button>
-						<ListItemIcon>
-							<MailIcon />
-						</ListItemIcon>
-						<ListItemText primary="Goals" />
-					</ListItem>
-				</List>
-				<Divider />
-				<List>
-					{["All mail", "Trash", "Spam"].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
 				</List>
 			</Drawer>
 		</div>

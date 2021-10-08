@@ -1,4 +1,4 @@
-import { FC, Fragment, useState, useContext, MouseEvent } from "react";
+import { FC, useState, useContext, MouseEvent } from "react";
 
 import LeftDrawer from "./LeftDrawer";
 
@@ -19,11 +19,8 @@ import {
 } from "@material-ui/core";
 
 // MATERIAL-UI ICONS IMPORT
-import HomeIcon from "@material-ui/icons/Home";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import TrackChangesIcon from "@material-ui/icons/TrackChanges";
-import HistoryIcon from "@material-ui/icons/History";
 import MenuIcon from "@material-ui/icons/Menu";
 
 // ROUTER LINK IMPORT
