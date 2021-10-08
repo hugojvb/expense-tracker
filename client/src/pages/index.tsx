@@ -1,10 +1,18 @@
 import { FC, Fragment } from "react";
 
 // MATERIAL-UI COMPONENTS IMPORT
-import { Card, CardContent, Typography, makeStyles, Container, Button, createStyles } from "@material-ui/core";
+import {
+	Card,
+	CardContent,
+	Typography,
+	makeStyles,
+	Container,
+	Button,
+	createStyles,
+} from "@material-ui/core";
 
 // NAVBAR IMPORT
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 
 // MAKE STYLES
 const useStyles = makeStyles((theme) =>

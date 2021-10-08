@@ -1,11 +1,11 @@
 import { Fragment, useContext } from "react";
 
-import GoalsTable from "./GoalsTable/GoalsTable";
-import Navbar from "../Navbar";
+import GoalsTable from "../components/Goals/GoalsTable/GoalsTable";
+import Navbar from "../components/Navbar";
 
 import { Box, makeStyles, createStyles } from "@material-ui/core";
 
-import Context from "../../context/context";
+import Context from "../context/context";
 
 import clsx from "clsx";
 

@@ -7,10 +7,10 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Context from "./context/context";
 
 // COMPONENTS IMPORT
-import Home from "./components/Home";
-import History from "./components/History/History";
-import Goals from "./components/Goals/Goals";
-import Login from "./components/Login";
+import Home from "./pages";
+import History from "./pages/History";
+import Goals from "./pages/Goals";
+import Login from "./pages/Login";
 
 // FUNCTIONAL COMPONENT
 const Routing: FC = () => {
