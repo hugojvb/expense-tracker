@@ -1,15 +1,15 @@
 import { Fragment, useContext } from "react";
 
 // COMPONENTS
-import HistoryTable from "./HistoryTable/HistoryTable";
-import Navbar from "../Navbar";
+import HistoryTable from "../components/History/HistoryTable/HistoryTable";
+import Navbar from "../components/Navbar";
 
 // MATERIAL-UI COMPONENTS
 import { Box, makeStyles, createStyles } from "@material-ui/core";
 import clsx from "clsx";
 
 // CONTEXT API
-import Context from "../../context/context";
+import Context from "../context/context";
 
 const drawerWidth = 240;
 
