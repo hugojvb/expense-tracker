@@ -171,30 +171,6 @@ const Navbar: FC = (): JSX.Element => {
 							open={openMenu}
 							onClose={handleCloseMenu}
 						>
-							<Link to="/home" className={classes.link}>
-								<StyledMenuItem onClick={handleCloseMenu}>
-									<ListItemIcon>
-										<HomeIcon fontSize="small" />
-									</ListItemIcon>
-									<ListItemText primary="Home" />
-								</StyledMenuItem>
-							</Link>
-							<Link to="/goals" className={classes.link}>
-								<StyledMenuItem onClick={handleCloseMenu}>
-									<ListItemIcon>
-										<TrackChangesIcon fontSize="small" />
-									</ListItemIcon>
-									<ListItemText primary="Goals" />
-								</StyledMenuItem>
-							</Link>
-							<Link to="/history" className={classes.link}>
-								<StyledMenuItem onClick={handleCloseMenu}>
-									<ListItemIcon>
-										<HistoryIcon fontSize="small" />
-									</ListItemIcon>
-									<ListItemText primary="History" />
-								</StyledMenuItem>
-							</Link>
 							<Link
 								to="/login"
 								className={classes.link}
