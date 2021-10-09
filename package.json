@@ -40,7 +40,8 @@
   },
   "devDependencies": {
     "@material-ui/types": "^5.1.0",
+    "@types/react-router-dom": "^5.3.1",
     "nodemon": "^2.0.4",
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.3"
   }
 }

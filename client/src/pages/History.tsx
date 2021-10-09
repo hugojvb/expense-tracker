@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react";
 
 // COMPONENTS
-import HistoryTable from "../components/History/HistoryTable/HistoryTable";
+import HistoryTable from "../components/HistoryTable/HistoryTable";
 import Navbar from "../components/Navbar";
 
 // MATERIAL-UI COMPONENTS
@@ -46,7 +46,6 @@ export default function DemoInstances() {
 	const classes = useStyles();
 
 	const context = useContext(Context);
-	// const { drawer } = context;
 
 	return (
 		<Fragment>

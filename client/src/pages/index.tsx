@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, ReactNode } from "react";
 
 // MATERIAL-UI COMPONENTS IMPORT
 import {
@@ -13,6 +13,7 @@ import {
 
 // NAVBAR IMPORT
 import Navbar from "../components/Navbar";
+import Layout from "../components/Layout";
 
 // MAKE STYLES
 const useStyles = makeStyles((theme) =>
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 // FUNCTIONAL COMPONENT
-const Home: FC = (): JSX.Element => {
+const Home: FC<{}> = () => {
 	// USE STYLES HOOK
 	const classes = useStyles();
 

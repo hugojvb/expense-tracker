@@ -1,6 +1,6 @@
 import { Fragment, useContext } from "react";
 
-import GoalsTable from "../components/Goals/GoalsTable/GoalsTable";
+import GoalsTable from "../components/GoalsTable/GoalsTable";
 import Navbar from "../components/Navbar";
 
 import { Box, makeStyles, createStyles } from "@material-ui/core";

@@ -1,15 +1,27 @@
-import { useState, FC } from "react";
-import clsx from "clsx";
-import { lighten, fade, makeStyles, Toolbar, Typography, IconButton, Tooltip, InputBase, Snackbar, Grow } from "@material-ui/core";
+import { useState, FC, Dispatch, SetStateAction } from "react";
+import {
+	lighten,
+	fade,
+	makeStyles,
+	Toolbar,
+	Typography,
+	IconButton,
+	Tooltip,
+	InputBase,
+	Snackbar,
+	Grow,
+} from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 
-import DeleteDialog from "../../Dialogs/DeleteDialog";
-import AddDialog from "../../Dialogs/AddDialog";
-import UpdateDialog from "../../Dialogs/UpdateDialog";
+import clsx from "clsx";
+
+import DeleteDialog from "../Dialogs/DeleteDialog";
+import AddDialog from "../Dialogs/AddDialog";
+import UpdateDialog from "../Dialogs/UpdateDialog";
 
 const useToolbarStyles = makeStyles((theme) => ({
 	root: {
@@ -20,7 +32,10 @@ const useToolbarStyles = makeStyles((theme) => ({
 		theme.palette.type === "light"
 			? {
 					color: theme.palette.secondary.main,
-					backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+					backgroundColor: lighten(
+						theme.palette.secondary.light,
+						0.85
+					),
 			  }
 			: {
 					color: theme.palette.text.primary,
@@ -73,13 +88,20 @@ const useToolbarStyles = makeStyles((theme) => ({
 interface Props {
 	numSelected: number;
 	search: string;
-	setSearch: any;
+	setSearch: Dispatch<SetStateAction<string>>;
 	rows: any;
 	setFiltered: any;
-	selected: any;
+	selected: string[];
 }
 
-const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, setFiltered, selected }) => {
+const HistoryTableToolbar: FC<Props> = ({
+	numSelected,
+	search,
+	setSearch,
+	rows,
+	setFiltered,
+	selected,
+}) => {
 	const classes = useToolbarStyles();
 
 	const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
@@ -105,35 +127,35 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 	};
 
 	// Close popups
-	const handleCloseAddedSuccess = (event: any, reason: any) => {
+	const handleCloseAddedSuccess = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenAddedSuccess(false);
 	};
 
-	const handleCloseAddedError = (event: any, reason: any) => {
+	const handleCloseAddedError = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenAddedError(false);
 	};
 
-	const handleCloseDeletedSuccess = (event: any, reason: any) => {
+	const handleCloseDeletedSuccess = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenDeletedSuccess(false);
 	};
 
-	const handleCloseDeletedError = (event: any, reason: any) => {
+	const handleCloseDeletedError = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenDeletedError(false);
 	};
 
-	const handleCloseUpdatedSuccess = (event: any, reason: any) => {
+	const handleCloseUpdatedSuccess = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -141,7 +163,7 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 		setOpenUpdatedSuccess(false);
 	};
 
-	const handleCloseUpdatedError = (event: any, reason: any) => {
+	const handleCloseUpdatedError = (event: Event, reason: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -149,14 +171,16 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 		setOpenUpdatedError(false);
 	};
 
-	const onSearch = (e: any) => {
-		setSearch(e.target.value);
+	const onSearch = (target: HTMLInputElement) => {
+		setSearch(target.value);
 		let arr = [];
 
 		for (let i = 0; i < rows.length; i++) {
 			if (
 				Object.values(rows[i])
-					.map((x: any) => x.toString().search(new RegExp(e.target.value, "gi")))
+					.map((x: any) =>
+						x.toString().search(new RegExp(target.value, "gi"))
+					)
 					.some((y: any) => y !== -1)
 			) {
 				arr.push(rows[i]);
@@ -172,11 +196,22 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 			})}
 		>
 			{numSelected > 0 ? (
-				<Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
+				<Typography
+					className={classes.title}
+					color="inherit"
+					variant="subtitle1"
+					component="div"
+				>
 					{numSelected} selected
 				</Typography>
 			) : (
-				<Typography className={classes.title} variant="h6" id="tableTitle" component="div" color="primary">
+				<Typography
+					className={classes.title}
+					variant="h6"
+					id="tableTitle"
+					component="div"
+					color="primary"
+				>
 					Demo Instances
 				</Typography>
 			)}
@@ -192,7 +227,7 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 					}}
 					inputProps={{ "aria-label": "search" }}
 					value={search}
-					onChange={onSearch}
+					onChange={(e: any) => onSearch(e.target)}
 				/>
 			</div>
 
@@ -200,11 +235,17 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 				<div className={classes.icons}>
 					<Tooltip title="Update">
 						<IconButton aria-label="Update">
-							<EditIcon color="secondary" onClick={handleOpenUpdateDialog} />
+							<EditIcon
+								color="secondary"
+								onClick={handleOpenUpdateDialog}
+							/>
 						</IconButton>
 					</Tooltip>
 					<Tooltip title="Delete">
-						<IconButton aria-label="delete" onClick={handleOpenDeleteDialog}>
+						<IconButton
+							aria-label="delete"
+							onClick={handleOpenDeleteDialog}
+						>
 							<DeleteIcon color="error" />
 						</IconButton>
 					</Tooltip>
@@ -212,7 +253,10 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 			) : numSelected > 0 ? (
 				<div className={classes.icons}>
 					<Tooltip title="Delete">
-						<IconButton aria-label="delete" onClick={handleOpenDeleteDialog}>
+						<IconButton
+							aria-label="delete"
+							onClick={handleOpenDeleteDialog}
+						>
 							<DeleteIcon color="error" />
 						</IconButton>
 					</Tooltip>
@@ -220,7 +264,10 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 			) : (
 				<div className={classes.icons}>
 					<Tooltip title="Add">
-						<IconButton aria-label="add" onClick={handleOpenAddDialog}>
+						<IconButton
+							aria-label="add"
+							onClick={handleOpenAddDialog}
+						>
 							<AddIcon color="primary" />
 						</IconButton>
 					</Tooltip>
@@ -247,38 +294,38 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 				setOpenUpdatedSuccess={setOpenUpdatedSuccess}
 				setOpenUpdatedError={setOpenUpdatedError}
 			/>
-			{/* <Snackbar open={openAddedSuccess} autoHideDuration={3000} onClose={handleCloseAddedSuccess} TransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseAddedSuccess} severity="success">
+			{/* <Snackbar open={openAddedSuccess} autoHideDuration={3000} onClose={handleCloseAddedSuccess} TransitionComponent={Grow}>
+				<Alert elevation={6} variant="filled" onClose={handleCloseAddedSuccess} severity="success">
 					Your instance was successfully added!
-				</Alert> */}
-			{/* </Snackbar> */}
-			{/* <Snackbar open={openAddedError} autoHideDuration={3000} onClose={handleCloseAddedError}  nTransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseAddedError} severity="error">
+				</Alert>
+			</Snackbar>
+			<Snackbar open={openAddedError} autoHideDuration={3000} onClose={handleCloseAddedError} TransitionComponent={Grow}>
+				<Alert elevation={6} variant="filled" onClose={handleCloseAddedError} severity="error">
 					Something went wrong while adding your instance! Please try again.
-				</Alert> */}
-			{/* </Snackbar> */}
-			{/* <Snackbar open={openDeletedSuccess} autoHideDuration={3000} onClose={handleCloseDeletedSuccess} TransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseDeletedSuccess} severity="success">
+				</Alert>
+			</Snackbar>
+			<Snackbar open={openDeletedSuccess} autoHideDuration={3000} onClose={handleCloseDeletedSuccess} TransitionComponent={Grow}>
+				<Alert elevation={6} variant="filled" onClose={handleCloseDeletedSuccess} severity="success">
 					Your instance was successfully deleted!
-				</Alert> */}
-			{/* </Snackbar> */}
-			{/* <Snackbar open={openDeletedError} autoHideDuration={3000} onClose={handleCloseDeletedError} TransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseDeletedError} severity="error">
+				</Alert>
+			</Snackbar>
+			<Snackbar open={openDeletedError} autoHideDuration={3000} onClose={handleCloseDeletedError} TransitionComponent={Grow}>
+				<Alert elevation={6} variant="filled" onClose={handleCloseDeletedError} severity="error">
 					Something went wrong while deleting your instance! Please try again.
-				</Alert> */}
-			{/* </Snackbar> */}
-			{/* <Snackbar open={openUpdatedSuccess} autoHideDuration={3000} onClose={handleCloseUpdatedSuccess} TransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseUpdatedSuccess} severity="success">
+				</Alert>
+			</Snackbar>
+			<Snackbar open={openUpdatedSuccess} autoHideDuration={3000} onClose={handleCloseUpdatedSuccess} TransitionComponent={Grow}>
+				<Alert elevation={6} variant="filled" onClose={handleCloseUpdatedSuccess} severity="success">
 					Your instance was successfully updated!
-				</Alert> */}
-			{/* </Snackbar> */}
-			{/* <Snackbar open={openUpdatedError} autoHideDuration={3000} onClose={handleCloseUpdatedError} TransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseUpdatedError} severity="error">
+				</Alert>
+			</Snackbar>
+			<Snackbar open={openUpdatedError} autoHideDuration={3000} onClose={handleCloseUpdatedError} TransitionComponent={Grow}>
+				<Alert elevation={6} variant="filled" onClose={handleCloseUpdatedError} severity="error">
 					Something went wrong while updating your instance! Please try again.
-				</Alert> */}
-			{/* </Snackbar> */}
+				</Alert>
+			</Snackbar> */}
 		</Toolbar>
 	);
 };
 
-export default GoalsTableToolbar;
+export default HistoryTableToolbar;
