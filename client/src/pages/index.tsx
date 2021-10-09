@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 // FUNCTIONAL COMPONENT
-const Home: FC<{}> = () => {
+const Home: FC = () => {
 	// USE STYLES HOOK
 	const classes = useStyles();
 
@@ -68,4 +68,4 @@ const Home: FC<{}> = () => {
 	);
 };
 
-export default Home;
+export default Layout(Home);

@@ -1,15 +1,20 @@
-import React, { FC, useContext } from "react";
+import React, { ComponentType, FC, ReactElement, useContext } from "react";
+import { RouteComponentProps } from "react-router";
 import Context from "../context/context";
 
 interface LayoutProps {}
 
-const Layout: FC<LayoutProps> = ({ children }): JSX.Element => {
+function Layout<T>(Component: ComponentType<T & RouteComponentProps>) {
 	const context = useContext(Context);
 	const { isDrawerOpen } = context;
 
-	return (
-		<div style={{ marginLeft: isDrawerOpen ? 240 : 40 }}>{children}</div>
-	);
-};
+	return (props: T & RouteComponentProps) => {
+		return (
+			<div style={{ marginLeft: isDrawerOpen ? 240 : 40 }}>
+				<Component {...props} />
+			</div>
+		);
+	};
+}
 
 export default Layout;
