@@ -21,20 +21,18 @@ const Routing: FC = () => {
 	const { loggedIn } = context;
 
 	return (
-		<>
-			<Router>
-				<Route exact path="/">
-					{!loggedIn && <Redirect to="/login" />}
-				</Route>
-				<Route exact path="/login">
-					<Login />
-					{loggedIn && <Redirect to="/" />}
-				</Route>
-				<Route exact path="/" component={Home} />
-				<Route exact path="/history" component={History} />
-				<Route exact path="/goals" component={Goals} />
-			</Router>
-		</>
+		<Router>
+			<Route exact path="/">
+				{!loggedIn && <Redirect to="/login" />}
+			</Route>
+			<Route exact path="/login">
+				<Login />
+				{loggedIn && <Redirect to="/" />}
+			</Route>
+			<Route exact path="/" component={Home} />
+			<Route exact path="/history" component={History} />
+			<Route exact path="/goals" component={Goals} />
+		</Router>
 	);
 };
 

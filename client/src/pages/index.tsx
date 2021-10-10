@@ -14,36 +14,33 @@ import {
 // NAVBAR IMPORT
 import Navbar from "../components/Navbar";
 import Layout from "../components/Layout";
-
-// MAKE STYLES
-const useStyles = makeStyles((theme) =>
-	createStyles({
-		root: {
-			width: 500,
-			padding: "2vw",
-			textAlign: "center",
-			marginTop: "10vh",
-		},
-		container: {
-			display: "flex",
-			justifyContent: "center",
-		},
-		titles: {
-			marginTop: "4vh",
-		},
-	})
-);
+import useDrawerState from "../hooks/useDrawerState";
 
 // FUNCTIONAL COMPONENT
 const Home: FC = () => {
+	const { isDrawerOpen } = useDrawerState();
+
 	// USE STYLES HOOK
+	const useStyles = makeStyles((theme) =>
+		createStyles({
+			container: {
+				minWidth: "100%",
+				display: "flex",
+				justifyContent: "center",
+				marginLeft: isDrawerOpen ? "100px" : "0px",
+			},
+			titles: {
+				marginTop: "4vh",
+			},
+		})
+	);
 	const classes = useStyles();
 
 	return (
 		<Fragment>
 			<Navbar />
-			<Container maxWidth="sm" className={classes.container}>
-				<Card className={classes.root}>
+			<Container fixed className={classes.container}>
+				<Card>
 					<CardContent>
 						<Typography variant="h6" className={classes.titles}>
 							Goal
@@ -68,4 +65,4 @@ const Home: FC = () => {
 	);
 };
 
-export default Layout(Home);
+export default Home;
