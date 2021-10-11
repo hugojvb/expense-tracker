@@ -128,7 +128,7 @@ const Home: FC = () => {
 				<Grid item lg={6} md={12}>
 					<Card className={classes.bigCard}>
 						<LineChart
-							width={400}
+							width={550}
 							height={400}
 							data={data}
 							margin={{
