@@ -27,7 +27,6 @@ const Home: FC = () => {
 				minWidth: "100%",
 				display: "flex",
 				justifyContent: "center",
-				marginLeft: isDrawerOpen ? "100px" : "0px",
 			},
 			titles: {
 				marginTop: "4vh",
@@ -38,7 +37,6 @@ const Home: FC = () => {
 
 	return (
 		<Fragment>
-			<Navbar />
 			<Container fixed className={classes.container}>
 				<Card>
 					<CardContent>

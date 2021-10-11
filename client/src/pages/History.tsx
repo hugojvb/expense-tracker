@@ -49,7 +49,6 @@ export default function DemoInstances() {
 
 	return (
 		<Fragment>
-			<Navbar />
 			<Box
 				className={clsx(classes.content, {
 					// [classes.contentShift]: !drawer,
