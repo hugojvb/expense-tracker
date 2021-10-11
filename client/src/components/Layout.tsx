@@ -1,7 +1,7 @@
-import React, { ComponentType, FC, ReactNode, useContext } from "react";
-import { RouteComponentProps } from "react-router";
+import React, { FC, ReactNode, useContext } from "react";
 import Context from "../context/context";
 import useDrawerState from "../hooks/useDrawerState";
+import theme from "../theme";
 import Navbar from "./Navbar";
 
 interface LayoutProps {
@@ -17,7 +17,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
 	return (
 		<>
-			{loggedIn && <Navbar />}
+			<div style={{ ...theme.mixins.toolbar }}>
+				{loggedIn && <Navbar />}
+			</div>
 			<div
 				style={{
 					marginLeft: !loggedIn ? 0 : isDrawerOpen ? "240px" : "63px",
