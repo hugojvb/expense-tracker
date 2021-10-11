@@ -22,7 +22,7 @@ const Home: FC = () => {
 				minWidth: "100%",
 			},
 			card: {
-				height: "150px",
+				height: "15em",
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center",
@@ -40,35 +40,64 @@ const Home: FC = () => {
 				<Grid item lg={3} md={6} xs={12}>
 					<Card className={classes.card}>
 						<CardContent>
-							<Typography variant="h3" align="center">
-								€450 Month
+							<Typography variant="body2" align="center">
+								Last Month
+							</Typography>
+							<Typography
+								variant="h3"
+								align="center"
+								color="secondary"
+							>
+								€450
 							</Typography>
 						</CardContent>
 					</Card>
 				</Grid>
 				<Grid item lg={3} md={6} xs={12}>
-					<Card>
+					<Card className={classes.card}>
 						<CardContent>
-							<Typography variant="h3" align="center">
-								Last 5 Months of Expenses
+							<Typography variant="body2" align="center">
+								Last 5 Months Mean
+							</Typography>
+
+							<Typography
+								variant="h3"
+								align="center"
+								color="secondary"
+							>
+								€463
 							</Typography>
 						</CardContent>
 					</Card>
 				</Grid>
 				<Grid item lg={3} md={6} xs={12}>
-					<Card>
+					<Card className={classes.card}>
 						<CardContent>
-							<Typography variant="h3" align="center">
+							<Typography variant="body2" align="center">
 								Current Goal
 							</Typography>
+							<Typography
+								variant="h3"
+								align="center"
+								color="secondary"
+							>
+								€430
+							</Typography>
 						</CardContent>
 					</Card>
 				</Grid>
 				<Grid item lg={3} md={6} xs={12}>
-					<Card>
+					<Card className={classes.card}>
 						<CardContent>
-							<Typography variant="h3" align="center">
-								Total Spent this Month
+							<Typography variant="body2" align="center">
+								Spent this Month
+							</Typography>
+							<Typography
+								variant="h3"
+								align="center"
+								color="secondary"
+							>
+								€263
 							</Typography>
 						</CardContent>
 					</Card>
