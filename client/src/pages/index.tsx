@@ -12,8 +12,6 @@ import {
 	Grid,
 } from "@material-ui/core";
 
-import useDrawerState from "../hooks/useDrawerState";
-
 // FUNCTIONAL COMPONENT
 const Home: FC = () => {
 	// USE STYLES HOOK
@@ -21,6 +19,12 @@ const Home: FC = () => {
 		createStyles({
 			container: {
 				display: "flex",
+				minWidth: "100%",
+			},
+			card: {
+				height: "150px",
+				display: "flex",
+				alignItems: "center",
 				justifyContent: "center",
 			},
 			titles: {
@@ -31,19 +35,43 @@ const Home: FC = () => {
 	const classes = useStyles();
 
 	return (
-		<Container fixed className={classes.container}>
-			<Grid container>
-				<Grid item md={6}>
-					<h1>Hello</h1>
+		<Container className={classes.container}>
+			<Grid container spacing={5}>
+				<Grid item lg={3} md={6} xs={12}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography variant="h3" align="center">
+								€450 Month
+							</Typography>
+						</CardContent>
+					</Card>
 				</Grid>
-				<Grid item md={6}>
-					<h1>Hello</h1>
+				<Grid item lg={3} md={6} xs={12}>
+					<Card>
+						<CardContent>
+							<Typography variant="h3" align="center">
+								Last 5 Months of Expenses
+							</Typography>
+						</CardContent>
+					</Card>
 				</Grid>
-				<Grid item md={6}>
-					<h1>Hello</h1>
+				<Grid item lg={3} md={6} xs={12}>
+					<Card>
+						<CardContent>
+							<Typography variant="h3" align="center">
+								Current Goal
+							</Typography>
+						</CardContent>
+					</Card>
 				</Grid>
-				<Grid item md={6}>
-					<h1>Hello</h1>
+				<Grid item lg={3} md={6} xs={12}>
+					<Card>
+						<CardContent>
+							<Typography variant="h3" align="center">
+								Total Spent this Month
+							</Typography>
+						</CardContent>
+					</Card>
 				</Grid>
 			</Grid>
 		</Container>

@@ -1,4 +1,5 @@
-import React, { FC, ReactNode, useContext } from "react";
+import { Box } from "@material-ui/core";
+import React, { FC, Fragment, ReactNode, useContext } from "react";
 import Context from "../context/context";
 import useDrawerState from "../hooks/useDrawerState";
 import theme from "../theme";
@@ -16,18 +17,19 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 	const { loggedIn } = context;
 
 	return (
-		<>
-			<div style={{ ...theme.mixins.toolbar }}>
+		<Fragment>
+			<Box style={{ ...theme.mixins.toolbar }}>
 				{loggedIn && <Navbar />}
-			</div>
-			<div
+			</Box>
+			<Box
 				style={{
 					marginLeft: !loggedIn ? 0 : isDrawerOpen ? "240px" : "63px",
+					marginTop: "40px",
 				}}
 			>
 				{children}
-			</div>
-		</>
+			</Box>
+		</Fragment>
 	);
 };
 
