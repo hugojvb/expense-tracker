@@ -24,7 +24,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 			<Box
 				style={{
 					marginLeft: !loggedIn ? 0 : isDrawerOpen ? "240px" : "63px",
-					marginTop: "40px",
+					marginTop: theme.spacing(4),
 				}}
 			>
 				{children}

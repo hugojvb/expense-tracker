@@ -1,4 +1,11 @@
-import { FC, Fragment, ReactNode } from "react";
+import {
+	FC,
+	Fragment,
+	ReactNode,
+	useCallback,
+	useEffect,
+	useState,
+} from "react";
 
 // MATERIAL-UI COMPONENTS IMPORT
 import {
@@ -23,6 +30,20 @@ import {
 
 // FUNCTIONAL COMPONENT
 const Home: FC = () => {
+	const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+	const resize = useCallback(() => {
+		setInnerWidth(window.innerWidth);
+	}, [setInnerWidth]);
+
+	useEffect(() => {
+		window.addEventListener("resize", () => resize());
+		return () =>
+			document.removeEventListener("resize", () => {
+				resize();
+			});
+	}, [resize]);
+
 	// USE STYLES HOOK
 	const useStyles = makeStyles((theme) =>
 		createStyles({
@@ -37,7 +58,7 @@ const Home: FC = () => {
 				justifyContent: "center",
 			},
 			bigCard: {
-				height: "40em",
+				height: "20em",
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center",
@@ -59,7 +80,7 @@ const Home: FC = () => {
 
 	return (
 		<Container className={classes.container}>
-			<Grid container spacing={5}>
+			<Grid container spacing={3}>
 				<Grid item lg={3} md={6} xs={12}>
 					<Card className={classes.card}>
 						<CardContent>
@@ -125,11 +146,11 @@ const Home: FC = () => {
 						</CardContent>
 					</Card>
 				</Grid>
-				<Grid item lg={6} md={12}>
+				<Grid item lg={6} xs={12}>
 					<Card className={classes.bigCard}>
 						<LineChart
-							width={550}
-							height={400}
+							width={innerWidth * 0.35}
+							height={200}
 							data={data}
 							margin={{
 								top: 0,
