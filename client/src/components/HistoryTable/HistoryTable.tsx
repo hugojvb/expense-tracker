@@ -1,5 +1,14 @@
 import React from "react";
-import { makeStyles, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow, Paper } from "@material-ui/core";
+import {
+	makeStyles,
+	Table,
+	TableBody,
+	TableCell,
+	TableContainer,
+	TablePagination,
+	TableRow,
+	Paper,
+} from "@material-ui/core";
 
 import HistoryTableHead from "./HistoryTableHead";
 import HistoryTableToolbar from "./HistoryTableToolbar";
@@ -8,8 +17,24 @@ import DemoRow from "./HistoryTableRow";
 
 import axios from "axios";
 
-function createData(customID: string, name: string, subDomain: string, maxUsers: number, creationDate: any, expirationDate: any, isEnabled: boolean) {
-	return { customID, name, subDomain, maxUsers, creationDate, expirationDate, isEnabled };
+function createData(
+	customID: string,
+	name: string,
+	subDomain: string,
+	maxUsers: number,
+	creationDate: any,
+	expirationDate: any,
+	isEnabled: boolean
+) {
+	return {
+		customID,
+		name,
+		subDomain,
+		maxUsers,
+		creationDate,
+		expirationDate,
+		isEnabled,
+	};
 }
 
 // sorting
@@ -24,7 +49,9 @@ function descendingComparator(a: any, b: any, orderBy: any) {
 }
 
 function getComparator(order: string, orderBy: any) {
-	return order === "desc" ? (a: any, b: any) => descendingComparator(a, b, orderBy) : (a: any, b: any) => -descendingComparator(a, b, orderBy);
+	return order === "desc"
+		? (a: any, b: any) => descendingComparator(a, b, orderBy)
+		: (a: any, b: any) => -descendingComparator(a, b, orderBy);
 }
 
 function stableSort(array: any, comparator: any) {
@@ -71,19 +98,40 @@ const HistoryTable = () => {
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [search, setSearch] = React.useState("");
 	const [rows, setRows] = React.useState([
-		createData("123", "demo1", "company.demo.com", 8, new Date().toDateString(), new Date().toDateString(), true),
-		createData("124", "demo2", "company.demo.com", 8, new Date().toDateString(), new Date().toDateString(), true),
-		createData("125", "demo3", "company.demo.com", 8, new Date().toDateString(), new Date().toDateString(), false),
+		createData(
+			"123",
+			"demo1",
+			"company.demo.com",
+			8,
+			new Date().toDateString(),
+			new Date().toDateString(),
+			true
+		),
+		createData(
+			"124",
+			"demo2",
+			"company.demo.com",
+			8,
+			new Date().toDateString(),
+			new Date().toDateString(),
+			true
+		),
+		createData(
+			"125",
+			"demo3",
+			"company.demo.com",
+			8,
+			new Date().toDateString(),
+			new Date().toDateString(),
+			false
+		),
 	]);
 	const [filtered, setFiltered] = React.useState();
 
 	React.useEffect(() => {
-		const getUsers = async () => {
-			const res = await axios.get("/api/instances");
-
-			return res;
-		};
-		getUsers();
+		(async () => {
+			await axios.get("/api/instances");
+		})();
 	});
 
 	const handleRequestSort = (event: any, property: any) => {
@@ -113,7 +161,10 @@ const HistoryTable = () => {
 		} else if (selectedIndex === selected.length - 1) {
 			newSelected = newSelected.concat(selected.slice(0, -1));
 		} else if (selectedIndex > 0) {
-			newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
+			newSelected = newSelected.concat(
+				selected.slice(0, selectedIndex),
+				selected.slice(selectedIndex + 1)
+			);
 		}
 
 		setSelected(newSelected);
@@ -131,7 +182,8 @@ const HistoryTable = () => {
 
 	const isSelected = (name: any) => selected.indexOf(name) !== -1;
 
-	const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+	const emptyRows =
+		rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
 	return (
 		<div className={classes.root}>
@@ -145,7 +197,12 @@ const HistoryTable = () => {
 					selected={selected}
 				/>
 				<TableContainer>
-					<Table className={classes.table} aria-labelledby="tableTitle" size="medium" aria-label="enhanced table">
+					<Table
+						className={classes.table}
+						aria-labelledby="tableTitle"
+						size="medium"
+						aria-label="enhanced table"
+					>
 						<HistoryTableHead
 							classes={classes}
 							numSelected={selected.length}
@@ -156,8 +213,14 @@ const HistoryTable = () => {
 							rowCount={rows.length}
 						/>
 						<TableBody>
-							{stableSort(filtered ? filtered : rows, getComparator(order, orderBy))
-								.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+							{stableSort(
+								filtered ? filtered : rows,
+								getComparator(order, orderBy)
+							)
+								.slice(
+									page * rowsPerPage,
+									page * rowsPerPage + rowsPerPage
+								)
 								.map((row: any, index: any) => {
 									const isItemSelected = isSelected(row.name);
 									const labelId = `enhanced-table-checkbox-${index}`;
