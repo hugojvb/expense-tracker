@@ -25,8 +25,12 @@ import {
 	CartesianGrid,
 	XAxis,
 	YAxis,
-	ResponsiveContainer,
+	BarChart,
+	Tooltip,
+	Legend,
+	Bar,
 } from "recharts";
+import { StylesContext } from "@material-ui/styles";
 
 // FUNCTIONAL COMPONENT
 const Home: FC = () => {
@@ -168,6 +172,19 @@ const Home: FC = () => {
 							<XAxis dataKey="name" />
 							<YAxis />
 						</LineChart>
+					</Card>
+				</Grid>
+				<Grid item lg={6} xs={12}>
+					<Card className={classes.bigCard}>
+						<BarChart width={730} height={250} data={data}>
+							<CartesianGrid strokeDasharray="3 3" />
+							<XAxis dataKey="name" />
+							<YAxis />
+							<Tooltip />
+							<Legend />
+							<Bar dataKey="pv" fill="#8884d8" />
+							<Bar dataKey="uv" fill="#82ca9d" />
+						</BarChart>
 					</Card>
 				</Grid>
 			</Grid>
