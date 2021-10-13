@@ -212,7 +212,7 @@ const HistoryTableToolbar: FC<Props> = ({
 					component="div"
 					color="primary"
 				>
-					Demo Instances
+					History of Expenses
 				</Typography>
 			)}
 			<div className={classes.search}>

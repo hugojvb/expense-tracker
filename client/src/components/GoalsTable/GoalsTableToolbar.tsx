@@ -211,7 +211,7 @@ const GoalsTableToolbar: FC<Props> = ({
 					component="div"
 					color="primary"
 				>
-					Demo Instances
+					Goals
 				</Typography>
 			)}
 			<div className={classes.search}>
