@@ -1,15 +1,23 @@
 import { FC } from "react";
 import PropTypes from "prop-types";
-import { TableCell, TableHead, TableRow, TableSortLabel, Checkbox } from "@material-ui/core";
+import {
+	TableCell,
+	TableHead,
+	TableRow,
+	TableSortLabel,
+	Checkbox,
+} from "@material-ui/core";
 
 const headCells = [
-	{ id: "customID", numeric: false, disablePadding: false, label: "Custom ID" },
-	{ id: "name", numeric: false, disablePadding: false, label: "Name" },
-	{ id: "subdomain", numeric: false, disablePadding: false, label: "Subdomain" },
-	{ id: "maxUsers", numeric: false, disablePadding: false, label: "Max Users" },
-	{ id: "creationDate", numeric: false, disablePadding: false, label: "Creation Date" },
-	{ id: "expirationDate", numeric: false, disablePadding: false, label: "Expiration Date" },
-	{ id: "isEnabled", numeric: false, disablePadding: true, label: "Enabled" },
+	{ id: "id", numeric: false, disablePadding: false, label: "ID" },
+	{
+		id: "transaction",
+		numeric: false,
+		disablePadding: false,
+		label: "Transaction",
+	},
+	{ id: "amount", numeric: false, disablePadding: false, label: "Amount" },
+	{ id: "date", numeric: false, disablePadding: false, label: "Date" },
 ];
 
 interface Props {
@@ -22,7 +30,15 @@ interface Props {
 	onRequestSort: any;
 }
 
-const HistoryTableHead: FC<Props> = ({ classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }) => {
+const HistoryTableHead: FC<Props> = ({
+	classes,
+	onSelectAllClick,
+	order,
+	orderBy,
+	numSelected,
+	rowCount,
+	onRequestSort,
+}) => {
 	const createSortHandler = (property: any) => (event: any) => {
 		onRequestSort(event, property);
 	};
@@ -32,7 +48,9 @@ const HistoryTableHead: FC<Props> = ({ classes, onSelectAllClick, order, orderBy
 			<TableRow>
 				<TableCell padding="checkbox">
 					<Checkbox
-						indeterminate={numSelected > 0 && numSelected < rowCount}
+						indeterminate={
+							numSelected > 0 && numSelected < rowCount
+						}
 						checked={rowCount > 0 && numSelected === rowCount}
 						onChange={onSelectAllClick}
 						inputProps={{ "aria-label": "select all desserts" }}
@@ -53,7 +71,11 @@ const HistoryTableHead: FC<Props> = ({ classes, onSelectAllClick, order, orderBy
 						>
 							{headCell.label}
 							{orderBy === headCell.id ? (
-								<span className={classes.visuallyHidden}>{order === "desc" ? "sorted descending" : "sorted ascending"}</span>
+								<span className={classes.visuallyHidden}>
+									{order === "desc"
+										? "sorted descending"
+										: "sorted ascending"}
+								</span>
 							) : null}
 						</TableSortLabel>
 					</TableCell>
