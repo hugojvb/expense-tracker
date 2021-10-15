@@ -17,23 +17,11 @@ import DemoRow from "./GoalsTableRow";
 
 import axios from "axios";
 
-function createData(
-	customID: string,
-	name: string,
-	subDomain: string,
-	maxUsers: number,
-	creationDate: any,
-	expirationDate: any,
-	isEnabled: boolean
-) {
+function createData(id: number, goal: number, date: string) {
 	return {
-		customID,
-		name,
-		subDomain,
-		maxUsers,
-		creationDate,
-		expirationDate,
-		isEnabled,
+		id,
+		goal,
+		date,
 	};
 }
 
@@ -98,33 +86,7 @@ export default function DemoTable() {
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [search, setSearch] = React.useState("");
 	const [rows, setRows] = React.useState([
-		createData(
-			"123",
-			"demo1",
-			"company.demo.com",
-			8,
-			new Date().toDateString(),
-			new Date().toDateString(),
-			true
-		),
-		createData(
-			"124",
-			"demo2",
-			"company.demo.com",
-			8,
-			new Date().toDateString(),
-			new Date().toDateString(),
-			true
-		),
-		createData(
-			"125",
-			"demo3",
-			"company.demo.com",
-			8,
-			new Date().toDateString(),
-			new Date().toDateString(),
-			false
-		),
+		createData(123, 600, "2021-11-22"),
 	]);
 	const [filtered, setFiltered] = React.useState();
 
@@ -143,7 +105,7 @@ export default function DemoTable() {
 	// select
 	const handleSelectAllClick = (event: any) => {
 		if (event.target.checked) {
-			const newSelecteds: any = rows.map((n) => n.name);
+			const newSelecteds: any = rows.map((n) => n.goal);
 			setSelected(newSelecteds);
 			return;
 		}

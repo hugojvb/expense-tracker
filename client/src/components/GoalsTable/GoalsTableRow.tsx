@@ -1,6 +1,17 @@
 import { useState, Fragment, FC } from "react";
 
-import { makeStyles, Table, TableBody, TableCell, TableRow, Checkbox, Box, Collapse, TableHead, Typography } from "@material-ui/core";
+import {
+	makeStyles,
+	Table,
+	TableBody,
+	TableCell,
+	TableRow,
+	Checkbox,
+	Box,
+	Collapse,
+	TableHead,
+	Typography,
+} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
 
@@ -19,13 +30,25 @@ interface Props {
 	handleClick: any;
 }
 
-const GoalsTableRow: FC<Props> = ({ row, isItemSelected, labelId, handleClick }) => {
+const GoalsTableRow: FC<Props> = ({
+	row,
+	isItemSelected,
+	labelId,
+	handleClick,
+}) => {
 	const [openDetails, setOpenDetails] = useState(false);
 	const classes = useRowStyles();
 
 	return (
 		<Fragment>
-			<TableRow hover role="checkbox" aria-checked={isItemSelected} tabIndex={-1} key={row.name} selected={isItemSelected}>
+			<TableRow
+				hover
+				role="checkbox"
+				aria-checked={isItemSelected}
+				tabIndex={-1}
+				key={row.name}
+				selected={isItemSelected}
+			>
 				<TableCell padding="checkbox">
 					<Checkbox
 						checked={isItemSelected}
@@ -35,33 +58,41 @@ const GoalsTableRow: FC<Props> = ({ row, isItemSelected, labelId, handleClick })
 					/>
 				</TableCell>
 
-				<TableCell onClick={() => setOpenDetails(!openDetails)} align="left">
-					{row.customID}
+				<TableCell
+					onClick={() => setOpenDetails(!openDetails)}
+					align="left"
+				>
+					{row.id}
 				</TableCell>
-				<TableCell onClick={() => setOpenDetails(!openDetails)} align="left">
-					{row.name}
+				<TableCell
+					onClick={() => setOpenDetails(!openDetails)}
+					align="left"
+				>
+					{row.goal} €
 				</TableCell>
-				<TableCell onClick={() => setOpenDetails(!openDetails)} align="left">
-					{row.subDomain}
-				</TableCell>
-				<TableCell onClick={() => setOpenDetails(!openDetails)} align="left">
-					{row.maxUsers}
-				</TableCell>
-				<TableCell onClick={() => setOpenDetails(!openDetails)} align="left">
-					{row.creationDate}
-				</TableCell>
-				<TableCell onClick={() => setOpenDetails(!openDetails)} align="left">
-					{row.expirationDate}
-				</TableCell>
-				<TableCell onClick={() => setOpenDetails(!openDetails)} align="left">
-					{row.isEnabled ? <CheckIcon color="primary" /> : <CloseIcon color="secondary" />}
+				<TableCell
+					onClick={() => setOpenDetails(!openDetails)}
+					align="left"
+				>
+					{row.date}
 				</TableCell>
 			</TableRow>
 			<TableRow>
-				<TableCell style={{ paddingBottom: 0, paddingTop: 0, background: "#eee" }} colSpan={10}>
+				<TableCell
+					style={{
+						paddingBottom: 0,
+						paddingTop: 0,
+						background: "#eee",
+					}}
+					colSpan={10}
+				>
 					<Collapse in={openDetails} timeout="auto" unmountOnExit>
 						<Box margin={1}>
-							<Typography variant="h6" gutterBottom component="div">
+							<Typography
+								variant="h6"
+								gutterBottom
+								component="div"
+							>
 								Details
 							</Typography>
 							<Table size="small" aria-label="details">
@@ -82,9 +113,19 @@ const GoalsTableRow: FC<Props> = ({ row, isItemSelected, labelId, handleClick })
 										<TableCell>{row.name}</TableCell>
 										<TableCell>{row.subDomain}</TableCell>
 										<TableCell>{row.maxUsers} </TableCell>
-										<TableCell>{row.creationDate} </TableCell>
-										<TableCell>{row.expirationDate} </TableCell>
-										<TableCell>{row.isEnabled ? <CheckIcon color="primary" /> : <CloseIcon color="secondary" />} </TableCell>
+										<TableCell>
+											{row.creationDate}{" "}
+										</TableCell>
+										<TableCell>
+											{row.expirationDate}{" "}
+										</TableCell>
+										<TableCell>
+											{row.isEnabled ? (
+												<CheckIcon color="primary" />
+											) : (
+												<CloseIcon color="secondary" />
+											)}{" "}
+										</TableCell>
 									</TableRow>
 								</TableBody>
 							</Table>
