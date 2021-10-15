@@ -1,7 +1,17 @@
 import { FC } from "react";
 
 // MATERIAL UI COMPONENTS
-import { Button, TextField, Dialog, DialogContent, DialogActions, DialogTitle, Divider, makeStyles, Grow } from "@material-ui/core";
+import {
+	Button,
+	TextField,
+	Dialog,
+	DialogContent,
+	DialogActions,
+	DialogTitle,
+	Divider,
+	makeStyles,
+	Grow,
+} from "@material-ui/core";
 
 // REACT HOOK FORM
 import { useForm, Controller } from "react-hook-form";
@@ -19,7 +29,12 @@ interface Props {
 	setOpenAddedError: any;
 }
 
-const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuccess, setOpenAddedError }) => {
+const AddDialog: FC<Props> = ({
+	openAddDialog,
+	setOpenAddDialog,
+	setOpenAddedSuccess,
+	setOpenAddedError,
+}) => {
 	const handleClose = () => {
 		setOpenAddDialog(false);
 	};
@@ -43,9 +58,14 @@ const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuc
 
 	return (
 		<div>
-			<Dialog open={openAddDialog} onClose={handleClose} TransitionComponent={Grow} aria-labelledby="form-dialog-title">
+			<Dialog
+				open={openAddDialog}
+				onClose={handleClose}
+				TransitionComponent={Grow}
+				aria-labelledby="form-dialog-title"
+			>
 				<DialogTitle id="form-dialog-title" className={classes.title}>
-					Add Instance
+					Add Transaction
 					<Divider />
 				</DialogTitle>
 				<form onSubmit={handleSubmit(submitAddInstance)}>
@@ -53,9 +73,9 @@ const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuc
 						<TextField
 							inputRef={register({ required: true })}
 							margin="dense"
-							id="name"
-							name="name"
-							label="Name"
+							id="transaction"
+							name="transaction"
+							label="Transaction"
 							type="text"
 							fullWidth
 							required
@@ -64,21 +84,9 @@ const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuc
 						<TextField
 							inputRef={register({ required: true })}
 							margin="dense"
-							id="subdomain"
-							name="subdomain"
-							label="Subdomain"
-							type="text"
-							fullWidth
-							required
-							classes={{ root: classes.textField }}
-						/>
-						<TextField
-							inputRef={register({ required: true })}
-							margin="dense"
-							id="maxUsers"
-							name="maxUsers"
-							label="Max Users"
-							defaultValue={5}
+							id="amount"
+							name="amount"
+							label="Amount"
 							type="number"
 							fullWidth
 							required
@@ -87,12 +95,12 @@ const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuc
 						<TextField
 							inputRef={register}
 							margin="dense"
-							id="expirationDate"
+							id="date"
 							type="date"
-							label="Expiration Date"
-							name="expirationDate"
-							defaultValue="2022-01-01"
+							label="Date"
+							name="date"
 							fullWidth
+							required
 							InputLabelProps={{
 								shrink: true,
 							}}
@@ -100,7 +108,11 @@ const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuc
 						/>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={handleClose} variant="outlined" color="secondary">
+						<Button
+							onClick={handleClose}
+							variant="outlined"
+							color="primary"
+						>
 							Cancel
 						</Button>
 						<Button type="submit" color="primary">
