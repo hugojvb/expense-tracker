@@ -1,16 +1,23 @@
 import { FC } from "react";
 
 // MATERIAL-UI COMPONENTS IMPORT
-import { TableCell, TableHead, TableRow, TableSortLabel, Checkbox } from "@material-ui/core";
+import {
+	TableCell,
+	TableHead,
+	TableRow,
+	TableSortLabel,
+	Checkbox,
+} from "@material-ui/core";
 
 const headCells = [
-	{ id: "customID", numeric: false, disablePadding: false, label: "Custom ID" },
-	{ id: "name", numeric: false, disablePadding: false, label: "Name" },
-	{ id: "subdomain", numeric: false, disablePadding: false, label: "Subdomain" },
-	{ id: "maxUsers", numeric: false, disablePadding: false, label: "Max Users" },
-	{ id: "creationDate", numeric: false, disablePadding: false, label: "Creation Date" },
-	{ id: "expirationDate", numeric: false, disablePadding: false, label: "Expiration Date" },
-	{ id: "isEnabled", numeric: false, disablePadding: true, label: "Enabled" },
+	{ id: "id", numeric: false, disablePadding: false, label: "ID" },
+	{
+		id: "goal",
+		numeric: false,
+		disablePadding: false,
+		label: "Goal",
+	},
+	{ id: "Date", numeric: false, disablePadding: false, label: "Date" },
 ];
 
 // PROPS INTERFACE
@@ -24,7 +31,15 @@ interface Props {
 	onRequestSort: any;
 }
 
-const GoalsTableHead: FC<Props> = ({ classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }) => {
+const GoalsTableHead: FC<Props> = ({
+	classes,
+	onSelectAllClick,
+	order,
+	orderBy,
+	numSelected,
+	rowCount,
+	onRequestSort,
+}) => {
 	const createSortHandler = (property: any) => (event: any) => {
 		onRequestSort(event, property);
 	};
@@ -34,7 +49,9 @@ const GoalsTableHead: FC<Props> = ({ classes, onSelectAllClick, order, orderBy, 
 			<TableRow>
 				<TableCell padding="checkbox">
 					<Checkbox
-						indeterminate={numSelected > 0 && numSelected < rowCount}
+						indeterminate={
+							numSelected > 0 && numSelected < rowCount
+						}
 						checked={rowCount > 0 && numSelected === rowCount}
 						onChange={onSelectAllClick}
 						inputProps={{ "aria-label": "select all desserts" }}
@@ -55,7 +72,11 @@ const GoalsTableHead: FC<Props> = ({ classes, onSelectAllClick, order, orderBy, 
 						>
 							{headCell.label}
 							{orderBy === headCell.id ? (
-								<span className={classes.visuallyHidden}>{order === "desc" ? "sorted descending" : "sorted ascending"}</span>
+								<span className={classes.visuallyHidden}>
+									{order === "desc"
+										? "sorted descending"
+										: "sorted ascending"}
+								</span>
 							) : null}
 						</TableSortLabel>
 					</TableCell>
