@@ -18,22 +18,16 @@ import DemoRow from "./HistoryTableRow";
 import axios from "axios";
 
 function createData(
-	customID: string,
-	name: string,
-	subDomain: string,
-	maxUsers: number,
-	creationDate: any,
-	expirationDate: any,
-	isEnabled: boolean
+	id: number,
+	transaction: string,
+	amount: number,
+	date: string
 ) {
 	return {
-		customID,
-		name,
-		subDomain,
-		maxUsers,
-		creationDate,
-		expirationDate,
-		isEnabled,
+		id,
+		transaction,
+		amount,
+		date,
 	};
 }
 
@@ -98,33 +92,7 @@ const HistoryTable = () => {
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [search, setSearch] = React.useState("");
 	const [rows, setRows] = React.useState([
-		createData(
-			"123",
-			"demo1",
-			"company.demo.com",
-			8,
-			new Date().toDateString(),
-			new Date().toDateString(),
-			true
-		),
-		createData(
-			"124",
-			"demo2",
-			"company.demo.com",
-			8,
-			new Date().toDateString(),
-			new Date().toDateString(),
-			true
-		),
-		createData(
-			"125",
-			"demo3",
-			"company.demo.com",
-			8,
-			new Date().toDateString(),
-			new Date().toDateString(),
-			false
-		),
+		createData(123, "Compras", 23.32, "2021-4-22"),
 	]);
 	const [filtered, setFiltered] = React.useState();
 
@@ -143,7 +111,7 @@ const HistoryTable = () => {
 	// select
 	const handleSelectAllClick = (event: any) => {
 		if (event.target.checked) {
-			const newSelecteds: any = rows.map((n) => n.name);
+			const newSelecteds: any = rows.map((n) => n.id);
 			setSelected(newSelecteds);
 			return;
 		}

@@ -105,7 +105,7 @@ export default function DemoTable() {
 	// select
 	const handleSelectAllClick = (event: any) => {
 		if (event.target.checked) {
-			const newSelecteds: any = rows.map((n) => n.goal);
+			const newSelecteds: any = rows.map((n) => n.id);
 			setSelected(newSelecteds);
 			return;
 		}
