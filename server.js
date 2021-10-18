@@ -10,7 +10,7 @@ const auth = require("./routes/auth.js");
 const path = require("path");
 
 // dotenv config
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: ".env" });
 
 // connect to database
 connectDB();
