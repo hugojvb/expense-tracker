@@ -25,8 +25,12 @@ const App = (): JSX.Element => {
 					{!loggedIn && <Redirect to="/login" />}
 					<Home />
 				</Route>
-				<Route exact path="/history" component={History} />
-				<Route exact path="/goals" component={Goals} />
+				<Route exact path="/history" component={History}>
+					{!loggedIn && <Redirect to="/login" />}
+				</Route>
+				<Route exact path="/goals" component={Goals}>
+					{!loggedIn && <Redirect to="/login" />}
+				</Route>
 				<Route exact path="/login">
 					{loggedIn && <Redirect to="/" />}
 					<Login />

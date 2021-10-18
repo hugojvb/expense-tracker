@@ -98,7 +98,7 @@ const HistoryTable = () => {
 
 	React.useEffect(() => {
 		(async () => {
-			await axios.get("/api/instances");
+			await axios.get("/api/transactions");
 		})();
 	});
 

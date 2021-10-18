@@ -10,8 +10,7 @@ import { LOGIN, LOGOUT, TOGGLE_DRAWER } from "./types";
 const State: FC = (props: any): JSX.Element => {
 	// INITIAL STATE
 	const initialState = {
-		loggedIn: true,
-		drawer: true,
+		loggedIn: false,
 		isDrawerOpen: true,
 	};
 

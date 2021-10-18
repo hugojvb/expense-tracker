@@ -88,7 +88,7 @@ const Form: FC = () => {
 	// LOGIN SUBMIT
 	const onSubmit = async (data: any) => {
 		// LOGIN POST REQUEST
-		const login = await axios.post("/api/signin", data);
+		const login = await axios.post("/api/auth/login", data);
 
 		if (login.data.success === true) {
 			setWasValidated(true);
