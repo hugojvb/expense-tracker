@@ -107,7 +107,7 @@ const Home: FC = () => {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography variant="body2" align="center">
-								Last 5 Months Mean
+								Last 6 Months Mean
 							</Typography>
 
 							<Typography

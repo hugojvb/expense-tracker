@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const cors = require("cors");
 const auth = require("./routes/auth.js");
+const path = require("path");
 
 // dotenv config
 dotenv.config({ path: "./config/config.env" });
@@ -40,7 +41,9 @@ app.use("/api/goals", goals);
 // listenning at port 5000
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, () => console.log("Server running at port: ", PORT));
+const server = app.listen(PORT, () =>
+	console.log("Server running at port: ", PORT)
+);
 
 // error handling
 process.on("unhandledRejection", (err) => {
