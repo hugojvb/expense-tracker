@@ -18,12 +18,6 @@ connectDB();
 // initiate express
 const app = express();
 
-// get frontend build
-app.use(express.static(path.join(__dirname, "client/build")));
-app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname, "client/build", "index.html"));
-});
-
 // use bodyParser & cookieParser
 app.use(express.json());
 app.use(cookieParser());
@@ -37,6 +31,12 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/auth", auth);
 app.use("/api/transactions", transactions);
 app.use("/api/goals", goals);
+
+// get frontend build
+app.use(express.static(path.join(__dirname, "client/build")));
+app.get("/", (req, res) => {
+	res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
 
 // listenning at port 5000
 const PORT = process.env.PORT || 5000;
