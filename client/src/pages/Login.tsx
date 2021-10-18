@@ -65,7 +65,8 @@ const Form: FC = () => {
 	const context = useContext(Context);
 
 	// LOGIN STATE
-	const { login, loggedIn } = context;
+	const { login, loggedIn }: { login: () => any; loggedIn: boolean } =
+		context;
 
 	// PASSWORD VISIBILITY STATE
 	const [passwordVisible, setPasswordVisible] = useState(false);
@@ -88,12 +89,13 @@ const Form: FC = () => {
 	// LOGIN SUBMIT
 	const onSubmit = async (data: any) => {
 		// LOGIN POST REQUEST
-		const login = await axios.post("/api/auth/login", data);
+		const res = await axios.post("/api/auth/login", data);
 
-		if (login.data.success === true) {
+		if (res.data.success === true) {
 			setWasValidated(true);
-			setValue("username", "");
+			setValue("email", "");
 			setValue("password", "");
+			login();
 		} else {
 			setNotValidated(true);
 		}
@@ -132,13 +134,13 @@ const Form: FC = () => {
 							<FormGroup className={classes.formGroup}>
 								<TextField
 									inputRef={register({ required: true })}
-									type="text"
-									id="username"
-									name="username"
-									aria-describedby="username"
-									label="Username"
+									type="email"
+									id="email"
+									name="email"
+									aria-describedby="email"
+									label="Email"
 									required
-									error={errors.username ? true : false}
+									error={errors.email ? true : false}
 								/>
 							</FormGroup>
 							<FormGroup>
@@ -185,8 +187,8 @@ const Form: FC = () => {
 									onClose={handleCloseSnackbar}
 									severity="error"
 								>
-									Nom d'utilisateur ou mot de passe incorrect!
-									Veuillez réessayer.
+									Email or Password Incorrect! Please try
+									again.
 								</Alert>
 							</Snackbar>
 
