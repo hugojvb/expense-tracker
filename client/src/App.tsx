@@ -25,17 +25,17 @@ const App = (): JSX.Element => {
 		<Router>
 			<CookiesProvider>
 				<Layout>
-					<Route path="/">
-						{!loggedIn && <Redirect to="/login" />}
-						{loggedIn && <Redirect to="/" />}
-					</Route>
-					<Route exact path="/">
-						<Home />
-					</Route>
 					<Route exact path="/history" component={History}></Route>
 					<Route exact path="/goals" component={Goals}></Route>
 					<Route exact path="/login">
 						<Login />
+						{loggedIn && <Redirect to="/" />}
+					</Route>
+					<Route path="/">
+						{!loggedIn && <Redirect to="/login" />}
+					</Route>
+					<Route exact path="/">
+						<Home />
 					</Route>
 				</Layout>
 			</CookiesProvider>
