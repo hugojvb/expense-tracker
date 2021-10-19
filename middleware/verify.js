@@ -29,6 +29,8 @@ exports.verify = async (req, res, next) => {
 		console.log(decoded);
 		next();
 	} catch (error) {
-		return res.status(401).json({ Error: error.message });
+		return res
+			.status(401)
+			.json({ Error: error.message, Complete_error: error });
 	}
 };
