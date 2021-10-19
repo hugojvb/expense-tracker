@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext, useEffect, useLayoutEffect } from "react";
 
 import Context from "./context/context";
 
@@ -10,7 +10,6 @@ import Login from "./pages/Login";
 import Layout from "./components/Layout";
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import { CookiesProvider } from "react-cookie";
 
 // FUNCTIONAL COMPONENT
@@ -20,29 +19,22 @@ const App = (): JSX.Element => {
 	// LOGGED IN STATE
 	const { loggedIn, login } = context;
 
-	const [cookies, setCookie] = useCookies();
-
-	useEffect(() => {
-		if (cookies.token) login();
-		console.log(cookies.token);
-	}, []);
+	useLayoutEffect(() => {}, []);
 
 	return (
 		<Router>
 			<CookiesProvider>
 				<Layout>
-					<Route exact path="/">
+					<Route path="/">
 						{!loggedIn && <Redirect to="/login" />}
+						{loggedIn && <Redirect to="/" />}
+					</Route>
+					<Route exact path="/">
 						<Home />
 					</Route>
-					<Route exact path="/history" component={History}>
-						{!loggedIn && <Redirect to="/login" />}
-					</Route>
-					<Route exact path="/goals" component={Goals}>
-						{!loggedIn && <Redirect to="/login" />}
-					</Route>
+					<Route exact path="/history" component={History}></Route>
+					<Route exact path="/goals" component={Goals}></Route>
 					<Route exact path="/login">
-						{loggedIn && <Redirect to="/" />}
 						<Login />
 					</Route>
 				</Layout>

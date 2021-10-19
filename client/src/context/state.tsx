@@ -1,4 +1,5 @@
 import { useReducer, FC } from "react";
+import { useCookies } from "react-cookie";
 
 // CONTEXT IMPORTS
 import Context from "./context";
@@ -8,9 +9,11 @@ import reducer from "./reducer";
 import { LOGIN, LOGOUT, TOGGLE_DRAWER } from "./types";
 
 const State: FC = (props: any): JSX.Element => {
+	const [cookies, setCookie] = useCookies();
+
 	// INITIAL STATE
 	const initialState = {
-		loggedIn: false,
+		loggedIn: cookies.token ? true : false,
 		isDrawerOpen: true,
 	};
 

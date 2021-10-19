@@ -26,7 +26,6 @@ exports.verify = async (req, res, next) => {
 
 		req.user = await UsersSchema.findById(decoded.id);
 
-		console.log(decoded);
 		next();
 	} catch (error) {
 		return res
