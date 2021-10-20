@@ -62,13 +62,13 @@ const HistoryTableRow: FC<Props> = ({
 					onClick={() => setOpenDetails(!openDetails)}
 					align="left"
 				>
-					{row.id}
+					{row._id}
 				</TableCell>
 				<TableCell
 					onClick={() => setOpenDetails(!openDetails)}
 					align="left"
 				>
-					{row.transaction}
+					{row.name}
 				</TableCell>
 				<TableCell
 					onClick={() => setOpenDetails(!openDetails)}

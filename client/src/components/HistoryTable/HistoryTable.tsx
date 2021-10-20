@@ -13,7 +13,7 @@ import {
 import HistoryTableHead from "./HistoryTableHead";
 import HistoryTableToolbar from "./HistoryTableToolbar";
 
-import DemoRow from "./HistoryTableRow";
+import HistoryTableRow from "./HistoryTableRow";
 
 import axios from "axios";
 
@@ -193,7 +193,7 @@ const HistoryTable = () => {
 									const labelId = `enhanced-table-checkbox-${index}`;
 
 									return (
-										<DemoRow
+										<HistoryTableRow
 											key={row.name}
 											row={row}
 											labelId={labelId}
