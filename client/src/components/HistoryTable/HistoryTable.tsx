@@ -91,16 +91,15 @@ const HistoryTable = () => {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [search, setSearch] = React.useState("");
-	const [rows, setRows] = React.useState([
-		createData(123, "Compras", 23.32, "2021-4-22"),
-	]);
+	const [rows, setRows] = React.useState<any[]>([]);
 	const [filtered, setFiltered] = React.useState();
 
 	React.useEffect(() => {
 		(async () => {
-			await axios.get("/api/transactions");
+			const res = await axios.get("/api/transactions");
+			setRows(res.data.data);
 		})();
-	});
+	}, []);
 
 	const handleRequestSort = (event: any, property: any) => {
 		const isAsc = orderBy === property && order === "asc";
@@ -111,7 +110,7 @@ const HistoryTable = () => {
 	// select
 	const handleSelectAllClick = (event: any) => {
 		if (event.target.checked) {
-			const newSelecteds: any = rows.map((n) => n.id);
+			const newSelecteds: any = rows.map((n) => n?.id);
 			setSelected(newSelecteds);
 			return;
 		}
