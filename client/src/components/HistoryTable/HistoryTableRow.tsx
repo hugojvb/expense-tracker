@@ -7,13 +7,9 @@ import {
 	TableCell,
 	TableRow,
 	Checkbox,
-	Box,
-	Collapse,
-	TableHead,
 	Typography,
 } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import CheckIcon from "@material-ui/icons/Check";
+import dayjs from "dayjs";
 
 const useRowStyles = makeStyles({
 	root: {
@@ -80,7 +76,7 @@ const HistoryTableRow: FC<Props> = ({
 					onClick={() => setOpenDetails(!openDetails)}
 					align="left"
 				>
-					{row.date}
+					{dayjs(row.date).format("DD-MM-YYYY | HH:mm")}
 				</TableCell>
 			</TableRow>
 		</Fragment>
