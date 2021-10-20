@@ -83,62 +83,6 @@ const HistoryTableRow: FC<Props> = ({
 					{row.date}
 				</TableCell>
 			</TableRow>
-			<TableRow>
-				<TableCell
-					style={{
-						paddingBottom: 0,
-						paddingTop: 0,
-						background: "#eee",
-					}}
-					colSpan={10}
-				>
-					<Collapse in={openDetails} timeout="auto" unmountOnExit>
-						<Box margin={1}>
-							<Typography
-								variant="h6"
-								gutterBottom
-								component="div"
-							>
-								Details
-							</Typography>
-							<Table size="small" aria-label="details">
-								<TableHead>
-									<TableRow>
-										<TableCell>Custom ID</TableCell>
-										<TableCell>Name</TableCell>
-										<TableCell>Subdomain</TableCell>
-										<TableCell>Max Users</TableCell>
-										<TableCell>Creation Date</TableCell>
-										<TableCell>Expiration Date</TableCell>
-										<TableCell>Enabled</TableCell>
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									<TableRow key={row.name}>
-										<TableCell>{row.customID} </TableCell>
-										<TableCell>{row.name}</TableCell>
-										<TableCell>{row.subDomain}</TableCell>
-										<TableCell>{row.maxUsers} </TableCell>
-										<TableCell>
-											{row.creationDate}{" "}
-										</TableCell>
-										<TableCell>
-											{row.expirationDate}{" "}
-										</TableCell>
-										<TableCell>
-											{row.isEnabled ? (
-												<CheckIcon color="primary" />
-											) : (
-												<CloseIcon color="secondary" />
-											)}{" "}
-										</TableCell>
-									</TableRow>
-								</TableBody>
-							</Table>
-						</Box>
-					</Collapse>
-				</TableCell>
-			</TableRow>
 		</Fragment>
 	);
 };

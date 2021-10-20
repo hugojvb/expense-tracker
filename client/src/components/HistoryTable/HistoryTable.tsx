@@ -110,7 +110,7 @@ const HistoryTable = () => {
 	// select
 	const handleSelectAllClick = (event: any) => {
 		if (event.target.checked) {
-			const newSelecteds: any = rows.map((n) => n?.id);
+			const newSelecteds: any = rows.map((n) => n?._id);
 			setSelected(newSelecteds);
 			return;
 		}
@@ -118,11 +118,11 @@ const HistoryTable = () => {
 	};
 
 	const handleClick = (event: any, row: any) => {
-		const selectedIndex = selected.indexOf(row.name);
+		const selectedIndex = selected.indexOf(row._id);
 		let newSelected: any = [];
 
 		if (selectedIndex === -1) {
-			newSelected = newSelected.concat(selected, row.name);
+			newSelected = newSelected.concat(selected, row._id);
 		} else if (selectedIndex === 0) {
 			newSelected = newSelected.concat(selected.slice(1));
 		} else if (selectedIndex === selected.length - 1) {
@@ -147,7 +147,7 @@ const HistoryTable = () => {
 		setPage(0);
 	};
 
-	const isSelected = (name: any) => selected.indexOf(name) !== -1;
+	const isSelected = (_id: any) => selected.indexOf(_id) !== -1;
 
 	const emptyRows =
 		rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -189,12 +189,12 @@ const HistoryTable = () => {
 									page * rowsPerPage + rowsPerPage
 								)
 								.map((row: any, index: any) => {
-									const isItemSelected = isSelected(row.name);
+									const isItemSelected = isSelected(row._id);
 									const labelId = `enhanced-table-checkbox-${index}`;
 
 									return (
 										<HistoryTableRow
-											key={row.name}
+											key={row._id}
 											row={row}
 											labelId={labelId}
 											isItemSelected={isItemSelected}
