@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 
 const headCells = [
-	{ id: "id", numeric: false, disablePadding: false, label: "ID" },
 	{
 		id: "transaction",
 		numeric: false,
@@ -18,6 +17,7 @@ const headCells = [
 	},
 	{ id: "amount", numeric: false, disablePadding: false, label: "Amount" },
 	{ id: "date", numeric: false, disablePadding: false, label: "Date" },
+	{ id: "time", numeric: false, disablePadding: false, label: "Time" },
 ];
 
 interface Props {

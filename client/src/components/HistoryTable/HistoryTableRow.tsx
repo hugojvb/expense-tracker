@@ -58,12 +58,6 @@ const HistoryTableRow: FC<Props> = ({
 					onClick={() => setOpenDetails(!openDetails)}
 					align="left"
 				>
-					{row._id}
-				</TableCell>
-				<TableCell
-					onClick={() => setOpenDetails(!openDetails)}
-					align="left"
-				>
 					{row.name}
 				</TableCell>
 				<TableCell
@@ -76,7 +70,13 @@ const HistoryTableRow: FC<Props> = ({
 					onClick={() => setOpenDetails(!openDetails)}
 					align="left"
 				>
-					{dayjs(row.date).format("DD-MM-YYYY | HH:mm")}
+					{dayjs(row.date).format("DD-MM-YYYY")}
+				</TableCell>
+				<TableCell
+					onClick={() => setOpenDetails(!openDetails)}
+					align="left"
+				>
+					{dayjs(row.date).format("HH:mm")}
 				</TableCell>
 			</TableRow>
 		</Fragment>
