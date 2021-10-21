@@ -5,8 +5,10 @@ import { useCookies } from "react-cookie";
 import Context from "./context";
 import reducer from "./reducer";
 
+import axios from "axios";
+
 // TYPES IMPORT
-import { LOGIN, LOGOUT, TOGGLE_DRAWER } from "./types";
+import { GET_TRANSACTIONS, LOGIN, LOGOUT, TOGGLE_DRAWER } from "./types";
 
 const State: FC = (props: any): JSX.Element => {
 	const [cookies, setCookie] = useCookies();
@@ -15,6 +17,7 @@ const State: FC = (props: any): JSX.Element => {
 	const initialState = {
 		loggedIn: cookies.token ? true : false,
 		isDrawerOpen: true,
+		allTransactions: [],
 	};
 
 	// USE REDUCER FUNCTION
@@ -35,6 +38,12 @@ const State: FC = (props: any): JSX.Element => {
 		dispatch({ type: TOGGLE_DRAWER, payload: isOpened });
 	};
 
+	const getTransactions = async () => {
+		const res = await axios.get("/api/transactions");
+
+		dispatch({ type: GET_TRANSACTIONS, payload: res.data.data });
+	};
+
 	return (
 		<Context.Provider
 			value={{
@@ -43,6 +52,8 @@ const State: FC = (props: any): JSX.Element => {
 				logout,
 				isDrawerOpen: state.isDrawerOpen,
 				toggleDrawer,
+				allTransactions: state.allTransactions,
+				getTransactions,
 			}}
 		>
 			{props?.children}

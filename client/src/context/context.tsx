@@ -8,6 +8,8 @@ interface ContextProps {
 	logout: () => void;
 	isDrawerOpen: boolean;
 	toggleDrawer: (arg0: boolean) => void;
+	allTransactions: any;
+	getTransactions: () => void;
 }
 
 // CREATE CONTEXT STORE
