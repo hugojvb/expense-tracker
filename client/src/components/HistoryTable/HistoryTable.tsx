@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
 	makeStyles,
 	Table,
@@ -16,6 +16,7 @@ import HistoryTableToolbar from "./HistoryTableToolbar";
 import HistoryTableRow from "./HistoryTableRow";
 
 import axios from "axios";
+import Context from "../../context/context";
 
 function createData(
 	id: number,
@@ -91,13 +92,14 @@ const HistoryTable = () => {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [search, setSearch] = React.useState("");
-	const [rows, setRows] = React.useState<any[]>([]);
 	const [filtered, setFiltered] = React.useState();
+
+	const context = useContext(Context);
+	const { getTransactions, transactions } = context;
 
 	React.useEffect(() => {
 		(async () => {
-			const res = await axios.get("/api/transactions");
-			setRows(res.data.data);
+			await getTransactions();
 		})();
 	}, []);
 
@@ -110,7 +112,7 @@ const HistoryTable = () => {
 	// select
 	const handleSelectAllClick = (event: any) => {
 		if (event.target.checked) {
-			const newSelecteds: any = rows.map((n) => n?._id);
+			const newSelecteds: any = transactions.map((n: any) => n?._id);
 			setSelected(newSelecteds);
 			return;
 		}
@@ -150,7 +152,8 @@ const HistoryTable = () => {
 	const isSelected = (_id: any) => selected.indexOf(_id) !== -1;
 
 	const emptyRows =
-		rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+		rowsPerPage -
+		Math.min(rowsPerPage, transactions.length - page * rowsPerPage);
 
 	return (
 		<div className={classes.root}>
@@ -159,7 +162,7 @@ const HistoryTable = () => {
 					numSelected={selected.length}
 					search={search}
 					setSearch={setSearch}
-					rows={rows}
+					rows={transactions}
 					setFiltered={setFiltered}
 					selected={selected}
 				/>
@@ -177,11 +180,11 @@ const HistoryTable = () => {
 							orderBy={orderBy}
 							onSelectAllClick={handleSelectAllClick}
 							onRequestSort={handleRequestSort}
-							rowCount={rows.length}
+							rowCount={transactions.length}
 						/>
 						<TableBody>
 							{stableSort(
-								filtered ? filtered : rows,
+								filtered ? filtered : transactions,
 								getComparator(order, orderBy)
 							)
 								.slice(
@@ -213,7 +216,7 @@ const HistoryTable = () => {
 				<TablePagination
 					rowsPerPageOptions={[5, 10, 25]}
 					component="div"
-					count={rows.length}
+					count={transactions.length}
 					rowsPerPage={rowsPerPage}
 					page={page}
 					onChangePage={handleChangePage}

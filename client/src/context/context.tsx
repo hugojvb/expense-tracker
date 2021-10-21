@@ -8,7 +8,7 @@ interface ContextProps {
 	logout: () => void;
 	isDrawerOpen: boolean;
 	toggleDrawer: (arg0: boolean) => void;
-	allTransactions: any;
+	transactions: any;
 	getTransactions: () => void;
 }
 

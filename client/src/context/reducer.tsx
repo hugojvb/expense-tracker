@@ -1,5 +1,5 @@
 // TYPES IMPORT
-import { LOGIN, LOGOUT, TOGGLE_DRAWER } from "./types";
+import { GET_TRANSACTIONS, LOGIN, LOGOUT, TOGGLE_DRAWER } from "./types";
 
 // REDUCER FUNCTION
 const reducer = (state: any, action: { type: string; payload?: any }) => {
@@ -18,6 +18,11 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				isDrawerOpen: action.payload,
+			};
+		case GET_TRANSACTIONS:
+			return {
+				...state,
+				transactions: action.payload,
 			};
 		default:
 			return state;
