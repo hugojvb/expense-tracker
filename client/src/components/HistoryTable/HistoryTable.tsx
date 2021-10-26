@@ -99,7 +99,7 @@ const HistoryTable = () => {
 
 	React.useEffect(() => {
 		(async () => {
-			await getTransactions();
+			if (transactions.length === 0) await getTransactions();
 		})();
 	}, []);
 
