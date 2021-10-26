@@ -95,7 +95,7 @@ const HistoryTable = () => {
 	const [filtered, setFiltered] = React.useState();
 
 	const context = useContext(Context);
-	const { getTransactions, transactions } = context;
+	const { getTransactions, transactions, loading } = context;
 
 	React.useEffect(() => {
 		(async () => {
@@ -183,29 +183,57 @@ const HistoryTable = () => {
 							rowCount={transactions.length}
 						/>
 						<TableBody>
-							{stableSort(
-								filtered ? filtered : transactions,
-								getComparator(order, orderBy)
-							)
-								.slice(
-									page * rowsPerPage,
-									page * rowsPerPage + rowsPerPage
+							{loading ? (
+								<TableRow
+									style={{
+										height: 53 * emptyRows,
+									}}
+								>
+									<TableCell colSpan={10}>
+										<div
+											className="container"
+											style={{
+												width: "100%",
+												display: "flex",
+												flexDirection: "row",
+												justifyContent: "center",
+												alignItems: "center",
+											}}
+										>
+											<img
+												src="../../loading.svg"
+												alt="loading"
+											/>
+										</div>
+									</TableCell>
+								</TableRow>
+							) : (
+								stableSort(
+									filtered ? filtered : transactions,
+									getComparator(order, orderBy)
 								)
-								.map((row: any, index: any) => {
-									const isItemSelected = isSelected(row._id);
-									const labelId = `enhanced-table-checkbox-${index}`;
+									.slice(
+										page * rowsPerPage,
+										page * rowsPerPage + rowsPerPage
+									)
+									.map((row: any, index: any) => {
+										const isItemSelected = isSelected(
+											row._id
+										);
+										const labelId = `enhanced-table-checkbox-${index}`;
 
-									return (
-										<HistoryTableRow
-											key={row._id}
-											row={row}
-											labelId={labelId}
-											isItemSelected={isItemSelected}
-											handleClick={handleClick}
-										/>
-									);
-								})}
-							{emptyRows > 0 && (
+										return (
+											<HistoryTableRow
+												key={row._id}
+												row={row}
+												labelId={labelId}
+												isItemSelected={isItemSelected}
+												handleClick={handleClick}
+											/>
+										);
+									})
+							)}
+							{emptyRows > 0 && !loading && (
 								<TableRow style={{ height: 53 * emptyRows }}>
 									<TableCell colSpan={10} />
 								</TableRow>
