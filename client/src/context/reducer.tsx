@@ -1,5 +1,11 @@
 // TYPES IMPORT
-import { GET_TRANSACTIONS, LOGIN, LOGOUT, TOGGLE_DRAWER } from "./types";
+import {
+	GET_TRANSACTIONS,
+	LOGIN,
+	LOGOUT,
+	SET_LOADING,
+	TOGGLE_DRAWER,
+} from "./types";
 
 // REDUCER FUNCTION
 const reducer = (state: any, action: { type: string; payload?: any }) => {
@@ -23,6 +29,12 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				transactions: action.payload,
+				loading: false,
+			};
+		case SET_LOADING:
+			return {
+				...state,
+				loading: action.payload,
 			};
 		default:
 			return state;

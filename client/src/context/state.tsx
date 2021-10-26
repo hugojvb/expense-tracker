@@ -8,7 +8,13 @@ import reducer from "./reducer";
 import axios from "axios";
 
 // TYPES IMPORT
-import { GET_TRANSACTIONS, LOGIN, LOGOUT, TOGGLE_DRAWER } from "./types";
+import {
+	GET_TRANSACTIONS,
+	LOGIN,
+	LOGOUT,
+	SET_LOADING,
+	TOGGLE_DRAWER,
+} from "./types";
 
 const State: FC = (props: any): JSX.Element => {
 	const [cookies, setCookie] = useCookies();
@@ -40,6 +46,7 @@ const State: FC = (props: any): JSX.Element => {
 	};
 
 	const getTransactions = async () => {
+		dispatch({ type: SET_LOADING, payload: true });
 		const res = await axios.get("/api/transactions");
 
 		dispatch({ type: GET_TRANSACTIONS, payload: res.data.data });
