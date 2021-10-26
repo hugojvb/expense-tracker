@@ -18,6 +18,7 @@ const State: FC = (props: any): JSX.Element => {
 		loggedIn: cookies.token ? true : false,
 		isDrawerOpen: true,
 		transactions: [],
+		loading: false,
 	};
 
 	// USE REDUCER FUNCTION
@@ -54,6 +55,7 @@ const State: FC = (props: any): JSX.Element => {
 				toggleDrawer,
 				transactions: state.transactions,
 				getTransactions,
+				loading: state.loading,
 			}}
 		>
 			{props?.children}

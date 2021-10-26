@@ -10,6 +10,7 @@ interface ContextProps {
 	toggleDrawer: (arg0: boolean) => void;
 	transactions: any;
 	getTransactions: () => void;
+	loading: boolean;
 }
 
 // CREATE CONTEXT STORE
