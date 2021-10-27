@@ -203,6 +203,7 @@ const HistoryTable = () => {
 											<img
 												src="../../loading.svg"
 												alt="loading"
+												style={{ width: 100 }}
 											/>
 										</div>
 									</TableCell>
