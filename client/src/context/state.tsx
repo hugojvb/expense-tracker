@@ -49,7 +49,7 @@ const State: FC = (props: any): JSX.Element => {
 
 	const getData = async (data: string) => {
 		dispatch({ type: SET_LOADING, payload: true });
-		const res = await axios.get("/api/transactions");
+		const res = await axios.get(`/api/${data}`);
 
 		dispatch({ type: `GET_${data.toUpperCase()}`, payload: res.data.data });
 	};

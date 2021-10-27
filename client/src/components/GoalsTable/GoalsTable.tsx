@@ -16,6 +16,7 @@ import GoalsTableToolbar from "./GoalsTableToolbar";
 import DemoRow from "./GoalsTableRow";
 
 import Context from "../../context/context";
+import Goals from "../../pages/Goals";
 
 function createData(id: number, goal: number, date: string) {
 	return {
@@ -91,13 +92,13 @@ export default function DemoTable() {
 	const [filtered, setFiltered] = React.useState();
 
 	const context = useContext(Context);
-	const { getData, transactions, loading } = context;
+	const { getData, goals, loading } = context;
 
 	React.useEffect(() => {
 		(async () => {
-			await getData("Goals");
+			if (goals.length === 0) await getData("Goals");
 		})();
-	}, [getData]);
+	}, []);
 
 	const handleRequestSort = (event: any, property: any) => {
 		const isAsc = orderBy === property && order === "asc";

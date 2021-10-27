@@ -1,5 +1,6 @@
 // TYPES IMPORT
 import {
+	GET_GOALS,
 	GET_TRANSACTIONS,
 	LOGIN,
 	LOGOUT,
@@ -29,6 +30,12 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				transactions: action.payload,
+				loading: false,
+			};
+		case GET_GOALS:
+			return {
+				...state,
+				goals: action.payload,
 				loading: false,
 			};
 		case SET_LOADING:
