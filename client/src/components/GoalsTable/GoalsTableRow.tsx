@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
+import dayjs from "dayjs";
 
 const useRowStyles = makeStyles({
 	root: {
@@ -62,19 +63,19 @@ const GoalsTableRow: FC<Props> = ({
 					onClick={() => setOpenDetails(!openDetails)}
 					align="left"
 				>
-					{row.id}
-				</TableCell>
-				<TableCell
-					onClick={() => setOpenDetails(!openDetails)}
-					align="left"
-				>
 					{row.goal} €
 				</TableCell>
 				<TableCell
 					onClick={() => setOpenDetails(!openDetails)}
 					align="left"
 				>
-					{row.date}
+					{dayjs(row.date).format("DD-MM-YYYY")}
+				</TableCell>
+				<TableCell
+					onClick={() => setOpenDetails(!openDetails)}
+					align="left"
+				>
+					{dayjs(row.date).format("HH:mm")}
 				</TableCell>
 			</TableRow>
 			<TableRow>
