@@ -12,11 +12,9 @@ import {
 
 import GoalsTableHead from "./GoalsTableHead";
 import GoalsTableToolbar from "./GoalsTableToolbar";
-
-import DemoRow from "./GoalsTableRow";
+import GoalsTableRow from "./GoalsTableRow";
 
 import Context from "../../context/context";
-import Goals from "../../pages/Goals";
 
 function createData(id: number, goal: number, date: string) {
 	return {
@@ -86,9 +84,6 @@ export default function DemoTable() {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [search, setSearch] = React.useState("");
-	const [rows, setRows] = React.useState([
-		createData(123, 600, "2021-11-22"),
-	]);
 	const [filtered, setFiltered] = React.useState();
 
 	const context = useContext(Context);
@@ -109,7 +104,7 @@ export default function DemoTable() {
 	// select
 	const handleSelectAllClick = (event: any) => {
 		if (event.target.checked) {
-			const newSelecteds: any = rows.map((n) => n.id);
+			const newSelecteds: any = goals.map((n: any) => n._id);
 			setSelected(newSelecteds);
 			return;
 		}
@@ -149,7 +144,7 @@ export default function DemoTable() {
 	const isSelected = (name: any) => selected.indexOf(name) !== -1;
 
 	const emptyRows =
-		rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+		rowsPerPage - Math.min(rowsPerPage, goals.length - page * rowsPerPage);
 
 	return (
 		<div className={classes.root}>
@@ -158,7 +153,7 @@ export default function DemoTable() {
 					numSelected={selected.length}
 					search={search}
 					setSearch={setSearch}
-					rows={rows}
+					rows={goals}
 					setFiltered={setFiltered}
 					selected={selected}
 				/>
@@ -176,7 +171,7 @@ export default function DemoTable() {
 							orderBy={orderBy}
 							onSelectAllClick={handleSelectAllClick}
 							onRequestSort={handleRequestSort}
-							rowCount={rows.length}
+							rowCount={goals.length}
 						/>
 						<TableBody>
 							{loading ? (
@@ -206,7 +201,7 @@ export default function DemoTable() {
 								</TableRow>
 							) : (
 								stableSort(
-									filtered ? filtered : rows,
+									filtered ? filtered : goals,
 									getComparator(order, orderBy)
 								)
 									.slice(
@@ -220,8 +215,8 @@ export default function DemoTable() {
 										const labelId = `enhanced-table-checkbox-${index}`;
 
 										return (
-											<DemoRow
-												key={row.name}
+											<GoalsTableRow
+												key={row._id}
 												row={row}
 												labelId={labelId}
 												isItemSelected={isItemSelected}
@@ -241,7 +236,7 @@ export default function DemoTable() {
 				<TablePagination
 					rowsPerPageOptions={[5, 10, 25]}
 					component="div"
-					count={rows.length}
+					count={goals.length}
 					rowsPerPage={rowsPerPage}
 					page={page}
 					onChangePage={handleChangePage}
