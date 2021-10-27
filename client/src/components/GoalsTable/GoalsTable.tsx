@@ -179,28 +179,57 @@ export default function DemoTable() {
 							rowCount={rows.length}
 						/>
 						<TableBody>
-							{stableSort(
-								filtered ? filtered : rows,
-								getComparator(order, orderBy)
-							)
-								.slice(
-									page * rowsPerPage,
-									page * rowsPerPage + rowsPerPage
+							{loading ? (
+								<TableRow
+									style={{
+										height: 53 * emptyRows,
+									}}
+								>
+									<TableCell colSpan={10}>
+										<div
+											className="container"
+											style={{
+												width: "100%",
+												display: "flex",
+												flexDirection: "row",
+												justifyContent: "center",
+												alignItems: "center",
+											}}
+										>
+											<img
+												src="../../loading.svg"
+												alt="loading"
+												style={{ width: 100 }}
+											/>
+										</div>
+									</TableCell>
+								</TableRow>
+							) : (
+								stableSort(
+									filtered ? filtered : rows,
+									getComparator(order, orderBy)
 								)
-								.map((row: any, index: any) => {
-									const isItemSelected = isSelected(row.name);
-									const labelId = `enhanced-table-checkbox-${index}`;
+									.slice(
+										page * rowsPerPage,
+										page * rowsPerPage + rowsPerPage
+									)
+									.map((row: any, index: any) => {
+										const isItemSelected = isSelected(
+											row.name
+										);
+										const labelId = `enhanced-table-checkbox-${index}`;
 
-									return (
-										<DemoRow
-											key={row.name}
-											row={row}
-											labelId={labelId}
-											isItemSelected={isItemSelected}
-											handleClick={handleClick}
-										/>
-									);
-								})}
+										return (
+											<DemoRow
+												key={row.name}
+												row={row}
+												labelId={labelId}
+												isItemSelected={isItemSelected}
+												handleClick={handleClick}
+											/>
+										);
+									})
+							)}
 							{emptyRows > 0 && (
 								<TableRow style={{ height: 53 * emptyRows }}>
 									<TableCell colSpan={10} />
