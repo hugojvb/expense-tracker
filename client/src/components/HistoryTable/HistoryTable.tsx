@@ -95,11 +95,11 @@ const HistoryTable = () => {
 	const [filtered, setFiltered] = React.useState();
 
 	const context = useContext(Context);
-	const { getTransactions, transactions, loading } = context;
+	const { getData, transactions, loading } = context;
 
 	React.useEffect(() => {
 		(async () => {
-			if (transactions.length === 0) await getTransactions();
+			if (transactions.length === 0) await getData("Transactions");
 		})();
 	}, []);
 

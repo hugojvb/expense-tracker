@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
 	makeStyles,
 	Table,
@@ -15,7 +15,7 @@ import GoalsTableToolbar from "./GoalsTableToolbar";
 
 import DemoRow from "./GoalsTableRow";
 
-import axios from "axios";
+import Context from "../../context/context";
 
 function createData(id: number, goal: number, date: string) {
 	return {
@@ -90,11 +90,14 @@ export default function DemoTable() {
 	]);
 	const [filtered, setFiltered] = React.useState();
 
+	const context = useContext(Context);
+	const { getData, transactions, loading } = context;
+
 	React.useEffect(() => {
 		(async () => {
-			await axios.get("/api/goals");
+			await getData("Goals");
 		})();
-	});
+	}, [getData]);
 
 	const handleRequestSort = (event: any, property: any) => {
 		const isAsc = orderBy === property && order === "asc";

@@ -9,7 +9,8 @@ interface ContextProps {
 	isDrawerOpen: boolean;
 	toggleDrawer: (arg0: boolean) => void;
 	transactions: any;
-	getTransactions: () => void;
+	goals: any;
+	getData: (data: string) => void;
 	loading: boolean;
 }
 

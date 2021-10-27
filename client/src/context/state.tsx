@@ -9,6 +9,7 @@ import axios from "axios";
 
 // TYPES IMPORT
 import {
+	GET_GOALS,
 	GET_TRANSACTIONS,
 	LOGIN,
 	LOGOUT,
@@ -24,6 +25,7 @@ const State: FC = (props: any): JSX.Element => {
 		loggedIn: cookies.token ? true : false,
 		isDrawerOpen: true,
 		transactions: [],
+		goals: [],
 		loading: false,
 	};
 
@@ -45,11 +47,11 @@ const State: FC = (props: any): JSX.Element => {
 		dispatch({ type: TOGGLE_DRAWER, payload: isOpened });
 	};
 
-	const getTransactions = async () => {
+	const getData = async (data: string) => {
 		dispatch({ type: SET_LOADING, payload: true });
 		const res = await axios.get("/api/transactions");
 
-		dispatch({ type: GET_TRANSACTIONS, payload: res.data.data });
+		dispatch({ type: `GET_${data.toUpperCase()}`, payload: res.data.data });
 	};
 
 	return (
@@ -61,7 +63,8 @@ const State: FC = (props: any): JSX.Element => {
 				isDrawerOpen: state.isDrawerOpen,
 				toggleDrawer,
 				transactions: state.transactions,
-				getTransactions,
+				goals: state.goals,
+				getData,
 				loading: state.loading,
 			}}
 		>
