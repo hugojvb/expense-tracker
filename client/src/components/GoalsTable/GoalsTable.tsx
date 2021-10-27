@@ -111,12 +111,12 @@ export default function DemoTable() {
 		setSelected([]);
 	};
 
-	const handleClick = (event: any, row: { name: string }) => {
-		const selectedIndex = selected.indexOf(row.name);
+	const handleClick = (event: any, row: any) => {
+		const selectedIndex = selected.indexOf(row._id);
 		let newSelected: any = [];
 
 		if (selectedIndex === -1) {
-			newSelected = newSelected.concat(selected, row.name);
+			newSelected = newSelected.concat(selected, row._id);
 		} else if (selectedIndex === 0) {
 			newSelected = newSelected.concat(selected.slice(1));
 		} else if (selectedIndex === selected.length - 1) {
@@ -141,7 +141,7 @@ export default function DemoTable() {
 		setPage(0);
 	};
 
-	const isSelected = (name: any) => selected.indexOf(name) !== -1;
+	const isSelected = (_id: any) => selected.indexOf(_id) !== -1;
 
 	const emptyRows =
 		rowsPerPage - Math.min(rowsPerPage, goals.length - page * rowsPerPage);
@@ -210,7 +210,7 @@ export default function DemoTable() {
 									)
 									.map((row: any, index: any) => {
 										const isItemSelected = isSelected(
-											row.name
+											row._id
 										);
 										const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -225,7 +225,7 @@ export default function DemoTable() {
 										);
 									})
 							)}
-							{emptyRows > 0 && (
+							{emptyRows > 0 && !loading && (
 								<TableRow style={{ height: 53 * emptyRows }}>
 									<TableCell colSpan={10} />
 								</TableRow>
