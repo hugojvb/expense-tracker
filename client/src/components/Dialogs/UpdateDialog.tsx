@@ -1,6 +1,16 @@
 import { FC } from "react";
 
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Divider, makeStyles, Grow } from "@material-ui/core";
+import {
+	Button,
+	TextField,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogTitle,
+	Divider,
+	makeStyles,
+	Grow,
+} from "@material-ui/core";
 
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
@@ -19,7 +29,14 @@ interface Props {
 	selected: any;
 }
 
-const UpdateDialog: FC<Props> = ({ openUpdateDialog, setOpenUpdateDialog, rows, setOpenUpdatedSuccess, setOpenUpdatedError, selected }) => {
+const UpdateDialog: FC<Props> = ({
+	openUpdateDialog,
+	setOpenUpdateDialog,
+	rows,
+	setOpenUpdatedSuccess,
+	setOpenUpdatedError,
+	selected,
+}) => {
 	const { register, handleSubmit, control } = useForm();
 
 	const classes = useStyles();
@@ -60,9 +77,14 @@ const UpdateDialog: FC<Props> = ({ openUpdateDialog, setOpenUpdateDialog, rows, 
 
 	return (
 		<div>
-			<Dialog open={openUpdateDialog} onClose={handleClose} TransitionComponent={Grow} aria-labelledby="form-dialog-title">
+			<Dialog
+				open={openUpdateDialog}
+				onClose={handleClose}
+				TransitionComponent={Grow}
+				aria-labelledby="form-dialog-title"
+			>
 				<DialogTitle id="form-dialog-title" className={classes.title}>
-					Update Instance
+					Update Expense
 					<Divider />
 				</DialogTitle>
 				<form onSubmit={handleSubmit(submitUpdateInstance)}>
@@ -70,33 +92,22 @@ const UpdateDialog: FC<Props> = ({ openUpdateDialog, setOpenUpdateDialog, rows, 
 						<TextField
 							inputRef={register({ required: true })}
 							margin="dense"
-							id="name"
-							name="name"
-							label="Name"
+							id="transaction"
+							name="transaction"
+							label="Transaction"
 							type="text"
 							defaultValue={selectedRow?.name}
 							fullWidth
 							required
 							classes={{ root: classes.textField }}
 						/>
+
 						<TextField
 							inputRef={register({ required: true })}
 							margin="dense"
-							id="subdomain"
-							name="subdomain"
-							label="Subdomain"
-							type="text"
-							defaultValue={selectedRow?.subDomain}
-							fullWidth
-							required
-							classes={{ root: classes.textField }}
-						/>
-						<TextField
-							inputRef={register({ required: true })}
-							margin="dense"
-							id="maxUsers"
-							name="maxUsers"
-							label="Max Users"
+							id="amount"
+							name="amount"
+							label="Amount"
 							type="number"
 							defaultValue={selectedRow?.maxUsers}
 							fullWidth
@@ -106,11 +117,13 @@ const UpdateDialog: FC<Props> = ({ openUpdateDialog, setOpenUpdateDialog, rows, 
 						<TextField
 							inputRef={register}
 							margin="dense"
-							id="expirationDate"
+							id="date"
 							type="date"
-							label="Expiration Date"
-							name="expirationDate"
-							defaultValue={formatDate(selectedRow?.expirationDate)}
+							label="Date"
+							name="date"
+							defaultValue={formatDate(
+								selectedRow?.expirationDate
+							)}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -119,7 +132,11 @@ const UpdateDialog: FC<Props> = ({ openUpdateDialog, setOpenUpdateDialog, rows, 
 						/>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={handleClose} variant="outlined" color="secondary">
+						<Button
+							onClick={handleClose}
+							variant="outlined"
+							color="secondary"
+						>
 							Cancel
 						</Button>
 						<Button type="submit" color="primary">
