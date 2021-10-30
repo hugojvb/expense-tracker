@@ -42,7 +42,7 @@ const AlertDialog: FC<Props> = ({
 
 	const deleteInstance = async () => {
 		try {
-			const res = await axios.delete("/api", { data: selected });
+			const res = await axios.delete(`/api/${type}s`, { data: selected });
 			setOpenDeleteDialog(false);
 			setOpenDeletedSuccess(true);
 			return res;
@@ -71,7 +71,7 @@ const AlertDialog: FC<Props> = ({
 
 				<DialogContent>
 					<DialogContentText id="alert-dialog-description">
-						Are you sure you want to delete the selected Instances?
+						Are you sure you want to delete the selected items?
 					</DialogContentText>
 				</DialogContent>
 
