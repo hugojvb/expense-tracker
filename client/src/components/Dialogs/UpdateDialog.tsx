@@ -27,6 +27,7 @@ interface Props {
 	setOpenUpdatedSuccess: any;
 	setOpenUpdatedError: any;
 	selected: any;
+	type: string;
 }
 
 const UpdateDialog: FC<Props> = ({
@@ -36,6 +37,7 @@ const UpdateDialog: FC<Props> = ({
 	setOpenUpdatedSuccess,
 	setOpenUpdatedError,
 	selected,
+	type,
 }) => {
 	const { register, handleSubmit, control } = useForm();
 
@@ -48,7 +50,7 @@ const UpdateDialog: FC<Props> = ({
 	const submitUpdateInstance = async (data: any) => {
 		try {
 			console.log(data);
-			const res = await axios.put("/api/", { data });
+			const res = await axios.put("/api/transactions", { data });
 			setOpenUpdateDialog(false);
 			setOpenUpdatedSuccess(true);
 			return res;
@@ -84,7 +86,8 @@ const UpdateDialog: FC<Props> = ({
 				aria-labelledby="form-dialog-title"
 			>
 				<DialogTitle id="form-dialog-title" className={classes.title}>
-					Update Expense
+					Update{" "}
+					{type.substring(0, 1).toUpperCase() + type.substring(1)}
 					<Divider />
 				</DialogTitle>
 				<form onSubmit={handleSubmit(submitUpdateInstance)}>

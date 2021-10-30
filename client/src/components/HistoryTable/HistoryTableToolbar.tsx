@@ -293,6 +293,7 @@ const HistoryTableToolbar: FC<Props> = ({
 				rows={rows}
 				setOpenUpdatedSuccess={setOpenUpdatedSuccess}
 				setOpenUpdatedError={setOpenUpdatedError}
+				type="transaction"
 			/>
 			{/* <Snackbar open={openAddedSuccess} autoHideDuration={3000} onClose={handleCloseAddedSuccess} TransitionComponent={Grow}>
 				<Alert elevation={6} variant="filled" onClose={handleCloseAddedSuccess} severity="success">
