@@ -50,7 +50,7 @@ const UpdateDialog: FC<Props> = ({
 	const submitUpdateInstance = async (data: any) => {
 		try {
 			console.log(data);
-			const res = await axios.put("/api/transactions", { data });
+			const res = await axios.put(`/api/${type}s`, { data });
 			setOpenUpdateDialog(false);
 			setOpenUpdatedSuccess(true);
 			return res;
@@ -92,31 +92,48 @@ const UpdateDialog: FC<Props> = ({
 				</DialogTitle>
 				<form onSubmit={handleSubmit(submitUpdateInstance)}>
 					<DialogContent>
-						<TextField
-							inputRef={register({ required: true })}
-							margin="dense"
-							id="transaction"
-							name="transaction"
-							label="Transaction"
-							type="text"
-							defaultValue={selectedRow?.name}
-							fullWidth
-							required
-							classes={{ root: classes.textField }}
-						/>
+						{type === "transaction" ? (
+							<>
+								<TextField
+									inputRef={register({ required: true })}
+									margin="dense"
+									id="transaction"
+									name="transaction"
+									label="Transaction"
+									type="text"
+									defaultValue={selectedRow?.transaction}
+									fullWidth
+									required
+									classes={{ root: classes.textField }}
+								/>
 
-						<TextField
-							inputRef={register({ required: true })}
-							margin="dense"
-							id="amount"
-							name="amount"
-							label="Amount"
-							type="number"
-							defaultValue={selectedRow?.maxUsers}
-							fullWidth
-							required
-							classes={{ root: classes.textField }}
-						/>
+								<TextField
+									inputRef={register({ required: true })}
+									margin="dense"
+									id="amount"
+									name="amount"
+									label="Amount"
+									type="number"
+									defaultValue={selectedRow?.amount}
+									fullWidth
+									required
+									classes={{ root: classes.textField }}
+								/>
+							</>
+						) : (
+							<TextField
+								inputRef={register({ required: true })}
+								margin="dense"
+								id="goal"
+								name="goal"
+								label="Goal"
+								type="number"
+								defaultValue={selectedRow?.goal}
+								fullWidth
+								required
+								classes={{ root: classes.textField }}
+							/>
+						)}
 						<TextField
 							inputRef={register}
 							margin="dense"
