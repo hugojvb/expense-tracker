@@ -279,12 +279,14 @@ const HistoryTableToolbar: FC<Props> = ({
 				selected={selected}
 				setOpenDeletedSuccess={setOpenDeletedSuccess}
 				setOpenDeletedError={setOpenDeletedError}
+				type="transaction"
 			/>
 			<AddDialog
 				openAddDialog={openAddDialog}
 				setOpenAddDialog={setOpenAddDialog}
 				setOpenAddedSuccess={setOpenAddedSuccess}
 				setOpenAddedError={setOpenAddedError}
+				type="transaction"
 			/>
 			<UpdateDialog
 				openUpdateDialog={openUpdateDialog}

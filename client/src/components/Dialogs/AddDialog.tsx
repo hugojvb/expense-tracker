@@ -27,6 +27,7 @@ interface Props {
 	setOpenAddDialog: any;
 	setOpenAddedSuccess: any;
 	setOpenAddedError: any;
+	type: string;
 }
 
 const AddDialog: FC<Props> = ({
@@ -34,6 +35,7 @@ const AddDialog: FC<Props> = ({
 	setOpenAddDialog,
 	setOpenAddedSuccess,
 	setOpenAddedError,
+	type,
 }) => {
 	const handleClose = () => {
 		setOpenAddDialog(false);
@@ -65,33 +67,49 @@ const AddDialog: FC<Props> = ({
 				aria-labelledby="form-dialog-title"
 			>
 				<DialogTitle id="form-dialog-title" className={classes.title}>
-					Add Transaction
+					Add {type.substring(0, 1).toUpperCase() + type.substring(1)}
 					<Divider />
 				</DialogTitle>
 				<form onSubmit={handleSubmit(submitAddInstance)}>
 					<DialogContent>
-						<TextField
-							inputRef={register({ required: true })}
-							margin="dense"
-							id="transaction"
-							name="transaction"
-							label="Transaction"
-							type="text"
-							fullWidth
-							required
-							classes={{ root: classes.textField }}
-						/>
-						<TextField
-							inputRef={register({ required: true })}
-							margin="dense"
-							id="amount"
-							name="amount"
-							label="Amount"
-							type="number"
-							fullWidth
-							required
-							classes={{ root: classes.textField }}
-						/>
+						{type === "transaction" ? (
+							<>
+								<TextField
+									inputRef={register({ required: true })}
+									margin="dense"
+									id="transaction"
+									name="transaction"
+									label="Transaction"
+									type="text"
+									fullWidth
+									required
+									classes={{ root: classes.textField }}
+								/>
+								<TextField
+									inputRef={register({ required: true })}
+									margin="dense"
+									id="amount"
+									name="amount"
+									label="Amount"
+									type="number"
+									fullWidth
+									required
+									classes={{ root: classes.textField }}
+								/>
+							</>
+						) : (
+							<TextField
+								inputRef={register({ required: true })}
+								margin="dense"
+								id="goal"
+								name="goal"
+								label="Goal"
+								type="number"
+								fullWidth
+								required
+								classes={{ root: classes.textField }}
+							/>
+						)}
 						<TextField
 							inputRef={register}
 							margin="dense"

@@ -1,5 +1,15 @@
 import { FC } from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grow, makeStyles, Divider } from "@material-ui/core";
+import {
+	Button,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
+	Grow,
+	makeStyles,
+	Divider,
+} from "@material-ui/core";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,9 +23,17 @@ interface Props {
 	selected: any;
 	setOpenDeletedSuccess: any;
 	setOpenDeletedError: any;
+	type: string;
 }
 
-const AlertDialog: FC<Props> = ({ openDeleteDialog, setOpenDeleteDialog, selected, setOpenDeletedSuccess, setOpenDeletedError }) => {
+const AlertDialog: FC<Props> = ({
+	openDeleteDialog,
+	setOpenDeleteDialog,
+	selected,
+	setOpenDeletedSuccess,
+	setOpenDeletedError,
+	type,
+}) => {
 	const classes = useStyles();
 
 	const handleClose = () => {
@@ -46,16 +64,23 @@ const AlertDialog: FC<Props> = ({ openDeleteDialog, setOpenDeleteDialog, selecte
 				aria-describedby="alert-dialog-description"
 			>
 				<DialogTitle id="alert-dialog-title" className={classes.title}>
-					{"Delete Instances"}
+					Delete{" "}
+					{type.substring(0, 1).toUpperCase() + type.substring(1)}
 					<Divider />
 				</DialogTitle>
 
 				<DialogContent>
-					<DialogContentText id="alert-dialog-description">Are you sure you want to delete the selected Instances?</DialogContentText>
+					<DialogContentText id="alert-dialog-description">
+						Are you sure you want to delete the selected Instances?
+					</DialogContentText>
 				</DialogContent>
 
 				<DialogActions>
-					<Button onClick={handleClose} variant="outlined" color="secondary">
+					<Button
+						onClick={handleClose}
+						variant="outlined"
+						color="secondary"
+					>
 						Cancel
 					</Button>
 					<Button
