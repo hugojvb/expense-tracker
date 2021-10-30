@@ -17,7 +17,6 @@ const headCells = [
 		label: "Goal",
 	},
 	{ id: "Date", numeric: false, disablePadding: false, label: "Date" },
-	{ id: "Time", numeric: false, disablePadding: false, label: "Time" },
 ];
 
 // PROPS INTERFACE

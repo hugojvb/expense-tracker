@@ -71,12 +71,6 @@ const GoalsTableRow: FC<Props> = ({
 				>
 					{dayjs(row.date).format("DD-MM-YYYY")}
 				</TableCell>
-				<TableCell
-					onClick={() => setOpenDetails(!openDetails)}
-					align="left"
-				>
-					{dayjs(row.date).format("HH:mm")}
-				</TableCell>
 			</TableRow>
 		</Fragment>
 	);
