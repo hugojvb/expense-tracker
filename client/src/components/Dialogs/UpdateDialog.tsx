@@ -74,7 +74,7 @@ const UpdateDialog: FC<Props> = ({
 
 	let selectedRow: any;
 	rows.forEach((current: any) => {
-		if (current.name === selected[0]) selectedRow = current;
+		if (current._id === selected[0]) selectedRow = current;
 	});
 
 	return (
@@ -97,11 +97,11 @@ const UpdateDialog: FC<Props> = ({
 								<TextField
 									inputRef={register({ required: true })}
 									margin="dense"
-									id="transaction"
-									name="transaction"
+									id="name"
+									name="name"
 									label="Transaction"
 									type="text"
-									defaultValue={selectedRow?.transaction}
+									defaultValue={selectedRow?.name}
 									fullWidth
 									required
 									classes={{ root: classes.textField }}
@@ -141,9 +141,7 @@ const UpdateDialog: FC<Props> = ({
 							type="date"
 							label="Date"
 							name="date"
-							defaultValue={formatDate(
-								selectedRow?.expirationDate
-							)}
+							defaultValue={formatDate(selectedRow?.date)}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
