@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import {
 	Button,
 	Dialog,
@@ -11,6 +11,7 @@ import {
 	Divider,
 } from "@material-ui/core";
 import axios from "axios";
+import Context from "../../context/context";
 
 const useStyles = makeStyles((theme) => ({
 	title: { color: theme.palette.primary.main },
@@ -36,6 +37,9 @@ const AlertDialog: FC<Props> = ({
 }) => {
 	const classes = useStyles();
 
+	const context = useContext(Context);
+	const { getData, loading } = context;
+
 	const handleClose = () => {
 		setOpenDeleteDialog(false);
 	};
@@ -45,6 +49,7 @@ const AlertDialog: FC<Props> = ({
 			const res = await axios.delete(`/api/${type}s/${selected}`);
 			setOpenDeleteDialog(false);
 			setOpenDeletedSuccess(true);
+			await getData("Transactions");
 			return res;
 		} catch (error) {
 			setOpenDeleteDialog(false);
