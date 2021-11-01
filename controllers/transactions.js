@@ -53,6 +53,7 @@ exports.updateTransaction = async (req, res) => {
 		res.status(200).json({
 			success: true,
 			data: transaction,
+			body: req.body,
 		});
 	} catch (error) {
 		res.status(400).json({ Error: "Failed to update transaction" });

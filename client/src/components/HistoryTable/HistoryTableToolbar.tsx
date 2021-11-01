@@ -315,7 +315,7 @@ const HistoryTableToolbar: FC<Props> = ({
 					onClose={handleCloseAddedSuccess}
 					severity="success"
 				>
-					Your instance was successfully added!
+					Your expense was successfully added!
 				</Alert>
 			</Snackbar>
 			<Snackbar
@@ -330,7 +330,7 @@ const HistoryTableToolbar: FC<Props> = ({
 					onClose={handleCloseAddedError}
 					severity="error"
 				>
-					Something went wrong while adding your instance! Please try
+					Something went wrong while adding your expense! Please try
 					again.
 				</Alert>
 			</Snackbar>
@@ -346,7 +346,7 @@ const HistoryTableToolbar: FC<Props> = ({
 					onClose={handleCloseDeletedSuccess}
 					severity="success"
 				>
-					Your instance was successfully deleted!
+					Your expense was successfully deleted!
 				</Alert>
 			</Snackbar>
 			<Snackbar
@@ -361,8 +361,8 @@ const HistoryTableToolbar: FC<Props> = ({
 					onClose={handleCloseDeletedError}
 					severity="error"
 				>
-					Something went wrong while deleting your instance! Please
-					try again.
+					Something went wrong while deleting your expense! Please try
+					again.
 				</Alert>
 			</Snackbar>
 			<Snackbar
@@ -377,7 +377,7 @@ const HistoryTableToolbar: FC<Props> = ({
 					onClose={handleCloseUpdatedSuccess}
 					severity="success"
 				>
-					Your instance was successfully updated!
+					Your expense was successfully updated!
 				</Alert>
 			</Snackbar>
 			<Snackbar
@@ -392,8 +392,8 @@ const HistoryTableToolbar: FC<Props> = ({
 					onClose={handleCloseUpdatedError}
 					severity="error"
 				>
-					Something went wrong while updating your instance! Please
-					try again.
+					Something went wrong while updating your expense! Please try
+					again.
 				</Alert>
 			</Snackbar>
 		</Toolbar>
