@@ -8,6 +8,7 @@ import History from "./pages/History";
 import Goals from "./pages/Goals";
 import Login from "./pages/Login";
 import Layout from "./components/Layout";
+import Summary from "./pages/Summary";
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
@@ -27,6 +28,7 @@ const App = (): JSX.Element => {
 				<Layout>
 					<Route exact path="/history" component={History}></Route>
 					<Route exact path="/goals" component={Goals}></Route>
+					<Route exact path="/summary" component={Summary}></Route>
 					<Route exact path="/login">
 						<Login />
 						{loggedIn && <Redirect to="/" />}
