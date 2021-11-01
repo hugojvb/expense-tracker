@@ -308,7 +308,7 @@ const GoalsTableToolbar: FC<Props> = ({
 					onClose={handleCloseAddedSuccess}
 					severity="success"
 				>
-					Your instance was successfully added!
+					Your goal was successfully added!
 				</Alert>
 			</Snackbar>
 			<Snackbar
@@ -323,7 +323,7 @@ const GoalsTableToolbar: FC<Props> = ({
 					onClose={handleCloseAddedError}
 					severity="error"
 				>
-					Something went wrong while adding your instance! Please try
+					Something went wrong while adding your goal! Please try
 					again.
 				</Alert>
 			</Snackbar>
@@ -340,7 +340,7 @@ const GoalsTableToolbar: FC<Props> = ({
 					onClose={handleCloseDeletedSuccess}
 					severity="success"
 				>
-					Your instance was successfully deleted!
+					Your goal was successfully deleted!
 				</Alert>
 			</Snackbar>
 			<Snackbar
@@ -355,8 +355,8 @@ const GoalsTableToolbar: FC<Props> = ({
 					onClose={handleCloseDeletedError}
 					severity="error"
 				>
-					Something went wrong while deleting your instance! Please
-					try again.
+					Something went wrong while deleting your goal! Please try
+					again.
 				</Alert>
 			</Snackbar>
 			<Snackbar
@@ -371,7 +371,7 @@ const GoalsTableToolbar: FC<Props> = ({
 					onClose={handleCloseUpdatedSuccess}
 					severity="success"
 				>
-					Your instance was successfully updated!
+					Your goal was successfully updated!
 				</Alert>
 			</Snackbar>
 			<Snackbar
@@ -386,8 +386,8 @@ const GoalsTableToolbar: FC<Props> = ({
 					onClose={handleCloseUpdatedError}
 					severity="error"
 				>
-					Something went wrong while updating your instance! Please
-					try again.
+					Something went wrong while updating your goal! Please try
+					again.
 				</Alert>
 			</Snackbar>
 		</Toolbar>
