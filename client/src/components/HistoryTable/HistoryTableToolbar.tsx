@@ -127,35 +127,41 @@ const HistoryTableToolbar: FC<Props> = ({
 	};
 
 	// Close popups
-	const handleCloseAddedSuccess = (event: SyntheticEvent, reason: any) => {
+	const handleCloseAddedSuccess = (event?: SyntheticEvent, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenAddedSuccess(false);
 	};
 
-	const handleCloseAddedError = (event: SyntheticEvent, reason: any) => {
+	const handleCloseAddedError = (event?: SyntheticEvent, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenAddedError(false);
 	};
 
-	const handleCloseDeletedSuccess = (event: SyntheticEvent, reason: any) => {
+	const handleCloseDeletedSuccess = (
+		event?: SyntheticEvent,
+		reason?: any
+	) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenDeletedSuccess(false);
 	};
 
-	const handleCloseDeletedError = (event: SyntheticEvent, reason: any) => {
+	const handleCloseDeletedError = (event?: SyntheticEvent, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenDeletedError(false);
 	};
 
-	const handleCloseUpdatedSuccess = (event: SyntheticEvent, reason: any) => {
+	const handleCloseUpdatedSuccess = (
+		event?: SyntheticEvent,
+		reason?: any
+	) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -163,7 +169,7 @@ const HistoryTableToolbar: FC<Props> = ({
 		setOpenUpdatedSuccess(false);
 	};
 
-	const handleCloseUpdatedError = (event: SyntheticEvent, reason: any) => {
+	const handleCloseUpdatedError = (event?: SyntheticEvent, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
