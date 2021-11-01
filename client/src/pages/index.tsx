@@ -87,156 +87,41 @@ const Home: FC = () => {
 	return (
 		<Container className={classes.container}>
 			<Grid container spacing={3}>
-				<Grid item lg={3} md={6} xs={12}>
+				<Grid item xs={12}>
 					<Card className={classes.card}>
 						<CardContent>
-							<Typography variant="body2" align="center">
-								Last Month
+							<Typography variant="h4" align="center">
+								Add an Expense
 							</Typography>
-							<Typography
-								variant="h3"
-								align="center"
-								color="secondary"
-							>
-								€450
-							</Typography>
+							<Button variant="contained" color="primary">
+								Add
+							</Button>
 						</CardContent>
 					</Card>
 				</Grid>
-				<Grid item lg={3} md={6} xs={12}>
+				<Grid item xs={12}>
 					<Card className={classes.card}>
 						<CardContent>
-							<Typography variant="body2" align="center">
-								Last 6 Months Mean
+							<Typography variant="h4" align="center">
+								Add an Expense
 							</Typography>
-
-							<Typography
-								variant="h3"
-								align="center"
-								color="secondary"
-							>
-								€463
-							</Typography>
+							<Button variant="contained" color="primary">
+								Add
+							</Button>
 						</CardContent>
 					</Card>
 				</Grid>
-				<Grid item lg={3} md={6} xs={12}>
+				<Grid item xs={12}>
 					<Card className={classes.card}>
 						<CardContent>
-							<Typography variant="body2" align="center">
-								Current Goal
+							<Typography variant="h4" align="center">
+								Add an Expense
 							</Typography>
-							<Typography
-								variant="h3"
-								align="center"
-								color="secondary"
-							>
-								€430
-							</Typography>
+							<Button variant="contained" color="primary">
+								Add
+							</Button>
 						</CardContent>
 					</Card>
-				</Grid>
-				<Grid item lg={3} md={6} xs={12}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography variant="body2" align="center">
-								Spent this Month
-							</Typography>
-							<Typography
-								variant="h3"
-								align="center"
-								color="secondary"
-							>
-								€263
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-				<Grid item lg={6} xs={12}>
-					<Card className={classes.bigCard}>
-						<LineChart
-							width={innerWidth * 0.35}
-							height={200}
-							data={data}
-							margin={{
-								top: 0,
-								right: 0,
-								left: 0,
-								bottom: 0,
-							}}
-						>
-							<Line
-								type="monotone"
-								dataKey="uv"
-								stroke="#8884d8"
-							/>
-							<CartesianGrid stroke="#ccc" />
-							<XAxis dataKey="name" />
-							<YAxis />
-						</LineChart>
-					</Card>
-				</Grid>
-				<Grid item lg={6} xs={12}>
-					<Card className={classes.bigCard}>
-						<BarChart width={730} height={250} data={data}>
-							<CartesianGrid strokeDasharray="3 3" />
-							<XAxis dataKey="name" />
-							<YAxis />
-							<Tooltip />
-							<Legend />
-							<Bar dataKey="pv" fill="#8884d8" />
-							<Bar dataKey="uv" fill="#82ca9d" />
-						</BarChart>
-					</Card>
-				</Grid>
-				<Grid item lg={6} xs={12}>
-					<Card className={classes.bigCard}>
-						<BarChart width={730} height={250} data={data}>
-							<CartesianGrid strokeDasharray="3 3" />
-							<XAxis dataKey="name" />
-							<YAxis />
-							<Tooltip />
-							<Legend />
-							<Bar dataKey="pv" fill="#8884d8" />
-							<Bar dataKey="uv" fill="#82ca9d" />
-						</BarChart>
-					</Card>
-				</Grid>
-				<Grid item lg={3} md={6} xs={12}>
-					<Card className={classes.bigCard}>
-						<RadialBarChart
-							width={730}
-							height={250}
-							innerRadius="10%"
-							outerRadius="80%"
-							data={data}
-							startAngle={180}
-							endAngle={0}
-						>
-							{/* <RadialBar
-								minAngle={15}
-								label={{
-									fill: "#666",
-									position: "insideStart",
-								}}
-								background
-								clockWise={true}
-								dataKey="uv"
-							/> */}
-							<Legend
-								iconSize={10}
-								width={120}
-								height={140}
-								layout="vertical"
-								verticalAlign="middle"
-								align="right"
-							/>
-							<Tooltip />
-						</RadialBarChart>
-					</Card>
-				</Grid>
-				<Grid item lg={3} md={6} xs={12}>
-					<Card className={classes.bigCard}></Card>
 				</Grid>
 			</Grid>
 		</Container>
