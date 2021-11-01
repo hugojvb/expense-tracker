@@ -126,35 +126,35 @@ const GoalsTableToolbar: FC<Props> = ({
 	};
 
 	// Close popups
-	const handleCloseAddedSuccess = (event: any, reason: any) => {
+	const handleCloseAddedSuccess = (event?: any, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenAddedSuccess(false);
 	};
 
-	const handleCloseAddedError = (event: any, reason: any) => {
+	const handleCloseAddedError = (event?: any, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenAddedError(false);
 	};
 
-	const handleCloseDeletedSuccess = (event: any, reason: any) => {
+	const handleCloseDeletedSuccess = (event?: any, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenDeletedSuccess(false);
 	};
 
-	const handleCloseDeletedError = (event: any, reason: any) => {
+	const handleCloseDeletedError = (event?: any, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
 		setOpenDeletedError(false);
 	};
 
-	const handleCloseUpdatedSuccess = (event: any, reason: any) => {
+	const handleCloseUpdatedSuccess = (event?: any, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -162,7 +162,7 @@ const GoalsTableToolbar: FC<Props> = ({
 		setOpenUpdatedSuccess(false);
 	};
 
-	const handleCloseUpdatedError = (event: any, reason: any) => {
+	const handleCloseUpdatedError = (event?: any, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -296,36 +296,100 @@ const GoalsTableToolbar: FC<Props> = ({
 				setOpenUpdatedError={setOpenUpdatedError}
 				type="goal"
 			/>
-			{/* <Snackbar open={openAddedSuccess} autoHideDuration={3000} onClose={handleCloseAddedSuccess} TransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseAddedSuccess} severity="success">
+			<Snackbar
+				open={openAddedSuccess}
+				autoHideDuration={3000}
+				onClose={handleCloseAddedSuccess}
+				TransitionComponent={Grow}
+			>
+				<Alert
+					elevation={6}
+					variant="filled"
+					onClose={handleCloseAddedSuccess}
+					severity="success"
+				>
 					Your instance was successfully added!
-				</Alert> */}
-			{/* </Snackbar> */}
-			{/* <Snackbar open={openAddedError} autoHideDuration={3000} onClose={handleCloseAddedError}  nTransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseAddedError} severity="error">
-					Something went wrong while adding your instance! Please try again.
-				</Alert> */}
-			{/* </Snackbar> */}
-			{/* <Snackbar open={openDeletedSuccess} autoHideDuration={3000} onClose={handleCloseDeletedSuccess} TransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseDeletedSuccess} severity="success">
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={openAddedError}
+				autoHideDuration={3000}
+				onClose={handleCloseAddedError}
+				TransitionComponent={Grow}
+			>
+				<Alert
+					elevation={6}
+					variant="filled"
+					onClose={handleCloseAddedError}
+					severity="error"
+				>
+					Something went wrong while adding your instance! Please try
+					again.
+				</Alert>
+			</Snackbar>
+
+			<Snackbar
+				open={openDeletedSuccess}
+				autoHideDuration={3000}
+				onClose={handleCloseDeletedSuccess}
+				TransitionComponent={Grow}
+			>
+				<Alert
+					elevation={6}
+					variant="filled"
+					onClose={handleCloseDeletedSuccess}
+					severity="success"
+				>
 					Your instance was successfully deleted!
-				</Alert> */}
-			{/* </Snackbar> */}
-			{/* <Snackbar open={openDeletedError} autoHideDuration={3000} onClose={handleCloseDeletedError} TransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseDeletedError} severity="error">
-					Something went wrong while deleting your instance! Please try again.
-				</Alert> */}
-			{/* </Snackbar> */}
-			{/* <Snackbar open={openUpdatedSuccess} autoHideDuration={3000} onClose={handleCloseUpdatedSuccess} TransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseUpdatedSuccess} severity="success">
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={openDeletedError}
+				autoHideDuration={3000}
+				onClose={handleCloseDeletedError}
+				TransitionComponent={Grow}
+			>
+				<Alert
+					elevation={6}
+					variant="filled"
+					onClose={handleCloseDeletedError}
+					severity="error"
+				>
+					Something went wrong while deleting your instance! Please
+					try again.
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={openUpdatedSuccess}
+				autoHideDuration={3000}
+				onClose={handleCloseUpdatedSuccess}
+				TransitionComponent={Grow}
+			>
+				<Alert
+					elevation={6}
+					variant="filled"
+					onClose={handleCloseUpdatedSuccess}
+					severity="success"
+				>
 					Your instance was successfully updated!
-				</Alert> */}
-			{/* </Snackbar> */}
-			{/* <Snackbar open={openUpdatedError} autoHideDuration={3000} onClose={handleCloseUpdatedError} TransitionComponent={Grow}> */}
-			{/* <Alert elevation={6} variant="filled" onClose={handleCloseUpdatedError} severity="error">
-					Something went wrong while updating your instance! Please try again.
-				</Alert> */}
-			{/* </Snackbar> */}
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={openUpdatedError}
+				autoHideDuration={3000}
+				onClose={handleCloseUpdatedError}
+				TransitionComponent={Grow}
+			>
+				<Alert
+					elevation={6}
+					variant="filled"
+					onClose={handleCloseUpdatedError}
+					severity="error"
+				>
+					Something went wrong while updating your instance! Please
+					try again.
+				</Alert>
+			</Snackbar>
 		</Toolbar>
 	);
 };
