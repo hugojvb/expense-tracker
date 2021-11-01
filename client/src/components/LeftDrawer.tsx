@@ -17,6 +17,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import HomeIcon from "@material-ui/icons/Home";
 import TrackChangesIcon from "@material-ui/icons/TrackChanges";
 import HistoryIcon from "@material-ui/icons/History";
+import TimelineIcon from "@material-ui/icons/Timeline";
 
 import Context from "../context/context";
 import { useHistory } from "react-router";
@@ -108,6 +109,12 @@ const LeftDrawer = () => {
 					</ListItem>
 
 					<Divider />
+					<ListItem button onClick={() => history.push("/summary")}>
+						<ListItemIcon>
+							<TimelineIcon />
+						</ListItemIcon>
+						<ListItemText primary="Summary" />
+					</ListItem>
 					<ListItem button onClick={() => history.push("/goals")}>
 						<ListItemIcon>
 							<TrackChangesIcon />
