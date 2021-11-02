@@ -6,6 +6,7 @@ import {
 	useEffect,
 	useState,
 } from "react";
+import { useHistory } from "react-router";
 
 // MATERIAL-UI COMPONENTS IMPORT
 import {
@@ -27,9 +28,9 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import TrackChangesIcon from "@material-ui/icons/TrackChanges";
 import TimelineIcon from "@material-ui/icons/Timeline";
 
-// FUNCTIONAL COMPONENT
 const Home: FC = () => {
 	const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+	const history = useHistory();
 
 	const resize = useCallback(() => {
 		setInnerWidth(window.innerWidth);
@@ -101,7 +102,11 @@ const Home: FC = () => {
 								style={{ fontSize: 200 }}
 							/>
 							<hr />
-							<Button variant="contained" color="secondary">
+							<Button
+								variant="contained"
+								color="secondary"
+								onClick={() => history.push("/history")}
+							>
 								View Expenses
 							</Button>
 						</Grid>
@@ -118,7 +123,11 @@ const Home: FC = () => {
 								style={{ fontSize: 200 }}
 							/>
 							<hr />
-							<Button variant="contained" color="secondary">
+							<Button
+								variant="contained"
+								color="secondary"
+								onClick={() => history.push("/goals")}
+							>
 								View Goals
 							</Button>
 						</Grid>
@@ -135,7 +144,11 @@ const Home: FC = () => {
 								style={{ fontSize: 200 }}
 							/>
 							<hr />
-							<Button variant="contained" color="secondary">
+							<Button
+								variant="contained"
+								color="secondary"
+								onClick={() => history.push("/summary")}
+							>
 								View Summary
 							</Button>
 						</Grid>
