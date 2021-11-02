@@ -48,12 +48,12 @@ const GoalsTableRow: FC<Props> = ({
 				aria-checked={isItemSelected}
 				tabIndex={-1}
 				key={row.name}
+				onClick={(event) => handleClick(event, row)}
 				selected={isItemSelected}
 			>
 				<TableCell padding="checkbox">
 					<Checkbox
 						checked={isItemSelected}
-						onClick={(event) => handleClick(event, row)}
 						inputProps={{ "aria-labelledby": labelId }}
 						color="primary"
 					/>

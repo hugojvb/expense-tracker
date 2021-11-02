@@ -44,11 +44,11 @@ const HistoryTableRow: FC<Props> = ({
 				tabIndex={-1}
 				key={row.name}
 				selected={isItemSelected}
+				onClick={(event) => handleClick(event, row)}
 			>
 				<TableCell padding="checkbox">
 					<Checkbox
 						checked={isItemSelected}
-						onClick={(event) => handleClick(event, row)}
 						inputProps={{ "aria-labelledby": labelId }}
 						color="primary"
 					/>
