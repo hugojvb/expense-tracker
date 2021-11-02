@@ -17,6 +17,7 @@ import {
 	Button,
 	createStyles,
 	Grid,
+	Box,
 } from "@material-ui/core";
 
 import {
@@ -53,15 +54,17 @@ const Home: FC = () => {
 	// USE STYLES HOOK
 	const useStyles = makeStyles((theme) =>
 		createStyles({
+			button: {
+				display: "flex",
+				justifyContent: "center",
+			},
 			container: {
 				display: "flex",
 				minWidth: "100%",
 			},
 			card: {
 				height: "15em",
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "center",
+				minWidth: "100%",
 			},
 			bigCard: {
 				height: "20em",
@@ -86,44 +89,33 @@ const Home: FC = () => {
 
 	return (
 		<Container className={classes.container}>
-			<Grid container spacing={3}>
-				<Grid item xs={12}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography variant="h4" align="center">
-								Add an Expense
-							</Typography>
-							<Button variant="contained" color="primary">
-								Add
-							</Button>
-						</CardContent>
-					</Card>
-				</Grid>
-				<Grid item xs={12}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography variant="h4" align="center">
-								Add an Expense
-							</Typography>
-							<Button variant="contained" color="primary">
-								Add
-							</Button>
-						</CardContent>
-					</Card>
-				</Grid>
-				<Grid item xs={12}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography variant="h4" align="center">
-								Add an Expense
-							</Typography>
-							<Button variant="contained" color="primary">
-								Add
-							</Button>
-						</CardContent>
-					</Card>
-				</Grid>
-			</Grid>
+			<Card className={classes.card}>
+				<CardContent>
+					<Grid container direction="column" spacing={3}>
+						<Grid item xs={12}>
+							<Box className={classes.button}>
+								<Button variant="contained" color="primary">
+									Add an Expense
+								</Button>
+							</Box>
+						</Grid>
+						<Grid item xs={12}>
+							<Box className={classes.button}>
+								<Button variant="contained" color="primary">
+									Add a Goal
+								</Button>
+							</Box>
+						</Grid>
+						<Grid item xs={12}>
+							<Box className={classes.button}>
+								<Button variant="contained" color="primary">
+									View Summary
+								</Button>
+							</Box>
+						</Grid>
+					</Grid>
+				</CardContent>
+			</Card>
 		</Container>
 	);
 };
