@@ -34,6 +34,7 @@ import {
 	RadialBar,
 } from "recharts";
 import { StylesContext } from "@material-ui/styles";
+import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 
 // FUNCTIONAL COMPONENT
 const Home: FC = () => {
@@ -54,23 +55,13 @@ const Home: FC = () => {
 	// USE STYLES HOOK
 	const useStyles = makeStyles((theme) =>
 		createStyles({
-			button: {
-				display: "flex",
-				justifyContent: "center",
-			},
 			container: {
 				display: "flex",
 				minWidth: "100%",
 			},
 			card: {
-				height: "15em",
+				height: "50em",
 				minWidth: "100%",
-			},
-			bigCard: {
-				height: "20em",
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "center",
 			},
 			titles: {
 				marginTop: "4vh",
@@ -91,27 +82,54 @@ const Home: FC = () => {
 		<Container className={classes.container}>
 			<Card className={classes.card}>
 				<CardContent>
-					<Grid container direction="column" spacing={3}>
-						<Grid item xs={12}>
-							<Box className={classes.button}>
-								<Button variant="contained" color="primary">
-									Add an Expense
-								</Button>
-							</Box>
+					<Grid container spacing={3}>
+						<Grid
+							item
+							container
+							direction="column"
+							xs={4}
+							justify="center"
+							alignItems="center"
+						>
+							<AttachMoneyIcon
+								color="secondary"
+								style={{ fontSize: 250 }}
+							/>
+							<Button variant="contained" color="primary">
+								Add an Expense
+							</Button>
 						</Grid>
-						<Grid item xs={12}>
-							<Box className={classes.button}>
-								<Button variant="contained" color="primary">
-									Add a Goal
-								</Button>
-							</Box>
+						<Grid
+							item
+							container
+							direction="column"
+							xs={4}
+							justify="center"
+							alignItems="center"
+						>
+							<AttachMoneyIcon
+								color="secondary"
+								style={{ fontSize: 250 }}
+							/>
+							<Button variant="contained" color="primary">
+								Add a Goal
+							</Button>
 						</Grid>
-						<Grid item xs={12}>
-							<Box className={classes.button}>
-								<Button variant="contained" color="primary">
-									View Summary
-								</Button>
-							</Box>
+						<Grid
+							item
+							container
+							direction="column"
+							xs={4}
+							justify="center"
+							alignItems="center"
+						>
+							<AttachMoneyIcon
+								color="secondary"
+								style={{ fontSize: 250 }}
+							/>
+							<Button variant="contained" color="primary">
+								View Summary
+							</Button>
 						</Grid>
 					</Grid>
 				</CardContent>
