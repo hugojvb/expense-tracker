@@ -18,23 +18,14 @@ import {
 	createStyles,
 	Grid,
 	Box,
+	CardHeader,
+	Avatar,
+	IconButton,
 } from "@material-ui/core";
 
-import {
-	LineChart,
-	Line,
-	CartesianGrid,
-	XAxis,
-	YAxis,
-	BarChart,
-	Tooltip,
-	Legend,
-	Bar,
-	RadialBarChart,
-	RadialBar,
-} from "recharts";
-import { StylesContext } from "@material-ui/styles";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
+import TrackChangesIcon from "@material-ui/icons/TrackChanges";
+import TimelineIcon from "@material-ui/icons/Timeline";
 
 // FUNCTIONAL COMPONENT
 const Home: FC = () => {
@@ -62,6 +53,7 @@ const Home: FC = () => {
 			card: {
 				height: "50em",
 				minWidth: "100%",
+				padding: "2em",
 			},
 			titles: {
 				marginTop: "4vh",
@@ -82,54 +74,78 @@ const Home: FC = () => {
 		<Container className={classes.container}>
 			<Card className={classes.card}>
 				<CardContent>
-					<Grid container spacing={3}>
-						<Grid
-							item
-							container
-							direction="column"
-							xs={4}
-							justify="center"
-							alignItems="center"
+					<Grid
+						item
+						container
+						spacing={2}
+						direction="column"
+						justify="center"
+						alignItems="center"
+					>
+						<Typography variant="h4" color="primary" align="center">
+							Welcome Back
+						</Typography>
+						<hr />
+						<Typography
+							variant="h2"
+							color="secondary"
+							align="center"
 						>
-							<AttachMoneyIcon
-								color="secondary"
-								style={{ fontSize: 250 }}
-							/>
-							<Button variant="contained" color="primary">
-								Add an Expense
-							</Button>
-						</Grid>
-						<Grid
-							item
-							container
-							direction="column"
-							xs={4}
-							justify="center"
-							alignItems="center"
-						>
-							<AttachMoneyIcon
-								color="secondary"
-								style={{ fontSize: 250 }}
-							/>
-							<Button variant="contained" color="primary">
-								Add a Goal
-							</Button>
-						</Grid>
-						<Grid
-							item
-							container
-							direction="column"
-							xs={4}
-							justify="center"
-							alignItems="center"
-						>
-							<AttachMoneyIcon
-								color="secondary"
-								style={{ fontSize: 250 }}
-							/>
-							<Button variant="contained" color="primary">
-								View Summary
-							</Button>
+							What do you want to do?
+						</Typography>
+						<hr />
+						<Grid item container spacing={3}>
+							<Grid
+								item
+								container
+								direction="column"
+								xs={4}
+								justify="center"
+								alignItems="center"
+							>
+								<AttachMoneyIcon
+									color="secondary"
+									style={{ fontSize: 200 }}
+								/>
+								<hr />
+								<Button variant="contained" color="secondary">
+									Add an Expense
+								</Button>
+							</Grid>
+							<Grid
+								item
+								container
+								direction="column"
+								xs={4}
+								justify="center"
+								alignItems="center"
+							>
+								<TrackChangesIcon
+									color="secondary"
+									style={{ fontSize: 200 }}
+								/>
+								<hr />
+								<Button variant="contained" color="secondary">
+									Add a Goal
+								</Button>
+							</Grid>
+							<Grid
+								item
+								container
+								direction="column"
+								xs={4}
+								justify="center"
+								alignItems="center"
+							>
+								<TimelineIcon
+									color="secondary"
+									style={{ fontSize: 200 }}
+								/>
+								<hr />
+								<Button variant="contained" color="secondary">
+									View Summary
+								</Button>
+							</Grid>
 						</Grid>
 					</Grid>
 				</CardContent>
