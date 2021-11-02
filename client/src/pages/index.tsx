@@ -73,79 +73,71 @@ const Home: FC = () => {
 	return (
 		<Container className={classes.container}>
 			<Card className={classes.card}>
-				<CardContent>
-					<Grid
-						item
-						container
-						spacing={2}
-						direction="column"
-						justify="center"
-						alignItems="center"
-					>
-						<Typography variant="h4" color="primary" align="center">
-							Welcome Back
-						</Typography>
-						<hr />
-						<Typography
-							variant="h2"
-							color="secondary"
-							align="center"
+				<CardContent
+					style={{
+						height: "100%",
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "space-evenly",
+					}}
+				>
+					<Typography variant="h4" color="primary" align="center">
+						Welcome Back
+					</Typography>
+					<Typography variant="h2" color="secondary" align="center">
+						What do you want to do?
+					</Typography>
+					<Grid item container spacing={3}>
+						<Grid
+							item
+							container
+							direction="column"
+							xs={4}
+							justify="center"
+							alignItems="center"
 						>
-							What do you want to do?
-						</Typography>
-						<hr />
-						<Grid item container spacing={3}>
-							<Grid
-								item
-								container
-								direction="column"
-								xs={4}
-								justify="center"
-								alignItems="center"
-							>
-								<AttachMoneyIcon
-									color="secondary"
-									style={{ fontSize: 200 }}
-								/>
-								<hr />
-								<Button variant="contained" color="secondary">
-									Add an Expense
-								</Button>
-							</Grid>
-							<Grid
-								item
-								container
-								direction="column"
-								xs={4}
-								justify="center"
-								alignItems="center"
-							>
-								<TrackChangesIcon
-									color="secondary"
-									style={{ fontSize: 200 }}
-								/>
-								<hr />
-								<Button variant="contained" color="secondary">
-									Add a Goal
-								</Button>
-							</Grid>
-							<Grid
-								item
-								container
-								direction="column"
-								xs={4}
-								justify="center"
-								alignItems="center"
-							>
-								<TimelineIcon
-									color="secondary"
-									style={{ fontSize: 200 }}
-								/>
-								<hr />
-								<Button variant="contained" color="secondary">
-									View Summary
-								</Button>
-							</Grid>
+							<AttachMoneyIcon
+								color="secondary"
+								style={{ fontSize: 200 }}
+							/>
+							<hr />
+							<Button variant="contained" color="secondary">
+								View Expenses
+							</Button>
+						</Grid>
+						<Grid
+							item
+							container
+							direction="column"
+							xs={4}
+							justify="center"
+							alignItems="center"
+						>
+							<TrackChangesIcon
+								color="secondary"
+								style={{ fontSize: 200 }}
+							/>
+							<hr />
+							<Button variant="contained" color="secondary">
+								View Goals
+							</Button>
+						</Grid>
+						<Grid
+							item
+							container
+							direction="column"
+							xs={4}
+							justify="center"
+							alignItems="center"
+						>
+							<TimelineIcon
+								color="secondary"
+								style={{ fontSize: 200 }}
+							/>
+							<hr />
+							<Button variant="contained" color="secondary">
+								View Summary
+							</Button>
 						</Grid>
 					</Grid>
 				</CardContent>
