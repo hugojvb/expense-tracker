@@ -1,5 +1,5 @@
 const express = require("express");
-const { getLastMonth } = require("../controllers/transactions.js");
+const { getLastMonth } = require("../controllers/stats.js");
 const router = express.Router();
 
 const { verify } = require("../middleware/verify.js");
