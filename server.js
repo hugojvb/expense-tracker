@@ -1,5 +1,6 @@
 const express = require("express");
 const transactions = require("./routes/transactions.js");
+const stats = require("./routes/stats.js");
 const goals = require("./routes/goals");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
@@ -31,6 +32,7 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/auth", auth);
 app.use("/api/transactions", transactions);
 app.use("/api/goals", goals);
+app.use("/api/stats", stats);
 
 // get frontend build
 app.use(express.static(path.join(__dirname, "client/build")));
