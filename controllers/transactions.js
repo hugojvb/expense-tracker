@@ -78,3 +78,21 @@ exports.deleteTransaction = async (req, res) => {
 		res.status(400).json({ Error: "Failed to delete transaction" });
 	}
 };
+
+exports.getLastMonth = async (req, res) => {
+	try {
+		const lastMonth = await TransactionsSchema.find({
+			user: req.user,
+		}).sort({ date: -1 });
+
+		if (!lastMonth)
+			return res
+				.status(400)
+				.json({ Error: "Last month transactions not found" });
+
+		res.status(200).json({ success: true, data: lastMonth });
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({ Error: "Failed to get last month" });
+	}
+};
