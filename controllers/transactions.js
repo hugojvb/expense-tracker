@@ -1,4 +1,5 @@
 const TransactionsSchema = require("../models/TransactionsSchema");
+const dayjs = require("dayjs");
 
 // get all transactions
 exports.getTransactions = async (req, res) => {
@@ -84,8 +85,8 @@ exports.getLastMonth = async (req, res) => {
 		const lastMonth = await TransactionsSchema.find({
 			user: req.user,
 			createdAt: {
-				$gte: new Date(),
-				$lt: new Date(),
+				$gte: dayjs().subtract(1, "month"),
+				$lt: dayjs().toDate(),
 			},
 		}).sort({ date: -1 });
 
