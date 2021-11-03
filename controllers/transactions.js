@@ -83,6 +83,10 @@ exports.getLastMonth = async (req, res) => {
 	try {
 		const lastMonth = await TransactionsSchema.find({
 			user: req.user,
+			createdAt: {
+				$gte: new Date(),
+				$lt: new Date(),
+			},
 		}).sort({ date: -1 });
 
 		if (!lastMonth)
