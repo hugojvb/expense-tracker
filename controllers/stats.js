@@ -5,7 +5,7 @@ exports.getLastMonth = async (req, res) => {
 	try {
 		const lastMonth = await TransactionsSchema.find({
 			user: req.user,
-			createdAt: {
+			date: {
 				$gte: dayjs().subtract(1, "month"),
 				$lt: dayjs().toDate(),
 			},
