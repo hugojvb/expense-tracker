@@ -12,6 +12,7 @@ interface ContextProps {
 	goals: any;
 	getData: (data: string, stats?: boolean) => void;
 	loading: boolean;
+	stats: any;
 }
 
 // CREATE CONTEXT STORE

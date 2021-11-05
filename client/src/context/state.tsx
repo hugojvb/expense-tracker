@@ -27,6 +27,7 @@ const State: FC = (props: any): JSX.Element => {
 		transactions: [],
 		goals: [],
 		loading: false,
+		stats: undefined,
 	};
 
 	// USE REDUCER FUNCTION
@@ -66,6 +67,7 @@ const State: FC = (props: any): JSX.Element => {
 				goals: state.goals,
 				getData,
 				loading: state.loading,
+				stats: state.stats,
 			}}
 		>
 			{props?.children}
