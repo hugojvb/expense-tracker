@@ -1,13 +1,11 @@
 import {
 	FC,
 	Fragment,
-	ReactNode,
+	useContext,
 	useCallback,
 	useEffect,
 	useState,
 } from "react";
-
-// MATERIAL-UI COMPONENTS IMPORT
 import {
 	Card,
 	CardContent,
@@ -18,7 +16,6 @@ import {
 	createStyles,
 	Grid,
 } from "@material-ui/core";
-
 import {
 	LineChart,
 	Line,
@@ -32,7 +29,7 @@ import {
 	RadialBarChart,
 	RadialBar,
 } from "recharts";
-import { StylesContext } from "@material-ui/styles";
+import Context from "../context/context";
 
 // FUNCTIONAL COMPONENT
 const Summary: FC = () => {
@@ -42,8 +39,16 @@ const Summary: FC = () => {
 		setInnerWidth(window.innerWidth);
 	}, [setInnerWidth]);
 
+	const context = useContext(Context);
+	const { getData, transactions, loading } = context;
+
 	useEffect(() => {
 		window.addEventListener("resize", () => resize());
+
+		(async () => {
+			await getData("lastmonth", true);
+		})();
+
 		return () =>
 			document.removeEventListener("resize", () => {
 				resize();

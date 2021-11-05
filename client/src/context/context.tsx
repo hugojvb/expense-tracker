@@ -10,7 +10,7 @@ interface ContextProps {
 	toggleDrawer: (arg0: boolean) => void;
 	transactions: any;
 	goals: any;
-	getData: (data: string) => void;
+	getData: (data: string, stats?: boolean) => void;
 	loading: boolean;
 }
 
