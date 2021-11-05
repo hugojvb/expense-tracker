@@ -98,13 +98,33 @@ const Summary: FC = () => {
 							<Typography variant="body2" align="center">
 								Last Month
 							</Typography>
-							<Typography
-								variant="h3"
-								align="center"
-								color="secondary"
-							>
-								€450
-							</Typography>
+							{loading ? (
+								<div
+									className="container"
+									style={{
+										width: "100%",
+										display: "flex",
+										flexDirection: "row",
+										justifyContent: "center",
+										alignItems: "center",
+										marginTop: 10,
+									}}
+								>
+									<img
+										src="../../loading.svg"
+										alt="loading"
+										style={{ width: 50 }}
+									/>
+								</div>
+							) : (
+								<Typography
+									variant="h3"
+									align="center"
+									color="secondary"
+								>
+									€450
+								</Typography>
+							)}
 						</CardContent>
 					</Card>
 				</Grid>
