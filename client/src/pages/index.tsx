@@ -85,9 +85,6 @@ const Home: FC = () => {
 					<Typography variant="h4" color="primary" align="center">
 						Welcome Back
 					</Typography>
-					<Typography variant="h2" color="secondary" align="center">
-						What do you want to do?
-					</Typography>
 					<Grid item container spacing={3}>
 						<Grid
 							item
@@ -103,7 +100,7 @@ const Home: FC = () => {
 							/>
 							<hr />
 							<Button
-								variant="contained"
+								variant="outlined"
 								color="secondary"
 								onClick={() => history.push("/history")}
 							>
@@ -124,7 +121,7 @@ const Home: FC = () => {
 							/>
 							<hr />
 							<Button
-								variant="contained"
+								variant="outlined"
 								color="secondary"
 								onClick={() => history.push("/goals")}
 							>
@@ -145,7 +142,7 @@ const Home: FC = () => {
 							/>
 							<hr />
 							<Button
-								variant="contained"
+								variant="outlined"
 								color="secondary"
 								onClick={() => history.push("/summary")}
 							>
