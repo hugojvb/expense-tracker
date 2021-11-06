@@ -67,8 +67,8 @@ const Navbar: FC = (): JSX.Element => {
 			},
 			appBarShift: {
 				flexGrow: 1,
-				marginLeft: drawerWidth,
-				width: `calc(100% - ${drawerWidth}px)`,
+				// marginLeft: drawerWidth,
+				// width: `calc(100% - ${drawerWidth}px)`,
 				transition: theme.transitions.create(["width", "margin"], {
 					easing: theme.transitions.easing.sharp,
 					duration: theme.transitions.duration.enteringScreen,
@@ -83,7 +83,7 @@ const Navbar: FC = (): JSX.Element => {
 				color: "#444",
 			},
 			toolbar: {
-				paddingLeft: isDrawerOpen ? theme.spacing(4) : theme.spacing(1),
+				paddingLeft: theme.spacing(1),
 				paddingRight: theme.spacing(2),
 			},
 		})
@@ -123,15 +123,13 @@ const Navbar: FC = (): JSX.Element => {
 				color="primary"
 			>
 				<Toolbar disableGutters classes={{ root: classes.toolbar }}>
-					{!isDrawerOpen && (
-						<IconButton
-							color="inherit"
-							onClick={() => toggleDrawer(true)}
-							className={classes.menuButton}
-						>
-							<MenuIcon />
-						</IconButton>
-					)}
+					<IconButton
+						color="inherit"
+						onClick={() => toggleDrawer(!isDrawerOpen)}
+						className={classes.menuButton}
+					>
+						<MenuIcon />
+					</IconButton>
 					<img
 						src="/logo.png"
 						alt="logo"
