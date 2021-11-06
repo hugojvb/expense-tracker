@@ -1,4 +1,5 @@
 const TransactionsSchema = require("../models/TransactionsSchema");
+const GoalsSchema = require("../models/GoalsSchema");
 const dayjs = require("dayjs");
 
 exports.getLastMonth = async (req, res) => {
@@ -49,5 +50,21 @@ exports.getLastSemesterMean = async (req, res) => {
 	} catch (error) {
 		console.log(error);
 		res.status(400).json({ Error: "Failed to get last semester mean" });
+	}
+};
+
+exports.getLastGoal = async (req, res) => {
+	try {
+		const lastGoal = await GoalsSchema.findOne({
+			user: req.user,
+		}).sort({ date: -1 });
+
+		if (!lastGoal)
+			return res.status(400).json({ Error: "Last goal not found" });
+
+		res.status(200).json({ success: true, data: lastGoal });
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({ Error: "Failed to get last goal" });
 	}
 };
