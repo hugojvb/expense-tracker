@@ -30,7 +30,8 @@ import {
 	RadialBar,
 } from "recharts";
 import Context from "../context/context";
-import { verify } from "crypto";
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 // FUNCTIONAL COMPONENT
 const Summary: FC = () => {
@@ -125,7 +126,18 @@ const Summary: FC = () => {
 									align="center"
 									color="secondary"
 								>
-									{stats?.lastMonth} €
+									€ {stats?.lastMonth}
+									{stats?.lastMonth > stats?.lastGoal ? (
+										<ArrowDropUpIcon
+											color="error"
+											fontSize="large"
+										/>
+									) : (
+										<ArrowDropDownIcon
+											style={{ color: "green" }}
+											fontSize="large"
+										/>
+									)}
 								</Typography>
 							)}
 						</CardContent>
@@ -162,7 +174,19 @@ const Summary: FC = () => {
 									align="center"
 									color="secondary"
 								>
-									{stats?.lastSemesterMean} €
+									€ {stats?.lastSemesterMean}
+									{stats?.lastSemesterMean >
+									stats?.lastGoal ? (
+										<ArrowDropUpIcon
+											color="error"
+											fontSize="large"
+										/>
+									) : (
+										<ArrowDropDownIcon
+											style={{ color: "green" }}
+											fontSize="large"
+										/>
+									)}
 								</Typography>
 							)}
 						</CardContent>
@@ -198,7 +222,7 @@ const Summary: FC = () => {
 									align="center"
 									color="secondary"
 								>
-									{stats?.lastGoal} €
+									€ {stats?.lastGoal}
 								</Typography>
 							)}
 						</CardContent>
