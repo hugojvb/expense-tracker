@@ -11,10 +11,9 @@ exports.getLastMonth = async (req, res) => {
 			},
 		}).sort({ date: -1 });
 
-		const totalAmount = lastMonth.reduce(
-			(sum, current) => (sum += current.amount)
+		const totalAmount = Math.round(
+			lastMonth.reduce((sum, current) => (sum += current.amount), 0)
 		);
-
 		if (!lastMonth)
 			return res
 				.status(400)

@@ -122,7 +122,7 @@ const Summary: FC = () => {
 									align="center"
 									color="secondary"
 								>
-									{stats?.lastMonth} €
+									{stats?.lastmonth} €
 								</Typography>
 							)}
 						</CardContent>
