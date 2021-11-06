@@ -48,9 +48,11 @@ const Summary: FC = () => {
 		window.addEventListener("resize", () => resize());
 
 		(async () => {
-			await getData("lastMonth", true);
-			await getData("lastSemesterMean", true);
-			await getData("lastGoal", true);
+			if (!stats) {
+				await getData("lastMonth", true);
+				await getData("lastSemesterMean", true);
+				await getData("lastGoal", true);
+			}
 		})();
 
 		return () =>

@@ -7,8 +7,8 @@ exports.getLastMonth = async (req, res) => {
 		const lastMonth = await TransactionsSchema.find({
 			user: req.user,
 			date: {
-				$gte: dayjs().subtract(1, "month"),
-				$lt: dayjs().toDate(),
+				$gte: dayjs().subtract(1, "month").startOf("month"),
+				$lt: dayjs().subtract(1, "month").endOf("month"),
 			},
 		}).sort({ date: -1 });
 
@@ -32,8 +32,8 @@ exports.getLastSemesterMean = async (req, res) => {
 		const lastSemester = await TransactionsSchema.find({
 			user: req.user,
 			date: {
-				$gte: dayjs().subtract(6, "month"),
-				$lt: dayjs().toDate(),
+				$gte: dayjs().subtract(6, "month").startOf("month"),
+				$lt: dayjs().subtract(1, "month").endOf("month"),
 			},
 		}).sort({ date: -1 });
 
