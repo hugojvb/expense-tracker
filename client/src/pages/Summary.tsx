@@ -40,7 +40,7 @@ const Summary: FC = () => {
 	}, [setInnerWidth]);
 
 	const context = useContext(Context);
-	const { getData, transactions, loading } = context;
+	const { getData, stats, loading } = context;
 
 	useEffect(() => {
 		window.addEventListener("resize", () => resize());
@@ -122,7 +122,7 @@ const Summary: FC = () => {
 									align="center"
 									color="secondary"
 								>
-									€450
+									{stats?.lastMonth} €
 								</Typography>
 							)}
 						</CardContent>
