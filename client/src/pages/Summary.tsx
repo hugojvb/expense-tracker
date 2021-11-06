@@ -160,7 +160,7 @@ const Summary: FC = () => {
 									align="center"
 									color="secondary"
 								>
-									{stats?.lastSemesterMean}
+									{stats?.lastSemesterMean} €
 								</Typography>
 							)}
 						</CardContent>

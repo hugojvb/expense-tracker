@@ -54,6 +54,7 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				stats: { ...state.stats, lastSemesterMean: action.payload },
+				loading: false,
 			};
 		default:
 			return state;
