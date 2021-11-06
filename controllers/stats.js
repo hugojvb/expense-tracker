@@ -62,7 +62,7 @@ exports.getLastGoal = async (req, res) => {
 		if (!lastGoal)
 			return res.status(400).json({ Error: "Last goal not found" });
 
-		res.status(200).json({ success: true, data: lastGoal });
+		res.status(200).json({ success: true, data: lastGoal.goal });
 	} catch (error) {
 		console.log(error);
 		res.status(400).json({ Error: "Failed to get last goal" });

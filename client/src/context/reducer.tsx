@@ -1,6 +1,7 @@
 // TYPES IMPORT
 import {
 	GET_GOALS,
+	GET_LASTGOAL,
 	GET_LASTMONTH,
 	GET_LASTSEMESTERMEAN,
 	GET_TRANSACTIONS,
@@ -54,6 +55,12 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				stats: { ...state.stats, lastSemesterMean: action.payload },
+				loading: false,
+			};
+		case GET_LASTGOAL:
+			return {
+				...state,
+				stats: { ...state.stats, lastGoal: action.payload },
 				loading: false,
 			};
 		default:
