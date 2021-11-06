@@ -20,7 +20,7 @@ import HistoryIcon from "@material-ui/icons/History";
 import TimelineIcon from "@material-ui/icons/Timeline";
 
 import Context from "../context/context";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 const drawerWidth = 240;
 
@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const LeftDrawer = () => {
 	const classes = useStyles();
 	const history = useHistory();
+	const location = useLocation();
 
 	const context = useContext(Context);
 	const { toggleDrawer, isDrawerOpen } = context;
@@ -101,7 +102,11 @@ const LeftDrawer = () => {
 					</IconButton>
 				</div>
 				<List>
-					<ListItem button onClick={() => history.push("/")}>
+					<ListItem
+						button
+						onClick={() => history.push("/")}
+						selected={location.pathname === "/"}
+					>
 						<ListItemIcon>
 							<HomeIcon />
 						</ListItemIcon>
@@ -109,19 +114,31 @@ const LeftDrawer = () => {
 					</ListItem>
 
 					<Divider />
-					<ListItem button onClick={() => history.push("/summary")}>
+					<ListItem
+						button
+						onClick={() => history.push("/summary")}
+						selected={location.pathname === "/summary"}
+					>
 						<ListItemIcon>
 							<TimelineIcon />
 						</ListItemIcon>
 						<ListItemText primary="Summary" />
 					</ListItem>
-					<ListItem button onClick={() => history.push("/goals")}>
+					<ListItem
+						button
+						onClick={() => history.push("/goals")}
+						selected={location.pathname === "/goals"}
+					>
 						<ListItemIcon>
 							<TrackChangesIcon />
 						</ListItemIcon>
 						<ListItemText primary="Goals" />
 					</ListItem>
-					<ListItem button onClick={() => history.push("/history")}>
+					<ListItem
+						button
+						onClick={() => history.push("/history")}
+						selected={location.pathname === "/history"}
+					>
 						<ListItemIcon>
 							<HistoryIcon />
 						</ListItemIcon>
