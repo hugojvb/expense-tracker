@@ -47,6 +47,7 @@ const Summary: FC = () => {
 
 		(async () => {
 			await getData("lastMonth", true);
+			await getData("lastSemesterMean", true);
 		})();
 
 		return () =>
@@ -159,7 +160,7 @@ const Summary: FC = () => {
 									align="center"
 									color="secondary"
 								>
-									€463
+									{stats?.lastSemesterMean}
 								</Typography>
 							)}
 						</CardContent>
