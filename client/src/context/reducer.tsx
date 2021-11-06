@@ -2,6 +2,7 @@
 import {
 	GET_GOALS,
 	GET_LASTMONTH,
+	GET_LASTSEMESTERMEAN,
 	GET_TRANSACTIONS,
 	LOGIN,
 	LOGOUT,
@@ -9,7 +10,6 @@ import {
 	TOGGLE_DRAWER,
 } from "./types";
 
-// REDUCER FUNCTION
 const reducer = (state: any, action: { type: string; payload?: any }) => {
 	switch (action.type) {
 		case LOGIN:
@@ -49,6 +49,11 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 				...state,
 				stats: { ...state.stats, lastMonth: action.payload },
 				loading: false,
+			};
+		case GET_LASTSEMESTERMEAN:
+			return {
+				...state,
+				stats: { ...state.stats, lastSemesterMean: action.payload },
 			};
 		default:
 			return state;
