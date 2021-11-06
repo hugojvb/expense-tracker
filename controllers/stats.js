@@ -25,3 +25,29 @@ exports.getLastMonth = async (req, res) => {
 		res.status(400).json({ Error: "Failed to get last month" });
 	}
 };
+
+exports.getLastSemesterMean = async (req, res) => {
+	try {
+		const lastSemester = await TransactionsSchema.find({
+			user: req.user,
+			date: {
+				$gte: dayjs().subtract(6, "month"),
+				$lt: dayjs().toDate(),
+			},
+		}).sort({ date: -1 });
+
+		const semesterMean = Math.round(
+			lastSemester.reduce((sum, current) => (sum += current.amount), 0) /
+				6
+		);
+		if (!lastSemester)
+			return res
+				.status(400)
+				.json({ Error: "Last semester transactions mean not found" });
+
+		res.status(200).json({ success: true, data: semesterMean });
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({ Error: "Failed to get last semester mean" });
+	}
+};

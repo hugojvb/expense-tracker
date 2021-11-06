@@ -46,7 +46,7 @@ const Summary: FC = () => {
 		window.addEventListener("resize", () => resize());
 
 		(async () => {
-			await getData("lastmonth", true);
+			await getData("lastMonth", true);
 		})();
 
 		return () =>
