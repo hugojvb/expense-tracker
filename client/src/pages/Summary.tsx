@@ -30,6 +30,7 @@ import {
 	RadialBar,
 } from "recharts";
 import Context from "../context/context";
+import { verify } from "crypto";
 
 // FUNCTIONAL COMPONENT
 const Summary: FC = () => {
@@ -48,6 +49,7 @@ const Summary: FC = () => {
 		(async () => {
 			await getData("lastMonth", true);
 			await getData("lastSemesterMean", true);
+			await getData("lastGoal", true);
 		})();
 
 		return () =>
@@ -196,7 +198,7 @@ const Summary: FC = () => {
 									align="center"
 									color="secondary"
 								>
-									€430
+									{stats?.lastGoal} €
 								</Typography>
 							)}
 						</CardContent>
