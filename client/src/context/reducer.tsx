@@ -47,7 +47,7 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 		case GET_LASTMONTH:
 			return {
 				...state,
-				stats: { ...state.stats, lastmonth: action.payload },
+				stats: { ...state.stats, lastMonth: action.payload },
 				loading: false,
 			};
 		default:
