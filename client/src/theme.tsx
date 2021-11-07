@@ -19,7 +19,7 @@ const theme: Theme = createMuiTheme({
 		},
 		text: {
 			primary: "#222",
-			secondary: "#fff",
+			secondary: "#888",
 		},
 	},
 	typography: {

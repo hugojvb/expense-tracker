@@ -112,7 +112,7 @@ const Summary: FC = () => {
 							<Typography
 								variant="body2"
 								align="center"
-								color="textSecondary"
+								style={{ color: "#fff" }}
 							>
 								Current Goal
 							</Typography>
@@ -138,7 +138,7 @@ const Summary: FC = () => {
 								<Typography
 									variant="h3"
 									align="center"
-									color="textSecondary"
+									style={{ color: "#fff" }}
 								>
 									€ {stats?.lastGoal}
 								</Typography>
@@ -244,7 +244,7 @@ const Summary: FC = () => {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography variant="body2" align="center">
-								Last 6 Months Mean
+								Last 6 Months (Mean)
 							</Typography>
 
 							{loading ? (
