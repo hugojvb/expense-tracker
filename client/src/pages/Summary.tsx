@@ -75,6 +75,13 @@ const Summary: FC = () => {
 				alignItems: "center",
 				justifyContent: "center",
 			},
+			cardAlt: {
+				height: "15em",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				backgroundColor: theme.palette.primary.main,
+			},
 			bigCard: {
 				height: "20em",
 				display: "flex",
@@ -100,9 +107,13 @@ const Summary: FC = () => {
 		<Container className={classes.container}>
 			<Grid container spacing={3}>
 				<Grid item lg={3} md={6} xs={12}>
-					<Card className={classes.card}>
+					<Card className={classes.cardAlt}>
 						<CardContent>
-							<Typography variant="body2" align="center">
+							<Typography
+								variant="body2"
+								align="center"
+								color="textSecondary"
+							>
 								Current Goal
 							</Typography>
 							{loading ? (
@@ -127,7 +138,7 @@ const Summary: FC = () => {
 								<Typography
 									variant="h3"
 									align="center"
-									color="secondary"
+									color="textSecondary"
 								>
 									€ {stats?.lastGoal}
 								</Typography>
