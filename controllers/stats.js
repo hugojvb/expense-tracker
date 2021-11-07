@@ -68,3 +68,28 @@ exports.getLastGoal = async (req, res) => {
 		res.status(400).json({ Error: "Failed to get last goal" });
 	}
 };
+
+exports.getSpentThisMonth = async (req, res) => {
+	try {
+		const thisMonth = await TransactionsSchema.find({
+			user: req.user,
+			date: {
+				$gte: dayjs().startOf("month"),
+				$lt: dayjs(),
+			},
+		}).sort({ date: -1 });
+
+		const spentThisMonth = Math.round(
+			thisMonth.reduce((sum, current) => (sum += current.amount), 0)
+		);
+		if (!thisMonth)
+			return res
+				.status(400)
+				.json({ Error: "Spent this month not found" });
+
+		res.status(200).json({ success: true, data: spentThisMonth });
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({ Error: "Failed to get spent this month" });
+	}
+};
