@@ -10,3 +10,4 @@ export const SET_LOADING: string = "SET_LOADING";
 export const GET_LASTMONTH: string = "GET_LASTMONTH";
 export const GET_LASTSEMESTERMEAN: string = "GET_LASTSEMESTERMEAN";
 export const GET_LASTGOAL: string = "GET_LASTGOAL";
+export const GET_SPENTTHISMONTH: string = "GET_SPENTTHISMONTH";

@@ -4,6 +4,7 @@ import {
 	GET_LASTGOAL,
 	GET_LASTMONTH,
 	GET_LASTSEMESTERMEAN,
+	GET_SPENTTHISMONTH,
 	GET_TRANSACTIONS,
 	LOGIN,
 	LOGOUT,
@@ -61,6 +62,12 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				stats: { ...state.stats, lastGoal: action.payload },
+				loading: false,
+			};
+		case GET_SPENTTHISMONTH:
+			return {
+				...state,
+				stats: { ...state.stats, spentThisMonth: action.payload },
 				loading: false,
 			};
 		default:
