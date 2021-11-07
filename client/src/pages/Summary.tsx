@@ -52,6 +52,7 @@ const Summary: FC = () => {
 				await getData("lastMonth", true);
 				await getData("lastSemesterMean", true);
 				await getData("lastGoal", true);
+				await getData("spentThisMonth", true);
 			}
 		})();
 
@@ -260,47 +261,10 @@ const Summary: FC = () => {
 									align="center"
 									color="secondary"
 								>
-									€263
+									€ {stats?.spenThisMonth}
 								</Typography>
 							)}
 						</CardContent>
-					</Card>
-				</Grid>
-				<Grid item lg={6} xs={12}>
-					<Card className={classes.bigCard}>
-						<LineChart
-							width={innerWidth * 0.35}
-							height={200}
-							data={data}
-							margin={{
-								top: 0,
-								right: 0,
-								left: 0,
-								bottom: 0,
-							}}
-						>
-							<Line
-								type="monotone"
-								dataKey="uv"
-								stroke="#8884d8"
-							/>
-							<CartesianGrid stroke="#ccc" />
-							<XAxis dataKey="name" />
-							<YAxis />
-						</LineChart>
-					</Card>
-				</Grid>
-				<Grid item lg={6} xs={12}>
-					<Card className={classes.bigCard}>
-						<BarChart width={730} height={250} data={data}>
-							<CartesianGrid strokeDasharray="3 3" />
-							<XAxis dataKey="name" />
-							<YAxis />
-							<Tooltip />
-							<Legend />
-							<Bar dataKey="pv" fill="#8884d8" />
-							<Bar dataKey="uv" fill="#82ca9d" />
-						</BarChart>
 					</Card>
 				</Grid>
 				<Grid item lg={6} xs={12}>
@@ -351,6 +315,44 @@ const Summary: FC = () => {
 				</Grid>
 				<Grid item lg={3} md={6} xs={12}>
 					<Card className={classes.bigCard}></Card>
+				</Grid>
+
+				<Grid item lg={6} xs={12}>
+					<Card className={classes.bigCard}>
+						<LineChart
+							width={innerWidth * 0.35}
+							height={200}
+							data={data}
+							margin={{
+								top: 0,
+								right: 0,
+								left: 0,
+								bottom: 0,
+							}}
+						>
+							<Line
+								type="monotone"
+								dataKey="uv"
+								stroke="#8884d8"
+							/>
+							<CartesianGrid stroke="#ccc" />
+							<XAxis dataKey="name" />
+							<YAxis />
+						</LineChart>
+					</Card>
+				</Grid>
+				<Grid item lg={6} xs={12}>
+					<Card className={classes.bigCard}>
+						<BarChart width={730} height={250} data={data}>
+							<CartesianGrid strokeDasharray="3 3" />
+							<XAxis dataKey="name" />
+							<YAxis />
+							<Tooltip />
+							<Legend />
+							<Bar dataKey="pv" fill="#8884d8" />
+							<Bar dataKey="uv" fill="#82ca9d" />
+						</BarChart>
+					</Card>
 				</Grid>
 			</Grid>
 		</Container>
