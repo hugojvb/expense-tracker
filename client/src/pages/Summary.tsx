@@ -129,9 +129,11 @@ const Summary: FC = () => {
 									}}
 								>
 									<img
-										src="../../loading.svg"
+										src="../../loading2.svg"
 										alt="loading"
-										style={{ width: 50 }}
+										style={{
+											width: 50,
+										}}
 									/>
 								</div>
 							) : (
