@@ -261,7 +261,18 @@ const Summary: FC = () => {
 									align="center"
 									color="secondary"
 								>
-									€ {stats?.spenThisMonth}
+									€ {stats?.spentThisMonth}
+									{stats?.spentThisMonth > stats?.lastGoal ? (
+										<ArrowDropUpIcon
+											color="error"
+											fontSize="large"
+										/>
+									) : (
+										<ArrowDropDownIcon
+											style={{ color: "green" }}
+											fontSize="large"
+										/>
+									)}
 								</Typography>
 							)}
 						</CardContent>
