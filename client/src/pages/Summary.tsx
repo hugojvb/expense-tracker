@@ -306,10 +306,102 @@ const Summary: FC = () => {
 					</Card>
 				</Grid>
 				<Grid item lg={3} md={6} xs={12}>
-					<Card className={classes.bigCard}></Card>
+					<Card className={classes.bigCard}>
+						<CardContent>
+							<Typography variant="body2" align="center">
+								Highest Spending Month
+							</Typography>
+
+							{loading ? (
+								<div
+									className="container"
+									style={{
+										width: "100%",
+										display: "flex",
+										flexDirection: "row",
+										justifyContent: "center",
+										alignItems: "center",
+										marginTop: 10,
+									}}
+								>
+									<img
+										src="../../loading.svg"
+										alt="loading"
+										style={{ width: 50 }}
+									/>
+								</div>
+							) : (
+								<Typography
+									variant="h3"
+									align="center"
+									color="secondary"
+								>
+									€ {stats?.lastSemesterMean}
+									{stats?.lastSemesterMean >
+									stats?.lastGoal ? (
+										<ArrowDropUpIcon
+											color="error"
+											fontSize="large"
+										/>
+									) : (
+										<ArrowDropDownIcon
+											style={{ color: "green" }}
+											fontSize="large"
+										/>
+									)}
+								</Typography>
+							)}
+						</CardContent>
+					</Card>
 				</Grid>
 				<Grid item lg={3} md={6} xs={12}>
-					<Card className={classes.bigCard}></Card>
+					<Card className={classes.bigCard}>
+						<CardContent>
+							<Typography variant="body2" align="center">
+								Lowest Spending Month
+							</Typography>
+
+							{loading ? (
+								<div
+									className="container"
+									style={{
+										width: "100%",
+										display: "flex",
+										flexDirection: "row",
+										justifyContent: "center",
+										alignItems: "center",
+										marginTop: 10,
+									}}
+								>
+									<img
+										src="../../loading.svg"
+										alt="loading"
+										style={{ width: 50 }}
+									/>
+								</div>
+							) : (
+								<Typography
+									variant="h3"
+									align="center"
+									color="secondary"
+								>
+									€ {stats?.lastSemesterMean}
+									{stats?.lastSemesterMean >
+									stats?.lastGoal ? (
+										<ArrowDropUpIcon
+											color="error"
+											fontSize="large"
+										/>
+									) : (
+										<ArrowDropDownIcon
+											style={{ color: "green" }}
+											fontSize="large"
+										/>
+									)}
+								</Typography>
+							)}
+						</CardContent>
+					</Card>
 				</Grid>
 
 				<Grid item lg={6} xs={12}>
