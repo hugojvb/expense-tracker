@@ -16,13 +16,18 @@ import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
 import dayjs from "dayjs";
 
-const useRowStyles = makeStyles({
+const useRowStyles = makeStyles((theme) => ({
 	root: {
 		"& > *": {
 			borderBottom: "unset",
 		},
 	},
-});
+	row: {
+		"&:nth-of-type(2n + 1)": {
+			backgroundColor: "#efefef",
+		},
+	},
+}));
 
 interface Props {
 	row: any;
@@ -50,6 +55,7 @@ const GoalsTableRow: FC<Props> = ({
 				key={row.name}
 				onClick={(event) => handleClick(event, row)}
 				selected={isItemSelected}
+				className={classes.row}
 			>
 				<TableCell padding="checkbox">
 					<Checkbox
