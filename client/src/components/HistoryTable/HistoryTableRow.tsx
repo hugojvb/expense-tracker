@@ -17,6 +17,11 @@ const useRowStyles = makeStyles({
 			borderBottom: "unset",
 		},
 	},
+	row: {
+		"&:nth-of-type(2n+1)": {
+			backgroundColor: "#efefef",
+		},
+	},
 });
 
 interface Props {
@@ -45,6 +50,7 @@ const HistoryTableRow: FC<Props> = ({
 				key={row.name}
 				selected={isItemSelected}
 				onClick={(event) => handleClick(event, row)}
+				className={classes.row}
 			>
 				<TableCell padding="checkbox">
 					<Checkbox
