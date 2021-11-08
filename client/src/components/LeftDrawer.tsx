@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				duration: theme.transitions.duration.leavingScreen,
 			}),
 			overflowX: "hidden",
-			width: theme.spacing(8),
+			width: theme.spacing(7.5),
 		},
 		content: {
 			flexGrow: 1,
