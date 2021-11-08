@@ -15,22 +15,7 @@ import HistoryTableToolbar from "./HistoryTableToolbar";
 
 import HistoryTableRow from "./HistoryTableRow";
 
-import axios from "axios";
 import Context from "../../context/context";
-
-function createData(
-	id: number,
-	transaction: string,
-	amount: number,
-	date: string
-) {
-	return {
-		id,
-		transaction,
-		amount,
-		date,
-	};
-}
 
 // sorting
 function descendingComparator(a: any, b: any, orderBy: any) {

@@ -16,14 +16,6 @@ import GoalsTableRow from "./GoalsTableRow";
 
 import Context from "../../context/context";
 
-function createData(id: number, goal: number, date: string) {
-	return {
-		id,
-		goal,
-		date,
-	};
-}
-
 // sorting
 function descendingComparator(a: any, b: any, orderBy: any) {
 	if (b[orderBy] < a[orderBy]) {
