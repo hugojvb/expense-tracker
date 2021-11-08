@@ -22,11 +22,7 @@ const useRowStyles = makeStyles((theme) => ({
 			borderBottom: "unset",
 		},
 	},
-	row: {
-		"&:nth-of-type(2n + 1)": {
-			backgroundColor: "#efefef",
-		},
-	},
+	row: {},
 }));
 
 interface Props {
