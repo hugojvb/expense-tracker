@@ -37,19 +37,12 @@ exports.addTransaction = async (req, res, next) => {
 exports.updateTransaction = async (req, res) => {
 	try {
 		const { id } = req.params;
-		const transaction = await TransactionsSchema.findByIdAndUpdate(
-			id,
-			req.body,
-			{
-				new: true,
-				runValidators: true,
-			}
-		);
+		const transaction = await TransactionsSchema.findByIdAndUpdate(id, req.body, {
+			new: true,
+			runValidators: true,
+		});
 
-		if (!transaction)
-			return res
-				.status(400)
-				.json({ Error: "Id not found or Input incorrect" });
+		if (!transaction) return res.status(400).json({ Error: "Id not found or Input incorrect" });
 
 		res.status(200).json({
 			success: true,
@@ -64,11 +57,8 @@ exports.updateTransaction = async (req, res) => {
 // delete transaction
 exports.deleteTransaction = async (req, res) => {
 	try {
-		const transaction = await TransactionsSchema.findByIdAndDelete(
-			req.params.id
-		);
-		if (!transaction)
-			return res.status(400).json({ Error: "Id not found" });
+		const transaction = await TransactionsSchema.findByIdAndDelete(req.params.id);
+		if (!transaction) return res.status(400).json({ Error: "Id not found" });
 
 		res.status(200).json({
 			success: true,

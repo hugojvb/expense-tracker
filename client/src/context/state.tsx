@@ -8,14 +8,7 @@ import reducer from "./reducer";
 import axios from "axios";
 
 // TYPES IMPORT
-import {
-	GET_GOALS,
-	GET_TRANSACTIONS,
-	LOGIN,
-	LOGOUT,
-	SET_LOADING,
-	TOGGLE_DRAWER,
-} from "./types";
+import { GET_GOALS, GET_TRANSACTIONS, LOGIN, LOGOUT, SET_LOADING, TOGGLE_DRAWER } from "./types";
 
 const State: FC = (props: any): JSX.Element => {
 	const [cookies, setCookie] = useCookies();
@@ -51,6 +44,8 @@ const State: FC = (props: any): JSX.Element => {
 	const getData = async (data: string, stats?: boolean) => {
 		dispatch({ type: SET_LOADING, payload: true });
 		const res = await axios.get(`/api/${stats ? "stats/" : ""}${data}`);
+
+		console.log(data + " " + res.data.data);
 
 		dispatch({ type: `GET_${data.toUpperCase()}`, payload: res.data.data });
 	};

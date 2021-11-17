@@ -1,21 +1,5 @@
-import {
-	FC,
-	Fragment,
-	useContext,
-	useCallback,
-	useEffect,
-	useState,
-} from "react";
-import {
-	Card,
-	CardContent,
-	Typography,
-	makeStyles,
-	Container,
-	Button,
-	createStyles,
-	Grid,
-} from "@material-ui/core";
+import { FC, Fragment, useContext, useCallback, useEffect, useState } from "react";
+import { Card, CardContent, Typography, makeStyles, Container, Button, createStyles, Grid } from "@material-ui/core";
 import {
 	LineChart,
 	Line,
@@ -49,10 +33,10 @@ const Summary: FC = () => {
 
 		(async () => {
 			if (!stats) {
-				await getData("lastMonth", true);
-				await getData("lastSemesterMean", true);
-				await getData("lastGoal", true);
-				await getData("spentThisMonth", true);
+				await getData("lastmonth", true);
+				await getData("lastsemestermean", true);
+				await getData("lastgoal", true);
+				await getData("spentthismonth", true);
 			}
 		})();
 
@@ -109,11 +93,7 @@ const Summary: FC = () => {
 				<Grid item lg={3} md={6} xs={12}>
 					<Card className={classes.cardAlt}>
 						<CardContent>
-							<Typography
-								variant="body2"
-								align="center"
-								style={{ color: "#fff" }}
-							>
+							<Typography variant="body2" align="center" style={{ color: "#fff" }}>
 								Current Goal
 							</Typography>
 							{loading ? (
@@ -137,11 +117,7 @@ const Summary: FC = () => {
 									/>
 								</div>
 							) : (
-								<Typography
-									variant="h3"
-									align="center"
-									style={{ color: "#fff" }}
-								>
+								<Typography variant="h3" align="center" style={{ color: "#fff" }}>
 									€ {stats?.lastGoal}
 								</Typography>
 							)}
@@ -166,29 +142,15 @@ const Summary: FC = () => {
 										marginTop: 10,
 									}}
 								>
-									<img
-										src="../../loading.svg"
-										alt="loading"
-										style={{ width: 50 }}
-									/>
+									<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 								</div>
 							) : (
-								<Typography
-									variant="h3"
-									align="center"
-									color="secondary"
-								>
+								<Typography variant="h3" align="center" color="secondary">
 									€ {stats?.spentThisMonth}
 									{stats?.spentThisMonth > stats?.lastGoal ? (
-										<ArrowDropUpIcon
-											color="error"
-											fontSize="large"
-										/>
+										<ArrowDropUpIcon color="error" fontSize="large" />
 									) : (
-										<ArrowDropDownIcon
-											style={{ color: "green" }}
-											fontSize="large"
-										/>
+										<ArrowDropDownIcon style={{ color: "green" }} fontSize="large" />
 									)}
 								</Typography>
 							)}
@@ -213,29 +175,15 @@ const Summary: FC = () => {
 										marginTop: 10,
 									}}
 								>
-									<img
-										src="../../loading.svg"
-										alt="loading"
-										style={{ width: 50 }}
-									/>
+									<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 								</div>
 							) : (
-								<Typography
-									variant="h3"
-									align="center"
-									color="secondary"
-								>
+								<Typography variant="h3" align="center" color="secondary">
 									€ {stats?.lastMonth}
 									{stats?.lastMonth > stats?.lastGoal ? (
-										<ArrowDropUpIcon
-											color="error"
-											fontSize="large"
-										/>
+										<ArrowDropUpIcon color="error" fontSize="large" />
 									) : (
-										<ArrowDropDownIcon
-											style={{ color: "green" }}
-											fontSize="large"
-										/>
+										<ArrowDropDownIcon style={{ color: "green" }} fontSize="large" />
 									)}
 								</Typography>
 							)}
@@ -261,30 +209,15 @@ const Summary: FC = () => {
 										marginTop: 10,
 									}}
 								>
-									<img
-										src="../../loading.svg"
-										alt="loading"
-										style={{ width: 50 }}
-									/>
+									<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 								</div>
 							) : (
-								<Typography
-									variant="h3"
-									align="center"
-									color="secondary"
-								>
+								<Typography variant="h3" align="center" color="secondary">
 									€ {stats?.lastSemesterMean}
-									{stats?.lastSemesterMean >
-									stats?.lastGoal ? (
-										<ArrowDropUpIcon
-											color="error"
-											fontSize="large"
-										/>
+									{stats?.lastSemesterMean > stats?.lastGoal ? (
+										<ArrowDropUpIcon color="error" fontSize="large" />
 									) : (
-										<ArrowDropDownIcon
-											style={{ color: "green" }}
-											fontSize="large"
-										/>
+										<ArrowDropDownIcon style={{ color: "green" }} fontSize="large" />
 									)}
 								</Typography>
 							)}
@@ -308,8 +241,11 @@ const Summary: FC = () => {
 				<Grid item lg={3} md={6} xs={12}>
 					<Card className={classes.bigCard}>
 						<CardContent>
-							<Typography variant="body2" align="center">
+							<Typography variant="body1" align="center">
 								Highest Spending Month
+							</Typography>
+							<Typography variant="body2" color="textSecondary" align="center">
+								(Last 12 months)
 							</Typography>
 
 							{loading ? (
@@ -324,30 +260,15 @@ const Summary: FC = () => {
 										marginTop: 10,
 									}}
 								>
-									<img
-										src="../../loading.svg"
-										alt="loading"
-										style={{ width: 50 }}
-									/>
+									<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 								</div>
 							) : (
-								<Typography
-									variant="h3"
-									align="center"
-									color="secondary"
-								>
+								<Typography variant="h3" align="center" color="secondary">
 									€ {stats?.lastSemesterMean}
-									{stats?.lastSemesterMean >
-									stats?.lastGoal ? (
-										<ArrowDropUpIcon
-											color="error"
-											fontSize="large"
-										/>
+									{stats?.lastSemesterMean > stats?.lastGoal ? (
+										<ArrowDropUpIcon color="error" fontSize="large" />
 									) : (
-										<ArrowDropDownIcon
-											style={{ color: "green" }}
-											fontSize="large"
-										/>
+										<ArrowDropDownIcon style={{ color: "green" }} fontSize="large" />
 									)}
 								</Typography>
 							)}
@@ -373,30 +294,15 @@ const Summary: FC = () => {
 										marginTop: 10,
 									}}
 								>
-									<img
-										src="../../loading.svg"
-										alt="loading"
-										style={{ width: 50 }}
-									/>
+									<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 								</div>
 							) : (
-								<Typography
-									variant="h3"
-									align="center"
-									color="secondary"
-								>
+								<Typography variant="h3" align="center" color="secondary">
 									€ {stats?.lastSemesterMean}
-									{stats?.lastSemesterMean >
-									stats?.lastGoal ? (
-										<ArrowDropUpIcon
-											color="error"
-											fontSize="large"
-										/>
+									{stats?.lastSemesterMean > stats?.lastGoal ? (
+										<ArrowDropUpIcon color="error" fontSize="large" />
 									) : (
-										<ArrowDropDownIcon
-											style={{ color: "green" }}
-											fontSize="large"
-										/>
+										<ArrowDropDownIcon style={{ color: "green" }} fontSize="large" />
 									)}
 								</Typography>
 							)}
@@ -417,11 +323,7 @@ const Summary: FC = () => {
 								bottom: 0,
 							}}
 						>
-							<Line
-								type="monotone"
-								dataKey="uv"
-								stroke="#8884d8"
-							/>
+							<Line type="monotone" dataKey="uv" stroke="#8884d8" />
 							<CartesianGrid stroke="#ccc" />
 							<XAxis dataKey="name" />
 							<YAxis />

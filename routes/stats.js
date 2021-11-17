@@ -4,17 +4,20 @@ const {
 	getLastSemesterMean,
 	getLastGoal,
 	getSpentThisMonth,
+	getHighestSpentMonth,
 } = require("../controllers/stats.js");
 const router = express.Router();
 
 const { verify } = require("../middleware/verify.js");
 
-router.get("/lastMonth", verify, getLastMonth);
+router.get("/lastmonth", verify, getLastMonth);
 
-router.get("/lastSemesterMean", verify, getLastSemesterMean);
+router.get("/lastsemestermean", verify, getLastSemesterMean);
 
-router.get("/lastGoal", verify, getLastGoal);
+router.get("/lastgoal", verify, getLastGoal);
 
-router.get("/spentThisMonth", verify, getSpentThisMonth);
+router.get("/spentthismonth", verify, getSpentThisMonth);
+
+router.get("/highestspentmonth", verify, getHighestSpentMonth);
 
 module.exports = router;
