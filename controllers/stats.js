@@ -30,7 +30,7 @@ exports.getLastMonth = async (req, res) => {
 
 exports.getLastSemesterMean = async (req, res) => {
 	try {
-		const semesterMean = getLastSemesterMeanService(req.user);
+		const semesterMean = await getLastSemesterMeanService(req.user);
 
 		if (!semesterMean) return res.status(400).json({ Error: "Last semester transactions mean not found" });
 
@@ -43,7 +43,7 @@ exports.getLastSemesterMean = async (req, res) => {
 
 exports.getLastGoal = async (req, res) => {
 	try {
-		const lastGoal = getLastGoalService(req.user);
+		const lastGoal = await getLastGoalService(req.user);
 
 		if (!lastGoal) return res.status(400).json({ Error: "Last goal not found" });
 
@@ -56,7 +56,7 @@ exports.getLastGoal = async (req, res) => {
 
 exports.getSpentThisMonth = async (req, res) => {
 	try {
-		const spentThisMonth = getSpentThisMonthService(req.user);
+		const spentThisMonth = await getSpentThisMonthService(req.user);
 
 		if (!spentThisMonth) return res.status(400).json({ Error: "Spent this month not found" });
 
@@ -69,7 +69,7 @@ exports.getSpentThisMonth = async (req, res) => {
 
 exports.getHighestSpentMonth = async (req, res) => {
 	try {
-		const { max } = getHighestAndLowestSpentMonthService(req.user);
+		const { max } = await getHighestAndLowestSpentMonthService(req.user);
 
 		if (!max) return res.status(400).json({ Error: "Failed to get highest spent month" });
 
@@ -82,7 +82,7 @@ exports.getHighestSpentMonth = async (req, res) => {
 
 exports.getLowestSpentMonth = async (req, res) => {
 	try {
-		const { min } = getHighestAndLowestSpentMonthService(req.user);
+		const { min } = await getHighestAndLowestSpentMonthService(req.user);
 
 		if (!min) return res.status(400).json({ Error: "Failed to get lowest spent month" });
 
