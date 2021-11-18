@@ -5,6 +5,7 @@ const {
 	getLastGoal,
 	getSpentThisMonth,
 	getHighestSpentMonth,
+	getLowestSpentMonth,
 } = require("../controllers/stats.js");
 const router = express.Router();
 
@@ -19,5 +20,7 @@ router.get("/lastgoal", verify, getLastGoal);
 router.get("/spentthismonth", verify, getSpentThisMonth);
 
 router.get("/highestspentmonth", verify, getHighestSpentMonth);
+
+router.get("/lowestspentmonth", verify, getLowestSpentMonth);
 
 module.exports = router;
