@@ -1,9 +1,11 @@
 // TYPES IMPORT
 import {
 	GET_GOALS,
+	GET_HIGHESTSPENTMONTH,
 	GET_LASTGOAL,
 	GET_LASTMONTH,
 	GET_LASTSEMESTERMEAN,
+	GET_LOWESTSPENTMONTH,
 	GET_SPENTTHISMONTH,
 	GET_TRANSACTIONS,
 	LOGIN,
@@ -68,6 +70,18 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				stats: { ...state.stats, spentThisMonth: action.payload },
+				loading: false,
+			};
+		case GET_HIGHESTSPENTMONTH:
+			return {
+				...state,
+				stats: { ...state.stats, highestSpentMonth: action.payload },
+				loading: false,
+			};
+		case GET_LOWESTSPENTMONTH:
+			return {
+				...state,
+				stats: { ...state.stats, lowestSpentMonth: action.payload },
 				loading: false,
 			};
 		default:

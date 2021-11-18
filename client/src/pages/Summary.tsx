@@ -37,6 +37,8 @@ const Summary: FC = () => {
 				await getData("lastsemestermean", true);
 				await getData("lastgoal", true);
 				await getData("spentthismonth", true);
+				await getData("lowestspentmonth", true);
+				await getData("highestspentmonth", true);
 			}
 		})();
 
