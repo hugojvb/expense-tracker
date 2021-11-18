@@ -26,19 +26,21 @@ const Summary: FC = () => {
 	}, [setInnerWidth]);
 
 	const context = useContext(Context);
-	const { getData, stats, loading } = context;
+	const { getData, stats, loading, setLoading } = context;
 
 	useEffect(() => {
 		window.addEventListener("resize", () => resize());
 
 		(async () => {
 			if (!stats) {
+				setLoading(true);
 				await getData("lastmonth", true);
 				await getData("lastsemestermean", true);
 				await getData("lastgoal", true);
 				await getData("spentthismonth", true);
 				await getData("lowestspentmonth", true);
 				await getData("highestspentmonth", true);
+				setLoading(false);
 			}
 		})();
 
@@ -282,6 +284,10 @@ const Summary: FC = () => {
 						<CardContent>
 							<Typography variant="body2" align="center">
 								Lowest Spending Month
+							</Typography>
+
+							<Typography variant="body2" color="textSecondary" align="center">
+								(Last 12 months)
 							</Typography>
 
 							{loading ? (

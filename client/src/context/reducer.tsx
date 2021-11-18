@@ -35,13 +35,11 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				transactions: action.payload,
-				loading: false,
 			};
 		case GET_GOALS:
 			return {
 				...state,
 				goals: action.payload,
-				loading: false,
 			};
 		case SET_LOADING:
 			return {
@@ -52,37 +50,31 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				stats: { ...state.stats, lastMonth: action.payload },
-				loading: false,
 			};
 		case GET_LASTSEMESTERMEAN:
 			return {
 				...state,
 				stats: { ...state.stats, lastSemesterMean: action.payload },
-				loading: false,
 			};
 		case GET_LASTGOAL:
 			return {
 				...state,
 				stats: { ...state.stats, lastGoal: action.payload },
-				loading: false,
 			};
 		case GET_SPENTTHISMONTH:
 			return {
 				...state,
 				stats: { ...state.stats, spentThisMonth: action.payload },
-				loading: false,
 			};
 		case GET_HIGHESTSPENTMONTH:
 			return {
 				...state,
 				stats: { ...state.stats, highestSpentMonth: action.payload },
-				loading: false,
 			};
 		case GET_LOWESTSPENTMONTH:
 			return {
 				...state,
 				stats: { ...state.stats, lowestSpentMonth: action.payload },
-				loading: false,
 			};
 		default:
 			return state;

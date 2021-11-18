@@ -42,10 +42,13 @@ const State: FC = (props: any): JSX.Element => {
 	};
 
 	const getData = async (data: string, stats?: boolean) => {
-		dispatch({ type: SET_LOADING, payload: true });
 		const res = await axios.get(`/api/${stats ? "stats/" : ""}${data}`);
 
 		dispatch({ type: `GET_${data.toUpperCase()}`, payload: res.data.data });
+	};
+
+	const setLoading = async (shouldBeLoading: boolean) => {
+		dispatch({ type: SET_LOADING, payload: shouldBeLoading });
 	};
 
 	return (
@@ -61,6 +64,7 @@ const State: FC = (props: any): JSX.Element => {
 				getData,
 				loading: state.loading,
 				stats: state.stats,
+				setLoading,
 			}}
 		>
 			{props?.children}
