@@ -268,12 +268,7 @@ const Summary: FC = () => {
 								</div>
 							) : (
 								<Typography variant="h3" align="center" color="secondary">
-									€ {stats?.lastSemesterMean}
-									{stats?.lastSemesterMean > stats?.lastGoal ? (
-										<ArrowDropUpIcon color="error" fontSize="large" />
-									) : (
-										<ArrowDropDownIcon style={{ color: "green" }} fontSize="large" />
-									)}
+									€ {stats?.highestSpentMonth}
 								</Typography>
 							)}
 						</CardContent>
@@ -306,12 +301,7 @@ const Summary: FC = () => {
 								</div>
 							) : (
 								<Typography variant="h3" align="center" color="secondary">
-									€ {stats?.lastSemesterMean}
-									{stats?.lastSemesterMean > stats?.lastGoal ? (
-										<ArrowDropUpIcon color="error" fontSize="large" />
-									) : (
-										<ArrowDropDownIcon style={{ color: "green" }} fontSize="large" />
-									)}
+									€ {stats?.lowestSpentMonth}
 								</Typography>
 							)}
 						</CardContent>
