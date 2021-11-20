@@ -44,22 +44,24 @@ exports.getHighestAndLowestSpentMonthService = async (user) => {
 	const allExpenses = await TransactionsSchema.find({ user }).sort({ date: -1 });
 
 	let monthExpensesArray = [];
-	let summedExpensesPerMonth = [];
-	let maximumSpent;
-	let minimumSpent;
+	let maximumSpent = Number.NEGATIVE_INFINITY;
+	let minimumSpent = Number.POSITIVE_INFINITY;
+	let tmp;
 
 	for (let i = 0; i < 12; i++) {
 		monthExpensesArray.push({
-			[i]: allExpenses.reduce(
+			month: allExpenses.reduce(
 				(sum, expense) => (dayjs(expense.date).get("month") === i ? (sum += +expense.amount) : sum),
 				0
 			),
 		});
-
-		console.log(monthExpensesArray);
-		minimumSpent = Math.min(monthExpensesArray.join());
-		maximumSpent = Math.max(summedExpensesPerMonth.join());
 	}
 
-	return { max: maximumSpent, min: 600 };
+	for (let i = 0; i < 12; i++) {
+		tmp = monthExpensesArray[i].month;
+		if (tmp < minimumSpent) minimumSpent = Math.round((tmp * 100) / 100);
+		if (tmp > maximumSpent) maximumSpent = Math.round((tmp * 100) / 100);
+	}
+
+	return { max: maximumSpent, min: minimumSpent };
 };
