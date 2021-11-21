@@ -267,9 +267,14 @@ const Summary: FC = () => {
 									<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 								</div>
 							) : (
-								<Typography variant="h3" align="center" color="secondary">
-									€ {stats?.highestSpentMonth}
-								</Typography>
+								<Fragment>
+									<Typography variant="h3" align="center" color="secondary">
+										€ {stats?.highestSpentMonthAmount}
+									</Typography>
+									<Typography variant="h5" align="center" color="textSecondary">
+										Last {stats?.highestSpentMonth}
+									</Typography>
+								</Fragment>
 							)}
 						</CardContent>
 					</Card>
@@ -300,9 +305,14 @@ const Summary: FC = () => {
 									<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 								</div>
 							) : (
-								<Typography variant="h3" align="center" color="secondary">
-									€ {stats?.lowestSpentMonth}
-								</Typography>
+								<Fragment>
+									<Typography variant="h3" align="center" color="secondary">
+										€ {stats?.lowestSpentMonthAmount}
+									</Typography>
+									<Typography variant="h5" align="center" color="textSecondary">
+										Last {stats?.lowestSpentMonth}
+									</Typography>
+								</Fragment>
 							)}
 						</CardContent>
 					</Card>
