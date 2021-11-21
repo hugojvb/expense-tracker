@@ -50,7 +50,7 @@ exports.getHighestAndLowestSpentMonthService = async (user) => {
 
 	for (let i = 0; i < 12; i++) {
 		monthExpensesArray.push({
-			month: allExpenses.reduce(
+			i: allExpenses.reduce(
 				(sum, expense) => (dayjs(expense.date).get("month") === i ? (sum += +expense.amount) : sum),
 				0
 			),
@@ -58,10 +58,28 @@ exports.getHighestAndLowestSpentMonthService = async (user) => {
 	}
 
 	for (let i = 0; i < 12; i++) {
-		tmp = monthExpensesArray[i].month;
+		tmp = monthExpensesArray[i].i;
 		if (tmp < minimumSpent) minimumSpent = Math.round((tmp * 100) / 100);
 		if (tmp > maximumSpent) maximumSpent = Math.round((tmp * 100) / 100);
 	}
 
 	return { max: maximumSpent, min: minimumSpent };
+};
+
+exports.getLast12MonthsExpensesService = async (user) => {
+	const allExpenses = await TransactionsSchema.find({ user }).sort({ date: -1 });
+
+	let monthExpensesArray = [];
+
+	for (let i = 0; i < 12; i++) {
+		monthExpensesArray.push({
+			name: dayjs().set("month", i).format("MMM"),
+			amount: allExpenses.reduce(
+				(sum, expense) => (dayjs(expense.date).get("month") === i ? (sum += +expense.amount) : sum),
+				0
+			),
+		});
+	}
+
+	return monthExpensesArray;
 };
