@@ -69,12 +69,12 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 		case GET_HIGHESTSPENTMONTH:
 			return {
 				...state,
-				stats: { ...state.stats, highestSpentMonth: action.payload },
+				stats: { ...state.stats, highestSpentMonth: action.payload.max },
 			};
 		case GET_LOWESTSPENTMONTH:
 			return {
 				...state,
-				stats: { ...state.stats, lowestSpentMonth: action.payload },
+				stats: { ...state.stats, lowestSpentMonth: action.payload.min },
 			};
 		default:
 			return state;

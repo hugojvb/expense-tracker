@@ -73,7 +73,7 @@ exports.getHighestSpentMonth = async (req, res) => {
 
 		if (!max) return res.status(400).json({ Error: "Failed to get highest spent month" });
 
-		return res.status(200).json({ data: max, month: maxMonth });
+		return res.status(200).json({ data: { max, maxMonth } });
 	} catch (error) {
 		console.log(error);
 		res.status(400).json({ Error: error });
@@ -86,7 +86,7 @@ exports.getLowestSpentMonth = async (req, res) => {
 
 		if (!min) return res.status(400).json({ Error: "Failed to get lowest spent month" });
 
-		return res.status(200).json({ data: min, month: minMonth });
+		return res.status(200).json({ data: { min, minMonth } });
 	} catch (error) {
 		console.log(error);
 		res.status(400).json({ Error: error });
