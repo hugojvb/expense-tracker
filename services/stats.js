@@ -61,11 +61,11 @@ exports.getHighestAndLowestSpentMonthService = async (user) => {
 		tmp = monthExpensesArray[i].i;
 		if (tmp < minimumSpent) {
 			minimumSpent = Math.round((tmp * 100) / 100);
-			minimumSpentMonth = dayjs().set("month", i).format("MMM");
+			minimumSpentMonth = dayjs().set("month", i).format("MMMM");
 		}
 		if (tmp > maximumSpent) {
 			maximumSpent = Math.round((tmp * 100) / 100);
-			maximumSpentMonth = dayjs().set("month", i).format("MMM");
+			maximumSpentMonth = dayjs().set("month", i).format("MMMM");
 		}
 	}
 
