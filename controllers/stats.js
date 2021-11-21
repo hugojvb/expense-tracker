@@ -6,6 +6,7 @@ const {
 	getHighestAndLowestSpentMonthService,
 	getLastGoalService,
 	getLastSemesterMeanService,
+	getLast12MonthsExpensesService,
 } = require("../services/stats");
 
 exports.getLastMonth = async (req, res) => {
@@ -90,5 +91,16 @@ exports.getLowestSpentMonth = async (req, res) => {
 	} catch (error) {
 		console.log(error);
 		res.status(400).json({ Error: error });
+	}
+};
+
+exports.getLast12MonthsExpenses = async (req, res) => {
+	try {
+		const monthExpensesArray = await getLast12MonthsExpensesService();
+
+		return monthExpensesArray;
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ Error: error });
 	}
 };

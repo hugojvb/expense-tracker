@@ -269,10 +269,10 @@ const Summary: FC = () => {
 							) : (
 								<Fragment>
 									<Typography variant="h3" align="center" color="secondary">
-										€ {stats?.highestSpentMonthAmount}
+										Last {stats?.highestSpentMonth}
 									</Typography>
 									<Typography variant="h5" align="center" color="textSecondary">
-										Last {stats?.highestSpentMonth}
+										€ {stats?.highestSpentMonthAmount}
 									</Typography>
 								</Fragment>
 							)}
@@ -307,10 +307,10 @@ const Summary: FC = () => {
 							) : (
 								<Fragment>
 									<Typography variant="h3" align="center" color="secondary">
-										€ {stats?.lowestSpentMonthAmount}
+										Last {stats?.lowestSpentMonth}
 									</Typography>
 									<Typography variant="h5" align="center" color="textSecondary">
-										Last {stats?.lowestSpentMonth}
+										€ {stats?.lowestSpentMonthAmount}
 									</Typography>
 								</Fragment>
 							)}
