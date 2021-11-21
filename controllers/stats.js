@@ -69,11 +69,11 @@ exports.getSpentThisMonth = async (req, res) => {
 
 exports.getHighestSpentMonth = async (req, res) => {
 	try {
-		const { max } = await getHighestAndLowestSpentMonthService(req.user);
+		const { max, maxMonth } = await getHighestAndLowestSpentMonthService(req.user);
 
 		if (!max) return res.status(400).json({ Error: "Failed to get highest spent month" });
 
-		return res.status(200).json({ data: max });
+		return res.status(200).json({ data: max, month: maxMonth });
 	} catch (error) {
 		console.log(error);
 		res.status(400).json({ Error: error });
@@ -82,11 +82,11 @@ exports.getHighestSpentMonth = async (req, res) => {
 
 exports.getLowestSpentMonth = async (req, res) => {
 	try {
-		const { min } = await getHighestAndLowestSpentMonthService(req.user);
+		const { min, minMonth } = await getHighestAndLowestSpentMonthService(req.user);
 
 		if (!min) return res.status(400).json({ Error: "Failed to get lowest spent month" });
 
-		return res.status(200).json({ data: min });
+		return res.status(200).json({ data: min, month: minMonth });
 	} catch (error) {
 		console.log(error);
 		res.status(400).json({ Error: error });
