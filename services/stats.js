@@ -46,7 +46,7 @@ exports.getHighestAndLowestSpentMonthService = async (user) => {
 	let monthExpensesArray = [];
 	let maximumSpent = Number.NEGATIVE_INFINITY;
 	let minimumSpent = Number.POSITIVE_INFINITY;
-	let tmp;
+	let tmp, minimumSpentMonth, maximumSpentMonth;
 
 	for (let i = 0; i < 12; i++) {
 		monthExpensesArray.push({
@@ -59,11 +59,17 @@ exports.getHighestAndLowestSpentMonthService = async (user) => {
 
 	for (let i = 0; i < 12; i++) {
 		tmp = monthExpensesArray[i].i;
-		if (tmp < minimumSpent) minimumSpent = Math.round((tmp * 100) / 100);
-		if (tmp > maximumSpent) maximumSpent = Math.round((tmp * 100) / 100);
+		if (tmp < minimumSpent) {
+			minimumSpent = Math.round((tmp * 100) / 100);
+			minimumSpentMonth = dayjs().set("month", i).format("MMM");
+		}
+		if (tmp > maximumSpent) {
+			maximumSpent = Math.round((tmp * 100) / 100);
+			maximumSpentMonth = dayjs().set("month", i).format("MMM");
+		}
 	}
 
-	return { max: maximumSpent, min: minimumSpent };
+	return { max: maximumSpent, min: minimumSpent, maxMonth: maximumSpentMonth, minMonth: minimumSpentMonth };
 };
 
 exports.getLast12MonthsExpensesService = async (user) => {
