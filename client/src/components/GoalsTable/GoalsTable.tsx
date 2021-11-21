@@ -15,6 +15,7 @@ import GoalsTableToolbar from "./GoalsTableToolbar";
 import GoalsTableRow from "./GoalsTableRow";
 
 import Context from "../../context/context";
+import { SET_LOADING } from "../../context/types";
 
 // sorting
 function descendingComparator(a: any, b: any, orderBy: any) {
@@ -79,11 +80,15 @@ export default function DemoTable() {
 	const [filtered, setFiltered] = React.useState();
 
 	const context = useContext(Context);
-	const { getData, goals, loading } = context;
+	const { getData, goals, loading, setLoading } = context;
 
 	React.useEffect(() => {
 		(async () => {
-			if (goals.length === 0) await getData("Goals");
+			if (goals.length === 0) {
+				setLoading(true);
+				await getData("Goals");
+				setLoading(false);
+			}
 		})();
 	}, []);
 
@@ -114,10 +119,7 @@ export default function DemoTable() {
 		} else if (selectedIndex === selected.length - 1) {
 			newSelected = newSelected.concat(selected.slice(0, -1));
 		} else if (selectedIndex > 0) {
-			newSelected = newSelected.concat(
-				selected.slice(0, selectedIndex),
-				selected.slice(selectedIndex + 1)
-			);
+			newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
 		}
 
 		setSelected(newSelected);
@@ -135,8 +137,7 @@ export default function DemoTable() {
 
 	const isSelected = (_id: any) => selected.indexOf(_id) !== -1;
 
-	const emptyRows =
-		rowsPerPage - Math.min(rowsPerPage, goals.length - page * rowsPerPage);
+	const emptyRows = rowsPerPage - Math.min(rowsPerPage, goals.length - page * rowsPerPage);
 
 	return (
 		<div className={classes.root}>
@@ -183,27 +184,15 @@ export default function DemoTable() {
 												alignItems: "center",
 											}}
 										>
-											<img
-												src="../../loading.svg"
-												alt="loading"
-												style={{ width: 100 }}
-											/>
+											<img src="../../loading.svg" alt="loading" style={{ width: 100 }} />
 										</div>
 									</TableCell>
 								</TableRow>
 							) : (
-								stableSort(
-									filtered ? filtered : goals,
-									getComparator(order, orderBy)
-								)
-									.slice(
-										page * rowsPerPage,
-										page * rowsPerPage + rowsPerPage
-									)
+								stableSort(filtered ? filtered : goals, getComparator(order, orderBy))
+									.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 									.map((row: any, index: any) => {
-										const isItemSelected = isSelected(
-											row._id
-										);
+										const isItemSelected = isSelected(row._id);
 										const labelId = `enhanced-table-checkbox-${index}`;
 
 										return (

@@ -80,11 +80,15 @@ const HistoryTable = () => {
 	const [filtered, setFiltered] = React.useState();
 
 	const context = useContext(Context);
-	const { getData, transactions, loading } = context;
+	const { getData, transactions, loading, setLoading } = context;
 
 	React.useEffect(() => {
 		(async () => {
-			if (transactions.length === 0) await getData("Transactions");
+			if (transactions.length === 0) {
+				setLoading(true);
+				await getData("Transactions");
+				setLoading(false);
+			}
 		})();
 	}, []);
 
@@ -115,10 +119,7 @@ const HistoryTable = () => {
 		} else if (selectedIndex === selected.length - 1) {
 			newSelected = newSelected.concat(selected.slice(0, -1));
 		} else if (selectedIndex > 0) {
-			newSelected = newSelected.concat(
-				selected.slice(0, selectedIndex),
-				selected.slice(selectedIndex + 1)
-			);
+			newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
 		}
 
 		setSelected(newSelected);
@@ -136,9 +137,7 @@ const HistoryTable = () => {
 
 	const isSelected = (_id: any) => selected.indexOf(_id) !== -1;
 
-	const emptyRows =
-		rowsPerPage -
-		Math.min(rowsPerPage, transactions.length - page * rowsPerPage);
+	const emptyRows = rowsPerPage - Math.min(rowsPerPage, transactions.length - page * rowsPerPage);
 
 	return (
 		<div className={classes.root}>
@@ -185,27 +184,15 @@ const HistoryTable = () => {
 												alignItems: "center",
 											}}
 										>
-											<img
-												src="../../loading.svg"
-												alt="loading"
-												style={{ width: 100 }}
-											/>
+											<img src="../../loading.svg" alt="loading" style={{ width: 100 }} />
 										</div>
 									</TableCell>
 								</TableRow>
 							) : (
-								stableSort(
-									filtered ? filtered : transactions,
-									getComparator(order, orderBy)
-								)
-									.slice(
-										page * rowsPerPage,
-										page * rowsPerPage + rowsPerPage
-									)
+								stableSort(filtered ? filtered : transactions, getComparator(order, orderBy))
+									.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 									.map((row: any, index: any) => {
-										const isItemSelected = isSelected(
-											row._id
-										);
+										const isItemSelected = isSelected(row._id);
 										const labelId = `enhanced-table-checkbox-${index}`;
 
 										return (
