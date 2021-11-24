@@ -96,7 +96,7 @@ exports.getLowestSpentMonth = async (req, res) => {
 
 exports.getLast12MonthsExpenses = async (req, res) => {
 	try {
-		const monthExpensesArray = await getLast12MonthsExpensesService();
+		const monthExpensesArray = await getLast12MonthsExpensesService(req.user);
 
 		return res.status(200).json({ data: monthExpensesArray });
 	} catch (error) {
