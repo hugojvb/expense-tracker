@@ -2,6 +2,7 @@
 import {
 	GET_GOALS,
 	GET_HIGHESTSPENTMONTH,
+	GET_LAST12MONTHS,
 	GET_LASTGOAL,
 	GET_LASTMONTH,
 	GET_LASTSEMESTERMEAN,
@@ -82,6 +83,14 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 					...state.stats,
 					lowestSpentMonth: action.payload.minMonth,
 					lowestSpentMonthAmount: action.payload.min,
+				},
+			};
+		case GET_LAST12MONTHS:
+			return {
+				...state,
+				stats: {
+					...state.stats,
+					last12months: action.payload,
 				},
 			};
 		default:
