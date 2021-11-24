@@ -16,6 +16,7 @@ import {
 import Context from "../context/context";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import theme from "../theme";
 
 // FUNCTIONAL COMPONENT
 const Summary: FC = () => {
@@ -83,14 +84,6 @@ const Summary: FC = () => {
 		})
 	);
 	const classes = useStyles();
-
-	const data = [
-		{ name: "Page A", uv: 400, pv: 2400, amt: 2400 },
-		{ name: "Page B", uv: 200, pv: 2400, amt: 2400 },
-		{ name: "Page C", uv: 300, pv: 2400, amt: 2400 },
-		{ name: "Page D", uv: 150, pv: 2400, amt: 2400 },
-		{ name: "Page E", uv: 350, pv: 2400, amt: 2400 },
-	];
 
 	return (
 		<Container className={classes.container}>
@@ -232,14 +225,13 @@ const Summary: FC = () => {
 
 				<Grid item lg={6} xs={12}>
 					<Card className={classes.bigCard}>
-						<BarChart width={730} height={250} data={data}>
+						<BarChart width={730} height={250} data={stats?.last12months}>
 							<CartesianGrid strokeDasharray="3 3" />
 							<XAxis dataKey="name" />
-							<YAxis />
+							<YAxis dataKey="amount" />
 							<Tooltip />
 							<Legend />
-							<Bar dataKey="pv" fill="#8884d8" />
-							<Bar dataKey="uv" fill="#82ca9d" />
+							<Bar dataKey="amount" fill={theme.palette.primary.main} />
 						</BarChart>
 					</Card>
 				</Grid>
@@ -324,7 +316,7 @@ const Summary: FC = () => {
 						<LineChart
 							width={innerWidth * 0.35}
 							height={200}
-							data={data}
+							data={stats?.last12months}
 							margin={{
 								top: 0,
 								right: 0,
@@ -341,7 +333,7 @@ const Summary: FC = () => {
 				</Grid>
 				<Grid item lg={6} xs={12}>
 					<Card className={classes.bigCard}>
-						<BarChart width={730} height={250} data={data}>
+						<BarChart width={730} height={250} data={stats?.last12months}>
 							<CartesianGrid strokeDasharray="3 3" />
 							<XAxis dataKey="name" />
 							<YAxis />
