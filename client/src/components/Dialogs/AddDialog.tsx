@@ -30,13 +30,7 @@ interface Props {
 	type: string;
 }
 
-const AddDialog: FC<Props> = ({
-	openAddDialog,
-	setOpenAddDialog,
-	setOpenAddedSuccess,
-	setOpenAddedError,
-	type,
-}) => {
+const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuccess, setOpenAddedError, type }) => {
 	const handleClose = () => {
 		setOpenAddDialog(false);
 	};
@@ -77,8 +71,8 @@ const AddDialog: FC<Props> = ({
 								<TextField
 									inputRef={register({ required: true })}
 									margin="dense"
-									id="transaction"
-									name="transaction"
+									id="name"
+									name="name"
 									label="Transaction"
 									type="text"
 									fullWidth
@@ -126,11 +120,7 @@ const AddDialog: FC<Props> = ({
 						/>
 					</DialogContent>
 					<DialogActions>
-						<Button
-							onClick={handleClose}
-							variant="outlined"
-							color="primary"
-						>
+						<Button onClick={handleClose} variant="outlined" color="primary">
 							Cancel
 						</Button>
 						<Button type="submit" color="primary">

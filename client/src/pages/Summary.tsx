@@ -40,6 +40,7 @@ const Summary: FC = () => {
 				await getData("spentthismonth", true);
 				await getData("lowestspentmonth", true);
 				await getData("highestspentmonth", true);
+				await getData("last12months", true);
 				setLoading(false);
 			}
 		})();
