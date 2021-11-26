@@ -1,19 +1,5 @@
 // TYPES IMPORT
-import {
-	GET_GOALS,
-	GET_HIGHESTSPENTMONTH,
-	GET_LAST12MONTHS,
-	GET_LASTGOAL,
-	GET_LASTMONTH,
-	GET_LASTSEMESTERMEAN,
-	GET_LOWESTSPENTMONTH,
-	GET_SPENTTHISMONTH,
-	GET_TRANSACTIONS,
-	LOGIN,
-	LOGOUT,
-	SET_LOADING,
-	TOGGLE_DRAWER,
-} from "./types";
+import { GET_GOALS, GET_STATS, GET_TRANSACTIONS, LOGIN, LOGOUT, SET_LOADING, TOGGLE_DRAWER } from "./types";
 
 const reducer = (state: any, action: { type: string; payload?: any }) => {
 	switch (action.type) {
@@ -47,51 +33,10 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 				...state,
 				loading: action.payload,
 			};
-		case GET_LASTMONTH:
+		case GET_STATS:
 			return {
 				...state,
-				stats: { ...state.stats, lastMonth: action.payload },
-			};
-		case GET_LASTSEMESTERMEAN:
-			return {
-				...state,
-				stats: { ...state.stats, lastSemesterMean: action.payload },
-			};
-		case GET_LASTGOAL:
-			return {
-				...state,
-				stats: { ...state.stats, lastGoal: action.payload },
-			};
-		case GET_SPENTTHISMONTH:
-			return {
-				...state,
-				stats: { ...state.stats, spentThisMonth: action.payload },
-			};
-		case GET_HIGHESTSPENTMONTH:
-			return {
-				...state,
-				stats: {
-					...state.stats,
-					highestSpentMonth: action.payload.maxMonth,
-					highestSpentMonthAmount: action.payload.max,
-				},
-			};
-		case GET_LOWESTSPENTMONTH:
-			return {
-				...state,
-				stats: {
-					...state.stats,
-					lowestSpentMonth: action.payload.minMonth,
-					lowestSpentMonthAmount: action.payload.min,
-				},
-			};
-		case GET_LAST12MONTHS:
-			return {
-				...state,
-				stats: {
-					...state.stats,
-					last12months: action.payload,
-				},
+				stats: action.payload,
 			};
 		default:
 			return state;

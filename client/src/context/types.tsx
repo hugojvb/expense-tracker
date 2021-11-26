@@ -7,10 +7,4 @@ export const GET_GOALS: string = "GET_GOALS";
 
 export const SET_LOADING: string = "SET_LOADING";
 
-export const GET_LASTMONTH: string = "GET_LASTMONTH";
-export const GET_LASTSEMESTERMEAN: string = "GET_LASTSEMESTERMEAN";
-export const GET_LASTGOAL: string = "GET_LASTGOAL";
-export const GET_SPENTTHISMONTH: string = "GET_SPENTTHISMONTH";
-export const GET_HIGHESTSPENTMONTH: string = "GET_HIGHESTSPENTMONTH";
-export const GET_LOWESTSPENTMONTH: string = "GET_LOWESTSPENTMONTH";
-export const GET_LAST12MONTHS: string = "GET_LAST12MONTHS";
+export const GET_STATS: string = "GET_STATS";
