@@ -11,7 +11,7 @@ const {
 
 exports.getStats = async (req, res) => {
 	try {
-		let stats;
+		let stats = {};
 
 		// GET LAST MONTH TOTAL EXPENSES
 		const lastMonth = await TransactionsSchema.find({

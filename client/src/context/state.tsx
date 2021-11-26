@@ -41,8 +41,8 @@ const State: FC = (props: any): JSX.Element => {
 		dispatch({ type: TOGGLE_DRAWER, payload: isOpened });
 	};
 
-	const getData = async (data: string, stats?: boolean) => {
-		const res = await axios.get(`/api/${stats ? "stats/" : ""}${data}`);
+	const getData = async (data: string) => {
+		const res = await axios.get(`/api/${data}`);
 
 		dispatch({ type: `GET_${data.toUpperCase()}`, payload: res.data.data });
 	};

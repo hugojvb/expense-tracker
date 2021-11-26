@@ -35,13 +35,7 @@ const Summary: FC = () => {
 		(async () => {
 			if (!stats) {
 				setLoading(true);
-				await getData("lastmonth", true);
-				await getData("lastsemestermean", true);
-				await getData("lastgoal", true);
-				await getData("spentthismonth", true);
-				await getData("lowestspentmonth", true);
-				await getData("highestspentmonth", true);
-				await getData("last12months", true);
+				await getData("stats");
 				setLoading(false);
 			}
 		})();
