@@ -14,7 +14,7 @@ exports.getStats = async (req, res) => {
 		let stats = {};
 
 		// GET LAST MONTH TOTAL EXPENSES
-		const lastMonth = await TransactionsSchema.find({
+		const lastMonthArray = await TransactionsSchema.find({
 			user: req.user,
 			date: {
 				$gte: dayjs().subtract(1, "month").startOf("month"),
@@ -22,17 +22,17 @@ exports.getStats = async (req, res) => {
 			},
 		}).sort({ date: -1 });
 
-		const totalAmount = Math.round(lastMonth.reduce((sum, current) => (sum += current.amount), 0));
+		const lastMonth = Math.round(lastMonthArray.reduce((sum, current) => (sum += current.amount), 0));
 		if (!lastMonth) return res.status(400).json({ Error: "Last month transactions not found" });
 
-		stats.totalAmount = totalAmount;
+		stats.lastMonth = lastMonth;
 
 		// GET LAST SEMESTER MEAN EXPENSES
-		const semesterMean = await getLastSemesterMeanService(req.user);
+		const lastSemesterMean = await getLastSemesterMeanService(req.user);
 
-		if (!semesterMean) return res.status(400).json({ Error: "Last semester transactions mean not found" });
+		if (!lastSemesterMean) return res.status(400).json({ Error: "Last semester transactions mean not found" });
 
-		stats.semesterMean = semesterMean;
+		stats.lastSemesterMean = lastSemesterMean;
 
 		// GET LAST GOAL
 		const lastGoal = await getLastGoalService(req.user);
@@ -53,20 +53,20 @@ exports.getStats = async (req, res) => {
 
 		if (!max) return res.status(400).json({ Error: "Failed to get highest spent month" });
 
-		stats.max = max;
-		stats.maxMonth = maxMonth;
+		stats.highestSpentMonthAmount = max;
+		stats.highestSpentMonth = maxMonth;
 
 		const { min, minMonth } = await getHighestAndLowestSpentMonthService(req.user);
 
 		if (!min) return res.status(400).json({ Error: "Failed to get lowest spent month" });
 
-		stats.min = min;
-		stats.minMonth = minMonth;
+		stats.lowestSpentMonthAmount = min;
+		stats.lowestSpentMonth = minMonth;
 
 		// GET LAST 12 MONTHS
 		const monthExpensesArray = await getLast12MonthsExpensesService(req.user);
 
-		stats.monthExpensesArray = monthExpensesArray;
+		stats.last12months = monthExpensesArray;
 
 		return res.status(200).json({ data: stats });
 	} catch (error) {
