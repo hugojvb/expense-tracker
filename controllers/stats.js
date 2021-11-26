@@ -13,6 +13,7 @@ exports.getStats = async (req, res) => {
 	try {
 		let stats;
 
+		// GET LAST MONTH TOTAL EXPENSES
 		const lastMonth = await TransactionsSchema.find({
 			user: req.user,
 			date: {
@@ -26,24 +27,28 @@ exports.getStats = async (req, res) => {
 
 		stats.totalAmount = totalAmount;
 
+		// GET LAST SEMESTER MEAN EXPENSES
 		const semesterMean = await getLastSemesterMeanService(req.user);
 
 		if (!semesterMean) return res.status(400).json({ Error: "Last semester transactions mean not found" });
 
 		stats.semesterMean = semesterMean;
 
+		// GET LAST GOAL
 		const lastGoal = await getLastGoalService(req.user);
 
 		if (!lastGoal) return res.status(400).json({ Error: "Last goal not found" });
 
 		stats.lastGoal = lastGoal.goal;
 
+		// GET SPENTH THIS MONTH
 		const spentThisMonth = await getSpentThisMonthService(req.user);
 
 		if (!spentThisMonth) return res.status(400).json({ Error: "Spent this month not found" });
 
 		stats.spentThisMonth = spentThisMonth;
 
+		// GET HIGHGEST AND LOWEST SPENDING MONTHS
 		const { max, maxMonth } = await getHighestAndLowestSpentMonthService(req.user);
 
 		if (!max) return res.status(400).json({ Error: "Failed to get highest spent month" });
@@ -58,6 +63,7 @@ exports.getStats = async (req, res) => {
 		stats.min = min;
 		stats.minMonth = minMonth;
 
+		// GET LAST 12 MONTHS
 		const monthExpensesArray = await getLast12MonthsExpensesService(req.user);
 
 		stats.monthExpensesArray = monthExpensesArray;
