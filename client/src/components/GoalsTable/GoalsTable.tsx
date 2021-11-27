@@ -149,6 +149,7 @@ export default function DemoTable() {
 					rows={goals}
 					setFiltered={setFiltered}
 					selected={selected}
+					setSelected={setSelected}
 				/>
 				<TableContainer>
 					<Table
