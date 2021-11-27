@@ -58,9 +58,15 @@ const State: FC = (props: any): JSX.Element => {
 	};
 
 	const deleteData = async (data: string, id: string) => {
-		const res = await axios.post(`/api/${data}/${id}`);
+		const res = await axios.delete(`/api/${data}/${id}`);
 
 		dispatch({ type: `DELETE_${data.toUpperCase()}`, payload: res.data.data });
+	};
+
+	const updateData = async (data: string, id: string, form: any) => {
+		const res = await axios.put(`/api/${data}/${id}`, form);
+
+		dispatch({ type: `UPDATE_${data.toUpperCase()}`, payload: res.data.data });
 	};
 
 	return (
@@ -79,6 +85,7 @@ const State: FC = (props: any): JSX.Element => {
 				setLoading,
 				createData,
 				deleteData,
+				updateData,
 			}}
 		>
 			{props?.children}

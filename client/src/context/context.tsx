@@ -16,6 +16,7 @@ interface ContextProps {
 	setLoading: (shouldBeLoading: boolean) => void;
 	createData: (data: string, form: any) => void;
 	deleteData: (data: string, id: string) => void;
+	updateData: (data: string, id: string, form: any) => void;
 }
 
 // CREATE CONTEXT STORE
