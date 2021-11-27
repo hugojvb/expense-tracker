@@ -57,6 +57,12 @@ const State: FC = (props: any): JSX.Element => {
 		dispatch({ type: `SET_${data.toUpperCase()}`, payload: res.data.data });
 	};
 
+	const deleteData = async (data: string, id: string) => {
+		const res = await axios.post(`/api/${data}/${id}`);
+
+		dispatch({ type: `DELETE_${data.toUpperCase()}`, payload: res.data.data });
+	};
+
 	return (
 		<Context.Provider
 			value={{
@@ -72,6 +78,7 @@ const State: FC = (props: any): JSX.Element => {
 				stats: state.stats,
 				setLoading,
 				createData,
+				deleteData,
 			}}
 		>
 			{props?.children}
