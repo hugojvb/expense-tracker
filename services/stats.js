@@ -78,13 +78,13 @@ exports.getLast12MonthsExpensesService = async (user) => {
 	let monthExpensesArray = [];
 
 	for (let i = 0; i < 12; i++) {
-		const currentMonth = dayjs().get("month") + 1;
+		const currentMonth =
+			dayjs().get("month") + i + 1 > 11 ? 9 - dayjs().get("month") + i : dayjs().get("month") + i + 1;
 		monthExpensesArray.push({
-			name: dayjs()
-				.set("month", currentMonth + i)
-				.format("MMM"),
+			name: dayjs().set("month", currentMonth).format("MMM"),
 			amount: allExpenses.reduce(
-				(sum, expense) => (dayjs(expense.date).get("month") === i ? (sum += Math.round(+expense.amount)) : sum),
+				(sum, expense) =>
+					dayjs(expense.date).get("month") === currentMonth ? (sum += Math.round(+expense.amount)) : sum,
 				0
 			),
 		});
