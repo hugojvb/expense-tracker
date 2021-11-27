@@ -51,6 +51,12 @@ const State: FC = (props: any): JSX.Element => {
 		dispatch({ type: SET_LOADING, payload: shouldBeLoading });
 	};
 
+	const createData = async (data: string, form: any) => {
+		const res = await axios.post(`/api/${data}`, form);
+
+		dispatch({ type: `SET_${data.toUpperCase()}`, payload: res.data.data });
+	};
+
 	return (
 		<Context.Provider
 			value={{
@@ -65,6 +71,7 @@ const State: FC = (props: any): JSX.Element => {
 				loading: state.loading,
 				stats: state.stats,
 				setLoading,
+				createData,
 			}}
 		>
 			{props?.children}
