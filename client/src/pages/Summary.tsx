@@ -79,8 +79,6 @@ const Summary: FC = () => {
 	);
 	const classes = useStyles();
 
-	console.log(stats);
-
 	return (
 		<Container className={classes.container}>
 			<Grid container spacing={3}>

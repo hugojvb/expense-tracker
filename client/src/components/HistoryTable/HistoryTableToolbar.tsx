@@ -32,10 +32,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 		theme.palette.type === "light"
 			? {
 					color: theme.palette.secondary.main,
-					backgroundColor: lighten(
-						theme.palette.secondary.light,
-						0.85
-					),
+					backgroundColor: lighten(theme.palette.secondary.light, 0.85),
 			  }
 			: {
 					color: theme.palette.text.primary,
@@ -92,6 +89,7 @@ interface Props {
 	rows: any;
 	setFiltered: any;
 	selected: string[];
+	setSelected: Dispatch<any>;
 }
 
 const HistoryTableToolbar: FC<Props> = ({
@@ -101,6 +99,7 @@ const HistoryTableToolbar: FC<Props> = ({
 	rows,
 	setFiltered,
 	selected,
+	setSelected,
 }) => {
 	const classes = useToolbarStyles();
 
@@ -141,10 +140,7 @@ const HistoryTableToolbar: FC<Props> = ({
 		setOpenAddedError(false);
 	};
 
-	const handleCloseDeletedSuccess = (
-		event?: SyntheticEvent,
-		reason?: any
-	) => {
+	const handleCloseDeletedSuccess = (event?: SyntheticEvent, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -158,10 +154,7 @@ const HistoryTableToolbar: FC<Props> = ({
 		setOpenDeletedError(false);
 	};
 
-	const handleCloseUpdatedSuccess = (
-		event?: SyntheticEvent,
-		reason?: any
-	) => {
+	const handleCloseUpdatedSuccess = (event?: SyntheticEvent, reason?: any) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -184,9 +177,7 @@ const HistoryTableToolbar: FC<Props> = ({
 		for (let i = 0; i < rows.length; i++) {
 			if (
 				Object.values(rows[i])
-					.map((x: any) =>
-						x.toString().search(new RegExp(target.value, "gi"))
-					)
+					.map((x: any) => x.toString().search(new RegExp(target.value, "gi")))
 					.some((y: any) => y !== -1)
 			) {
 				arr.push(rows[i]);
@@ -202,22 +193,11 @@ const HistoryTableToolbar: FC<Props> = ({
 			})}
 		>
 			{numSelected > 0 ? (
-				<Typography
-					className={classes.title}
-					color="inherit"
-					variant="subtitle1"
-					component="div"
-				>
+				<Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
 					{numSelected} selected
 				</Typography>
 			) : (
-				<Typography
-					className={classes.title}
-					variant="h6"
-					id="tableTitle"
-					component="div"
-					color="primary"
-				>
+				<Typography className={classes.title} variant="h6" id="tableTitle" component="div" color="primary">
 					History of Expenses
 				</Typography>
 			)}
@@ -241,17 +221,11 @@ const HistoryTableToolbar: FC<Props> = ({
 				<div className={classes.icons}>
 					<Tooltip title="Update">
 						<IconButton aria-label="Update">
-							<EditIcon
-								color="secondary"
-								onClick={handleOpenUpdateDialog}
-							/>
+							<EditIcon color="secondary" onClick={handleOpenUpdateDialog} />
 						</IconButton>
 					</Tooltip>
 					<Tooltip title="Delete">
-						<IconButton
-							aria-label="delete"
-							onClick={handleOpenDeleteDialog}
-						>
+						<IconButton aria-label="delete" onClick={handleOpenDeleteDialog}>
 							<DeleteIcon color="error" />
 						</IconButton>
 					</Tooltip>
@@ -259,10 +233,7 @@ const HistoryTableToolbar: FC<Props> = ({
 			) : numSelected > 0 ? (
 				<div className={classes.icons}>
 					<Tooltip title="Delete">
-						<IconButton
-							aria-label="delete"
-							onClick={handleOpenDeleteDialog}
-						>
+						<IconButton aria-label="delete" onClick={handleOpenDeleteDialog}>
 							<DeleteIcon color="error" />
 						</IconButton>
 					</Tooltip>
@@ -270,10 +241,7 @@ const HistoryTableToolbar: FC<Props> = ({
 			) : (
 				<div className={classes.icons}>
 					<Tooltip title="Add">
-						<IconButton
-							aria-label="add"
-							onClick={handleOpenAddDialog}
-						>
+						<IconButton aria-label="add" onClick={handleOpenAddDialog}>
 							<AddIcon color="primary" />
 						</IconButton>
 					</Tooltip>
@@ -286,6 +254,7 @@ const HistoryTableToolbar: FC<Props> = ({
 				setOpenDeletedSuccess={setOpenDeletedSuccess}
 				setOpenDeletedError={setOpenDeletedError}
 				type="transaction"
+				setSelected={setSelected}
 			/>
 			<AddDialog
 				openAddDialog={openAddDialog}
@@ -309,12 +278,7 @@ const HistoryTableToolbar: FC<Props> = ({
 				onClose={handleCloseAddedSuccess}
 				TransitionComponent={Grow}
 			>
-				<Alert
-					elevation={6}
-					variant="filled"
-					onClose={handleCloseAddedSuccess}
-					severity="success"
-				>
+				<Alert elevation={6} variant="filled" onClose={handleCloseAddedSuccess} severity="success">
 					Your expense was successfully added!
 				</Alert>
 			</Snackbar>
@@ -324,14 +288,8 @@ const HistoryTableToolbar: FC<Props> = ({
 				onClose={handleCloseAddedError}
 				TransitionComponent={Grow}
 			>
-				<Alert
-					elevation={6}
-					variant="filled"
-					onClose={handleCloseAddedError}
-					severity="error"
-				>
-					Something went wrong while adding your expense! Please try
-					again.
+				<Alert elevation={6} variant="filled" onClose={handleCloseAddedError} severity="error">
+					Something went wrong while adding your expense! Please try again.
 				</Alert>
 			</Snackbar>
 			<Snackbar
@@ -340,12 +298,7 @@ const HistoryTableToolbar: FC<Props> = ({
 				onClose={handleCloseDeletedSuccess}
 				TransitionComponent={Grow}
 			>
-				<Alert
-					elevation={6}
-					variant="filled"
-					onClose={handleCloseDeletedSuccess}
-					severity="success"
-				>
+				<Alert elevation={6} variant="filled" onClose={handleCloseDeletedSuccess} severity="success">
 					Your expense was successfully deleted!
 				</Alert>
 			</Snackbar>
@@ -355,14 +308,8 @@ const HistoryTableToolbar: FC<Props> = ({
 				onClose={handleCloseDeletedError}
 				TransitionComponent={Grow}
 			>
-				<Alert
-					elevation={6}
-					variant="filled"
-					onClose={handleCloseDeletedError}
-					severity="error"
-				>
-					Something went wrong while deleting your expense! Please try
-					again.
+				<Alert elevation={6} variant="filled" onClose={handleCloseDeletedError} severity="error">
+					Something went wrong while deleting your expense! Please try again.
 				</Alert>
 			</Snackbar>
 			<Snackbar
@@ -371,12 +318,7 @@ const HistoryTableToolbar: FC<Props> = ({
 				onClose={handleCloseUpdatedSuccess}
 				TransitionComponent={Grow}
 			>
-				<Alert
-					elevation={6}
-					variant="filled"
-					onClose={handleCloseUpdatedSuccess}
-					severity="success"
-				>
+				<Alert elevation={6} variant="filled" onClose={handleCloseUpdatedSuccess} severity="success">
 					Your expense was successfully updated!
 				</Alert>
 			</Snackbar>
@@ -386,14 +328,8 @@ const HistoryTableToolbar: FC<Props> = ({
 				onClose={handleCloseUpdatedError}
 				TransitionComponent={Grow}
 			>
-				<Alert
-					elevation={6}
-					variant="filled"
-					onClose={handleCloseUpdatedError}
-					severity="error"
-				>
-					Something went wrong while updating your expense! Please try
-					again.
+				<Alert elevation={6} variant="filled" onClose={handleCloseUpdatedError} severity="error">
+					Something went wrong while updating your expense! Please try again.
 				</Alert>
 			</Snackbar>
 		</Toolbar>

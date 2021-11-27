@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { Dispatch, FC, useContext } from "react";
 import {
 	Button,
 	Dialog,
@@ -25,6 +25,7 @@ interface Props {
 	setOpenDeletedSuccess: any;
 	setOpenDeletedError: any;
 	type: string;
+	setSelected: Dispatch<any>;
 }
 
 const AlertDialog: FC<Props> = ({
@@ -34,6 +35,7 @@ const AlertDialog: FC<Props> = ({
 	setOpenDeletedSuccess,
 	setOpenDeletedError,
 	type,
+	setSelected,
 }) => {
 	const classes = useStyles();
 
@@ -50,6 +52,7 @@ const AlertDialog: FC<Props> = ({
 			setOpenDeleteDialog(false);
 			setOpenDeletedSuccess(true);
 			await getData("Transactions");
+			setSelected([]);
 			return res;
 		} catch (error) {
 			setOpenDeleteDialog(false);
@@ -69,8 +72,7 @@ const AlertDialog: FC<Props> = ({
 				aria-describedby="alert-dialog-description"
 			>
 				<DialogTitle id="alert-dialog-title" className={classes.title}>
-					Delete{" "}
-					{type.substring(0, 1).toUpperCase() + type.substring(1)}
+					Delete {type.substring(0, 1).toUpperCase() + type.substring(1)}
 					<Divider />
 				</DialogTitle>
 
@@ -81,11 +83,7 @@ const AlertDialog: FC<Props> = ({
 				</DialogContent>
 
 				<DialogActions>
-					<Button
-						onClick={handleClose}
-						variant="outlined"
-						color="secondary"
-					>
+					<Button onClick={handleClose} variant="outlined" color="secondary">
 						Cancel
 					</Button>
 					<Button

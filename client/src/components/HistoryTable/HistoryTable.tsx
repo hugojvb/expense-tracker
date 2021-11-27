@@ -149,6 +149,7 @@ const HistoryTable = () => {
 					rows={transactions}
 					setFiltered={setFiltered}
 					selected={selected}
+					setSelected={setSelected}
 				/>
 				<TableContainer>
 					<Table

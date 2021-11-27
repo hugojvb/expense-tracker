@@ -41,11 +41,10 @@ const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuc
 
 	const submitAddInstance = async (data: any) => {
 		try {
-			console.log(data);
 			const res = await axios.post(`/api/${type}s`, data);
+			console.log(res.data);
 			setOpenAddDialog(false);
 			setOpenAddedSuccess(true);
-			return res;
 		} catch (error) {
 			setOpenAddedError(true);
 			console.log(error);
