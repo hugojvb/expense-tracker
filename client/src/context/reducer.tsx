@@ -1,5 +1,7 @@
 // TYPES IMPORT
 import {
+	DELETE_GOALS,
+	DELETE_TRANSACTIONS,
 	GET_GOALS,
 	GET_STATS,
 	GET_TRANSACTIONS,
@@ -58,6 +60,18 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				transactions: [...state.transactions, action.payload],
+			};
+		}
+		case DELETE_GOALS: {
+			return {
+				...state,
+				goals: state.goals.filter((goal: any) => goal.id !== action.payload),
+			};
+		}
+		case DELETE_TRANSACTIONS: {
+			return {
+				...state,
+				transactions: state.transactions.filter((transaction: any) => transaction.id !== action.payload),
 			};
 		}
 		default:
