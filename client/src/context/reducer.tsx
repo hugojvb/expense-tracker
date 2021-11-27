@@ -1,5 +1,15 @@
 // TYPES IMPORT
-import { GET_GOALS, GET_STATS, GET_TRANSACTIONS, LOGIN, LOGOUT, SET_LOADING, TOGGLE_DRAWER } from "./types";
+import {
+	GET_GOALS,
+	GET_STATS,
+	GET_TRANSACTIONS,
+	LOGIN,
+	LOGOUT,
+	SET_GOALS,
+	SET_LOADING,
+	SET_TRANSACTIONS,
+	TOGGLE_DRAWER,
+} from "./types";
 
 const reducer = (state: any, action: { type: string; payload?: any }) => {
 	switch (action.type) {
@@ -38,6 +48,18 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 				...state,
 				stats: action.payload,
 			};
+		case SET_GOALS: {
+			return {
+				...state,
+				goals: [...state.goals, action.payload],
+			};
+		}
+		case SET_TRANSACTIONS: {
+			return {
+				...state,
+				transactions: [...state.transactions, action.payload],
+			};
+		}
 		default:
 			return state;
 	}
