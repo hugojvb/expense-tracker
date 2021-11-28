@@ -48,7 +48,7 @@ const AlertDialog: FC<Props> = ({
 
 	const deleteInstance = async () => {
 		try {
-			const res = await axios.delete(`/api/${type}s/${selected}`);
+			const res = await axios.delete(`/api/${type}/${selected}`);
 			setOpenDeleteDialog(false);
 			setOpenDeletedSuccess(true);
 			await getData("Transactions");
