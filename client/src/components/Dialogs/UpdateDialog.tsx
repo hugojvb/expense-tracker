@@ -86,13 +86,12 @@ const UpdateDialog: FC<Props> = ({
 				aria-labelledby="form-dialog-title"
 			>
 				<DialogTitle id="form-dialog-title" className={classes.title}>
-					Update{" "}
-					{type.substring(0, 1).toUpperCase() + type.substring(1)}
+					Update {type.substring(0, 1).toUpperCase() + type.substring(1)}
 					<Divider />
 				</DialogTitle>
 				<form onSubmit={handleSubmit(submitUpdateInstance)}>
 					<DialogContent>
-						{type === "transaction" ? (
+						{type === "transactions" ? (
 							<>
 								<TextField
 									inputRef={register({ required: true })}
@@ -150,11 +149,7 @@ const UpdateDialog: FC<Props> = ({
 						/>
 					</DialogContent>
 					<DialogActions>
-						<Button
-							onClick={handleClose}
-							variant="outlined"
-							color="secondary"
-						>
+						<Button onClick={handleClose} variant="outlined" color="secondary">
 							Cancel
 						</Button>
 						<Button type="submit" color="primary">

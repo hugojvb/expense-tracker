@@ -68,7 +68,7 @@ const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuc
 				</DialogTitle>
 				<form onSubmit={handleSubmit(submitAddInstance)}>
 					<DialogContent>
-						{type === "transaction" ? (
+						{type === "transactions" ? (
 							<>
 								<TextField
 									inputRef={register({ required: true })}
