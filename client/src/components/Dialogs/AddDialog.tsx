@@ -88,6 +88,7 @@ const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuc
 									name="amount"
 									label="Amount"
 									type="number"
+									inputProps={{ step: "0.01", lang: "en-US" }}
 									fullWidth
 									required
 									classes={{ root: classes.textField }}

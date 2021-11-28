@@ -50,7 +50,7 @@ const UpdateDialog: FC<Props> = ({
 	const submitUpdateInstance = async (data: any) => {
 		try {
 			console.log(data);
-			const res = await axios.put(`/api/${type}s/${selected}`, { data });
+			const res = await axios.put(`/api/${type}/${selected}`, { data });
 			setOpenUpdateDialog(false);
 			setOpenUpdatedSuccess(true);
 			return res;
