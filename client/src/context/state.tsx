@@ -66,7 +66,7 @@ const State: FC = (props: any): JSX.Element => {
 	const updateData = async (data: string, id: string, form: any) => {
 		const res = await axios.put(`/api/${data}/${id}`, form);
 
-		dispatch({ type: `UPDATE_${data.toUpperCase()}`, payload: res.data.data });
+		dispatch({ type: `UPDATE_${data.toUpperCase()}`, payload: { data: res.data.data, id: id } });
 	};
 
 	return (

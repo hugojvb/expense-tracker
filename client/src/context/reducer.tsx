@@ -11,6 +11,8 @@ import {
 	SET_LOADING,
 	SET_TRANSACTIONS,
 	TOGGLE_DRAWER,
+	UPDATE_GOALS,
+	UPDATE_TRANSACTIONS,
 } from "./types";
 
 const reducer = (state: any, action: { type: string; payload?: any }) => {
@@ -72,6 +74,20 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 			return {
 				...state,
 				transactions: state.transactions.filter((transaction: any) => transaction.id !== action.payload),
+			};
+		}
+		case UPDATE_GOALS: {
+			return {
+				...state,
+				goals: state.goals.filter((goal: any) => goal.id !== action.payload.id).concat(action.payload.data),
+			};
+		}
+		case UPDATE_TRANSACTIONS: {
+			return {
+				...state,
+				transactions: state.transactions
+					.filter((transaction: any) => transaction.id !== action.payload.id)
+					.concat(action.payload.data),
 			};
 		}
 		default:
