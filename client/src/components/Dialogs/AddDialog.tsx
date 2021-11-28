@@ -1,4 +1,5 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
+import Context from "../../context/context";
 
 // MATERIAL UI COMPONENTS
 import {
@@ -35,11 +36,15 @@ const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuc
 		setOpenAddDialog(false);
 	};
 
+	const context = useContext(Context);
+	const { createData } = context;
+
 	const { register, handleSubmit, errors, control } = useForm();
 
 	const classes = useStyles();
 
 	const submitAddInstance = async (data: any) => {
+		await createData(type, data);
 		try {
 			const res = await axios.post(`/api/${type}s`, data);
 			console.log(res.data);
