@@ -112,6 +112,7 @@ const UpdateDialog: FC<Props> = ({
 									id="amount"
 									name="amount"
 									label="Amount"
+									inputProps={{ step: "0.01", lang: "en-US" }}
 									type="number"
 									defaultValue={selectedRow?.amount}
 									fullWidth
