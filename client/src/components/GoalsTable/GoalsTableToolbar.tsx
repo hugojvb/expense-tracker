@@ -244,7 +244,7 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 				selected={selected}
 				setOpenDeletedSuccess={setOpenDeletedSuccess}
 				setOpenDeletedError={setOpenDeletedError}
-				type="goal"
+				type="goals"
 				setSelected={setSelected}
 			/>
 			<AddDialog
@@ -252,7 +252,7 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 				setOpenAddDialog={setOpenAddDialog}
 				setOpenAddedSuccess={setOpenAddedSuccess}
 				setOpenAddedError={setOpenAddedError}
-				type="goal"
+				type="goals"
 			/>
 			<UpdateDialog
 				openUpdateDialog={openUpdateDialog}
@@ -261,7 +261,7 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 				rows={rows}
 				setOpenUpdatedSuccess={setOpenUpdatedSuccess}
 				setOpenUpdatedError={setOpenUpdatedError}
-				type="goal"
+				type="goals"
 			/>
 			<Snackbar
 				open={openAddedSuccess}

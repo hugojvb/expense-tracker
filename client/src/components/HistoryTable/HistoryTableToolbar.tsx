@@ -253,7 +253,7 @@ const HistoryTableToolbar: FC<Props> = ({
 				selected={selected}
 				setOpenDeletedSuccess={setOpenDeletedSuccess}
 				setOpenDeletedError={setOpenDeletedError}
-				type="transaction"
+				type="transactions"
 				setSelected={setSelected}
 			/>
 			<AddDialog
@@ -261,7 +261,7 @@ const HistoryTableToolbar: FC<Props> = ({
 				setOpenAddDialog={setOpenAddDialog}
 				setOpenAddedSuccess={setOpenAddedSuccess}
 				setOpenAddedError={setOpenAddedError}
-				type="transaction"
+				type="transactions"
 			/>
 			<UpdateDialog
 				openUpdateDialog={openUpdateDialog}
@@ -270,7 +270,7 @@ const HistoryTableToolbar: FC<Props> = ({
 				rows={rows}
 				setOpenUpdatedSuccess={setOpenUpdatedSuccess}
 				setOpenUpdatedError={setOpenUpdatedError}
-				type="transaction"
+				type="transactions"
 			/>
 			<Snackbar
 				open={openAddedSuccess}
