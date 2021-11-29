@@ -40,7 +40,7 @@ const AlertDialog: FC<Props> = ({
 	const classes = useStyles();
 
 	const context = useContext(Context);
-	const { getData, loading } = context;
+	const { getData, loading, deleteData } = context;
 
 	const handleClose = () => {
 		setOpenDeleteDialog(false);
@@ -48,12 +48,9 @@ const AlertDialog: FC<Props> = ({
 
 	const deleteInstance = async () => {
 		try {
-			const res = await axios.delete(`/api/${type}/${selected}`);
+			await deleteData(type, selected);
 			setOpenDeleteDialog(false);
 			setOpenDeletedSuccess(true);
-			await getData("Transactions");
-			setSelected([]);
-			return res;
 		} catch (error) {
 			setOpenDeleteDialog(false);
 			setOpenDeletedError(true);
