@@ -77,7 +77,7 @@ const HistoryTable = () => {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [search, setSearch] = React.useState("");
-	const [filtered, setFiltered] = React.useState();
+	const [filtered, setFiltered] = React.useState<any[]>();
 
 	const context = useContext(Context);
 	const { getData, transactions, loading, setLoading } = context;
@@ -218,7 +218,7 @@ const HistoryTable = () => {
 				<TablePagination
 					rowsPerPageOptions={[5, 10, 25]}
 					component="div"
-					count={transactions.length}
+					count={filtered ? filtered.length : transactions.length}
 					rowsPerPage={rowsPerPage}
 					page={page}
 					onChangePage={handleChangePage}
