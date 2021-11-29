@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 
 import {
 	Button,
@@ -11,6 +11,8 @@ import {
 	makeStyles,
 	Grow,
 } from "@material-ui/core";
+
+import Context from "../../context/context";
 
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
@@ -41,6 +43,9 @@ const UpdateDialog: FC<Props> = ({
 }) => {
 	const { register, handleSubmit, control } = useForm();
 
+	const context = useContext(Context);
+	const { updateData } = context;
+
 	const classes = useStyles();
 
 	const handleClose = () => {
@@ -49,11 +54,9 @@ const UpdateDialog: FC<Props> = ({
 
 	const submitUpdateInstance = async (data: any) => {
 		try {
-			console.log(data);
-			const res = await axios.put(`/api/${type}/${selected}`, { data });
+			await updateData(type, selected, data);
 			setOpenUpdateDialog(false);
 			setOpenUpdatedSuccess(true);
-			return res;
 		} catch (error) {
 			console.log(error);
 			setOpenUpdatedError(true);
