@@ -90,7 +90,7 @@ const HistoryTable = () => {
 				setLoading(false);
 			}
 		})();
-	}, []);
+	}, [getData, transactions, setLoading]);
 
 	const handleRequestSort = (event: any, property: any) => {
 		const isAsc = orderBy === property && order === "asc";

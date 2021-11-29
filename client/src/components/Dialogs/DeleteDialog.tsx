@@ -40,7 +40,7 @@ const AlertDialog: FC<Props> = ({
 	const classes = useStyles();
 
 	const context = useContext(Context);
-	const { getData, loading, deleteData } = context;
+	const { getData, setLoading, deleteData } = context;
 
 	const handleClose = () => {
 		setOpenDeleteDialog(false);
@@ -51,6 +51,7 @@ const AlertDialog: FC<Props> = ({
 			await deleteData(type, selected);
 			setOpenDeleteDialog(false);
 			setOpenDeletedSuccess(true);
+			setSelected([]);
 		} catch (error) {
 			setOpenDeleteDialog(false);
 			setOpenDeletedError(true);

@@ -77,7 +77,7 @@ export default function DemoTable() {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [search, setSearch] = React.useState("");
-	const [filtered, setFiltered] = React.useState();
+	const [filtered, setFiltered] = React.useState<any[]>();
 
 	const context = useContext(Context);
 	const { getData, goals, loading, setLoading } = context;
@@ -218,7 +218,7 @@ export default function DemoTable() {
 				<TablePagination
 					rowsPerPageOptions={[5, 10, 25]}
 					component="div"
-					count={goals.length}
+					count={filtered ? filtered.length : goals.length}
 					rowsPerPage={rowsPerPage}
 					page={page}
 					onChangePage={handleChangePage}
