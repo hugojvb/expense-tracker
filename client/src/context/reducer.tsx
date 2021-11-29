@@ -55,13 +55,13 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 		case SET_GOALS: {
 			return {
 				...state,
-				goals: [...state.goals, action.payload],
+				goals: [action.payload, ...state.goals],
 			};
 		}
 		case SET_TRANSACTIONS: {
 			return {
 				...state,
-				transactions: [...state.transactions, action.payload],
+				transactions: [action.payload, ...state.transactions],
 			};
 		}
 		case DELETE_GOALS: {
