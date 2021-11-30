@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { Dispatch, FC, useContext } from "react";
 
 import {
 	Button,
@@ -30,6 +30,7 @@ interface Props {
 	setOpenUpdatedError: any;
 	selected: any;
 	type: string;
+	setSelected: Dispatch<any[]>;
 }
 
 const UpdateDialog: FC<Props> = ({
@@ -40,6 +41,7 @@ const UpdateDialog: FC<Props> = ({
 	setOpenUpdatedError,
 	selected,
 	type,
+	setSelected,
 }) => {
 	const { register, handleSubmit, control } = useForm();
 
@@ -57,6 +59,7 @@ const UpdateDialog: FC<Props> = ({
 			await updateData(type, selected, data);
 			setOpenUpdateDialog(false);
 			setOpenUpdatedSuccess(true);
+			setSelected([]);
 		} catch (error) {
 			console.log(error);
 			setOpenUpdatedError(true);

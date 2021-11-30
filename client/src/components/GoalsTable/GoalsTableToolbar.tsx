@@ -262,6 +262,7 @@ const GoalsTableToolbar: FC<Props> = ({ numSelected, search, setSearch, rows, se
 				setOpenUpdatedSuccess={setOpenUpdatedSuccess}
 				setOpenUpdatedError={setOpenUpdatedError}
 				type="goals"
+				setSelected={setSelected}
 			/>
 			<Snackbar
 				open={openAddedSuccess}

@@ -271,6 +271,7 @@ const HistoryTableToolbar: FC<Props> = ({
 				setOpenUpdatedSuccess={setOpenUpdatedSuccess}
 				setOpenUpdatedError={setOpenUpdatedError}
 				type="transactions"
+				setSelected={setSelected}
 			/>
 			<Snackbar
 				open={openAddedSuccess}
