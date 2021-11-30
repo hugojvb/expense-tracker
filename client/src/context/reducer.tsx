@@ -79,15 +79,15 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 		case UPDATE_GOALS: {
 			return {
 				...state,
-				goals: state.goals.filter((goal: any) => goal._id !== action.payload.id[0]).concat(action.payload.data),
+				goals: state.goals.map((goal: any) => (goal._id === action.payload.id[0] ? action.payload.data : goal)),
 			};
 		}
 		case UPDATE_TRANSACTIONS: {
 			return {
 				...state,
-				transactions: state.transactions
-					.filter((transaction: any) => transaction._id !== action.payload.id[0])
-					.concat(action.payload.data),
+				transactions: state.transactions.map((transaction: any) =>
+					transaction._id === action.payload.id[0] ? action.payload.data : transaction
+				),
 			};
 		}
 		default:
