@@ -67,13 +67,13 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 		case DELETE_GOALS: {
 			return {
 				...state,
-				goals: state.goals.filter((goal: any) => goal.id !== action.payload),
+				goals: state.goals.filter((goal: any) => goal._id !== action.payload[0]),
 			};
 		}
 		case DELETE_TRANSACTIONS: {
 			return {
 				...state,
-				transactions: state.transactions.filter((transaction: any) => transaction.id !== action.payload),
+				transactions: state.transactions.filter((transaction: any) => transaction._id !== action.payload[0]),
 			};
 		}
 		case UPDATE_GOALS: {
