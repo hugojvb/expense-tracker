@@ -67,7 +67,7 @@ const reducer = (state: any, action: { type: string; payload?: any }) => {
 		case DELETE_GOALS: {
 			return {
 				...state,
-				goals: state.goals.filter((goal: any) => goal._id !== action.payload[0]),
+				goals: state.goals.filter((goal: any) => !action.payload.includes(goal._id)),
 			};
 		}
 		case DELETE_TRANSACTIONS: {
