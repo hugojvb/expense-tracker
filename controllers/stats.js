@@ -34,7 +34,7 @@ exports.getStats = async (req, res) => {
 		// GET LAST GOAL
 		const lastGoal = await getLastGoalService(req.user);
 
-		stats.lastGoal = lastGoal.goal ? lastGoal : 0;
+		stats.lastGoal = lastGoal.goal ? lastGoal.goal : 0;
 
 		// GET SPENTH THIS MONTH
 		const spentThisMonth = await getSpentThisMonthService(req.user);
