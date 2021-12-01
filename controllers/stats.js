@@ -24,7 +24,7 @@ exports.getStats = async (req, res) => {
 
 		const lastMonth = Math.round(lastMonthArray.reduce((sum, current) => (sum += current.amount), 0));
 
-		stats.lastMonth = lastMonth ?? 0;
+		stats.lastMonth = lastMonth ? lastMonth : 0;
 
 		// GET LAST SEMESTER MEAN EXPENSES
 		const lastSemesterMean = await getLastSemesterMeanService(req.user);
@@ -34,23 +34,23 @@ exports.getStats = async (req, res) => {
 		// GET LAST GOAL
 		const lastGoal = await getLastGoalService(req.user);
 
-		stats.lastGoal = lastGoal.goal ?? 0;
+		stats.lastGoal = lastGoal.goal ? lastGoal : 0;
 
 		// GET SPENTH THIS MONTH
 		const spentThisMonth = await getSpentThisMonthService(req.user);
 
-		stats.spentThisMonth = spentThisMonth ?? 0;
+		stats.spentThisMonth = spentThisMonth ? spentThisMonth : 0;
 
 		// GET HIGHGEST AND LOWEST SPENDING MONTHS
 		const { max, maxMonth } = await getHighestAndLowestSpentMonthService(req.user);
 
-		stats.highestSpentMonthAmount = max ?? 0;
-		stats.highestSpentMonth = maxMonth ?? "-";
+		stats.highestSpentMonthAmount = max ? max : 0;
+		stats.highestSpentMonth = maxMonth ? maxMonth : "-";
 
 		const { min, minMonth } = await getHighestAndLowestSpentMonthService(req.user);
 
-		stats.lowestSpentMonthAmount = min ?? 0;
-		stats.lowestSpentMonth = minMonth ?? "-";
+		stats.lowestSpentMonthAmount = min ? min : 0;
+		stats.lowestSpentMonth = minMonth ? minMonth : "-";
 
 		// GET LAST 12 MONTHS
 		const monthExpensesArray = await getLast12MonthsExpensesService(req.user);
