@@ -44,9 +44,7 @@ exports.getStats = async (req, res) => {
 		// GET SPENTH THIS MONTH
 		const spentThisMonth = await getSpentThisMonthService(req.user);
 
-		if (!spentThisMonth) return res.status(400).json({ Error: "Spent this month not found" });
-
-		stats.spentThisMonth = spentThisMonth;
+		stats.spentThisMonth = spentThisMonth ?? 0;
 
 		// GET HIGHGEST AND LOWEST SPENDING MONTHS
 		const { max, maxMonth } = await getHighestAndLowestSpentMonthService(req.user);
