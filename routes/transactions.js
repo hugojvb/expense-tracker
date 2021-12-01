@@ -14,6 +14,6 @@ router.post("/", verify, addTransaction);
 
 router.put("/:id", verify, updateTransaction);
 
-router.delete("/:id", verify, deleteTransaction);
+router.delete("/", verify, deleteTransaction);
 
 module.exports = router;

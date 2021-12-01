@@ -57,12 +57,15 @@ exports.updateTransaction = async (req, res) => {
 // delete transaction
 exports.deleteTransaction = async (req, res) => {
 	try {
-		const transaction = await TransactionsSchema.findByIdAndDelete(req.params.id);
-		if (!transaction) return res.status(400).json({ Error: "Id not found" });
+		const { ids } = req.body;
+		ids.forEach(async (id) => {
+			const deleted = await TransactionsSchema.findByIdAndDelete(id);
+			if (!deleted) return res.status(400).json({ Error: "Id not found" });
+		});
 
 		res.status(200).json({
 			success: true,
-			data: {},
+			data: ids,
 		});
 	} catch (error) {
 		console.log(error);

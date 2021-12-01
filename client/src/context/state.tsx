@@ -57,10 +57,10 @@ const State: FC = (props: any): JSX.Element => {
 		dispatch({ type: `SET_${data.toUpperCase()}`, payload: res.data.data });
 	};
 
-	const deleteData = async (data: string, id: string) => {
-		await axios.delete(`/api/${data}/${id}`);
+	const deleteData = async (data: string, ids: string[]) => {
+		await axios.delete(`/api/${data}`, { data: { ids: ids } });
 
-		dispatch({ type: `DELETE_${data.toUpperCase()}`, payload: id });
+		dispatch({ type: `DELETE_${data.toUpperCase()}`, payload: ids });
 	};
 
 	const updateData = async (data: string, id: string, form: any) => {

@@ -10,7 +10,6 @@ import {
 	makeStyles,
 	Divider,
 } from "@material-ui/core";
-import axios from "axios";
 import Context from "../../context/context";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,12 +39,11 @@ const AlertDialog: FC<Props> = ({
 	const classes = useStyles();
 
 	const context = useContext(Context);
-	const { getData, setLoading, deleteData } = context;
+	const { deleteData } = context;
 
 	const handleClose = () => {
 		setOpenDeleteDialog(false);
 	};
-
 	const deleteInstance = async () => {
 		try {
 			await deleteData(type, selected);
