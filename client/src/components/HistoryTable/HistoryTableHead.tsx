@@ -1,22 +1,13 @@
 import { FC } from "react";
-import PropTypes from "prop-types";
-import {
-	TableCell,
-	TableHead,
-	TableRow,
-	TableSortLabel,
-	Checkbox,
-} from "@material-ui/core";
+import { TableCell, TableHead, TableRow, TableSortLabel, Checkbox } from "@material-ui/core";
 
-const headCells = [
+const headCells: { id: string; label: string }[] = [
 	{
 		id: "transaction",
-		numeric: false,
-		disablePadding: false,
 		label: "Transaction",
 	},
-	{ id: "amount", numeric: false, disablePadding: false, label: "Amount" },
-	{ id: "date", numeric: false, disablePadding: false, label: "Date" },
+	{ id: "amount", label: "Amount" },
+	{ id: "date", label: "Date" },
 ];
 
 interface Props {
@@ -47,21 +38,18 @@ const HistoryTableHead: FC<Props> = ({
 			<TableRow>
 				<TableCell padding="checkbox">
 					<Checkbox
-						indeterminate={
-							numSelected > 0 && numSelected < rowCount
-						}
+						indeterminate={numSelected > 0 && numSelected < rowCount}
 						checked={rowCount > 0 && numSelected === rowCount}
 						onChange={onSelectAllClick}
-						inputProps={{ "aria-label": "select all desserts" }}
 						color="primary"
 					/>
 				</TableCell>
 				{headCells.map((headCell) => (
 					<TableCell
 						key={headCell.id}
-						align={headCell.numeric ? "center" : "left"}
-						padding={headCell.disablePadding ? "none" : "default"}
+						align="left"
 						sortDirection={orderBy === headCell.id ? order : false}
+						width={100 / headCells.length + "%"}
 					>
 						<TableSortLabel
 							active={orderBy === headCell.id}
@@ -71,9 +59,7 @@ const HistoryTableHead: FC<Props> = ({
 							{headCell.label}
 							{orderBy === headCell.id ? (
 								<span className={classes.visuallyHidden}>
-									{order === "desc"
-										? "sorted descending"
-										: "sorted ascending"}
+									{order === "desc" ? "sorted descending" : "sorted ascending"}
 								</span>
 							) : null}
 						</TableSortLabel>

@@ -1,22 +1,14 @@
 import { FC } from "react";
 
 // MATERIAL-UI COMPONENTS IMPORT
-import {
-	TableCell,
-	TableHead,
-	TableRow,
-	TableSortLabel,
-	Checkbox,
-} from "@material-ui/core";
+import { TableCell, TableHead, TableRow, TableSortLabel, Checkbox } from "@material-ui/core";
 
 const headCells = [
 	{
 		id: "goal",
-		numeric: false,
-		disablePadding: false,
 		label: "Goal",
 	},
-	{ id: "Date", numeric: false, disablePadding: false, label: "Date" },
+	{ id: "Date", label: "Date" },
 ];
 
 // PROPS INTERFACE
@@ -48,9 +40,7 @@ const GoalsTableHead: FC<Props> = ({
 			<TableRow>
 				<TableCell padding="checkbox">
 					<Checkbox
-						indeterminate={
-							numSelected > 0 && numSelected < rowCount
-						}
+						indeterminate={numSelected > 0 && numSelected < rowCount}
 						checked={rowCount > 0 && numSelected === rowCount}
 						onChange={onSelectAllClick}
 						inputProps={{ "aria-label": "select all desserts" }}
@@ -60,9 +50,9 @@ const GoalsTableHead: FC<Props> = ({
 				{headCells.map((headCell) => (
 					<TableCell
 						key={headCell.id}
-						align={headCell.numeric ? "center" : "left"}
-						padding={headCell.disablePadding ? "none" : "default"}
+						align="left"
 						sortDirection={orderBy === headCell.id ? order : false}
+						width={100 / headCells.length + "%"}
 					>
 						<TableSortLabel
 							active={orderBy === headCell.id}
@@ -72,9 +62,7 @@ const GoalsTableHead: FC<Props> = ({
 							{headCell.label}
 							{orderBy === headCell.id ? (
 								<span className={classes.visuallyHidden}>
-									{order === "desc"
-										? "sorted descending"
-										: "sorted ascending"}
+									{order === "desc" ? "sorted descending" : "sorted ascending"}
 								</span>
 							) : null}
 						</TableSortLabel>
