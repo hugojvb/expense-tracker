@@ -7,6 +7,6 @@ router.get("/", verify, getGoals);
 
 router.post("/", verify, setGoals);
 
-router.delete("/:id", verify, deleteGoals);
+router.delete("/", verify, deleteGoals);
 
 module.exports = router;
