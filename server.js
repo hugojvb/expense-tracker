@@ -48,6 +48,9 @@ app.get("/goals", (req, res) => {
 app.get("/summary", (req, res) => {
 	res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
+app.get("/login", (req, res) => {
+	res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
 
 // listenning at port 5000
 const PORT = process.env.PORT || 5000;
