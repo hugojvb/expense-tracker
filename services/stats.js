@@ -84,7 +84,10 @@ exports.getLast12MonthsExpensesService = async (user) => {
 			name: dayjs().set("month", currentMonth).format("MMM"),
 			amount: allExpenses.reduce(
 				(sum, expense) =>
-					dayjs(expense.date).get("month") === currentMonth ? (sum += Math.round(+expense.amount)) : sum,
+					dayjs(expense.date).get("month") === currentMonth &&
+					dayjs(expense.date).isAfter(dayjs().subtract(1, "year"))
+						? (sum += Math.round(+expense.amount))
+						: sum,
 				0
 			),
 		});
