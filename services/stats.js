@@ -2,6 +2,22 @@ const TransactionsSchema = require("../models/TransactionsSchema");
 const GoalsSchema = require("../models/GoalsSchema");
 const dayjs = require("dayjs");
 
+let lastYearExpenses = [];
+
+const getAllExpensesFromLastYear = (user) => {
+	const allExpensesFromLastYear = await TransactionsSchema.find({
+		user,
+		date: {
+			$gte: dayjs().subtract(1, "year"),
+			$lt: dayjs(),
+		},
+	}).sort({ date: -1 });
+
+	lastYearExpenses = allExpensesFromLastYear;
+
+	return allExpensesFromLastYear;
+};
+
 exports.getLastSemesterMeanService = async (user) => {
 	const lastSemester = await TransactionsSchema.find({
 		user,
@@ -41,7 +57,7 @@ exports.getSpentThisMonthService = async (user) => {
 };
 
 exports.getHighestAndLowestSpentMonthService = async (user) => {
-	const allExpenses = await TransactionsSchema.find({ user }).sort({ date: -1 });
+	const allExpenses = lastYearExpenses.length === 0 ? getAllExpensesFromLastYear(user) : lastYearExpenses;
 
 	let monthExpensesArray = [];
 	let maximumSpent = Number.NEGATIVE_INFINITY;
@@ -73,7 +89,7 @@ exports.getHighestAndLowestSpentMonthService = async (user) => {
 };
 
 exports.getLast12MonthsExpensesService = async (user) => {
-	const allExpenses = await TransactionsSchema.find({ user }).sort({ date: -1 });
+	const allExpenses = lastYearExpenses.length === 0 ? getAllExpensesFromLastYear(user) : lastYearExpenses;
 
 	let monthExpensesArray = [];
 
