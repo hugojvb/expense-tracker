@@ -4,7 +4,7 @@ const dayjs = require("dayjs");
 
 let lastYearExpenses = [];
 
-const getAllExpensesFromLastYear = (user) => {
+const getAllExpensesFromLastYear = async (user) => {
 	const allExpensesFromLastYear = await TransactionsSchema.find({
 		user,
 		date: {
