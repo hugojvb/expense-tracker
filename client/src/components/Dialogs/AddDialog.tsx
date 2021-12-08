@@ -17,6 +17,7 @@ import {
 // REACT HOOK FORM
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
+import dayjs from "dayjs";
 
 const useStyles = makeStyles((theme) => ({
 	title: { color: theme.palette.primary.main },
@@ -115,6 +116,7 @@ const AddDialog: FC<Props> = ({ openAddDialog, setOpenAddDialog, setOpenAddedSuc
 							label="Date"
 							name="date"
 							fullWidth
+							defaultValue={dayjs().format("YYYY-MM-DD")}
 							required
 							InputLabelProps={{
 								shrink: true,
