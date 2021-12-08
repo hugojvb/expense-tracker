@@ -8,7 +8,7 @@ const getAllExpensesFromLastYear = async (user) => {
 	const allExpensesFromLastYear = await TransactionsSchema.find({
 		user,
 		date: {
-			$gte: dayjs().subtract(1, "year").startOf("month"),
+			$gte: dayjs().subtract(11, "months").startOf("month"),
 			$lt: dayjs(),
 		},
 	}).sort({ date: -1 });
