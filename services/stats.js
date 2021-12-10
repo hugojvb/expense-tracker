@@ -1,6 +1,7 @@
 const TransactionsSchema = require("../models/TransactionsSchema");
 const GoalsSchema = require("../models/GoalsSchema");
 const dayjs = require("dayjs");
+const { Mongoose } = require("mongoose");
 
 let lastYearExpenses = [];
 
@@ -27,10 +28,7 @@ exports.getLastSemesterMeanService = async (user) => {
 		},
 	}).sort({ date: -1 });
 
-	const lastSixMonthsSum = lastSemester.reduce(
-		(sum, current) => (sum += current.amount),
-		0
-	);
+	const lastSixMonthsSum = lastSemester.reduce((sum, current) => (sum += current.amount), 0);
 
 	const semesterMean = Math.round(lastSixMonthsSum / 6);
 
@@ -54,18 +52,13 @@ exports.getSpentThisMonthService = async (user) => {
 		},
 	}).sort({ date: -1 });
 
-	const spentThisMonth = Math.round(
-		thisMonth.reduce((sum, current) => (sum += current.amount), 0)
-	);
+	const spentThisMonth = Math.round(thisMonth.reduce((sum, current) => (sum += current.amount), 0));
 
 	return spentThisMonth;
 };
 
 exports.getHighestAndLowestSpentMonthService = async (user) => {
-	const allExpenses =
-		lastYearExpenses.length === 0
-			? await getAllExpensesFromLastYear(user)
-			: lastYearExpenses;
+	const allExpenses = lastYearExpenses.length === 0 ? await getAllExpensesFromLastYear(user) : lastYearExpenses;
 
 	let monthExpensesArray = [];
 	let maximumSpent = Number.NEGATIVE_INFINITY;
@@ -75,10 +68,7 @@ exports.getHighestAndLowestSpentMonthService = async (user) => {
 	for (let i = 0; i < 12; i++) {
 		monthExpensesArray.push({
 			i: allExpenses.reduce(
-				(sum, expense) =>
-					dayjs(expense.date).get("month") === i
-						? (sum += +expense.amount)
-						: sum,
+				(sum, expense) => (dayjs(expense.date).get("month") === i ? (sum += +expense.amount) : sum),
 				0
 			),
 		});
@@ -105,20 +95,44 @@ exports.getHighestAndLowestSpentMonthService = async (user) => {
 };
 
 exports.getLast12MonthsExpensesService = async (user) => {
-	const allExpenses =
-		lastYearExpenses.length === 0
-			? await getAllExpensesFromLastYear(user)
-			: lastYearExpenses;
+	const allExpenses = lastYearExpenses.length === 0 ? await getAllExpensesFromLastYear(user) : lastYearExpenses;
 
 	let monthExpensesArray = [];
 
 	for (let i = 0; i < 12; i++) {
 		const currentMonth =
-			dayjs().get("month") + i + 1 > 11
-				? dayjs().get("month") + i - 11
-				: dayjs().get("month") + i + 1;
+			dayjs().get("month") + i + 1 > 11 ? dayjs().get("month") + i - 11 : dayjs().get("month") + i + 1;
 		monthExpensesArray.push({
 			name: dayjs().set("month", currentMonth).format("MMM"),
+			amount: allExpenses.reduce(
+				(sum, expense) =>
+					dayjs(expense.date).get("month") === currentMonth &&
+					dayjs(expense.date).isAfter(dayjs().subtract(1, "year"))
+						? (sum += Math.round(+expense.amount))
+						: sum,
+				0
+			),
+		});
+	}
+
+	return monthExpensesArray;
+};
+
+exports.getYearsMeanExpensesService = async (user) => {
+	const allExpenses = await TransactionsSchema.find({
+		user,
+		date: {
+			$gte: dayjs().subtract(5, "years").endOf("month"),
+			$lt: dayjs(),
+		},
+	});
+
+	let yearExpensesArray = [];
+
+	for (let i = 0; i < 5; i++) {
+		const currentYear = dayjs().get("year") + i + 1;
+		yearExpensesArray.push({
+			name: dayjs().set("year", currentYear).format("YYYY"),
 			amount: allExpenses.reduce(
 				(sum, expense) =>
 					dayjs(expense.date).get("month") === currentMonth &&
