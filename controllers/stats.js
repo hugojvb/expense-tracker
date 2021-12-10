@@ -57,6 +57,11 @@ exports.getStats = async (req, res) => {
 
 		stats.last12months = monthExpensesArray;
 
+		// GET LAST 5 YEARS EXPENSES
+		const yearExpensesArray = await getYearsMeanExpensesService(req.user);
+
+		stats.last5years = yearExpensesArray;
+
 		return res.status(200).json({ data: stats });
 	} catch (error) {
 		console.log(error);
