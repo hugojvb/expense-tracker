@@ -9,8 +9,8 @@ const {
 	getLast12MonthsExpensesService,
 } = require("../services/stats");
 
-const getLastMonth = () => {
-	// GET LAST MONTH TOTAL EXPENSES
+// GET LAST MONTH TOTAL EXPENSES
+const getLastMonth = async () => {
 	const lastMonthArray = await TransactionsSchema.find({
 		user: req.user,
 		date: {
@@ -19,19 +19,18 @@ const getLastMonth = () => {
 		},
 	}).sort({ date: -1 });
 
-	return Math.round(lastMonthArray.reduce((sum, current) => (sum += current.amount), 0));
+	return Math.round(lastMonthArray?.reduce((sum, current) => (sum += current.amount), 0));
 };
 
 exports.getStats = async (req, res) => {
 	try {
 		let stats = {};
 
-		stats.lastMonth = getLastMonth() ? getLastMonth() : 0;
+		// GET LAST MONTH TOTAL EXPENSES
+		stats.lastMonth = await getLastMonth();
 
 		// GET LAST SEMESTER MEAN EXPENSES
-		const lastSemesterMean = await getLastSemesterMeanService(req.user);
-
-		stats.lastSemesterMean = lastSemesterMean;
+		stats.lastSemesterMean = await getLastSemesterMeanService(req.user);
 
 		// GET LAST GOAL
 		const lastGoal = await getLastGoalService(req.user);
@@ -39,9 +38,9 @@ exports.getStats = async (req, res) => {
 		stats.lastGoal = lastGoal.goal ? lastGoal.goal : 0;
 
 		// GET SPENTH THIS MONTH
-		const spentThisMonth = await getSpentThisMonthService(req.user);
-
-		stats.spentThisMonth = spentThisMonth ? spentThisMonth : 0;
+		stats.spentThisMonth = (await getSpentThisMonthService(req.user))
+			? await getSpentThisMonthService(req.user)
+			: 0;
 
 		// GET HIGHGEST AND LOWEST SPENDING MONTHS
 		const { max, maxMonth } = await getHighestAndLowestSpentMonthService(req.user);
@@ -55,14 +54,10 @@ exports.getStats = async (req, res) => {
 		stats.lowestSpentMonth = minMonth ? minMonth : "-";
 
 		// GET LAST 12 MONTHS
-		const monthExpensesArray = await getLast12MonthsExpensesService(req.user);
-
-		stats.last12months = monthExpensesArray;
+		stats.last12months = await getLast12MonthsExpensesService(req.user);
 
 		// GET LAST 5 YEARS EXPENSES
-		const yearExpensesArray = await getYearsMeanExpensesService(req.user);
-
-		stats.last5years = yearExpensesArray;
+		stats.last5years = await getYearsMeanExpensesService(req.user);
 
 		return res.status(200).json({ data: stats });
 	} catch (error) {
