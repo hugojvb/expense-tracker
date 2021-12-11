@@ -1,11 +1,4 @@
-import {
-	FC,
-	Fragment,
-	ReactNode,
-	useCallback,
-	useEffect,
-	useState,
-} from "react";
+import { FC, Fragment, ReactNode, useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
 // MATERIAL-UI COMPONENTS IMPORT
@@ -52,7 +45,7 @@ const Home: FC = () => {
 				minWidth: "100%",
 			},
 			card: {
-				height: "50em",
+				minHeight: "50em",
 				minWidth: "100%",
 				padding: "2em",
 			},
@@ -62,14 +55,6 @@ const Home: FC = () => {
 		})
 	);
 	const classes = useStyles();
-
-	const data = [
-		{ name: "Page A", uv: 400, pv: 2400, amt: 2400 },
-		{ name: "Page B", uv: 200, pv: 2400, amt: 2400 },
-		{ name: "Page C", uv: 300, pv: 2400, amt: 2400 },
-		{ name: "Page D", uv: 150, pv: 2400, amt: 2400 },
-		{ name: "Page E", uv: 350, pv: 2400, amt: 2400 },
-	];
 
 	return (
 		<Container className={classes.container}>
@@ -86,66 +71,24 @@ const Home: FC = () => {
 						Welcome Back
 					</Typography>
 					<Grid item container spacing={3}>
-						<Grid
-							item
-							container
-							direction="column"
-							xs={4}
-							justify="center"
-							alignItems="center"
-						>
-							<AttachMoneyIcon
-								color="secondary"
-								style={{ fontSize: 200 }}
-							/>
+						<Grid item container direction="column" lg={4} justify="center" alignItems="center">
+							<AttachMoneyIcon color="secondary" style={{ fontSize: 200 }} />
 							<hr />
-							<Button
-								variant="outlined"
-								color="secondary"
-								onClick={() => history.push("/history")}
-							>
+							<Button variant="outlined" color="secondary" onClick={() => history.push("/history")}>
 								View Expenses
 							</Button>
 						</Grid>
-						<Grid
-							item
-							container
-							direction="column"
-							xs={4}
-							justify="center"
-							alignItems="center"
-						>
-							<TrackChangesIcon
-								color="secondary"
-								style={{ fontSize: 200 }}
-							/>
+						<Grid item container direction="column" lg={4} justify="center" alignItems="center">
+							<TrackChangesIcon color="secondary" style={{ fontSize: 200 }} />
 							<hr />
-							<Button
-								variant="outlined"
-								color="secondary"
-								onClick={() => history.push("/goals")}
-							>
+							<Button variant="outlined" color="secondary" onClick={() => history.push("/goals")}>
 								View Goals
 							</Button>
 						</Grid>
-						<Grid
-							item
-							container
-							direction="column"
-							xs={4}
-							justify="center"
-							alignItems="center"
-						>
-							<TimelineIcon
-								color="secondary"
-								style={{ fontSize: 200 }}
-							/>
+						<Grid item container direction="column" lg={4} justify="center" alignItems="center">
+							<TimelineIcon color="secondary" style={{ fontSize: 200 }} />
 							<hr />
-							<Button
-								variant="outlined"
-								color="secondary"
-								onClick={() => history.push("/summary")}
-							>
+							<Button variant="outlined" color="secondary" onClick={() => history.push("/summary")}>
 								View Summary
 							</Button>
 						</Grid>
