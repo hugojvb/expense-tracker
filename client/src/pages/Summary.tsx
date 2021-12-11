@@ -319,6 +319,7 @@ const Summary: FC = () => {
 						>
 							<Line type="monotone" dataKey="amount" stroke="#8884d8" />
 							<CartesianGrid stroke="#ccc" />
+							<Tooltip />
 							<XAxis dataKey="name" />
 							<YAxis dataKey="amount" />
 						</LineChart>

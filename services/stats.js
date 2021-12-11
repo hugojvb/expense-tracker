@@ -143,7 +143,7 @@ exports.getYearsMeanExpensesService = async (user) => {
 			}
 		}, 0);
 
-		sumOfExpensesInCurrentYear = sumOfExpensesInCurrentYear / (13 - +firstRecordedMonthInYear);
+		sumOfExpensesInCurrentYear = Math.round(sumOfExpensesInCurrentYear / (13 - +firstRecordedMonthInYear));
 
 		yearExpensesArray.push({
 			name: dayjs().set("year", currentYear).format("YYYY"),
