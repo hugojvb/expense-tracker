@@ -310,7 +310,7 @@ const Summary: FC = () => {
 						<LineChart
 							width={innerWidth * 0.35}
 							height={200}
-							data={stats?.last12months}
+							data={stats?.last5years}
 							margin={{
 								top: 0,
 								right: 0,
@@ -318,10 +318,10 @@ const Summary: FC = () => {
 								bottom: 0,
 							}}
 						>
-							<Line type="monotone" dataKey="uv" stroke="#8884d8" />
+							<Line type="monotone" dataKey="amount" stroke="#8884d8" />
 							<CartesianGrid stroke="#ccc" />
 							<XAxis dataKey="name" />
-							<YAxis />
+							<YAxis dataKey="amount" />
 						</LineChart>
 					</Card>
 				</Grid>
