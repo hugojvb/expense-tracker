@@ -219,13 +219,29 @@ const Summary: FC = () => {
 
 				<Grid item lg={6} xs={12}>
 					<Card className={classes.bigCard}>
-						<BarChart width={innerWidth * 0.37} height={250} data={stats?.last12months}>
-							<CartesianGrid strokeDasharray="3 3" stroke="#eee" />
-							<XAxis dataKey="name" />
-							<YAxis dataKey="amount" />
-							<Tooltip />
-							<Bar dataKey="amount" fill={theme.palette.primary.main} />
-						</BarChart>
+						{loading ? (
+							<div
+								className="container"
+								style={{
+									width: "100%",
+									display: "flex",
+									flexDirection: "row",
+									justifyContent: "center",
+									alignItems: "center",
+									marginTop: 10,
+								}}
+							>
+								<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
+							</div>
+						) : (
+							<BarChart width={innerWidth * 0.37} height={250} data={stats?.last12months}>
+								<CartesianGrid strokeDasharray="3 3" stroke="#eee" />
+								<XAxis dataKey="name" />
+								<YAxis dataKey="amount" />
+								<Tooltip />
+								<Bar dataKey="amount" fill={theme.palette.primary.main} />
+							</BarChart>
+						)}
 					</Card>
 				</Grid>
 				<Grid item lg={3} md={6} xs={12}>
@@ -306,36 +322,68 @@ const Summary: FC = () => {
 
 				<Grid item lg={6} xs={12}>
 					<Card className={classes.bigCard}>
-						<LineChart
-							width={innerWidth * 0.35}
-							height={200}
-							data={stats?.last5years}
-							margin={{
-								top: 0,
-								right: 0,
-								left: 0,
-								bottom: 0,
-							}}
-						>
-							<Line type="monotone" dataKey="amount" stroke="#8884d8" />
-							<CartesianGrid stroke="#eee" />
-							<Tooltip />
-							<XAxis dataKey="name" />
-							<YAxis dataKey="amount" />
-						</LineChart>
+						{loading ? (
+							<div
+								className="container"
+								style={{
+									width: "100%",
+									display: "flex",
+									flexDirection: "row",
+									justifyContent: "center",
+									alignItems: "center",
+									marginTop: 10,
+								}}
+							>
+								<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
+							</div>
+						) : (
+							<LineChart
+								width={innerWidth * 0.35}
+								height={200}
+								data={stats?.last5years}
+								margin={{
+									top: 0,
+									right: 0,
+									left: 0,
+									bottom: 0,
+								}}
+							>
+								<Line type="monotone" dataKey="amount" stroke="#8884d8" />
+								<CartesianGrid stroke="#eee" />
+								<Tooltip />
+								<XAxis dataKey="name" />
+								<YAxis dataKey="amount" />
+							</LineChart>
+						)}
 					</Card>
 				</Grid>
 				<Grid item lg={6} xs={12}>
 					<Card className={classes.bigCard}>
-						<BarChart width={730} height={250} data={stats?.last12months}>
-							<CartesianGrid strokeDasharray="3 3" />
-							<XAxis dataKey="name" />
-							<YAxis />
-							<Tooltip />
-							<Legend />
-							<Bar dataKey="pv" fill="#8884d8" />
-							<Bar dataKey="uv" fill="#82ca9d" />
-						</BarChart>
+						{loading ? (
+							<div
+								className="container"
+								style={{
+									width: "100%",
+									display: "flex",
+									flexDirection: "row",
+									justifyContent: "center",
+									alignItems: "center",
+									marginTop: 10,
+								}}
+							>
+								<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
+							</div>
+						) : (
+							<BarChart width={730} height={250} data={stats?.last12months}>
+								<CartesianGrid strokeDasharray="3 3" />
+								<XAxis dataKey="name" />
+								<YAxis />
+								<Tooltip />
+								<Legend />
+								<Bar dataKey="pv" fill="#8884d8" />
+								<Bar dataKey="uv" fill="#82ca9d" />
+							</BarChart>
+						)}
 					</Card>
 				</Grid>
 			</Grid>
