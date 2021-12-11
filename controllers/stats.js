@@ -9,22 +9,24 @@ const {
 	getLast12MonthsExpensesService,
 } = require("../services/stats");
 
+const getLastMonth = () => {
+	// GET LAST MONTH TOTAL EXPENSES
+	const lastMonthArray = await TransactionsSchema.find({
+		user: req.user,
+		date: {
+			$gte: dayjs().subtract(1, "month").startOf("month"),
+			$lt: dayjs().subtract(1, "month").endOf("month"),
+		},
+	}).sort({ date: -1 });
+
+	return Math.round(lastMonthArray.reduce((sum, current) => (sum += current.amount), 0));
+};
+
 exports.getStats = async (req, res) => {
 	try {
 		let stats = {};
 
-		// GET LAST MONTH TOTAL EXPENSES
-		const lastMonthArray = await TransactionsSchema.find({
-			user: req.user,
-			date: {
-				$gte: dayjs().subtract(1, "month").startOf("month"),
-				$lt: dayjs().subtract(1, "month").endOf("month"),
-			},
-		}).sort({ date: -1 });
-
-		const lastMonth = Math.round(lastMonthArray.reduce((sum, current) => (sum += current.amount), 0));
-
-		stats.lastMonth = lastMonth ? lastMonth : 0;
+		stats.lastMonth = getLastMonth() ? getLastMonth() : 0;
 
 		// GET LAST SEMESTER MEAN EXPENSES
 		const lastSemesterMean = await getLastSemesterMeanService(req.user);
