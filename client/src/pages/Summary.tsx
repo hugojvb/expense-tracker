@@ -220,7 +220,7 @@ const Summary: FC = () => {
 				<Grid item lg={6} xs={12}>
 					<Card className={classes.bigCard}>
 						<BarChart width={innerWidth * 0.37} height={250} data={stats?.last12months}>
-							<CartesianGrid strokeDasharray="3 3" />
+							<CartesianGrid strokeDasharray="3 3" stroke="#eee" />
 							<XAxis dataKey="name" />
 							<YAxis dataKey="amount" />
 							<Tooltip />
@@ -318,7 +318,7 @@ const Summary: FC = () => {
 							}}
 						>
 							<Line type="monotone" dataKey="amount" stroke="#8884d8" />
-							<CartesianGrid stroke="#ccc" />
+							<CartesianGrid stroke="#eee" />
 							<Tooltip />
 							<XAxis dataKey="name" />
 							<YAxis dataKey="amount" />

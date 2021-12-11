@@ -149,6 +149,8 @@ exports.getYearsMeanExpensesService = async (user) => {
 			name: dayjs().set("year", currentYear).format("YYYY"),
 			amount: sumOfExpensesInCurrentYear,
 		});
+
+		yearExpensesArray = yearExpensesArray.filter((year) => year.amount !== 0);
 	}
 
 	return yearExpensesArray;
