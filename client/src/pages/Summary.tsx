@@ -219,12 +219,11 @@ const Summary: FC = () => {
 
 				<Grid item lg={6} xs={12}>
 					<Card className={classes.bigCard}>
-						<BarChart width={730} height={250} data={stats?.last12months}>
+						<BarChart width={innerWidth * 0.37} height={250} data={stats?.last12months}>
 							<CartesianGrid strokeDasharray="3 3" />
 							<XAxis dataKey="name" />
 							<YAxis dataKey="amount" />
 							<Tooltip />
-							<Legend />
 							<Bar dataKey="amount" fill={theme.palette.primary.main} />
 						</BarChart>
 					</Card>
