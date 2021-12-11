@@ -20,7 +20,7 @@ const getLastMonth = async (user) => {
 		},
 	}).sort({ date: -1 });
 
-	return Math.round(lastMonthArray?.reduce((sum, current) => (sum += current.amount), 0));
+	return Math.round(lastMonthArray.reduce((sum, current) => (sum += current.amount), 0));
 };
 
 exports.getStats = async (req, res) => {
