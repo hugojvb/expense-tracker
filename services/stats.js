@@ -128,16 +128,24 @@ exports.getYearsMeanExpensesService = async (user) => {
 	});
 
 	let yearExpensesArray = [];
+	let sumOfExpensesInCurrentYear = 0;
+	let firstMonthInYear = dayjs().set("year", dayjs().format("YYYY")).set("month", 11).endOf("month");
 
 	for (let i = 4; i >= 0; i--) {
 		const currentYear = dayjs().get("year") - i;
+
+		allExpenses.forEach((expense) => {
+			if (dayjs(expense.date).get("year") === currentYear) {
+				sumOfExpensesInCurrentYear += Math.round(+expense.amount);
+				if (dayjs(expense.date).isBefore(firstMonthInYear)) {
+					firstMonthInYear = dayjs(expense.date).format("M");
+				}
+			}
+		}, 0);
+
 		yearExpensesArray.push({
 			name: dayjs().set("year", currentYear).format("YYYY"),
-			amount: allExpenses.reduce(
-				(sum, expense) =>
-					dayjs(expense.date).get("year") === currentYear ? (sum += Math.round(+expense.amount)) : sum,
-				0
-			),
+			amount: sumOfExpensesInCurrentYear,
 		});
 	}
 
