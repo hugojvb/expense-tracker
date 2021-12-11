@@ -7,12 +7,13 @@ const {
 	getLastGoalService,
 	getLastSemesterMeanService,
 	getLast12MonthsExpensesService,
+	getYearsMeanExpensesService,
 } = require("../services/stats");
 
 // GET LAST MONTH TOTAL EXPENSES
-const getLastMonth = async () => {
+const getLastMonth = async (user) => {
 	const lastMonthArray = await TransactionsSchema.find({
-		user: req.user,
+		user: user,
 		date: {
 			$gte: dayjs().subtract(1, "month").startOf("month"),
 			$lt: dayjs().subtract(1, "month").endOf("month"),
@@ -27,7 +28,7 @@ exports.getStats = async (req, res) => {
 		let stats = {};
 
 		// GET LAST MONTH TOTAL EXPENSES
-		stats.lastMonth = await getLastMonth();
+		stats.lastMonth = await getLastMonth(req.user);
 
 		// GET LAST SEMESTER MEAN EXPENSES
 		stats.lastSemesterMean = await getLastSemesterMeanService(req.user);
