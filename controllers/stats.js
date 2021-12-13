@@ -8,6 +8,7 @@ const {
 	getLastSemesterMeanService,
 	getLast12MonthsExpensesService,
 	getYearsMeanExpensesService,
+	getLast3yearsGoalsService,
 } = require("../services/stats");
 
 // GET LAST MONTH TOTAL EXPENSES
@@ -59,6 +60,9 @@ exports.getStats = async (req, res) => {
 
 		// GET LAST 5 YEARS EXPENSES
 		stats.last5years = await getYearsMeanExpensesService(req.user);
+
+		// GET LAST 3 YEARS GOALS
+		stats.goalsLast3years = await getLast3yearsGoalsService(req.user);
 
 		return res.status(200).json({ data: stats });
 	} catch (error) {
