@@ -229,6 +229,7 @@ const Summary: FC = () => {
 							>
 								<CartesianGrid strokeDasharray="3 3" stroke="#eee" />
 								<XAxis dataKey="name" />
+								<Legend />
 								<YAxis dataKey="amount" />
 								<Tooltip />
 								<Bar dataKey="amount" fill={theme.palette.primary.main} />
@@ -342,6 +343,7 @@ const Summary: FC = () => {
 							>
 								<Line type="monotone" dataKey="amount" stroke="#8884d8" />
 								<CartesianGrid stroke="#eee" />
+								<Legend />
 								<Tooltip />
 								<XAxis dataKey="name" />
 								<YAxis dataKey="amount" />
@@ -375,6 +377,7 @@ const Summary: FC = () => {
 								<XAxis dataKey="date" />
 								<YAxis dataKey="goal" />
 								<Tooltip />
+								<Legend />
 								<Line type="monotone" dataKey="goal" stroke="#8884d8" />
 							</LineChart>
 						)}
