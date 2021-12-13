@@ -67,8 +67,6 @@ const Summary: FC = () => {
 	);
 	const classes = useStyles();
 
-	console.log(stats?.goalsLast3years);
-
 	return (
 		<Container className={classes.container}>
 			<Grid container spacing={3}>
@@ -364,7 +362,7 @@ const Summary: FC = () => {
 								<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 							</div>
 						) : (
-							<LineChart width={730} height={250} data={stats?.goalsLast3years}>
+							<LineChart width={innerWidth * 0.37} height={250} data={stats?.goalsLast3years}>
 								<CartesianGrid strokeDasharray="3 3" />
 								<XAxis dataKey="date" />
 								<YAxis dataKey="goal" />
