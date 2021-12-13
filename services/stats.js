@@ -165,9 +165,7 @@ exports.getLast3yearsGoalsService = async (user) => {
 		},
 	});
 
-	allGoals = allGoals.map((goal) => {
-		return { ...goal, date: dayjs(goal.date).format("MM-YYYY") };
-	});
+	allGoals = allGoals.map((goal) => ({ goal: goal.goal, date: dayjs(goal.date).format("MM-YYYY") }));
 
 	return allGoals;
 };
