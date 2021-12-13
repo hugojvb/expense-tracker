@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useLayoutEffect } from "react";
 
 import {
 	Theme,
@@ -83,17 +83,17 @@ const LeftDrawer = () => {
 		toggleDrawer(false);
 	};
 
+	useLayoutEffect(() => {
+		if (window.innerWidth < 1280) toggleDrawer(false);
+	}, []);
+
 	return (
 		<div>
 			<Drawer
 				variant="permanent"
-				className={
-					isDrawerOpen ? classes.drawerOpen : classes.drawerClose
-				}
+				className={isDrawerOpen ? classes.drawerOpen : classes.drawerClose}
 				classes={{
-					paper: isDrawerOpen
-						? classes.drawerOpen
-						: classes.drawerClose,
+					paper: isDrawerOpen ? classes.drawerOpen : classes.drawerClose,
 				}}
 			>
 				<div className={classes.toolbar}>
@@ -102,11 +102,7 @@ const LeftDrawer = () => {
 					</IconButton>
 				</div>
 				<List>
-					<ListItem
-						button
-						onClick={() => history.push("/")}
-						selected={location.pathname === "/"}
-					>
+					<ListItem button onClick={() => history.push("/")} selected={location.pathname === "/"}>
 						<ListItemIcon>
 							<HomeIcon />
 						</ListItemIcon>
@@ -124,11 +120,7 @@ const LeftDrawer = () => {
 						</ListItemIcon>
 						<ListItemText primary="Summary" />
 					</ListItem>
-					<ListItem
-						button
-						onClick={() => history.push("/goals")}
-						selected={location.pathname === "/goals"}
-					>
+					<ListItem button onClick={() => history.push("/goals")} selected={location.pathname === "/goals"}>
 						<ListItemIcon>
 							<TrackChangesIcon />
 						</ListItemIcon>
