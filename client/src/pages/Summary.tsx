@@ -1,18 +1,6 @@
 import { FC, Fragment, useContext, useCallback, useEffect, useState } from "react";
 import { Card, CardContent, Typography, makeStyles, Container, Button, createStyles, Grid } from "@material-ui/core";
-import {
-	LineChart,
-	Line,
-	CartesianGrid,
-	XAxis,
-	YAxis,
-	BarChart,
-	Tooltip,
-	Legend,
-	Bar,
-	RadialBarChart,
-	RadialBar,
-} from "recharts";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, BarChart, Tooltip, Legend, Bar } from "recharts";
 import Context from "../context/context";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -374,15 +362,15 @@ const Summary: FC = () => {
 								<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 							</div>
 						) : (
-							<BarChart width={730} height={250} data={stats?.last12months}>
+							<LineChart width={730} height={250} data={stats?.goalsLast3years}>
 								<CartesianGrid strokeDasharray="3 3" />
-								<XAxis dataKey="name" />
-								<YAxis />
+								<XAxis dataKey="date" />
+								<YAxis dataKey="goal" />
 								<Tooltip />
 								<Legend />
-								<Bar dataKey="pv" fill="#8884d8" />
-								<Bar dataKey="uv" fill="#82ca9d" />
-							</BarChart>
+								<Bar dataKey="date" />
+								<Bar dataKey="goal" />
+							</LineChart>
 						)}
 					</Card>
 				</Grid>

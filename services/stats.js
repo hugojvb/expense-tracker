@@ -155,3 +155,15 @@ exports.getYearsMeanExpensesService = async (user) => {
 
 	return yearExpensesArray;
 };
+
+exports.getLast3yearsGoalsService = async (user) => {
+	const allGoals = await GoalsSchema.find({
+		user,
+		date: {
+			$gte: dayjs().subtract(3, "years").endOf("month"),
+			$lt: dayjs(),
+		},
+	});
+
+	return allGoals;
+};
