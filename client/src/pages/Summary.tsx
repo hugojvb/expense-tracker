@@ -222,7 +222,11 @@ const Summary: FC = () => {
 								<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 							</div>
 						) : (
-							<BarChart width={innerWidth * 0.37} height={250} data={stats?.last12months}>
+							<BarChart
+								width={innerWidth > 1280 ? innerWidth * 0.37 : innerWidth * 0.55}
+								height={250}
+								data={stats?.last12months}
+							>
 								<CartesianGrid strokeDasharray="3 3" stroke="#eee" />
 								<XAxis dataKey="name" />
 								<YAxis dataKey="amount" />
@@ -326,7 +330,7 @@ const Summary: FC = () => {
 							</div>
 						) : (
 							<LineChart
-								width={innerWidth * 0.35}
+								width={innerWidth > 1280 ? innerWidth * 0.35 : innerWidth * 0.55}
 								height={200}
 								data={stats?.last5years}
 								margin={{
@@ -362,7 +366,11 @@ const Summary: FC = () => {
 								<img src="../../loading.svg" alt="loading" style={{ width: 50 }} />
 							</div>
 						) : (
-							<LineChart width={innerWidth * 0.37} height={250} data={stats?.goalsLast3years}>
+							<LineChart
+								width={innerWidth > 1280 ? innerWidth * 0.37 : innerWidth * 0.55}
+								height={250}
+								data={stats?.goalsLast3years}
+							>
 								<CartesianGrid strokeDasharray="3 3" />
 								<XAxis dataKey="date" />
 								<YAxis dataKey="goal" />
