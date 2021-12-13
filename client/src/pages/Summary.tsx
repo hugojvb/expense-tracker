@@ -367,9 +367,7 @@ const Summary: FC = () => {
 								<XAxis dataKey="date" />
 								<YAxis dataKey="goal" />
 								<Tooltip />
-								<Legend />
-								<Bar dataKey="date" />
-								<Bar dataKey="goal" />
+								<Line type="monotone" dataKey="goal" stroke="#8884d8" />
 							</LineChart>
 						)}
 					</Card>
