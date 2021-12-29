@@ -65,8 +65,7 @@ const Form: FC = () => {
 	const context = useContext(Context);
 
 	// LOGIN STATE
-	const { login, loggedIn }: { login: () => any; loggedIn: boolean } =
-		context;
+	const { login, loggedIn }: { login: () => any; loggedIn: boolean } = context;
 
 	// PASSWORD VISIBILITY STATE
 	const [passwordVisible, setPasswordVisible] = useState(false);
@@ -83,20 +82,19 @@ const Form: FC = () => {
 	// USE FORM METHODS
 	const { register, handleSubmit, errors, setValue } = useForm();
 
-	// USE HISTORY HOOK
-	const history = useHistory();
-
 	// LOGIN SUBMIT
 	const onSubmit = async (data: any) => {
-		// LOGIN POST REQUEST
-		const res = await axios.post("/api/auth/login", data);
+		try {
+			// LOGIN POST REQUEST
+			const res = await axios.post("/api/auth/login", data);
 
-		if (res.data.success === true) {
-			setWasValidated(true);
-			setValue("email", "");
-			setValue("password", "");
-			login();
-		} else {
+			if (res.data.success === true) {
+				setWasValidated(true);
+				setValue("email", "");
+				setValue("password", "");
+				login();
+			}
+		} catch (error) {
 			setNotValidated(true);
 		}
 	};
@@ -117,13 +115,7 @@ const Form: FC = () => {
 			<Container maxWidth="sm">
 				<Card className={classes.card}>
 					<Container className={classes.center}>
-						<img
-							src="/logo.png"
-							alt="logo"
-							height="50"
-							width="60"
-							className={classes.logo}
-						/>
+						<img src="/logo.png" alt="logo" height="50" width="60" className={classes.logo} />
 
 						<Typography variant="h5" color="secondary">
 							Expense Tracker
@@ -163,11 +155,7 @@ const Form: FC = () => {
 													aria-label="toggle password visibility"
 													onClick={togglePassword}
 												>
-													{passwordVisible ? (
-														<VisibilityOffIcon />
-													) : (
-														<VisibilityIcon />
-													)}
+													{passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
 												</IconButton>
 											</InputAdornment>
 										),
@@ -181,23 +169,12 @@ const Form: FC = () => {
 								onClose={handleCloseSnackbar}
 								TransitionComponent={Grow}
 							>
-								<Alert
-									elevation={6}
-									variant="filled"
-									onClose={handleCloseSnackbar}
-									severity="error"
-								>
-									Email or Password Incorrect! Please try
-									again.
+								<Alert elevation={6} variant="filled" onClose={handleCloseSnackbar} severity="error">
+									Email or Password Incorrect! Please try again.
 								</Alert>
 							</Snackbar>
 
-							<Button
-								variant="contained"
-								type="submit"
-								color="secondary"
-								className={classes.button}
-							>
+							<Button variant="contained" type="submit" color="secondary" className={classes.button}>
 								Login
 							</Button>
 						</form>
