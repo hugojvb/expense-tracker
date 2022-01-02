@@ -223,6 +223,7 @@ const HistoryTable = () => {
 					page={page}
 					onChangePage={handleChangePage}
 					onChangeRowsPerPage={handleChangeRowsPerPage}
+					labelRowsPerPage={window.innerWidth > 670 ? "Rows per page:" : ""}
 				/>
 			</Paper>
 		</div>
