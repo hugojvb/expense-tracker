@@ -22,7 +22,6 @@ exports.getTransactions = async (req, res) => {
 // add transaction
 exports.addTransaction = async (req, res, next) => {
 	try {
-		req.body.date = new Date();
 		req.body.user = req.user;
 		const newTransaction = await TransactionsSchema.create(req.body);
 
